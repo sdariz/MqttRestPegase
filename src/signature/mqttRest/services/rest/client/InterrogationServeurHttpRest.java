@@ -57,5 +57,20 @@ public class InterrogationServeurHttpRest {
 	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort) {
 		return FactoryRequetesUtilisateur.requeteDemandeListeUtilisateurs(pHost, pPort);
 	}
+	
+	/**
+	 * Demande l'utilisateur connecté
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @return l'utilisateur connecté, null si aucun ou si problème
+	 */
+	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort) {
+		return FactoryRequetesUtilisateur.requeteDemandeUtilisateurConnecte(pHost, pPort);
+	}
+	
+	
 
 }

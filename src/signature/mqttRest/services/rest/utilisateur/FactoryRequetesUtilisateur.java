@@ -1,15 +1,61 @@
 package signature.mqttRest.services.rest.utilisateur;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import signature.mqttRest.objetsPartages.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
+import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
 
 public class FactoryRequetesUtilisateur {
-	public final static String LISTE_UTILISATEURS = "/utilisateurs";
+	private final static String LISTE_UTILISATEURS = "/utilisateurs";
+	private final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
+	
+	/**
+	 * Donne la liste des routes de type GET
+	 * 
+	 * @return la liste des routes
+	 */
+	public static List<String> getGETRoutes() {
+		return Arrays.asList(LISTE_UTILISATEURS, UTILISATEUR_CONNECTE);
+	}
+
+	/**
+	 * Donne la liste des routes de type POST
+	 * 
+	 * @return la liste des routes
+	 */
+	public static List<String> getPOSTRoutes() {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Traite une demande de type GET
+	 * 
+	 * @param pUri
+	 *            la route à traiter
+	 * @param pParametres
+	 *            les paramètres de la requête
+	 * @param pTraiteRequetesRest
+	 *            l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de réponse
+	 */
+	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
+			ITraitementRequetesRest pTraiteRequetesRest) {
+		if (LISTE_UTILISATEURS.equals(pUri)) {
+			return pTraiteRequetesRest.traiteDemandeListeUtilisateurs();
+		}
+		
+		if (UTILISATEUR_CONNECTE.equals(pUri)) {
+			return pTraiteRequetesRest.traiteDemandeUtilisateurConnecte();
+		}
+		
+		return "";
+	}
 
 	/**
 	 * Demande la liste des équipements
@@ -18,6 +64,7 @@ public class FactoryRequetesUtilisateur {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
+	 *            @return la liste des utilisateurs, vide si aucun (ou problème)
 	 */
 	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort) {
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, LISTE_UTILISATEURS);
@@ -30,6 +77,24 @@ public class FactoryRequetesUtilisateur {
 				.stream().map(MessageUtilisateurMqttRest.class::cast).collect(Collectors.toList());
 
 		return retour;
+	}
+	
+	/**
+	 * Demande l'utilisateur connecté
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 *            @param l'utilisateur connecté, null si aucun (ou problème)
+	 */
+	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort) {
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, UTILISATEUR_CONNECTE);
+		if(json.length() == 0) {
+			return null;
+		}
+		
+		return (MessageUtilisateurMqttRest)Util.jsonToObjet(json, MessageUtilisateurMqttRest.class);
 	}
 
 }

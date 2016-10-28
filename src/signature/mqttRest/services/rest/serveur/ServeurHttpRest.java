@@ -57,19 +57,40 @@ public class ServeurHttpRest {
 
 	// Création des différentes routes
 	private void creationRoutes() {
-		// Les routes de type GET
-		FactoryRoutes.GETRoutes().forEach(route -> {
+		creationRoutesGet();
+		//creationRoutesPost();
+	}
+
+	// Création des routes GET
+	private void creationRoutesGet() {
+		GestionnaireRoutes.GETRoutes().forEach(route -> {
 			get(route, (req, res) -> {
 				// Récupération des paramètres de la requête
 				QueryParamsMap queryMap = req.queryMap();
 				Map<String, String[]> map = queryMap.toMap();
 
-				String retour = FactoryRoutes.traiteGET(route, map, _traitementRequetesRest);
+				String retour = GestionnaireRoutes.traiteGET(route, map, _traitementRequetesRest);
 
 				return retour;
 
 			});
 		});
 	}
+
+	// Création des routes POST
+	/*private void creationRoutesPost() {
+		GestionnaireRoutes.POSTRoutes().forEach(route -> {
+			get(route, (req, res) -> {
+				// Récupération des paramètres de la requête
+				QueryParamsMap queryMap = req.queryMap();
+				Map<String, String[]> map = queryMap.toMap();
+
+				String retour = GestionnaireRoutes.traiteGET(route, map, _traitementRequetesRest);
+
+				return retour;
+
+			});
+		});
+	}*/
 
 }
