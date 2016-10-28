@@ -1,6 +1,7 @@
 package signature.mqttRest.services.rest.serveur;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.Spark.port;
 
 import java.util.Map;
@@ -58,7 +59,7 @@ public class ServeurHttpRest {
 	// Création des différentes routes
 	private void creationRoutes() {
 		creationRoutesGet();
-		//creationRoutesPost();
+		creationRoutesPost();
 	}
 
 	// Création des routes GET
@@ -72,25 +73,23 @@ public class ServeurHttpRest {
 				String retour = GestionnaireRoutes.traiteGET(route, map, _traitementRequetesRest);
 
 				return retour;
-
 			});
 		});
 	}
 
 	// Création des routes POST
-	/*private void creationRoutesPost() {
+	private void creationRoutesPost() {
 		GestionnaireRoutes.POSTRoutes().forEach(route -> {
-			get(route, (req, res) -> {
+			post(route, (req, res) -> {
 				// Récupération des paramètres de la requête
 				QueryParamsMap queryMap = req.queryMap();
 				Map<String, String[]> map = queryMap.toMap();
 
-				String retour = GestionnaireRoutes.traiteGET(route, map, _traitementRequetesRest);
+				String retour = GestionnaireRoutes.traitePOST(route, map, _traitementRequetesRest);
 
 				return retour;
-
 			});
 		});
-	}*/
+	}
 
 }

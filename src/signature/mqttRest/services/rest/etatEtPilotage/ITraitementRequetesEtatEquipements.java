@@ -1,5 +1,9 @@
 package signature.mqttRest.services.rest.etatEtPilotage;
 
+import java.util.List;
+
+import signature.mqttRest.objetsPartages.MessageEtatAffichageMqttRest;
+
 /**
  * Traitement des requêtes d'état des équipements
  * @author SDARIZCUREN
@@ -10,15 +14,15 @@ public interface ITraitementRequetesEtatEquipements {
 	/**
 	 * Traite une demande d'état d'affichage d'un équipement
 	 * @param pId l'id de l'équipement
-	 * @return l'état d'affichage au format JSON
+	 * @return l'état d'affichage de l'équipement
 	 */
-	public String demandeEtatAffichageEquipement(String pId);
+	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId);
 	
 	/**
 	 * Traite une demande d'état d'affichage pour tous les équipements
-	 * @return l'état d'affichage des équipements au format JSON
+	 * @return l'état d'affichage des équipements
 	 */
-	public String demandeEtatAffichageEquipements();
+	public List<MessageEtatAffichageMqttRest> demandeEtatAffichageEquipements();
 	
 	/**
 	 * Traite une demande d'état technique d'un équipement

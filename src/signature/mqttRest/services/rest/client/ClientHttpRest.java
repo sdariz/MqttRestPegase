@@ -62,15 +62,19 @@ public class ClientHttpRest {
 		sb.append(pPort);
 		sb.append("/");
 		sb.append(pUri);
-
+		
 		// Ajout des paramètres
 		if (!pParametres.isEmpty()) {
+			sb.append("?");
 			pParametres.forEach((k, v) -> {
-				sb.append("?");
 				sb.append(k);
 				sb.append("=");
 				sb.append(v);
+				sb.append("&");
 			});
+			
+			// Suppression & en fin de chaîne
+			sb.deleteCharAt(sb.length() - 1);
 		}
 
 		// Requête GET

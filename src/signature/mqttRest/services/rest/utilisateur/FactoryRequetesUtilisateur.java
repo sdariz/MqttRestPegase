@@ -2,6 +2,7 @@ package signature.mqttRest.services.rest.utilisateur;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import signature.mqttRest.util.Util;
 public class FactoryRequetesUtilisateur {
 	private final static String LISTE_UTILISATEURS = "/utilisateurs";
 	private final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
+	private final static String IDENTIFIANTS_VALIDE = "/identifiantsValide";
 	
 	/**
 	 * Donne la liste des routes de type GET
@@ -21,7 +23,7 @@ public class FactoryRequetesUtilisateur {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(LISTE_UTILISATEURS, UTILISATEUR_CONNECTE);
+		return Arrays.asList(LISTE_UTILISATEURS, UTILISATEUR_CONNECTE, IDENTIFIANTS_VALIDE);
 	}
 
 	/**
@@ -47,13 +49,33 @@ public class FactoryRequetesUtilisateur {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (LISTE_UTILISATEURS.equals(pUri)) {
-			return pTraiteRequetesRest.traiteDemandeListeUtilisateurs();
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeListeUtilisateurs());
 		}
 		
 		if (UTILISATEUR_CONNECTE.equals(pUri)) {
-			return pTraiteRequetesRest.traiteDemandeUtilisateurConnecte();
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeUtilisateurConnecte());
 		}
 		
+		if (IDENTIFIANTS_VALIDE.equals(pUri)) {
+			return Util.toJsonString(pTraiteRequetesRest.estValide(pParametres.get("login")[0], pParametres.get("password")[0]));
+		}
+		
+		return "";
+	}
+	
+	/**
+	 * Traite une demande de type POST
+	 * 
+	 * @param pUri
+	 *            la route à traiter
+	 * @param pParametres
+	 *            les paramètres de la requête
+	 * @param pTraiteRequetesRest
+	 *            l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de réponse
+	 */
+	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
+			ITraitementRequetesRest pTraiteRequetesRest) {
 		return "";
 	}
 
@@ -95,6 +117,32 @@ public class FactoryRequetesUtilisateur {
 		}
 		
 		return (MessageUtilisateurMqttRest)Util.jsonToObjet(json, MessageUtilisateurMqttRest.class);
+	}
+	
+	/**
+	 * Demande à valider un identifiant et mot de passe
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pLogin
+	 *            le login à valider
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
+	 * @return true si valide, sinon false
+	 */
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse) {
+		Map<String, String> params = new HashMap<>();
+		params.put("login", pLogin);
+		params.put("password", pMotPasse);
+		
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, IDENTIFIANTS_VALIDE, params);
+		if(json.length() == 0) {
+			return false;
+		}
+		
+		return Util.jsonToBoolean(json);
 	}
 
 }

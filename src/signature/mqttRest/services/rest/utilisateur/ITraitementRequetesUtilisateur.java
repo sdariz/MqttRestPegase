@@ -1,5 +1,9 @@
 package signature.mqttRest.services.rest.utilisateur;
 
+import java.util.List;
+
+import signature.mqttRest.objetsPartages.MessageUtilisateurMqttRest;
+
 /**
  * Traitement des requêtes de gestion des utilisateurs
  * 
@@ -13,7 +17,7 @@ public interface ITraitementRequetesUtilisateur {
 	 * 
 	 * @return la liste des utilisateurs au format JSON
 	 */
-	public String traiteDemandeListeUtilisateurs();
+	public List<MessageUtilisateurMqttRest> traiteDemandeListeUtilisateurs();
 
 	/**
 	 * Traite une demande d'obtention de l'utilisateur connecté
@@ -21,7 +25,7 @@ public interface ITraitementRequetesUtilisateur {
 	 * @return l'utilisateur connecté au format JSON, chaîne vide si pas
 	 *         d'utilisateur connecté
 	 */
-	public String traiteDemandeUtilisateurConnecte();
+	public MessageUtilisateurMqttRest traiteDemandeUtilisateurConnecte();
 
 	/**
 	 * Indique si le login et le mot de passe associé sont valides
@@ -32,6 +36,6 @@ public interface ITraitementRequetesUtilisateur {
 	 *            le mot de passe associé au login
 	 * @return true ou false au format JSON
 	 */
-	public String estValide(String pLogin, String pMotPasse);
+	public boolean estValide(String pLogin, String pMotPasse);
 
 }

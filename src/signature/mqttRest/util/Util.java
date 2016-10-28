@@ -19,6 +19,23 @@ import signature.mqttRest.objetsPartages.MessagePmvMqttRest;
  *
  */
 public class Util {
+	
+	/**
+	 * Sérialise la valeur au format JSON
+	 * 
+	 * @param pVal
+	 *            la valeur à sérialiser
+	 * @return la chaîne JSON correspondante à la valeur
+	 */
+	public static String toJsonString(boolean pVal) {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		try {
+			return mapper.writeValueAsString(pVal);
+		} catch (JsonProcessingException e) {
+			return "";
+		}
+	}
 
 	/**
 	 * Sérialise l'objet au format JSON
@@ -65,7 +82,6 @@ public class Util {
 
 	/**
 	 * Deserialise un objet au format JSON
-	 * @param <T>
 	 * 
 	 * @param pChaineJson
 	 *            la chaîne JSON encodant l'objet
@@ -111,6 +127,27 @@ public class Util {
 		}
 
 		return new ArrayList<>();
+	}
+	
+	/**
+	 * Deserialise un boolean au format JSON
+	 * 
+	 * @param pChaineJson
+	 *            la chaîne JSON encodant le boolean
+	 * @return true ou false
+	 */
+	public static boolean jsonToBoolean(String pChaineJson) {
+		if (pChaineJson == null) {
+			return false;
+		}
+
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			return mapper.readValue(pChaineJson, Boolean.class);
+		} catch (IOException e) {
+		}
+
+		return false;
 	}
 
 	/**

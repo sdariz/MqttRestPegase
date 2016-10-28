@@ -44,7 +44,7 @@ public class InterrogationServeurHttpRest {
 	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort) {
 		return FactoryRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort);
 	}
-	
+
 	/**
 	 * Demande de la liste des utilisateurs
 	 * 
@@ -57,7 +57,7 @@ public class InterrogationServeurHttpRest {
 	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort) {
 		return FactoryRequetesUtilisateur.requeteDemandeListeUtilisateurs(pHost, pPort);
 	}
-	
+
 	/**
 	 * Demande l'utilisateur connecté
 	 * 
@@ -70,7 +70,22 @@ public class InterrogationServeurHttpRest {
 	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort) {
 		return FactoryRequetesUtilisateur.requeteDemandeUtilisateurConnecte(pHost, pPort);
 	}
-	
-	
+
+	/**
+	 * Demande à valider un identifiant et mot de passe
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pLogin
+	 *            le login à valider
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
+	 * @return true si valide, sinon false
+	 */
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse) {
+		return FactoryRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pLogin, pMotPasse);
+	}
 
 }
