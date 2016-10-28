@@ -1,8 +1,11 @@
-package signature.mqttRest.services.rest;
+package signature.mqttRest.services.rest.serveur;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import signature.mqttRest.services.rest.etatEtPilotage.FactoryRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.utilisateur.FactoryRequetesUtilisateur;
 
 /**
  * Classe servant uniquement à lister les routes à initialiser
@@ -10,28 +13,9 @@ import java.util.Map;
  * @author SDARIZCUREN
  *
  */
-public class FactoryRoutes {
+class FactoryRoutes {
 	private static List<String> getRoutes;
 	// private static List<String> postRoutes;
-
-	private final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
-	private final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
-	
-	/**
-	 * Demande la route pour une demande d'état d'affichage 
-	 * @return la route à utiliser
-	 */
-	public static String getRouteDemandeEtatAffichageEquipement() {
-		return ETAT_AFFICHAGE_EQUIPEMENT;
-	}
-	
-	/**
-	 * Demande la route pour une demande d'état technique 
-	 * @return la route à utiliser
-	 */
-	public static String getRouteDemandeEtatTechniqueEquipement() {
-		return ETAT_TECHNIQUE_EQUIPEMENT;
-	}
 
 	/**
 	 * Retourne la liste des routes de type GET
@@ -41,8 +25,9 @@ public class FactoryRoutes {
 	protected static List<String> GETRoutes() {
 		getRoutes = new ArrayList<>();
 
-		getRoutes.add(ETAT_AFFICHAGE_EQUIPEMENT);
-		getRoutes.add(ETAT_TECHNIQUE_EQUIPEMENT);
+		getRoutes.add(FactoryRequetesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT);
+		getRoutes.add(FactoryRequetesEtatEtPilotage.ETAT_TECHNIQUE_EQUIPEMENT);
+		getRoutes.add(FactoryRequetesUtilisateur.LISTE_UTILISATEURS);
 
 		return getRoutes;
 	}
@@ -62,10 +47,12 @@ public class FactoryRoutes {
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		// Traitement selon la requête reçue
 		switch (pUri) {
-		case ETAT_AFFICHAGE_EQUIPEMENT:
+		case FactoryRequetesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT:
 			return traiteDemandeEtatAffichage(pParametres, pTraiteRequetesRest);
-		case ETAT_TECHNIQUE_EQUIPEMENT:
+		case FactoryRequetesEtatEtPilotage.ETAT_TECHNIQUE_EQUIPEMENT:
 			return traiteDemandeEtatTechnique(pParametres, pTraiteRequetesRest);
+		case FactoryRequetesUtilisateur.LISTE_UTILISATEURS:
+			return traiteDemandeListeUtilisateurs(pParametres, pTraiteRequetesRest);
 		}
 
 		return "";
@@ -99,6 +86,12 @@ public class FactoryRoutes {
 		String id = pParametres.get("id")[0];
 
 		return pTraiteRequetesRest.demandeEtatTechniqueEquipement(id);
+	}
+
+	// Traite une demande d'obtention de la liste des utilisateurs
+	private static String traiteDemandeListeUtilisateurs(Map<String, String[]> pParametres,
+			ITraitementRequetesRest pTraiteRequetesRest) {
+		return pTraiteRequetesRest.traiteDemandeListeUtilisateurs();
 	}
 
 }

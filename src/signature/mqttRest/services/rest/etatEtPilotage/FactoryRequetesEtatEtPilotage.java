@@ -1,11 +1,13 @@
-package signature.mqttRest.services.rest;
+package signature.mqttRest.services.rest.etatEtPilotage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import signature.mqttRest.objetsPartages.MessageEtatAffichageMqttRest;
+import signature.mqttRest.services.rest.client.ClientHttpRest;
 import signature.mqttRest.util.Util;
 
 /**
@@ -13,7 +15,10 @@ import signature.mqttRest.util.Util;
  * @author SDARIZCUREN
  *
  */
-public class FactoryRequetes {
+public class FactoryRequetesEtatEtPilotage {
+	
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
+	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
 	
 	/**
 	 * Demande d'état d'affichage d'un équipement
@@ -26,7 +31,7 @@ public class FactoryRequetes {
 		Map<String, String> params = new HashMap<>();
 		params.put("id", pId);
 		
-		String retour = ClientHttpRest.envoiRequeteGET(pHost, pPort, FactoryRoutes.getRouteDemandeEtatAffichageEquipement(), params);
+		String retour = ClientHttpRest.envoiRequeteGET(pHost, pPort, ETAT_AFFICHAGE_EQUIPEMENT, params);
 		if(retour.length() == 0) {
 			return null;
 		}
@@ -41,15 +46,14 @@ public class FactoryRequetes {
 	 * @return l'état d'affichage des équipements, liste vide si problème
 	 */
 	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort) {
-		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, FactoryRoutes.getRouteDemandeEtatAffichageEquipement());
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, ETAT_AFFICHAGE_EQUIPEMENT);
 		if(json.length() == 0) {
 			return new ArrayList<>();
 		}
 		
 		// Formatage du retour vers le bon format
-		List<Object> list = Util.jsonToListeObjet(json, MessageEtatAffichageMqttRest.class);
-		List<MessageEtatAffichageMqttRest> retour = new ArrayList<>();
-		list.forEach(l -> retour.add((MessageEtatAffichageMqttRest)l));
+		List<MessageEtatAffichageMqttRest> retour = Util.jsonToListeObjet(json, MessageEtatAffichageMqttRest.class)
+				.stream().map(MessageEtatAffichageMqttRest.class::cast).collect(Collectors.toList());
 		
 		return retour;
 	}

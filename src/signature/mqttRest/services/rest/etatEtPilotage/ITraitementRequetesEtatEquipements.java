@@ -1,7 +1,7 @@
-package signature.mqttRest.services.rest;
+package signature.mqttRest.services.rest.etatEtPilotage;
 
 /**
- * Traitement des requêtes REST d'état des équipements
+ * Traitement des requêtes d'état des équipements
  * @author SDARIZCUREN
  *
  */
