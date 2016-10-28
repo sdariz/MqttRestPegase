@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Description d'un message pour PMV
+ * 
  * @author SDARIZCUREN
  *
  */
@@ -13,7 +14,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 	private List<MessageModuleMqttRest> _messagesPanonceaux;
 	private List<MessageModuleMqttRest> _messagesPictogrammes;
 	private MessageModuleMqttRest _messagesFlashs;
-	
+
 	/**
 	 * Construction du message
 	 */
@@ -23,33 +24,37 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 		_messagesPictogrammes = new ArrayList<>();
 		_messagesFlashs = null;
 	}
-	
+
 	/**
 	 * Indique le nombre de lignes du panneau
+	 * 
 	 * @return le nombre de lignes
 	 */
 	public int getNombreLignes() {
 		return _messagesLignes.size();
 	}
-	
+
 	/**
 	 * Indique le nombre de panonceaux du panneau
+	 * 
 	 * @return le nombre de panonceaux
 	 */
 	public int getNombrePanonceaux() {
 		return _messagesPanonceaux.size();
 	}
-	
+
 	/**
 	 * Indique le nombre de pictogrammes du panneau
+	 * 
 	 * @return le nombre de pictogrammes
 	 */
 	public int getNombrePictogrammes() {
 		return _messagesPictogrammes.size();
 	}
-	
+
 	/**
 	 * Indique si le PMV possède des feux flashs
+	 * 
 	 * @return true si les feux flashs sont présents
 	 */
 	public boolean avecFeuxFlashs() {
@@ -58,6 +63,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Retourne les messages pour chaque ligne du panneau
+	 * 
 	 * @return les messages par ligne
 	 */
 	public List<MessageModuleMqttRest> getMessagesLignes() {
@@ -66,7 +72,9 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Initialisation des messages pour chaque ligne du panneau
-	 * @param pMessages les messages pour chaque ligne
+	 * 
+	 * @param pMessages
+	 *            les messages pour chaque ligne
 	 */
 	public void setMessagesLignes(List<MessageModuleMqttRest> pMessages) {
 		_messagesLignes = pMessages;
@@ -74,6 +82,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Retourne les messages pour chaque panonceau
+	 * 
 	 * @return les messages de chaque panonceau
 	 */
 	public List<MessageModuleMqttRest> getMessagesPanonceaux() {
@@ -82,6 +91,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Initialisation des messages pour chaque panonceau
+	 * 
 	 * @return les messages de chaque panonceau
 	 */
 	public void setMessagesPanonceaux(List<MessageModuleMqttRest> pMessages) {
@@ -90,6 +100,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Retourne les messages pour chaque pictogramme
+	 * 
 	 * @return les messages de chaque pictogramme
 	 */
 	public List<MessageModuleMqttRest> getMessagesPictogrammes() {
@@ -98,6 +109,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Initialisation des messages pour chaque pictogramme
+	 * 
 	 * @return les messages de chaque pictogramme
 	 */
 	public void setMessagesPictogrammes(List<MessageModuleMqttRest> pMessages) {
@@ -106,6 +118,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Retourne les messages des feux flashs
+	 * 
 	 * @return les messages des feux flashs
 	 */
 	public MessageModuleMqttRest getMessagesFlashs() {
@@ -114,48 +127,53 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 
 	/**
 	 * Initialisation des messages des feux flashs
+	 * 
 	 * @return les messages des feux flashs
 	 */
 	public void setMessagesFlashs(MessageModuleMqttRest pMessage) {
 		_messagesFlashs = pMessage;
 	}
-	
+
 	/**
-	 * Retourne la liste des messages pour chaque module
+	 * Retourne la liste des messages pour chaque module. Dans l'ordre: les
+	 * lignes, les panonceaux, les pictogrammes, et les flash. Les éléments
+	 * absents ne sont pas positionnés
+	 * 
 	 * @return l'affichage des modules
 	 */
 	@Override
 	public List<MessageModuleMqttRest> getMessagesModules() {
 		// Lignes puis panonceaux puis pictogrammes puis flashs
 		List<MessageModuleMqttRest> retour = new ArrayList<>();
-		
+
 		retour.addAll(_messagesLignes);
 		retour.addAll(_messagesPanonceaux);
 		retour.addAll(_messagesPictogrammes);
-		
-		if(_messagesFlashs != null) {
+
+		if (_messagesFlashs != null) {
 			retour.add(_messagesFlashs);
 		}
-		
+
 		return retour;
 	}
-	
+
 	/**
 	 * Clone de l'objet courant
+	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
 	public MessagePmvMqttRest clone() {
 		MessagePmvMqttRest retour = new MessagePmvMqttRest();
-		
+
 		_messagesLignes.forEach(m -> retour._messagesLignes.add(m.clone()));
 		_messagesPanonceaux.forEach(m -> retour._messagesPanonceaux.add(m.clone()));
 		_messagesPictogrammes.forEach(m -> retour._messagesPictogrammes.add(m.clone()));
-		
-		if(_messagesFlashs != null) {
+
+		if (_messagesFlashs != null) {
 			retour._messagesFlashs = _messagesFlashs.clone();
 		}
-		
+
 		return retour;
 	}
 
