@@ -40,7 +40,7 @@ public class BrokerMqtt {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				LOG.info("Arret du broker mqtt");
+				LOG.warn("Arret du broker mqtt");
 				
 				stopBroker();
 			}

@@ -49,7 +49,7 @@ public class ServeurHttpRest {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				LOG.info("Arret du serveur REST");
+				LOG.warn("Arret du serveur REST");
 				spark.Spark.stop();
 			}
 		});
