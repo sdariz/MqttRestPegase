@@ -25,7 +25,11 @@ import signature.mqttRest.util.Util;
  */
 public class PublicationMqtt {
 	private final static Logger LOG = LoggerFactory.getLogger(PublicationMqtt.class);
-	
+
+	// Acquittement de bonne reception du message (qos=2 ne marche pas toujours
+	// (100 thread qui postent vers 10 abonnés => perte de messages !!!))
+	private final static int QOS = 1;
+
 	/**
 	 * Publication d'un message
 	 * 
@@ -56,8 +60,9 @@ public class PublicationMqtt {
 	 * @param pTopic
 	 *            le topic vers lequel publier le message
 	 */
-	public static synchronized void publicationMessages(List<IMessageMqttRest> pMsgs, String pHost, int pPort, Topic pTopic) {
-		String content = Util. toJsonString(pMsgs);
+	public static synchronized void publicationMessages(List<IMessageMqttRest> pMsgs, String pHost, int pPort,
+			Topic pTopic) {
+		String content = Util.toJsonString(pMsgs);
 		String uri = "tcp://" + pHost + ":" + pPort;
 
 		// Génération d'un id unique pour le client
@@ -85,9 +90,8 @@ public class PublicationMqtt {
 		}
 
 		MqttMessage message = new MqttMessage(content.getBytes());
-		message.setQos(1); // Acquittement de bonne reception du
-							// message (qos=2 ne marche pas toujours !!!)
-
+		message.setQos(QOS);
+		
 		try {
 			clientMqtt.publish(pTopic.toString(), message);
 		} catch (MqttException e) {
@@ -95,7 +99,7 @@ public class PublicationMqtt {
 			deconnexion(clientMqtt);
 			return;
 		}
-		
+
 		// Déconnexion en fin de traitement
 		deconnexion(clientMqtt);
 	}
@@ -108,7 +112,7 @@ public class PublicationMqtt {
 			LOG.error("Problème deconnexion du client mqtt", e);
 			return;
 		}
-		
+
 		try {
 			pClient.close();
 		} catch (MqttException e) {

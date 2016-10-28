@@ -33,6 +33,10 @@ public class AbonnementMqtt implements MqttCallback {
 	private String _host;
 	private int _port;
 
+	// Acquittement de bonne reception du message (qos=2 ne marche pas toujours
+	// (100 thread qui postent vers 10 abonnés => perte de messages !!!))
+	private final static int QOS = 1;
+
 	/**
 	 * Abonnement à un topic
 	 * 
@@ -119,13 +123,11 @@ public class AbonnementMqtt implements MqttCallback {
 		}
 
 		// Liste des topics sur lesquels s'abonner.
-		// qos = 1 pour assurer la livraison du message (qos=2 ne marche pas
-		// toujours !!!)
 		String[] topics = new String[_topics.size()];
 		int[] qos = new int[_topics.size()];
 		for (int i = 0; i < _topics.size(); i++) {
 			topics[i] = _topics.get(i).toString();
-			qos[i] = 1;
+			qos[i] = QOS;
 		}
 
 		// Abonnement aux topics
