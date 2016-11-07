@@ -1,4 +1,6 @@
-package signature.mqttRest.objetsPartages;
+package signature.mqttRest.objetsPartages.utilisateur;
+
+import signature.mqttRest.objetsPartages.IMessageMqttRest;
 
 /**
  * Description d'un utilisateur

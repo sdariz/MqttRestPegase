@@ -2,8 +2,8 @@ package signature.mqttRest.services.rest.client;
 
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.MessageEtatAffichageMqttRest;
-import signature.mqttRest.objetsPartages.MessageUtilisateurMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.etatEtPilotage.FactoryRequetesEtatEtPilotage;
 import signature.mqttRest.services.rest.utilisateur.FactoryRequetesUtilisateur;
 

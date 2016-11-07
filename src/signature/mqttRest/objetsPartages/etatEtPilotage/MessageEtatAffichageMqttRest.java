@@ -1,6 +1,8 @@
-package signature.mqttRest.objetsPartages;
+package signature.mqttRest.objetsPartages.etatEtPilotage;
 
 import java.util.Date;
+
+import signature.mqttRest.objetsPartages.IMessageMqttRest;
 
 /**
  * Classe décrivant l'état d'affichage d'un équipement

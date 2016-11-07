@@ -2,7 +2,7 @@ package signature.mqttRest.services.rest.etatEtPilotage;
 
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 
 /**
  * Traitement des requêtes d'état des équipements

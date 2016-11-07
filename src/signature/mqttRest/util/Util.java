@@ -9,8 +9,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
-import signature.mqttRest.objetsPartages.MessageModuleMqttRest;
-import signature.mqttRest.objetsPartages.MessagePmvMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 
 /**
  * Une classe de méthodes utilitaires

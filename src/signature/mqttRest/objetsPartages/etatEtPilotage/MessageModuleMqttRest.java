@@ -1,4 +1,4 @@
-package signature.mqttRest.objetsPartages;
+package signature.mqttRest.objetsPartages.etatEtPilotage;
 
 import java.util.ArrayList;
 import java.util.List;

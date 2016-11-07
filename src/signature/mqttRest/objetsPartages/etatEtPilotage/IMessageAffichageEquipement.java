@@ -1,10 +1,11 @@
-package signature.mqttRest.objetsPartages;
+package signature.mqttRest.objetsPartages.etatEtPilotage;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import signature.mqttRest.objetsPartages.MessageModuleMqttRest.Luminosite;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Luminosite;
+
 
 /**
  * Caractérisation d'un message d'état d'affichage d'un équipement

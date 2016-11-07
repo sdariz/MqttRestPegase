@@ -2,7 +2,7 @@ package signature.mqttRest.services.rest.utilisateur;
 
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.MessageUtilisateurMqttRest;
+import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
  * Traitement des requêtes de gestion des utilisateurs

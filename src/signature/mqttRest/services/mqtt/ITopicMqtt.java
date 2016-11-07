@@ -1,6 +1,6 @@
 package signature.mqttRest.services.mqtt;
 
-import signature.mqttRest.objetsPartages.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 
 /**
  * Interface de base des clients mqtt
