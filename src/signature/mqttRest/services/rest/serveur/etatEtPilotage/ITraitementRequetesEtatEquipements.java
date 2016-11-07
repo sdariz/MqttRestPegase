@@ -36,4 +36,11 @@ public interface ITraitementRequetesEtatEquipements {
 	 * @return l'état technique des équipements au format JSON
 	 */
 	public String demandeEtatTechniqueEquipements();
+	
+	/**
+	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant une interrogation
+	 * de l'équipement sur le terrain
+	 * @param pId l'id de l'équipement à rafraîchir
+	 */
+	public void demandeActualisationEtatEquipement(String pId);
 }

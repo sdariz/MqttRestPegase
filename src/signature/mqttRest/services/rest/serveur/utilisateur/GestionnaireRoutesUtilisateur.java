@@ -52,11 +52,11 @@ public class GestionnaireRoutesUtilisateur {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesUtilisateur pTraiteRequetesRest) {
 		if (LISTE_UTILISATEURS.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeListeUtilisateurs());
+			return Util.toJsonString(pTraiteRequetesRest.demandeListeUtilisateurs());
 		}
 
 		if (UTILISATEUR_CONNECTE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeUtilisateurConnecte());
+			return Util.toJsonString(pTraiteRequetesRest.demandeUtilisateurConnecte());
 		}
 
 		if (IDENTIFIANTS_VALIDE.equals(pUri)) {

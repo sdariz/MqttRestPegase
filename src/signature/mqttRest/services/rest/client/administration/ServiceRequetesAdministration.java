@@ -22,7 +22,7 @@ public class ServiceRequetesAdministration {
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
 	 */
-	public static void requetteInterdictionPilotages(String pHost, int pPort, boolean pInterdit) {
+	public static void requeteInterdictionPilotages(String pHost, int pPort, boolean pInterdit) {
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
 		params.put("interdiction", Boolean.toString(pInterdit));

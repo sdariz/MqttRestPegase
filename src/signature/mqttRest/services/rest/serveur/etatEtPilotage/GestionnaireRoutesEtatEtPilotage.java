@@ -1,6 +1,5 @@
 package signature.mqttRest.services.rest.serveur.etatEtPilotage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ public class GestionnaireRoutesEtatEtPilotage {
 
 	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
 	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
+	public final static String ACTUALISATION_ETAT_EQUIPEMENT = "/actualisationEtatEquipement";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -34,7 +34,7 @@ public class GestionnaireRoutesEtatEtPilotage {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return new ArrayList<>();
+		return Arrays.asList(ACTUALISATION_ETAT_EQUIPEMENT);
 	}
 
 	/**
@@ -88,6 +88,10 @@ public class GestionnaireRoutesEtatEtPilotage {
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesEtatEquipements pTraiteRequetesRest) {
+		if (ACTUALISATION_ETAT_EQUIPEMENT.equals(pUri)) {
+			pTraiteRequetesRest.demandeActualisationEtatEquipement(pParametres.get("idEquipement")[0]);
+			return "";
+		}
 		return "";
 	}
 }

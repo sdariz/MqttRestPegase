@@ -16,7 +16,7 @@ import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilis
  *
  */
 public class InterrogationServeurHttpRest {
-	
+
 	/**
 	 * Demande d'état d'affichage d'un équipement
 	 * 
@@ -44,6 +44,21 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort) {
 		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort);
+	}
+
+	/**
+	 * Demande à actualiser l'état d'un équipement, en forçant une interrogation
+	 * de l'équipement sur le terrain
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pId
+	 *            l'id de l'équipement à interroger
+	 */
+	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId) {
+		ServiceRequetesEtatEtPilotage.requeteActualisationEtatEquipement(pHost, pPort, pId);
 	}
 
 	/**
@@ -99,8 +114,8 @@ public class InterrogationServeurHttpRest {
 	 * @param pInterdit
 	 *            true pour interdire les pilotages sur Pegase
 	 */
-	public static void requetteInterdictionPilotages(String pHost, int pPort, boolean pInterdit) {
-		ServiceRequetesAdministration.requetteInterdictionPilotages(pHost, pPort, pInterdit);
+	public static void requeteInterdictionPilotages(String pHost, int pPort, boolean pInterdit) {
+		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pInterdit);
 	}
 
 }

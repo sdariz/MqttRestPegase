@@ -66,4 +66,22 @@ public class ServiceRequetesEtatEtPilotage {
 		return retour;
 	}
 
+	/**
+	 * Demande à actualiser l'état d'un équipement, en forçant une interrogation
+	 * de l'équipement sur le terrain
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pId
+	 *            l'id de l'équipement à interroger
+	 */
+	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId) {
+		// Paramètre de la requette
+		Map<String, String> params = new HashMap<>();
+		params.put("idEquipement", pId);
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesEtatEtPilotage.ACTUALISATION_ETAT_EQUIPEMENT, params);
+	}
+
 }

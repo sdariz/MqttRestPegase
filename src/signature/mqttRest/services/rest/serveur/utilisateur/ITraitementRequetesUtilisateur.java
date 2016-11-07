@@ -17,7 +17,7 @@ public interface ITraitementRequetesUtilisateur {
 	 * 
 	 * @return la liste des utilisateurs au format JSON
 	 */
-	public List<MessageUtilisateurMqttRest> traiteDemandeListeUtilisateurs();
+	public List<MessageUtilisateurMqttRest> demandeListeUtilisateurs();
 
 	/**
 	 * Traite une demande d'obtention de l'utilisateur connecté
@@ -25,7 +25,7 @@ public interface ITraitementRequetesUtilisateur {
 	 * @return l'utilisateur connecté au format JSON, chaîne vide si pas
 	 *         d'utilisateur connecté
 	 */
-	public MessageUtilisateurMqttRest traiteDemandeUtilisateurConnecte();
+	public MessageUtilisateurMqttRest demandeUtilisateurConnecte();
 
 	/**
 	 * Indique si le login et le mot de passe associé sont valides
