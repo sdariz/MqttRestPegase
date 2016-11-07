@@ -4,8 +4,9 @@ import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
-import signature.mqttRest.services.rest.etatEtPilotage.ServiceRequetesEtatEtPilotage;
-import signature.mqttRest.services.rest.utilisateur.ServiceRequetesUtilisateur;
+import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
+import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
 /**
  * Méthodes utilitaires d'interrogation du serveur HTTP REST, pour récupérer
@@ -15,7 +16,7 @@ import signature.mqttRest.services.rest.utilisateur.ServiceRequetesUtilisateur;
  *
  */
 public class InterrogationServeurHttpRest {
-
+	
 	/**
 	 * Demande d'état d'affichage d'un équipement
 	 * 
@@ -86,6 +87,20 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse) {
 		return ServiceRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pLogin, pMotPasse);
+	}
+
+	/**
+	 * Autorise ou interdit les pilotages sur Pegase
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
+	 */
+	public static void requetteInterdictionPilotages(String pHost, int pPort, boolean pInterdit) {
+		ServiceRequetesAdministration.requetteInterdictionPilotages(pHost, pPort, pInterdit);
 	}
 
 }

@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.utilisateur;
+package signature.mqttRest.services.rest.client.utilisateur;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
+import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 import signature.mqttRest.util.Util;
 
 /**

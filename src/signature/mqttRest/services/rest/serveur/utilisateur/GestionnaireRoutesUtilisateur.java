@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.utilisateur;
+package signature.mqttRest.services.rest.serveur.utilisateur;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,9 +15,9 @@ import signature.mqttRest.util.Util;
  *
  */
 public class GestionnaireRoutesUtilisateur {
-	protected final static String LISTE_UTILISATEURS = "/utilisateurs";
-	protected final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
-	protected final static String IDENTIFIANTS_VALIDE = "/identifiantsValide";
+	public final static String LISTE_UTILISATEURS = "/utilisateurs";
+	public final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
+	public final static String IDENTIFIANTS_VALIDE = "/identifiantsValide";
 
 	/**
 	 * Donne la liste des routes de type GET

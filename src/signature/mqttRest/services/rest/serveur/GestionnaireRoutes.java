@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import signature.mqttRest.services.rest.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
-import signature.mqttRest.services.rest.utilisateur.GestionnaireRoutesUtilisateur;
+import signature.mqttRest.services.rest.serveur.administration.GestionnaireRoutesAdministration;
+import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
+import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 
 /**
  * Gestionnaire des routes: liste des routes à gérer par le serveur, et traitement des appels REST
@@ -25,6 +26,7 @@ class GestionnaireRoutes {
 
 		routes.addAll(GestionnaireRoutesEtatEtPilotage.getGETRoutes());
 		routes.addAll(GestionnaireRoutesUtilisateur.getGETRoutes());
+		routes.addAll(GestionnaireRoutesAdministration.getGETRoutes());
 
 		return routes;
 	}
@@ -39,6 +41,7 @@ class GestionnaireRoutes {
 
 		routes.addAll(GestionnaireRoutesEtatEtPilotage.getPOSTRoutes());
 		routes.addAll(GestionnaireRoutesUtilisateur.getPOSTRoutes());
+		routes.addAll(GestionnaireRoutesAdministration.getPOSTRoutes());
 
 		return routes;
 	}
@@ -65,6 +68,10 @@ class GestionnaireRoutes {
 			return GestionnaireRoutesUtilisateur.traiteDemandeGET(pUri, pParametres, pTraiteRequetesRest);
 		}
 		
+		if(GestionnaireRoutesAdministration.getGETRoutes().contains(pUri)) {
+			return GestionnaireRoutesAdministration.traiteDemandeGET(pUri, pParametres, pTraiteRequetesRest);
+		}
+		
 		return "";
 	}
 	
@@ -88,6 +95,10 @@ class GestionnaireRoutes {
 		
 		if(GestionnaireRoutesUtilisateur.getPOSTRoutes().contains(pUri)) {
 			return GestionnaireRoutesUtilisateur.traiteDemandePOST(pUri, pParametres, pTraiteRequetesRest);
+		}
+		
+		if(GestionnaireRoutesAdministration.getPOSTRoutes().contains(pUri)) {
+			return GestionnaireRoutesAdministration.traiteDemandePOST(pUri, pParametres, pTraiteRequetesRest);
 		}
 		
 		return "";

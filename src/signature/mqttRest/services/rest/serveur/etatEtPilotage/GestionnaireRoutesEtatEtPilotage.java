@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.etatEtPilotage;
+package signature.mqttRest.services.rest.serveur.etatEtPilotage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +16,8 @@ import signature.mqttRest.util.Util;
  */
 public class GestionnaireRoutesEtatEtPilotage {
 
-	protected final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
-	protected final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
+	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
 
 	/**
 	 * Donne la liste des routes de type GET

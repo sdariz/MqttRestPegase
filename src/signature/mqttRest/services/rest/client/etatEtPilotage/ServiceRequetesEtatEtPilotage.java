@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.etatEtPilotage;
+package signature.mqttRest.services.rest.client.etatEtPilotage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
+import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
 import signature.mqttRest.util.Util;
 
 /**

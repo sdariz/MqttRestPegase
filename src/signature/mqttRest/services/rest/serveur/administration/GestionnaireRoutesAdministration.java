@@ -1,0 +1,74 @@
+package signature.mqttRest.services.rest.serveur.administration;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Routes utilisées pour gérer les commandes d'administration. Traitement des
+ * requêtes GET et POST reçues par le serveur REST.
+ * 
+ * @author SDARIZCUREN
+ *
+ */
+public class GestionnaireRoutesAdministration {
+	public final static String INTERDICTION_PILOTAGES = "/interdictionPilotages";
+	
+	/**
+	 * Donne la liste des routes de type GET
+	 * 
+	 * @return la liste des routes
+	 */
+	public static List<String> getGETRoutes() {
+		return new ArrayList<>();
+	}
+
+	/**
+	 * Donne la liste des routes de type POST
+	 * 
+	 * @return la liste des routes
+	 */
+	public static List<String> getPOSTRoutes() {
+		return Arrays.asList(INTERDICTION_PILOTAGES);
+	}
+
+	/**
+	 * Traite une demande de type GET, reçue par le serveur REST
+	 * 
+	 * @param pUri
+	 *            la route à traiter
+	 * @param pParametres
+	 *            les paramètres de la requête
+	 * @param pTraiteRequetesRest
+	 *            l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de
+	 *         réponse
+	 */
+	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
+			ITraitementRequetesAdministration pTraiteRequetesRest) {
+		return "";
+	}
+
+	/**
+	 * Traite une demande de type POST, reçue par le serveur REST
+	 * 
+	 * @param pUri
+	 *            la route à traiter
+	 * @param pParametres
+	 *            les paramètres de la requête
+	 * @param pTraiteRequetesRest
+	 *            l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de
+	 *         réponse
+	 */
+	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
+			ITraitementRequetesAdministration pTraiteRequetesRest) {
+		if (INTERDICTION_PILOTAGES.equals(pUri)) {
+			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(Boolean.parseBoolean(pParametres.get("interdiction")[0]));
+			return "";
+		}
+		
+		return "";
+	}
+}

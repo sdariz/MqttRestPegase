@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.utilisateur;
+package signature.mqttRest.services.rest.serveur.utilisateur;
 
 import java.util.List;
 
