@@ -1,0 +1,231 @@
+package signature.mqttRest.objetsPartages;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Le message sur un équipement PPLMV
+ * 
+ * @author SDARIZCUREN
+ *
+ */
+public class MessagePplmvMqttRest implements IMessageAffichageEquipement {
+
+	private MessageModuleMqttRest _messagesPanonceauHaut;
+	private MessageModuleMqttRest _messagesPanonceauBas;
+	private MessageModuleMqttRest _messagesPictogramme;
+	private MessageModuleMqttRest _messagesFlashs;
+
+	/**
+	 * Construction du message
+	 */
+	public MessagePplmvMqttRest() {
+		_messagesPanonceauHaut = null;
+		_messagesPanonceauBas = null;
+		_messagesPictogramme = null;
+		_messagesFlashs = null;
+	}
+	
+	/**
+	 * Indique le type de l'équipement concerné par le message d'affichage
+	 * 
+	 * @return le type de l'équipement
+	 */
+	public TYPE_EQUIPEMENT getTypeEquipement() {
+		return TYPE_EQUIPEMENT.PPLMV;
+	}
+
+	/**
+	 * Indique si le PPLMV à un panonceau haut
+	 * 
+	 * @return true si présent
+	 */
+	public boolean avecPanonceauHaut() {
+		return _messagesPanonceauHaut != null;
+	}
+
+	/**
+	 * Indique si le PPLMV à des flashs
+	 * 
+	 * @return true si présent
+	 */
+	public boolean avecFlashs() {
+		return _messagesFlashs != null;
+	}
+
+	/**
+	 * Initialise le message du panonceau haut
+	 * 
+	 * @param pMsg
+	 *            le nouveau message
+	 */
+	public void setMessagePanonceauHaut(MessageModuleMqttRest pMsg) {
+		_messagesPanonceauHaut = pMsg;
+	}
+
+	/**
+	 * Retourne le message du panonceau haut return le message
+	 */
+	public MessageModuleMqttRest getMessagePanonceauHaut() {
+		return _messagesPanonceauHaut;
+	}
+
+	/**
+	 * Initialise le message du panonceau bas
+	 * 
+	 * @param pMsg
+	 *            le nouveau message
+	 */
+	public void setMessagePanonceauBas(MessageModuleMqttRest pMsg) {
+		_messagesPanonceauBas = pMsg;
+	}
+
+	/**
+	 * Retourne le message du panonceau bas return le message
+	 */
+	public MessageModuleMqttRest getMessagePanonceauBas() {
+		return _messagesPanonceauBas;
+	}
+
+	/**
+	 * Initialise le message du pictogramme
+	 * 
+	 * @param pMsg
+	 *            le nouveau message
+	 */
+	public void setMessagePictogramme(MessageModuleMqttRest pMsg) {
+		_messagesPictogramme = pMsg;
+	}
+
+	/**
+	 * Retourne le message du pictogramme return le message
+	 */
+	public MessageModuleMqttRest getMessagePictogramme() {
+		return _messagesPictogramme;
+	}
+
+	/**
+	 * Initialise le message des flashs
+	 * 
+	 * @param pMsg
+	 *            le nouveau message
+	 */
+	public void setMessageFlashs(MessageModuleMqttRest pMsg) {
+		_messagesFlashs = pMsg;
+	}
+
+	/**
+	 * Retourne le message des flashs return le message
+	 */
+	public MessageModuleMqttRest getMessageFlashs() {
+		return _messagesFlashs;
+	}
+
+	/**
+	 * Retourne la liste des messages pour chaque module. Dans l'ordre:
+	 * panonceau bas, pictogramme, panonceau haut, flash. Les éléments absents
+	 * ne sont pas positionnés
+	 * 
+	 * @return l'affichage des modules
+	 */
+	@Override
+	public List<MessageModuleMqttRest> getMessagesModules() {
+		// Lignes puis panonceaux puis pictogrammes puis flashs
+		List<MessageModuleMqttRest> retour = new ArrayList<>();
+		
+		if(_messagesPanonceauBas != null) {
+			retour.add(_messagesPanonceauBas);
+		}
+		
+		if(_messagesPictogramme != null) {
+			retour.add(_messagesPictogramme);
+		}
+		
+		if(_messagesPanonceauHaut != null) {
+			retour.add(_messagesPanonceauHaut);
+		}
+		
+		if(_messagesFlashs != null) {
+			retour.add(_messagesFlashs);
+		}
+
+		return retour;
+	}
+
+	/**
+	 * Clone de l'objet courant
+	 * 
+	 * @return une copie de l'instance courante
+	 */
+	@Override
+	public MessagePplmvMqttRest clone() {
+		MessagePplmvMqttRest retour = new MessagePplmvMqttRest();
+		
+		if(_messagesPanonceauBas != null) {
+			retour._messagesPanonceauBas = _messagesPanonceauBas.clone();
+		}
+		
+		if(_messagesPictogramme != null) {
+			retour._messagesPictogramme = _messagesPictogramme.clone();
+		}
+		
+		if(_messagesPanonceauHaut != null) {
+			retour._messagesPanonceauHaut = _messagesPanonceauHaut.clone();
+		}
+		
+		if(_messagesFlashs != null) {
+			retour._messagesFlashs = _messagesFlashs.clone();
+		}
+
+		return retour;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((_messagesFlashs == null) ? 0 : _messagesFlashs.hashCode());
+		result = prime * result + ((_messagesPanonceauBas == null) ? 0 : _messagesPanonceauBas.hashCode());
+		result = prime * result + ((_messagesPanonceauHaut == null) ? 0 : _messagesPanonceauHaut.hashCode());
+		result = prime * result + ((_messagesPictogramme == null) ? 0 : _messagesPictogramme.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MessagePplmvMqttRest other = (MessagePplmvMqttRest) obj;
+		if (_messagesFlashs == null) {
+			if (other._messagesFlashs != null)
+				return false;
+		} else if (!_messagesFlashs.equals(other._messagesFlashs))
+			return false;
+		if (_messagesPanonceauBas == null) {
+			if (other._messagesPanonceauBas != null)
+				return false;
+		} else if (!_messagesPanonceauBas.equals(other._messagesPanonceauBas))
+			return false;
+		if (_messagesPanonceauHaut == null) {
+			if (other._messagesPanonceauHaut != null)
+				return false;
+		} else if (!_messagesPanonceauHaut.equals(other._messagesPanonceauHaut))
+			return false;
+		if (_messagesPictogramme == null) {
+			if (other._messagesPictogramme != null)
+				return false;
+		} else if (!_messagesPictogramme.equals(other._messagesPictogramme))
+			return false;
+		return true;
+	}
+}

@@ -9,14 +9,24 @@ import java.util.List;
  *
  */
 public class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageEquipement {
-	
+	private TYPE_EQUIPEMENT _typeEquipement;
 	private MessageModuleMqttRest _messagesModuleUnique;
 	
 	/**
 	 * Construction du message
 	 */
-	public MessageEquipementModuleUniqueMqttRest() {
+	public MessageEquipementModuleUniqueMqttRest(TYPE_EQUIPEMENT pType) {
+		_typeEquipement = pType;
 		_messagesModuleUnique = null;
+	}
+	
+	/**
+	 * Indique le type de l'équipement concerné par le message d'affichage
+	 * 
+	 * @return le type de l'équipement
+	 */
+	public TYPE_EQUIPEMENT getTypeEquipement() {
+		return _typeEquipement;
 	}
 	
 	/**
@@ -45,6 +55,22 @@ public class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageE
 		
 		return retour;
 	}
+	
+	/**
+	 * Clone de l'objet courant
+	 * 
+	 * @return une copie de l'instance courante
+	 */
+	@Override
+	public MessageEquipementModuleUniqueMqttRest clone() {
+		MessageEquipementModuleUniqueMqttRest retour = new MessageEquipementModuleUniqueMqttRest(_typeEquipement);
+		
+		if(_messagesModuleUnique != null) {
+			retour._messagesModuleUnique = _messagesModuleUnique.clone();
+		}
+
+		return retour;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
@@ -54,6 +80,7 @@ public class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageE
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((_messagesModuleUnique == null) ? 0 : _messagesModuleUnique.hashCode());
+		result = prime * result + ((_typeEquipement == null) ? 0 : _typeEquipement.hashCode());
 		return result;
 	}
 
@@ -73,6 +100,8 @@ public class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageE
 			if (other._messagesModuleUnique != null)
 				return false;
 		} else if (!_messagesModuleUnique.equals(other._messagesModuleUnique))
+			return false;
+		if (_typeEquipement != other._typeEquipement)
 			return false;
 		return true;
 	}

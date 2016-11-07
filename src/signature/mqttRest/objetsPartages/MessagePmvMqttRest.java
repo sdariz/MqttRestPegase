@@ -24,6 +24,15 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipement {
 		_messagesPictogrammes = new ArrayList<>();
 		_messagesFlashs = null;
 	}
+	
+	/**
+	 * Indique le type de l'équipement concerné par le message d'affichage
+	 * 
+	 * @return le type de l'équipement
+	 */
+	public TYPE_EQUIPEMENT getTypeEquipement() {
+		return TYPE_EQUIPEMENT.PMV;
+	}
 
 	/**
 	 * Indique le nombre de lignes du panneau
