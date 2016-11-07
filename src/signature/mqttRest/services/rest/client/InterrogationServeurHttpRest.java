@@ -4,8 +4,8 @@ import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
-import signature.mqttRest.services.rest.etatEtPilotage.FactoryRequetesEtatEtPilotage;
-import signature.mqttRest.services.rest.utilisateur.FactoryRequetesUtilisateur;
+import signature.mqttRest.services.rest.etatEtPilotage.ServiceRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.utilisateur.ServiceRequetesUtilisateur;
 
 /**
  * Méthodes utilitaires d'interrogation du serveur HTTP REST, pour récupérer
@@ -29,7 +29,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
 			String pId) {
-		return FactoryRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pId);
+		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pId);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class InterrogationServeurHttpRest {
 	 * @return l'état d'affichage des équipements, liste vide si problème
 	 */
 	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort) {
-		return FactoryRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort);
+		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort);
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class InterrogationServeurHttpRest {
 	 * @return la liste des utilisateurs, liste vide si problème
 	 */
 	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort) {
-		return FactoryRequetesUtilisateur.requeteDemandeListeUtilisateurs(pHost, pPort);
+		return ServiceRequetesUtilisateur.requeteDemandeListeUtilisateurs(pHost, pPort);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class InterrogationServeurHttpRest {
 	 * @return l'utilisateur connecté, null si aucun ou si problème
 	 */
 	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort) {
-		return FactoryRequetesUtilisateur.requeteDemandeUtilisateurConnecte(pHost, pPort);
+		return ServiceRequetesUtilisateur.requeteDemandeUtilisateurConnecte(pHost, pPort);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class InterrogationServeurHttpRest {
 	 * @return true si valide, sinon false
 	 */
 	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse) {
-		return FactoryRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pLogin, pMotPasse);
+		return ServiceRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pLogin, pMotPasse);
 	}
 
 }

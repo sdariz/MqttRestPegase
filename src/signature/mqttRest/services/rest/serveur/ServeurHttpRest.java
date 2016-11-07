@@ -12,7 +12,8 @@ import org.slf4j.LoggerFactory;
 import spark.QueryParamsMap;
 
 /**
- * Initialisation d'un serveur HTTP REST
+ * Initialisation d'un serveur HTTP REST, avec mise en place des différentes
+ * routes.
  * 
  * @author SDARIZCUREN
  *
@@ -22,7 +23,8 @@ public class ServeurHttpRest {
 	private final static Logger LOG = LoggerFactory.getLogger(ServeurHttpRest.class);
 
 	/**
-	 * Démarre le serveur rest sur le port par défaut : 4567
+	 * Démarre le serveur rest sur le port par défaut : 4567, et met en place
+	 * les routes à traiter.
 	 * 
 	 * @param pTraiteRequetesRest
 	 *            l'objet qui va traiter les requêtes reçues
@@ -32,7 +34,8 @@ public class ServeurHttpRest {
 	}
 
 	/**
-	 * Démarre le serveur HTTP REST sur le port spécifié
+	 * Démarre le serveur HTTP REST sur le port spécifié, et met en place les
+	 * routes à traiter.
 	 * 
 	 * @param port
 	 *            le port à utiliser
