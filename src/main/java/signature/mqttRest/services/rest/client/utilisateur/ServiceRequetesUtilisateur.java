@@ -26,10 +26,28 @@ public class ServiceRequetesUtilisateur {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return la liste des utilisateurs, vide si aucun (ou problème)
 	 */
-	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort) {
-		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesUtilisateur.LISTE_UTILISATEURS);
+	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesUtilisateur.LISTE_UTILISATEURS,
+				params);
 		if (json.length() == 0) {
 			return new ArrayList<>();
 		}
@@ -48,11 +66,28 @@ public class ServiceRequetesUtilisateur {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param l'utilisateur
-	 *            connecté, null si aucun (ou problème)
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide return
+	 *            l'utilisateur connecté, null si aucun (ou problème)
 	 */
-	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort) {
-		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesUtilisateur.UTILISATEUR_CONNECTE);
+	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesUtilisateur.UTILISATEUR_CONNECTE,
+				params);
 		if (json.length() == 0) {
 			return null;
 		}
@@ -71,12 +106,27 @@ public class ServiceRequetesUtilisateur {
 	 *            le login à valider
 	 * @param pMotPasse
 	 *            le mot de passe associé au login
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return true si valide, sinon false
 	 */
-	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse) {
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
 		Map<String, String> params = new HashMap<>();
 		params.put("login", pLogin);
 		params.put("password", pMotPasse);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesUtilisateur.IDENTIFIANTS_VALIDE,
 				params);

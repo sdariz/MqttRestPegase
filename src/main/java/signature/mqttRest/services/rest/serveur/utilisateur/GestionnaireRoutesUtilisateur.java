@@ -52,16 +52,19 @@ public class GestionnaireRoutesUtilisateur {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesUtilisateur pTraiteRequetesRest) {
 		if (LISTE_UTILISATEURS.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.demandeListeUtilisateurs());
+			return Util.toJsonString(pTraiteRequetesRest.demandeListeUtilisateurs(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]));
 		}
 
 		if (UTILISATEUR_CONNECTE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.demandeUtilisateurConnecte());
+			return Util.toJsonString(pTraiteRequetesRest.demandeUtilisateurConnecte(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]));
 		}
 
 		if (IDENTIFIANTS_VALIDE.equals(pUri)) {
 			return Util.toJsonString(
-					pTraiteRequetesRest.estValide(pParametres.get("login")[0], pParametres.get("password")[0]));
+					pTraiteRequetesRest.estValide(pParametres.get("login")[0], pParametres.get("password")[0],
+							pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 		}
 
 		return "";

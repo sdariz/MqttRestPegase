@@ -27,12 +27,26 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            le port TCP utilisé par le serveur
 	 * @param pId
 	 *            l'id de l'équipement à interroger
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
-			String pId) {
+			String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
 		Map<String, String> params = new HashMap<>();
 		params.put("id", pId);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
 				GestionnaireRoutesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT, params);
@@ -50,11 +64,28 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return l'état d'affichage des équipements, liste vide si problème
 	 */
-	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort) {
+	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
-				GestionnaireRoutesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT);
+				GestionnaireRoutesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT, params);
 		if (json.length() == 0) {
 			return new ArrayList<>();
 		}
@@ -76,12 +107,29 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            le port TCP utilisé par le serveur
 	 * @param pId
 	 *            l'id de l'équipement à interroger
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 */
-	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId) {
+	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
 		params.put("idEquipement", pId);
-		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesEtatEtPilotage.ACTUALISATION_ETAT_EQUIPEMENT, params);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesEtatEtPilotage.ACTUALISATION_ETAT_EQUIPEMENT,
+				params);
 	}
 
 }

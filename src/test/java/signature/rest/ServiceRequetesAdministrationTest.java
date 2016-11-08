@@ -49,7 +49,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.setInterdit(true);
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, true);
+		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, true, "ab", "cd");
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.setInterdit(false);
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, false);
+		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, false, "ab", "cd");
 	}
 
 }
@@ -74,7 +74,10 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public void traiteDemandeInterdictionPilotages(boolean pInterdit) {
+	public void traiteDemandeInterdictionPilotages(boolean pInterdit, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		assertEquals("Interdiction non valide", interdit, pInterdit);
+		assertEquals("Id expediteur non valide", "ab", pIdentifiantExpediteur);
+		assertEquals("Id commande non valide", "cd", pReferenceCommande);
 	}
 }

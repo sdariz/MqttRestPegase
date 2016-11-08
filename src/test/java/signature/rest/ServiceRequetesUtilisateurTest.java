@@ -52,15 +52,19 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeListeUtilisateurs() {
 		List<MessageUtilisateurMqttRest> msgs = InterrogationServeurHttpRest
-				.requeteDemandeListeUtilisateurs("localhost", PORT);
+				.requeteDemandeListeUtilisateurs("localhost", PORT, "ab", "cd");
 
 		assertEquals("Taille incorrecte", msgs.size(), 2);
-
+		
+		assertEquals("Id expediteur incorrect", "ab", msgs.get(0).getIdentifiantExpediteur());
+		assertEquals("Id commande incorrect", "cd", msgs.get(0).getReferenceMessage());
 		assertEquals("Nom incorrect", msgs.get(0).getNom(), "Nom1TestUnitaire");
 		assertEquals("Prénom incorrect", msgs.get(0).getPrenom(), "Prenom1TestUnitaire");
 		assertEquals("Mot de passe incorrect", msgs.get(0).getMotPasse(), "MotPasse1TestUnitaire");
 		assertEquals("Droit incorrect", msgs.get(0).getDroits(), Droits.ADMINISTRATEUR);
 
+		assertEquals("Id expediteur incorrect", "ab", msgs.get(1).getIdentifiantExpediteur());
+		assertEquals("Id commande incorrect", "cd", msgs.get(1).getReferenceMessage());
 		assertEquals("Nom incorrect", msgs.get(1).getNom(), "Nom2TestUnitaire");
 		assertEquals("Prénom incorrect", msgs.get(1).getPrenom(), "Prenom2TestUnitaire");
 		assertEquals("Mot de passe incorrect", msgs.get(1).getMotPasse(), "MotPasse2TestUnitaire");
@@ -73,8 +77,10 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeUtilisateurConnecte() {
 		MessageUtilisateurMqttRest msg = InterrogationServeurHttpRest.requeteDemandeUtilisateurConnecte("localhost",
-				PORT);
+				PORT, "aa", "bb");
 
+		assertEquals("Id expediteur incorrect", "aa", msg.getIdentifiantExpediteur());
+		assertEquals("Id commande incorrect", "bb", msg.getReferenceMessage());
 		assertEquals("Nom incorrect", msg.getNom(), "NomTestUnitaire");
 		assertEquals("Prénom incorrect", msg.getPrenom(), "PrenomTestUnitaire");
 		assertEquals("Mot de passe incorrect", msg.getMotPasse(), "MotPasseTestUnitaire");
@@ -87,7 +93,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsValide() {
 		assertEquals("Identifiant invalide", true, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseValide"));
+				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseValide", "ab", "cd"));
 	}
 
 	/**
@@ -96,7 +102,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsNomInvalide() {
 		assertEquals("Le nom devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomInvalide", "MotPasseValide"));
+				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomInvalide", "MotPasseValide", "ab", "cd"));
 	}
 
 	/**
@@ -105,7 +111,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsMotPasseInvalide() {
 		assertEquals("Le mot de passe devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseInvalide"));
+				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseInvalide", "ab", "cd"));
 	}
 
 }
@@ -113,17 +119,18 @@ public class ServiceRequetesUtilisateurTest {
 class TraitementRequetesUtilisateur extends TraitementRequetesRestAdapteur {
 
 	@Override
-	public List<MessageUtilisateurMqttRest> demandeListeUtilisateurs() {
+	public List<MessageUtilisateurMqttRest> demandeListeUtilisateurs(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		List<MessageUtilisateurMqttRest> retour = new ArrayList<>();
 
-		MessageUtilisateurMqttRest msg = new MessageUtilisateurMqttRest();
+		MessageUtilisateurMqttRest msg = new MessageUtilisateurMqttRest(pIdentifiantExpediteur, pReferenceCommande);
 		msg.setNom("Nom1TestUnitaire");
 		msg.setPrenom("Prenom1TestUnitaire");
 		msg.setMotPasse("MotPasse1TestUnitaire");
 		msg.setDroits(Droits.ADMINISTRATEUR);
 		retour.add(msg);
 
-		msg = new MessageUtilisateurMqttRest();
+		msg = new MessageUtilisateurMqttRest(pIdentifiantExpediteur, pReferenceCommande);
 		msg.setNom("Nom2TestUnitaire");
 		msg.setPrenom("Prenom2TestUnitaire");
 		msg.setMotPasse("MotPasse2TestUnitaire");
@@ -134,8 +141,9 @@ class TraitementRequetesUtilisateur extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public MessageUtilisateurMqttRest demandeUtilisateurConnecte() {
-		MessageUtilisateurMqttRest msg = new MessageUtilisateurMqttRest();
+	public MessageUtilisateurMqttRest demandeUtilisateurConnecte(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		MessageUtilisateurMqttRest msg = new MessageUtilisateurMqttRest(pIdentifiantExpediteur, pReferenceCommande);
 		msg.setNom("NomTestUnitaire");
 		msg.setPrenom("PrenomTestUnitaire");
 		msg.setMotPasse("MotPasseTestUnitaire");
@@ -144,7 +152,8 @@ class TraitementRequetesUtilisateur extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public boolean estValide(String pLogin, String pMotPasse) {
+	public boolean estValide(String pLogin, String pMotPasse, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return pLogin.equals("NomValide") && pMotPasse.equals("MotPasseValide");
 	}
 

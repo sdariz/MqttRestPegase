@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class GestionnaireRoutesAdministration {
 	public final static String INTERDICTION_PILOTAGES = "/interdictionPilotages";
-	
+
 	/**
 	 * Donne la liste des routes de type GET
 	 * 
@@ -65,10 +65,12 @@ public class GestionnaireRoutesAdministration {
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesAdministration pTraiteRequetesRest) {
 		if (INTERDICTION_PILOTAGES.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(Boolean.parseBoolean(pParametres.get("interdiction")[0]));
+			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(
+					Boolean.parseBoolean(pParametres.get("interdiction")[0]), pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]);
 			return "";
 		}
-		
+
 		return "";
 	}
 }

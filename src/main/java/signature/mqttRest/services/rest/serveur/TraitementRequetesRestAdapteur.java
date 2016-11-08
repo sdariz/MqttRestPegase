@@ -13,23 +13,37 @@ import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
  *
  */
 public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
+
 	/**
 	 * Traite une demande d'état d'affichage d'un équipement
 	 * 
 	 * @param pId
 	 *            l'id de l'équipement
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return null
 	 */
-	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId) {
+	@Override
+	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return null;
 	}
 
 	/**
 	 * Traite une demande d'état d'affichage pour tous les équipements
 	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * 
 	 * @return une liste vide
 	 */
-	public List<MessageEtatAffichageMqttRest> demandeEtatAffichageEquipements() {
+	@Override
+	public List<MessageEtatAffichageMqttRest> demandeEtatAffichageEquipements(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
 
@@ -38,18 +52,29 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * 
 	 * @param pId
 	 *            l'id de l'équipement
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return une chaîne vide
 	 */
-	public String demandeEtatTechniqueEquipement(String pId) {
+	@Override
+	public String demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
 		return "";
 	}
 
 	/**
 	 * Traite une demande d'état technique pour tous les équipements
 	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * 
 	 * @return une chaîne vide
 	 */
-	public String demandeEtatTechniqueEquipements() {
+	@Override
+	public String demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
 		return "";
 	}
 
@@ -59,25 +84,45 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * 
 	 * @param pId
 	 *            l'id de l'équipement à rafraîchir
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 */
-	public void demandeActualisationEtatEquipement(String pId) {
+	@Override
+	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention de la liste des utilisateurs
 	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * 
 	 * @return une liste vide
 	 */
-	public List<MessageUtilisateurMqttRest> demandeListeUtilisateurs() {
+	@Override
+	public List<MessageUtilisateurMqttRest> demandeListeUtilisateurs(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
 
 	/**
 	 * Traite une demande d'obtention de l'utilisateur connecté
 	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * 
 	 * @return null
 	 */
-	public MessageUtilisateurMqttRest demandeUtilisateurConnecte() {
+	@Override
+	public MessageUtilisateurMqttRest demandeUtilisateurConnecte(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return null;
 	}
 
@@ -88,18 +133,31 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            le login de l'utilisateur
 	 * @param pMotPasse
 	 *            le mot de passe associé au login
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @return false
 	 */
-	public boolean estValide(String pLogin, String pMotPasse) {
+	@Override
+	public boolean estValide(String pLogin, String pMotPasse, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return false;
 	}
-	
+
 	/**
-	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur Pegase
+	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
+	 * Pegase
 	 * 
 	 * @param pInterdit
 	 *            true pour interdire les pilotages sur Pegase
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 */
-	public void traiteDemandeInterdictionPilotages(boolean pInterdit) {
+	@Override
+	public void traiteDemandeInterdictionPilotages(boolean pInterdit, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 	}
 }

@@ -23,16 +23,7 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * Construction du message
 	 */
 	public MessageEtatAffichageMqttRest() {
-		this("", "");
-	}
-
-	/**
-	 * Construction du message
-	 * @param pIdEquipement l'identifiant unique de l'équipement
-	 * @param pIdExpediteur l'identifiant de l'expéditeur
-	 */
-	public MessageEtatAffichageMqttRest(String pIdEquipement, String pIdExpediteur) {
-		this(pIdEquipement, pIdExpediteur, "");
+		this("", "", "");
 	}
 	
 	/**
