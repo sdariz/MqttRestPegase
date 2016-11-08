@@ -21,6 +21,16 @@ import spark.QueryParamsMap;
 public class ServeurHttpRest {
 	private ITraitementRequetesRest _traitementRequetesRest;
 	private final static Logger LOG = LoggerFactory.getLogger(ServeurHttpRest.class);
+	
+	private final static int PORT = 4567;
+	
+	/**
+	 * Démarre le serveur rest sur le port par défaut : 4567.
+	 * 
+	 */
+	public ServeurHttpRest() {
+		this(null);
+	}
 
 	/**
 	 * Démarre le serveur rest sur le port par défaut : 4567, et met en place
@@ -30,7 +40,7 @@ public class ServeurHttpRest {
 	 *            l'objet qui va traiter les requêtes reçues
 	 */
 	public ServeurHttpRest(ITraitementRequetesRest pTraiteRequetesRest) {
-		this(4567, pTraiteRequetesRest);
+		this(PORT, pTraiteRequetesRest);
 	}
 
 	/**
@@ -58,6 +68,21 @@ public class ServeurHttpRest {
 			}
 		});
 	}
+	
+	/**
+	 * Initialise l'objet qui va traiter les requêtes reçues
+	 * @param pTraiteRequetesRest l'objet qui va traiter les requêtes reçues
+	 */
+	public void setTraitementRequetesRest(ITraitementRequetesRest pTraiteRequetesRest) {
+		_traitementRequetesRest = pTraiteRequetesRest;
+	}
+	
+	/**
+	 * Demande l'arret du serveur
+	 */
+	public void arretServeur() {
+		spark.Spark.stop();
+	}
 
 	// Création des différentes routes
 	private void creationRoutes() {
@@ -69,6 +94,10 @@ public class ServeurHttpRest {
 	private void creationRoutesGet() {
 		GestionnaireRoutes.GETRoutes().forEach(route -> {
 			get(route, (req, res) -> {
+				if(_traitementRequetesRest == null) {
+					return "";
+				}
+				
 				// Récupération des paramètres de la requête
 				QueryParamsMap queryMap = req.queryMap();
 				Map<String, String[]> map = queryMap.toMap();
@@ -84,6 +113,10 @@ public class ServeurHttpRest {
 	private void creationRoutesPost() {
 		GestionnaireRoutes.POSTRoutes().forEach(route -> {
 			post(route, (req, res) -> {
+				if(_traitementRequetesRest == null) {
+					return "";
+				}
+				
 				// Récupération des paramètres de la requête
 				QueryParamsMap queryMap = req.queryMap();
 				Map<String, String[]> map = queryMap.toMap();
