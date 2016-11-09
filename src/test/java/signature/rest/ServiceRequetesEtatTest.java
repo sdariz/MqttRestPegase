@@ -44,6 +44,11 @@ import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
+/**
+ * Test des requêtes d'état d'affichage et état technique
+ * @author SDARIZCUREN
+ *
+ */
 public class ServiceRequetesEtatTest {
 
 	private static ServeurHttpRest serveurHttpRest;

@@ -12,6 +12,11 @@ import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
+/**
+ * Test des requêtes d'administration de Pegase
+ * @author SDARIZCUREN
+ *
+ */
 public class ServiceRequetesAdministrationTest {
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesAdministration traitementsRequetesRest;

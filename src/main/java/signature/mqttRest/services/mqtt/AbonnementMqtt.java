@@ -162,9 +162,17 @@ public class AbonnementMqtt implements MqttCallback {
 
 		_clientMqtt = null;
 	}
+	
+	/**
+	 * Déconnexion du client à l'écoute des messages reçus
+	 */
+	public void deconnexionListener() {
+		deconnexion();
+	}
 
 	/**
-	 * Callback mqtt sur perte de connexion avec le serveur
+	 * Callback mqtt sur perte de connexion avec le serveur. Service interne, ne
+	 * pas utiliser.
 	 */
 	@Override
 	public void connectionLost(Throwable pCause) {
@@ -195,7 +203,8 @@ public class AbonnementMqtt implements MqttCallback {
 	}
 
 	/**
-	 * Callback mqtt pour prévenir que les acquittement ont été reçus
+	 * Callback mqtt pour prévenir que les acquittement ont été reçus. Service
+	 * interne, ne pas utiliser.
 	 */
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken pToken) {
@@ -203,7 +212,8 @@ public class AbonnementMqtt implements MqttCallback {
 	}
 
 	/**
-	 * Callback pour avertir de l'arrivé d'un nouveau message
+	 * Callback pour avertir de l'arrivé d'un nouveau message. Service interne,
+	 * ne pas utiliser.
 	 */
 	@Override
 	public void messageArrived(String pTopic, MqttMessage pMessage) throws Exception {

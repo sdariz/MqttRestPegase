@@ -17,6 +17,11 @@ import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
+/**
+ * Test des requêtes de gestion d'un utilisateur
+ * @author SDARIZCUREN
+ *
+ */
 public class ServiceRequetesUtilisateurTest {
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesUtilisateur traitementsRequetesRest;

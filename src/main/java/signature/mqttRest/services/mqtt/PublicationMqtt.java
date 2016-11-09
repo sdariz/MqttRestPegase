@@ -60,7 +60,7 @@ public class PublicationMqtt {
 	 * @param pTopic
 	 *            le topic vers lequel publier le message
 	 */
-	public static synchronized void publicationMessages(List<IMessageMqttRest> pMsgs, String pHost, int pPort,
+	public static synchronized void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
 			Topic pTopic) {
 		String content = Util.toJsonString(pMsgs);
 		String uri = "tcp://" + pHost + ":" + pPort;
