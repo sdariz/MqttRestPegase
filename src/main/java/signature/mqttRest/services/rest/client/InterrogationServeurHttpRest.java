@@ -57,7 +57,7 @@ public class InterrogationServeurHttpRest {
 		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
 	}
-	
+
 	/**
 	 * Demande d'état technique d'un équipement
 	 * 
@@ -197,6 +197,25 @@ public class InterrogationServeurHttpRest {
 	public static void requeteInterdictionPilotages(String pHost, int pPort, boolean pInterdit,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pInterdit, pIdentifiantExpediteur,
+				pReferenceCommande);
+	}
+
+	/**
+	 * Envoi au serveur REST un test de présence
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return true si réponse OK du serveur, false si problème
+	 */
+	public static boolean requeteTestPresence(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return ServiceRequetesAdministration.requeteTestPresence(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
 	}
 

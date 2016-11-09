@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModificationPegaseMqttRest;
 import signature.mqttRest.services.mqtt.AbonnementMqtt;
 import signature.mqttRest.services.mqtt.BrokerMqtt;
 import signature.mqttRest.services.mqtt.IListenerMessageMqtt;
@@ -22,7 +21,7 @@ import signature.mqttRest.services.mqtt.PublicationMqtt;
 
 /**
  * Tests sur la publication et la reception de messages d'état d'affichage et
- * d'état technique
+ * d'état techniqueO
  * 
  * @author SDARIZCUREN
  *

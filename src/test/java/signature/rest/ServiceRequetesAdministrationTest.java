@@ -1,6 +1,7 @@
 package signature.rest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,6 +15,7 @@ import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
 /**
  * Test des requêtes d'administration de Pegase
+ * 
  * @author SDARIZCUREN
  *
  */
@@ -65,6 +67,14 @@ public class ServiceRequetesAdministrationTest {
 		traitementsRequetesRest.setInterdit(false);
 
 		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, false, "ab", "cd");
+	}
+
+	/**
+	 * Test de présence du serveur
+	 */
+	@Test
+	public void testPresenceServeur() {
+		assertTrue("Serveur absent", InterrogationServeurHttpRest.requeteTestPresence(HOST, PORT, "ab", "cd"));
 	}
 
 }

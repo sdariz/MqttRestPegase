@@ -1,9 +1,10 @@
 package signature.mqttRest.services.rest.serveur.administration;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import signature.mqttRest.util.Util;
 
 /**
  * Routes utilisées pour gérer les commandes d'administration. Traitement des
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 public class GestionnaireRoutesAdministration {
 	public final static String INTERDICTION_PILOTAGES = "/interdictionPilotages";
+	public final static String TEST_PRESENCE = "/testPresence";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -21,7 +23,7 @@ public class GestionnaireRoutesAdministration {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return new ArrayList<>();
+		return Arrays.asList(TEST_PRESENCE);
 	}
 
 	/**
@@ -47,6 +49,11 @@ public class GestionnaireRoutesAdministration {
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesAdministration pTraiteRequetesRest) {
+		if (TEST_PRESENCE.equals(pUri)) {
+			// Pas de traitement, réponse directe OK
+			return Util.toJsonString(true);
+		}
+		
 		return "";
 	}
 
