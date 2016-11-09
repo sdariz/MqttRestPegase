@@ -1,6 +1,8 @@
 package signature.mqttRest.services.mqtt;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModificationPegaseMqttRest;
 
 /**
  * Interface de base des clients mqtt
@@ -10,7 +12,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqtt
  */
 public interface ITopicMqtt {
 	enum Topic {
-		ETAT_AFFICHAGE_EQUIPEMENT, ETAT_TECHNIQUE_EQUIPEMENT
+		ETAT_AFFICHAGE_EQUIPEMENT, ETAT_TECHNIQUE_EQUIPEMENT, MODIFICATION_PEGASE
 	};
 
 	/**
@@ -24,8 +26,12 @@ public interface ITopicMqtt {
 		switch (pTopic) {
 		case ETAT_AFFICHAGE_EQUIPEMENT:
 			return MessageEtatAffichageMqttRest.class;
-		default:
-			return null;
+		case ETAT_TECHNIQUE_EQUIPEMENT:
+			return MessageEtatTechniqueMqttRest.class;
+		case MODIFICATION_PEGASE:
+			return MessageModificationPegaseMqttRest.class;
 		}
+		
+		return null;
 	}
 }

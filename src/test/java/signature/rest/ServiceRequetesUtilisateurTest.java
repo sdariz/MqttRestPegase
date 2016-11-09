@@ -21,6 +21,7 @@ public class ServiceRequetesUtilisateurTest {
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesUtilisateur traitementsRequetesRest;
 
+	private final static String HOST = "localhost";
 	private final static int PORT = 1122;
 
 	@BeforeClass
@@ -34,8 +35,6 @@ public class ServiceRequetesUtilisateurTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		serveurHttpRest.arretServeur();
-		Thread.sleep(100); // Attente arrêt du serveur avant de passer aux tests
-							// suivants
 	}
 
 	@Before
@@ -52,7 +51,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeListeUtilisateurs() {
 		List<MessageUtilisateurMqttRest> msgs = InterrogationServeurHttpRest
-				.requeteDemandeListeUtilisateurs("localhost", PORT, "ab", "cd");
+				.requeteDemandeListeUtilisateurs(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrecte", msgs.size(), 2);
 		
@@ -76,7 +75,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeUtilisateurConnecte() {
-		MessageUtilisateurMqttRest msg = InterrogationServeurHttpRest.requeteDemandeUtilisateurConnecte("localhost",
+		MessageUtilisateurMqttRest msg = InterrogationServeurHttpRest.requeteDemandeUtilisateurConnecte(HOST,
 				PORT, "aa", "bb");
 
 		assertEquals("Id expediteur incorrect", "aa", msg.getIdentifiantExpediteur());
@@ -93,7 +92,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsValide() {
 		assertEquals("Identifiant invalide", true, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseValide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomValide", "MotPasseValide", "ab", "cd"));
 	}
 
 	/**
@@ -102,7 +101,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsNomInvalide() {
 		assertEquals("Le nom devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomInvalide", "MotPasseValide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomInvalide", "MotPasseValide", "ab", "cd"));
 	}
 
 	/**
@@ -111,7 +110,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsMotPasseInvalide() {
 		assertEquals("Le mot de passe devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide("localhost", PORT, "NomValide", "MotPasseInvalide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomValide", "MotPasseInvalide", "ab", "cd"));
 	}
 
 }

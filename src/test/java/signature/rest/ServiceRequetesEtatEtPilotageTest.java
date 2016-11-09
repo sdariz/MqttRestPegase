@@ -1,6 +1,7 @@
 package signature.rest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -17,11 +18,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import signature.mqttRest.objetsPartages.etatEtPilotage.DefautAfficheurModulePositionnableMqttRest.Couleur;
+import signature.mqttRest.objetsPartages.etatEtPilotage.DefautAfficheurModulePositionnableMqttRest.TypeDefautAfficheur;
+import signature.mqttRest.objetsPartages.etatEtPilotage.DefautAfficheurModulePositionnableMqttRest.TypeModuleDefaut;
 import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement.TYPE_EQUIPEMENT;
+import signature.mqttRest.objetsPartages.etatEtPilotage.DefautAfficheurModulePositionnableMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest.Gravite;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest.Type;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEquipementModuleUniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Luminosite;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Mode;
@@ -40,6 +49,7 @@ public class ServiceRequetesEtatEtPilotageTest {
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesEtatEtPilotage traitementsRequetesRest;
 
+	private final static String HOST = "localhost";
 	private final static int PORT = 1122;
 
 	@BeforeClass
@@ -53,8 +63,6 @@ public class ServiceRequetesEtatEtPilotageTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		serveurHttpRest.arretServeur();
-		Thread.sleep(100); // Attente arrêt du serveur avant de passer aux tests
-							// suivants
 	}
 
 	@Before
@@ -70,8 +78,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePMV() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "1111", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "1111", "ab", "cd");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -173,8 +181,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePanneauModuleUnique() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "2222", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "2222", "ab", "cd");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -212,8 +220,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePpad() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "2222", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "2222", "ab", "cd");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PPAD);
 		assertEquals("Classe incorrecte", MessagePpadMqttRest.class, msg.getMessageEquipement().getClass());
@@ -224,8 +232,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePictogramme() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "3333", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "3333", "ab", "cd");
 
 		assertEquals("Type Pictogramme incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TYPE_EQUIPEMENT.PICTOGRAMME);
@@ -237,8 +245,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageFeuR24() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "4444", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "4444", "ab", "cd");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.R24);
 		assertEquals("Classe incorrecte", MessageR24MqttRest.class, msg.getMessageEquipement().getClass());
@@ -249,8 +257,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBarriere() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "5555", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "5555", "ab", "cd");
 
 		assertEquals("Type Barrière incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TYPE_EQUIPEMENT.BARRIERE);
@@ -262,8 +270,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePrisme() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "6666", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "6666", "ab", "cd");
 
 		assertEquals("Type Prisme incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PRISME);
 		assertEquals("Classe incorrecte", MessagePrismeMqttRest.class, msg.getMessageEquipement().getClass());
@@ -274,8 +282,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBra() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "7777", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "7777", "ab", "cd");
 
 		assertEquals("Type BRA incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.BRA);
 		assertEquals("Classe incorrecte", MessageBraMqttRest.class, msg.getMessageEquipement().getClass());
@@ -286,8 +294,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePplmv() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipement("localhost", PORT, "8888", "ab", "cd");
+		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+				PORT, "8888", "ab", "cd");
 
 		assertEquals("Type PPLMV incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PPLMV);
 		assertEquals("Classe incorrecte", MessagePplmvMqttRest.class, msg.getMessageEquipement().getClass());
@@ -299,11 +307,67 @@ public class ServiceRequetesEtatEtPilotageTest {
 	@Test
 	public void testRequeteDemandeEtatAffichageEquipements() {
 		List<MessageEtatAffichageMqttRest> msgs = InterrogationServeurHttpRest
-				.requeteDemandeEtatAffichageEquipements("localhost", PORT, "ab", "cd");
-		
+				.requeteDemandeEtatAffichageEquipements(HOST, PORT, "ab", "cd");
+
 		assertEquals("Nombre état affichage incorrect", 2, msgs.size());
 		assertEquals("Type PMV incorrect", msgs.get(0).getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PMV);
-		assertEquals("Type PPAD incorrect", msgs.get(1).getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PPAD);
+		assertEquals("Type PPAD incorrect", msgs.get(1).getMessageEquipement().getTypeEquipement(),
+				TYPE_EQUIPEMENT.PPAD);
+	}
+
+	/**
+	 * Test état technique, avec trois alarmes présentes
+	 */
+	@Test
+	public void testRequeteDemandeEtatTechniqueEquipement() {
+		MessageEtatTechniqueMqttRest etatTech = InterrogationServeurHttpRest.requeteDemandeEtatTechniqueEquipement(HOST,
+				PORT, "1111", "ab", "cd");
+
+		assertEquals("Id equipement incorrect", "1111", etatTech.getIdentifiantEquipement());
+		assertEquals("Id expediteur incorrect", "ab", etatTech.getIdentifiantExpediteur());
+		assertEquals("Id commande incorrect", "cd", etatTech.getReferenceMessage());
+
+		List<MessageAlarmeMqttRest> alarmes = etatTech.getAlarmes();
+		assertEquals("Nombre d'alarmes incorrect", 2, alarmes.size());
+
+		assertEquals("Gravite incorrect", Gravite.INTERMEDIAIRE, alarmes.get(0).getGravite());
+		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
+		Instant ist = ldt.toInstant(ZoneOffset.UTC);
+		assertEquals("Horodate génération incorrect", alarmes.get(0).getHorodateGeneration(), Date.from(ist));
+		assertNull("Horodate fin non null", alarmes.get(0).getHorodateFin());
+		assertEquals("Libellé incorrect", "Alarme 1", alarmes.get(0).getLibelle());
+		assertEquals("Type incorrect", Type.DEFAUT_24V, alarmes.get(0).getType());
+
+		assertEquals("Gravite incorrect", Gravite.MAJEURE, alarmes.get(1).getGravite());
+		ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 55, 20);
+		ist = ldt.toInstant(ZoneOffset.UTC);
+		assertEquals("Horodate génération incorrect", alarmes.get(1).getHorodateGeneration(), Date.from(ist));
+		ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 56, 30);
+		ist = ldt.toInstant(ZoneOffset.UTC);
+		assertEquals("Horodate fin incorrect", alarmes.get(1).getHorodateFin(), Date.from(ist));
+		assertEquals("Libellé incorrect", "Alarme 2", alarmes.get(1).getLibelle());
+		assertEquals("Type incorrect", Type.DEFAUT_CARTE, alarmes.get(1).getType());
+
+		// Défauts carte
+		List<DefautAfficheurModulePositionnableMqttRest> defauts = alarmes.get(1)
+				.getListeDefautsAfficheurModulePositionnable();
+		assertEquals("Nombre de défauts incorrect", 2, defauts.size());
+
+		assertEquals("Adresse défaut incorrect", "1.1", defauts.get(0).getAdresseDefaut());
+		assertEquals("Adresse défaut dans module incorrect", "12", defauts.get(0).getAdresseDefautDansModule());
+		assertEquals("Couleur incorrect", Couleur.BLEUE, defauts.get(0).getCouleurDefaut());
+		assertEquals("Position x incorrect", 5, defauts.get(0).getPositionX());
+		assertEquals("Position y incorrect", 10, defauts.get(0).getPositionY());
+		assertEquals("Type défaut incorrect", TypeDefautAfficheur.DEFAUT_CARTE, defauts.get(0).getTypeDefaut());
+		assertEquals("Module incorrect", TypeModuleDefaut.LIGNE5, defauts.get(0).getTypeModuleDefaut());
+
+		assertEquals("Adresse défaut incorrect", "5.1", defauts.get(1).getAdresseDefaut());
+		assertEquals("Adresse défaut dans module incorrect", "8", defauts.get(1).getAdresseDefautDansModule());
+		assertEquals("Couleur incorrect", Couleur.VERT, defauts.get(1).getCouleurDefaut());
+		assertEquals("Position x incorrect", 20, defauts.get(1).getPositionX());
+		assertEquals("Position y incorrect", 100, defauts.get(1).getPositionY());
+		assertEquals("Type défaut incorrect", TypeDefautAfficheur.DEFAUT_PIXEL, defauts.get(1).getTypeDefaut());
+		assertEquals("Module incorrect", TypeModuleDefaut.PICTOGRAMME2, defauts.get(1).getTypeModuleDefaut());
 	}
 
 	/**
@@ -311,8 +375,8 @@ public class ServiceRequetesEtatEtPilotageTest {
 	 */
 	@Test
 	public void testRequeteActualisationEtatEquipement() {
-		InterrogationServeurHttpRest.requeteActualisationEtatEquipement("localhost", PORT, "1234", "ab", "cd");
-		
+		InterrogationServeurHttpRest.requeteActualisationEtatEquipement(HOST, PORT, "1234", "ab", "cd");
+
 		assertEquals("Id equipement incorrect", "1234", traitementsRequetesRest.idEqpt);
 	}
 }
@@ -369,24 +433,82 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 
 		return retour;
 	}
-	
+
 	@Override
 	public List<MessageEtatAffichageMqttRest> demandeEtatAffichageEquipements(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		// Deux états affichage : PMV + PPAD
 		List<MessageEtatAffichageMqttRest> retour = new ArrayList<>();
-		
-		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("1111", pIdentifiantExpediteur, pReferenceCommande);
+
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("1111", pIdentifiantExpediteur,
+				pReferenceCommande);
 		msg.setMessageEquipement(getEtatAffichagePmv());
 		retour.add(msg);
-		
+
 		msg = new MessageEtatAffichageMqttRest("2222", pIdentifiantExpediteur, pReferenceCommande);
 		msg.setMessageEquipement(getEtatAffichagePpad());
 		retour.add(msg);
-		
+
 		return retour;
 	}
-	
+
+	@Override
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		MessageEtatTechniqueMqttRest retour = new MessageEtatTechniqueMqttRest(pId, pIdentifiantExpediteur,
+				pReferenceCommande);
+
+		// Ajout 2 alarmes
+		List<MessageAlarmeMqttRest> alarmes = new ArrayList<>();
+		retour.setAlarmes(alarmes);
+
+		MessageAlarmeMqttRest al = new MessageAlarmeMqttRest();
+		alarmes.add(al);
+		al.setGravite(Gravite.INTERMEDIAIRE);
+		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
+		Instant ist = ldt.toInstant(ZoneOffset.UTC);
+		al.setHorodateGeneration(Date.from(ist));
+		al.setLibelle("Alarme 1");
+		al.setType(Type.DEFAUT_24V);
+
+		al = new MessageAlarmeMqttRest();
+		alarmes.add(al);
+		al.setGravite(Gravite.MAJEURE);
+		ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 55, 20);
+		ist = ldt.toInstant(ZoneOffset.UTC);
+		al.setHorodateGeneration(Date.from(ist));
+		ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 56, 30);
+		ist = ldt.toInstant(ZoneOffset.UTC);
+		al.setHorodateFin(Date.from(ist));
+		al.setLibelle("Alarme 2");
+		al.setType(Type.DEFAUT_CARTE);
+
+		List<DefautAfficheurModulePositionnableMqttRest> defauts = new ArrayList<>();
+		al.setListeDefautsAfficheurModulePositionnable(defauts);
+
+		DefautAfficheurModulePositionnableMqttRest def = new DefautAfficheurModulePositionnableMqttRest();
+		defauts.add(def);
+		def.setAdresseDefaut("1.1");
+		def.setAdresseDefautDansModule("12");
+		def.setCouleurDefaut(Couleur.BLEUE);
+		def.setPositionX(5);
+		def.setPositionY(10);
+		def.setTypeDefaut(TypeDefautAfficheur.DEFAUT_CARTE);
+		def.setTypeModuleDefaut(TypeModuleDefaut.LIGNE5);
+
+		def = new DefautAfficheurModulePositionnableMqttRest();
+		defauts.add(def);
+		def.setAdresseDefaut("5.1");
+		def.setAdresseDefautDansModule("8");
+		def.setCouleurDefaut(Couleur.VERT);
+		def.setPositionX(20);
+		def.setPositionY(100);
+		def.setTypeDefaut(TypeDefautAfficheur.DEFAUT_PIXEL);
+		def.setTypeModuleDefaut(TypeModuleDefaut.PICTOGRAMME2);
+
+		return retour;
+	}
+
 	@Override
 	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
 			String pReferenceCommande) {

@@ -82,6 +82,13 @@ public class ServeurHttpRest {
 	 */
 	public void arretServeur() {
 		spark.Spark.stop();
+		
+		// Attente arrêt du serveur avant de rendre la main
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			LOG.error("Problème allocation thread", e);
+		}
 	}
 
 	// Création des différentes routes

@@ -16,6 +16,7 @@ public class ServiceRequetesAdministrationTest {
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesAdministration traitementsRequetesRest;
 
+	private final static String HOST = "localhost";
 	private final static int PORT = 1122;
 
 	@BeforeClass
@@ -29,8 +30,6 @@ public class ServiceRequetesAdministrationTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		serveurHttpRest.arretServeur();
-		Thread.sleep(100); // Attente arrêt du serveur avant de passer aux tests
-							// suivants
 	}
 
 	@Before
@@ -49,7 +48,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.setInterdit(true);
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, true, "ab", "cd");
+		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, true, "ab", "cd");
 	}
 
 	/**
@@ -60,7 +59,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.setInterdit(false);
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages("localhost", PORT, false, "ab", "cd");
+		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, false, "ab", "cd");
 	}
 
 }

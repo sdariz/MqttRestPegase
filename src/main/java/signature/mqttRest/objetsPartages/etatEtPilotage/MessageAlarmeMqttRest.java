@@ -14,7 +14,6 @@ public class MessageAlarmeMqttRest {
 	private String _libelle;
 	private Type _type;
 	private Gravite _gravite;
-	private Etat _etat;
 	private List<DefautAfficheurModulePositionnableMqttRest> _listeDefautsAfficheurModulePositionnable;
 
 	private Date _horodateGeneration;
@@ -28,10 +27,6 @@ public class MessageAlarmeMqttRest {
 		MINEURE, INTERMEDIAIRE, MAJEURE
 	}
 
-	public enum Etat {
-		ACTIVE, DISPARUE
-	}
-
 	/**
 	 * Construction d'une alarme
 	 */
@@ -39,7 +34,6 @@ public class MessageAlarmeMqttRest {
 		_libelle = "";
 		_type = Type.DEFAUT_DE_COMMUNICATION;
 		_gravite = Gravite.MAJEURE;
-		_etat = Etat.ACTIVE;
 		_listeDefautsAfficheurModulePositionnable = new ArrayList<>();
 
 		_horodateGeneration = new Date();
@@ -109,20 +103,10 @@ public class MessageAlarmeMqttRest {
 	/**
 	 * Donne l'état de l'alarme
 	 * 
-	 * @return son état : ACTIVE, ...
+	 * @return true si l'alarme est active, false si elle à disparue
 	 */
-	public Etat getEtat() {
-		return _etat;
-	}
-
-	/**
-	 * Initialise l'état de l'alarme
-	 * 
-	 * @param pEtat
-	 *            son état : ACTIVE, ...
-	 */
-	public void setEtat(Etat pEtat) {
-		_etat = pEtat;
+	public boolean estActive() {
+		return _horodateFin == null;
 	}
 
 	/**
@@ -198,7 +182,6 @@ public class MessageAlarmeMqttRest {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((_etat == null) ? 0 : _etat.hashCode());
 		result = prime * result + ((_gravite == null) ? 0 : _gravite.hashCode());
 		result = prime * result + ((_horodateFin == null) ? 0 : _horodateFin.hashCode());
 		result = prime * result + ((_horodateGeneration == null) ? 0 : _horodateGeneration.hashCode());
@@ -221,8 +204,6 @@ public class MessageAlarmeMqttRest {
 		if (getClass() != obj.getClass())
 			return false;
 		MessageAlarmeMqttRest other = (MessageAlarmeMqttRest) obj;
-		if (_etat != other._etat)
-			return false;
 		if (_gravite != other._gravite)
 			return false;
 		if (_horodateFin == null) {
