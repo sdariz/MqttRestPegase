@@ -201,7 +201,7 @@ public class InterrogationServeurHttpRest {
 	}
 
 	/**
-	 * Envoi au serveur REST un test de présence
+	 * Test de présence du serveur REST
 	 * 
 	 * @param pHost
 	 *            l'adresse IP du serveur REST
@@ -217,6 +217,48 @@ public class InterrogationServeurHttpRest {
 			String pReferenceCommande) {
 		return ServiceRequetesAdministration.requeteTestPresence(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
+	}
+	
+	/**
+	 * Demande d'activation ou désactivation d'un bouton
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 * @param pActif
+	 *            true pour activer, false pour désactiver
+	 */
+	public static void requeteActivationBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdBouton, boolean pActif) {
+		ServiceRequetesAdministration.requeteActivationBouton(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdBouton, pActif);
+	}
+	
+	/**
+	 * Demande de lancement de l'action rattachée à un bouton
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 */
+	public static void requeteLancementActionBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdBouton) {
+		ServiceRequetesAdministration.requeteLancementActionBouton(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdBouton);
 	}
 
 }

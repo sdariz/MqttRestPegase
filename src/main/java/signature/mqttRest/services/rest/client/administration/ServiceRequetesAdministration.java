@@ -76,12 +76,82 @@ public class ServiceRequetesAdministration {
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
-		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesAdministration.TEST_PRESENCE, params);
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesAdministration.TEST_PRESENCE,
+				params);
 		if (json.length() == 0) {
 			return false;
 		}
 
 		return Util.jsonToBoolean(json);
+	}
+
+	/**
+	 * Envoi au serveur REST une demande d'activation ou désactivation d'un bouton
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 * @param pActif
+	 *            true pour activer, false pour désactiver
+	 */
+	public static void requeteActivationBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdBouton, boolean pActif) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		// Paramètre de la requette
+		Map<String, String> params = new HashMap<>();
+		params.put("idBouton", pIdBouton);
+		params.put("actif", Boolean.toString(pActif));
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesAdministration.ACTIVATION_BOUTON, params);
+	}
+	
+	/**
+	 * Envoi au serveur REST une demande de lancement de l'action rattachée à un bouton
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 */
+	public static void requeteLancementActionBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdBouton) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		// Paramètre de la requette
+		Map<String, String> params = new HashMap<>();
+		params.put("idBouton", pIdBouton);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesAdministration.LANCEMENT_ACTION_BOUTON, params);
 	}
 
 }

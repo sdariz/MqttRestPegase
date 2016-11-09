@@ -162,4 +162,36 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public void traiteDemandeInterdictionPilotages(boolean pInterdit, String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 	}
+	
+	/**
+	 * Traite une demande d'activation ou désactivation d'un bouton
+	 * 
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 * @param pActif
+	 *            true pour activer, false pour désactiver
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 */
+	@Override
+	public void traiteDemandeActivationBouton(String pIdBouton, boolean pActif, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+	}
+
+	/**
+	 * Traite une demande de lancement de l'action rattachée à un bouton
+	 * 
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 */
+	@Override
+	public void traiteDemandeLancementActionBouton(String pIdBouton, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+	}
 }
