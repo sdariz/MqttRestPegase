@@ -68,13 +68,13 @@ public class GestionnaireRoutesEtatEtPilotage {
 			// Soit demande d'un équipement en particulier, soit demande pour
 			// tous les équipements
 			if (pParametres.get("id") == null || pParametres.get("id").length == 0) {
-				return pTraiteRequetesRest.demandeEtatTechniqueEquipements(pParametres.get("idExpediteur")[0],
-						pParametres.get("idCommande")[0]);
+				return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipements(
+						pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 			}
 
 			// Décodage de l'id de l'équipement
-			return pTraiteRequetesRest.demandeEtatTechniqueEquipement(pParametres.get("id")[0],
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]);
+			return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipement(pParametres.get("id")[0],
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 		}
 
 		return "";

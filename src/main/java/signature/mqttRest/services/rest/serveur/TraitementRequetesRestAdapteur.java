@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
@@ -56,11 +57,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @return une chaîne vide
+	 * @return null
 	 */
 	@Override
-	public String demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
-		return "";
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return null;
 	}
 
 	/**
@@ -71,11 +73,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
 	 * 
-	 * @return une chaîne vide
+	 * @return une liste vide
 	 */
 	@Override
-	public String demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
-		return "";
+	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
+		return new ArrayList<>();
 	}
 
 	/**

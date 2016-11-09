@@ -3,6 +3,7 @@ package signature.mqttRest.services.rest.serveur.etatEtPilotage;
 import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 
 /**
  * Traitement des requêtes d'état des équipements
@@ -47,9 +48,10 @@ public interface ITraitementRequetesEtatEquipements {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @return l'état technique au format JSON
+	 * @return l'état technique de l'équipement
 	 */
-	public String demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur, String pReferenceCommande);
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
+			String pReferenceCommande);
 
 	/**
 	 * Traite une demande d'état technique pour tous les équipements
@@ -58,9 +60,10 @@ public interface ITraitementRequetesEtatEquipements {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @return l'état technique des équipements au format JSON
+	 * @return l'état technique des équipements
 	 */
-	public String demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande);
+	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur,
+			String pReferenceCommande);
 
 	/**
 	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant
