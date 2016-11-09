@@ -1,29 +1,26 @@
 package signature.mqttRest.objetsPartages.etatEtPilotage;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import signature.mqttRest.objetsPartages.IMessageMqttRest;
 
 /**
- * Classe décrivant l'état d'affichage d'un équipement
+ * Classe décrivant l'état technique d'un équipement
  * 
  * @author SDARIZCUREN
  *
  */
-public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
+public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 	private String _idEquipement;
 	private String _idExpediteur;
 	private String _referenceMessage;
-
-	private Date _horodateGeneration;
-	private Date _horodateFin;
-
-	private IMessageAffichageEquipement _messageEquipement;
+	private List<MessageAlarmeMqttRest> _alarmes;
 
 	/**
 	 * Construction du message
 	 */
-	public MessageEtatAffichageMqttRest() {
+	public MessageEtatTechniqueMqttRest() {
 		this("", "", "");
 	}
 
@@ -37,12 +34,12 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * @param pReferenceMessage
 	 *            la référence du message, donnée par l'expéditeur
 	 */
-	public MessageEtatAffichageMqttRest(String pIdEquipement, String pIdExpediteur, String pReferenceMessage) {
+	public MessageEtatTechniqueMqttRest(String pIdEquipement, String pIdExpediteur, String pReferenceMessage) {
 		_idEquipement = pIdEquipement;
 		_idExpediteur = pIdExpediteur;
 		_referenceMessage = pReferenceMessage;
 
-		_horodateGeneration = new Date();
+		_alarmes = new ArrayList<>();
 	}
 
 	/**
@@ -103,83 +100,43 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	}
 
 	/**
-	 * Donne l'horodate de génération du message
+	 * Donne la liste des alarmes
 	 * 
-	 * @return l'horodate de génération
+	 * @return la liste des alarmes sur l'équipement
 	 */
-	public Date getHorodateGeneration() {
-		return _horodateGeneration;
+	public List<MessageAlarmeMqttRest> getAlarmes() {
+		return _alarmes;
 	}
 
 	/**
-	 * Initialise l'horodate de génération du message
+	 * Initialisation des alarmes sur l'équipement
 	 * 
-	 * @param pDate
-	 *            la nouvelle horodate
+	 * @param pAlarmes
+	 *            la liste des alarmes
 	 */
-	public void setHorodateGeneration(Date pDate) {
-		_horodateGeneration = pDate;
+	public void setAlarmes(List<MessageAlarmeMqttRest> pAlarmes) {
+		if (pAlarmes == null) {
+			pAlarmes = new ArrayList<MessageAlarmeMqttRest>();
+		}
+
+		_alarmes = pAlarmes;
 	}
 
-	/**
-	 * Donne l'horodate de fin du message
-	 * 
-	 * @return l'horodate de fin. Null si pas définie
-	 */
-	public Date getHorodateFin() {
-		return _horodateFin;
-	}
-
-	/**
-	 * Initialise l'horodate de fin du message
-	 * 
-	 * @param pDate
-	 *            la nouvelle horodate. Null si pas définie
-	 */
-	public void setHorodateFin(Date pDate) {
-		_horodateFin = pDate;
-	}
-
-	/**
-	 * Initialise le message affiché par l'équipement
-	 * 
-	 * @param pMsg
-	 *            le message sur l'équipement
-	 */
-	public void setMessageEquipement(IMessageAffichageEquipement pMsg) {
-		_messageEquipement = pMsg;
-	}
-
-	/**
-	 * Retourne le message affiché par l'équipement
-	 * 
-	 * @return le message sur l'équipement, ou null si inconnu
-	 */
-	public IMessageAffichageEquipement getMessageEquipement() {
-		return _messageEquipement;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((_horodateFin == null) ? 0 : _horodateFin.hashCode());
-		result = prime * result + ((_horodateGeneration == null) ? 0 : _horodateGeneration.hashCode());
+		result = prime * result + ((_alarmes == null) ? 0 : _alarmes.hashCode());
 		result = prime * result + ((_idEquipement == null) ? 0 : _idEquipement.hashCode());
 		result = prime * result + ((_idExpediteur == null) ? 0 : _idExpediteur.hashCode());
-		result = prime * result + ((_messageEquipement == null) ? 0 : _messageEquipement.hashCode());
 		result = prime * result + ((_referenceMessage == null) ? 0 : _referenceMessage.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -190,16 +147,11 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MessageEtatAffichageMqttRest other = (MessageEtatAffichageMqttRest) obj;
-		if (_horodateFin == null) {
-			if (other._horodateFin != null)
+		MessageEtatTechniqueMqttRest other = (MessageEtatTechniqueMqttRest) obj;
+		if (_alarmes == null) {
+			if (other._alarmes != null)
 				return false;
-		} else if (!_horodateFin.equals(other._horodateFin))
-			return false;
-		if (_horodateGeneration == null) {
-			if (other._horodateGeneration != null)
-				return false;
-		} else if (!_horodateGeneration.equals(other._horodateGeneration))
+		} else if (!_alarmes.equals(other._alarmes))
 			return false;
 		if (_idEquipement == null) {
 			if (other._idEquipement != null)
@@ -211,11 +163,6 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 				return false;
 		} else if (!_idExpediteur.equals(other._idExpediteur))
 			return false;
-		if (_messageEquipement == null) {
-			if (other._messageEquipement != null)
-				return false;
-		} else if (!_messageEquipement.equals(other._messageEquipement))
-			return false;
 		if (_referenceMessage == null) {
 			if (other._referenceMessage != null)
 				return false;
@@ -223,5 +170,4 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 			return false;
 		return true;
 	}
-
 }
