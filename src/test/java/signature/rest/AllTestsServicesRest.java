@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ServiceRequetesAdministrationTest.class, ServiceRequetesUtilisateurTest.class,
-		ServiceRequetesEtatEtPilotageTest.class })
+		ServiceRequetesEtatTest.class })
 public class AllTestsServicesRest {
 
 }

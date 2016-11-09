@@ -44,7 +44,7 @@ import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
-public class ServiceRequetesEtatEtPilotageTest {
+public class ServiceRequetesEtatTest {
 
 	private static ServeurHttpRest serveurHttpRest;
 	private static TraitementRequetesEtatEtPilotage traitementsRequetesRest;
