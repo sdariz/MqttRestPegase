@@ -109,10 +109,10 @@ public class AbonnementEtatAffichageTest {
 			}
 		}
 
-		// Déconnection
+		// Déconnexion
 		abo.deconnexionListener();
 
-		// Test errreur
+		// Test erreur
 		assertEquals("ERREUR TEST", 2, fin.get());
 	}
 
@@ -189,10 +189,10 @@ public class AbonnementEtatAffichageTest {
 			}
 		}
 
-		// Déconnection
+		// Déconnexion
 		abo.deconnexionListener();
 
-		// Test errreur
+		// Test erreur
 		assertEquals("ERREUR TEST", 2, fin.get());
 	}
 
