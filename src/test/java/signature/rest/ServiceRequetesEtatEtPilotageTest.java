@@ -371,6 +371,18 @@ public class ServiceRequetesEtatEtPilotageTest {
 	}
 
 	/**
+	 * Test etat technique pour deux équipements
+	 */
+	@Test
+	public void testRequeteDemandeEtatTechniqueEquipements() {
+		List<MessageEtatTechniqueMqttRest> msgs = InterrogationServeurHttpRest
+				.requeteDemandeEtatTechniqueEquipements(HOST, PORT, "ab", "cd");
+
+		assertEquals("Nombre état technique incorrect", 2, msgs.size());
+		
+	}
+	
+	/**
 	 * Test actualisation affichage d'un panneau
 	 */
 	@Test
@@ -509,6 +521,18 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		return retour;
 	}
 
+	@Override
+	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
+		List<MessageEtatTechniqueMqttRest> retour = new ArrayList<>();
+		
+		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1111", pIdentifiantExpediteur, pReferenceCommande);
+		retour.add(msg);
+		msg = new MessageEtatTechniqueMqttRest("2222", pIdentifiantExpediteur, pReferenceCommande);
+		retour.add(msg);
+		
+		return retour;
+	}
+	
 	@Override
 	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
 			String pReferenceCommande) {
