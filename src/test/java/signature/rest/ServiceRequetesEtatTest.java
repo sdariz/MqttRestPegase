@@ -46,6 +46,7 @@ import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 
 /**
  * Test des requêtes d'état d'affichage et état technique
+ * 
  * @author SDARIZCUREN
  *
  */
@@ -84,7 +85,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePMV() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "1111", "ab", "cd");
+				PORT, "ab", "cd", "1111");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -187,7 +188,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePanneauModuleUnique() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "2222", "ab", "cd");
+				PORT, "ab", "cd", "2222");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -226,7 +227,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePpad() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "2222", "ab", "cd");
+				PORT, "ab", "cd", "2222");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PPAD);
 		assertEquals("Classe incorrecte", MessagePpadMqttRest.class, msg.getMessageEquipement().getClass());
@@ -238,7 +239,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePictogramme() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "3333", "ab", "cd");
+				PORT, "ab", "cd", "3333");
 
 		assertEquals("Type Pictogramme incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TYPE_EQUIPEMENT.PICTOGRAMME);
@@ -251,7 +252,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichageFeuR24() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "4444", "ab", "cd");
+				PORT, "ab", "cd", "4444");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.R24);
 		assertEquals("Classe incorrecte", MessageR24MqttRest.class, msg.getMessageEquipement().getClass());
@@ -263,7 +264,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichageBarriere() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "5555", "ab", "cd");
+				PORT, "ab", "cd", "5555");
 
 		assertEquals("Type Barrière incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TYPE_EQUIPEMENT.BARRIERE);
@@ -276,7 +277,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePrisme() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "6666", "ab", "cd");
+				PORT, "ab", "cd", "6666");
 
 		assertEquals("Type Prisme incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PRISME);
 		assertEquals("Classe incorrecte", MessagePrismeMqttRest.class, msg.getMessageEquipement().getClass());
@@ -288,7 +289,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichageBra() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "7777", "ab", "cd");
+				PORT, "ab", "cd", "7777");
 
 		assertEquals("Type BRA incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.BRA);
 		assertEquals("Classe incorrecte", MessageBraMqttRest.class, msg.getMessageEquipement().getClass());
@@ -300,7 +301,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatAffichagePplmv() {
 		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "8888", "ab", "cd");
+				PORT, "ab", "cd", "8888");
 
 		assertEquals("Type PPLMV incorrect", msg.getMessageEquipement().getTypeEquipement(), TYPE_EQUIPEMENT.PPLMV);
 		assertEquals("Classe incorrecte", MessagePplmvMqttRest.class, msg.getMessageEquipement().getClass());
@@ -326,7 +327,7 @@ public class ServiceRequetesEtatTest {
 	@Test
 	public void testRequeteDemandeEtatTechniqueEquipement() {
 		MessageEtatTechniqueMqttRest etatTech = InterrogationServeurHttpRest.requeteDemandeEtatTechniqueEquipement(HOST,
-				PORT, "1111", "ab", "cd");
+				PORT, "ab", "cd", "1111");
 
 		assertEquals("Id equipement incorrect", "1111", etatTech.getIdentifiantEquipement());
 		assertEquals("Id expediteur incorrect", "ab", etatTech.getIdentifiantExpediteur());
@@ -384,15 +385,15 @@ public class ServiceRequetesEtatTest {
 				.requeteDemandeEtatTechniqueEquipements(HOST, PORT, "ab", "cd");
 
 		assertEquals("Nombre état technique incorrect", 2, msgs.size());
-		
+
 	}
-	
+
 	/**
 	 * Test actualisation affichage d'un panneau
 	 */
 	@Test
 	public void testRequeteActualisationEtatEquipement() {
-		InterrogationServeurHttpRest.requeteActualisationEtatEquipement(HOST, PORT, "1234", "ab", "cd");
+		InterrogationServeurHttpRest.requeteActualisationEtatEquipement(HOST, PORT, "ab", "cd", "1234");
 
 		assertEquals("Id equipement incorrect", "1234", traitementsRequetesRest.idEqpt);
 	}
@@ -402,8 +403,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	protected String idEqpt = "";
 
 	@Override
-	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
 		MessageEtatAffichageMqttRest retour = new MessageEtatAffichageMqttRest(pId, pIdentifiantExpediteur,
 				pReferenceCommande);
 
@@ -470,8 +471,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
 		MessageEtatTechniqueMqttRest retour = new MessageEtatTechniqueMqttRest(pId, pIdentifiantExpediteur,
 				pReferenceCommande);
 
@@ -527,20 +528,22 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
+	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		List<MessageEtatTechniqueMqttRest> retour = new ArrayList<>();
-		
-		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1111", pIdentifiantExpediteur, pReferenceCommande);
+
+		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1111", pIdentifiantExpediteur,
+				pReferenceCommande);
 		retour.add(msg);
 		msg = new MessageEtatTechniqueMqttRest("2222", pIdentifiantExpediteur, pReferenceCommande);
 		retour.add(msg);
-		
+
 		return retour;
 	}
-	
+
 	@Override
-	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void demandeActualisationEtatEquipement(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pId) {
 		idEqpt = pId;
 	}
 

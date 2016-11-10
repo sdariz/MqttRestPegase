@@ -57,7 +57,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.interdit = true;
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, true, "ab", "cd");
+		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd", true);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -74,7 +74,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.interdit = false;
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, false, "ab", "cd");
+		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd", false);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -115,7 +115,7 @@ public class ServiceRequetesAdministrationTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test lancement action rattaché à un bouton
 	 */
@@ -137,8 +137,8 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 	protected boolean activation = false;
 
 	@Override
-	public void traiteDemandeInterdictionPilotages(boolean pInterdit, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
+			boolean pInterdit) {
 		try {
 			assertEquals("Interdiction non valide", interdit, pInterdit);
 			assertEquals("Id expediteur non valide", "ab", pIdentifiantExpediteur);
@@ -148,13 +148,13 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 			traitement = 2;
 			return;
 		}
-		
+
 		traitement = 1;
 	}
 
 	@Override
-	public void traiteDemandeActivationBouton(String pIdBouton, boolean pActif, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeActivationBouton(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdBouton, boolean pActif) {
 		try {
 			assertEquals("Id bouton incorrect", "1111", pIdBouton);
 			assertEquals("Activation incorrect", activation, pActif);
@@ -165,13 +165,13 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 			traitement = 2;
 			return;
 		}
-		
+
 		traitement = 1;
 	}
-	
+
 	@Override
-	public void traiteDemandeLancementActionBouton(String pIdBouton, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeLancementActionBouton(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdBouton) {
 		try {
 			assertEquals("Id bouton incorrect", "1111", pIdBouton);
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
@@ -181,7 +181,7 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 			traitement = 2;
 			return;
 		}
-		
+
 		traitement = 1;
 	}
 }

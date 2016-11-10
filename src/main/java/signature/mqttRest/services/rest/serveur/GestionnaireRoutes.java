@@ -1,21 +1,48 @@
 package signature.mqttRest.services.rest.serveur;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import signature.mqttRest.services.rest.serveur.administration.GestionnaireRoutesAdministration;
 import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
+import signature.mqttRest.services.rest.serveur.interrogationArmoire.GestionnaireRoutesInterrogationArmoire;
 import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 
 /**
- * Gestionnaire des routes: liste des routes à gérer par le serveur, et traitement des appels REST
+ * Gestionnaire des routes: liste des routes à gérer par le serveur, et
+ * traitement des appels REST
  * 
  * @author SDARIZCUREN
  *
  */
 class GestionnaireRoutes {
-	
+	private static Map<Class<?>, List<String>> _routesGet;
+	private static Map<Class<?>, List<String>> _routesPost;
+	private final static Logger LOG = LoggerFactory.getLogger(GestionnaireRoutes.class);
+
+	// Liste des routes GET et POST
+	static {
+		_routesGet = new HashMap<>();
+		_routesGet.put(GestionnaireRoutesEtatEtPilotage.class, GestionnaireRoutesEtatEtPilotage.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesUtilisateur.class, GestionnaireRoutesUtilisateur.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesAdministration.class, GestionnaireRoutesAdministration.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesInterrogationArmoire.class,
+				GestionnaireRoutesInterrogationArmoire.getGETRoutes());
+
+		_routesPost = new HashMap<>();
+		_routesPost.put(GestionnaireRoutesEtatEtPilotage.class, GestionnaireRoutesEtatEtPilotage.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesUtilisateur.class, GestionnaireRoutesUtilisateur.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesAdministration.class, GestionnaireRoutesAdministration.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesInterrogationArmoire.class,
+				GestionnaireRoutesInterrogationArmoire.getPOSTRoutes());
+	}
+
 	/**
 	 * Retourne la liste des routes de type GET
 	 * 
@@ -24,13 +51,13 @@ class GestionnaireRoutes {
 	protected static List<String> GETRoutes() {
 		List<String> routes = new ArrayList<>();
 
-		routes.addAll(GestionnaireRoutesEtatEtPilotage.getGETRoutes());
-		routes.addAll(GestionnaireRoutesUtilisateur.getGETRoutes());
-		routes.addAll(GestionnaireRoutesAdministration.getGETRoutes());
+		_routesGet.values().forEach(r -> {
+			routes.addAll(r);
+		});
 
 		return routes;
 	}
-	
+
 	/**
 	 * Retourne la liste des routes de type POST
 	 * 
@@ -39,9 +66,9 @@ class GestionnaireRoutes {
 	protected static List<String> POSTRoutes() {
 		List<String> routes = new ArrayList<>();
 
-		routes.addAll(GestionnaireRoutesEtatEtPilotage.getPOSTRoutes());
-		routes.addAll(GestionnaireRoutesUtilisateur.getPOSTRoutes());
-		routes.addAll(GestionnaireRoutesAdministration.getPOSTRoutes());
+		_routesPost.values().forEach(r -> {
+			routes.addAll(r);
+		});
 
 		return routes;
 	}
@@ -59,22 +86,25 @@ class GestionnaireRoutes {
 	 */
 	protected static String traiteGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
-		// Traitement selon la requête reçue
-		if(GestionnaireRoutesEtatEtPilotage.getGETRoutes().contains(pUri)) {
-			return GestionnaireRoutesEtatEtPilotage.traiteDemandeGET(pUri, pParametres, pTraiteRequetesRest);
+
+		// Détermination de la méthode à appeler par réflexion
+		Object[] classes = _routesGet.keySet().toArray();
+		for (int i = 0; i < classes.length; i++) {
+			if (_routesGet.get(classes[i]).contains(pUri)) {
+				try {
+					Method method = ((Class<?>) classes[i]).getDeclaredMethod("traiteDemandeGET", String.class,
+							Map.class, ITraitementRequetesRest.class);
+					return (String) method.invoke(null, pUri, pParametres, pTraiteRequetesRest);
+				} catch (Exception e) {
+					LOG.error("Erreur reflexion GET", e);
+					return "";
+				}
+			}
 		}
-		
-		if(GestionnaireRoutesUtilisateur.getGETRoutes().contains(pUri)) {
-			return GestionnaireRoutesUtilisateur.traiteDemandeGET(pUri, pParametres, pTraiteRequetesRest);
-		}
-		
-		if(GestionnaireRoutesAdministration.getGETRoutes().contains(pUri)) {
-			return GestionnaireRoutesAdministration.traiteDemandeGET(pUri, pParametres, pTraiteRequetesRest);
-		}
-		
+
 		return "";
 	}
-	
+
 	/**
 	 * Traite une route POST
 	 * 
@@ -88,19 +118,21 @@ class GestionnaireRoutes {
 	 */
 	protected static String traitePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
-		// Traitement selon la requête reçue
-		if(GestionnaireRoutesEtatEtPilotage.getPOSTRoutes().contains(pUri)) {
-			return GestionnaireRoutesEtatEtPilotage.traiteDemandePOST(pUri, pParametres, pTraiteRequetesRest);
+		// Détermination de la méthode à appeler par réflexion
+		Object[] classes = _routesPost.keySet().toArray();
+		for (int i = 0; i < classes.length; i++) {
+			if (_routesPost.get(classes[i]).contains(pUri)) {
+				try {
+					Method method = ((Class<?>) classes[i]).getDeclaredMethod("traiteDemandePOST", String.class,
+							Map.class, ITraitementRequetesRest.class);
+					return (String) method.invoke(null, pUri, pParametres, pTraiteRequetesRest);
+				} catch (Exception e) {
+					LOG.error("Erreur reflexion POST", e);
+					return "";
+				}
+			}
 		}
-		
-		if(GestionnaireRoutesUtilisateur.getPOSTRoutes().contains(pUri)) {
-			return GestionnaireRoutesUtilisateur.traiteDemandePOST(pUri, pParametres, pTraiteRequetesRest);
-		}
-		
-		if(GestionnaireRoutesAdministration.getPOSTRoutes().contains(pUri)) {
-			return GestionnaireRoutesAdministration.traiteDemandePOST(pUri, pParametres, pTraiteRequetesRest);
-		}
-		
+
 		return "";
 	}
 }

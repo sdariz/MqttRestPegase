@@ -18,17 +18,17 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état d'affichage d'un équipement
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement
 	 * @return null
 	 */
 	@Override
-	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
 		return null;
 	}
 
@@ -51,17 +51,17 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état technique d'un équipement
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement
 	 * @return null
 	 */
 	@Override
-	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
 		return null;
 	}
 
@@ -76,7 +76,8 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @return une liste vide
 	 */
 	@Override
-	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur, String pReferenceCommande) {
+	public List<MessageEtatTechniqueMqttRest> demandeEtatTechniqueEquipements(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
 
@@ -84,16 +85,16 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant
 	 * une interrogation de l'équipement sur le terrain
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement à rafraîchir
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à rafraîchir
 	 */
 	@Override
-	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void demandeActualisationEtatEquipement(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pId) {
 	}
 
 	/**
@@ -131,19 +132,19 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Indique si le login et le mot de passe associé sont valides
 	 * 
-	 * @param pLogin
-	 *            le login de l'utilisateur
-	 * @param pMotPasse
-	 *            le mot de passe associé au login
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pLogin
+	 *            le login de l'utilisateur
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
 	 * @return false
 	 */
 	@Override
-	public boolean estValide(String pLogin, String pMotPasse, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public boolean estValide(String pIdentifiantExpediteur, String pReferenceCommande, String pLogin,
+			String pMotPasse) {
 		return false;
 	}
 
@@ -151,47 +152,62 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
 	 * Pegase
 	 * 
-	 * @param pInterdit
-	 *            true pour interdire les pilotages sur Pegase
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
 	 */
 	@Override
-	public void traiteDemandeInterdictionPilotages(boolean pInterdit, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
+			boolean pInterdit) {
 	}
-	
+
 	/**
 	 * Traite une demande d'activation ou désactivation d'un bouton
 	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
 	 * @param pIdBouton
 	 *            l'identifiant du bouton
 	 * @param pActif
 	 *            true pour activer, false pour désactiver
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
 	 */
 	@Override
-	public void traiteDemandeActivationBouton(String pIdBouton, boolean pActif, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeActivationBouton(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdBouton, boolean pActif) {
 	}
 
 	/**
 	 * Traite une demande de lancement de l'action rattachée à un bouton
 	 * 
-	 * @param pIdBouton
-	 *            l'identifiant du bouton
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pIdBouton
+	 *            l'identifiant du bouton
 	 */
 	@Override
-	public void traiteDemandeLancementActionBouton(String pIdBouton, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public void traiteDemandeLancementActionBouton(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdBouton) {
+	}
+
+	/**
+	 * Traite une demande de lancement de test sur les équipements d'une armoire
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'identifiantde l'armoire à tester
+	 */
+	@Override
+	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pId) {
 	}
 }

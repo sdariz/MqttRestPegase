@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
 
 /**
@@ -50,11 +51,16 @@ public class GestionnaireRoutesAdministration {
 	 *         réponse
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
-			ITraitementRequetesAdministration pTraiteRequetesRest) {
+			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (TEST_PRESENCE.equals(pUri)) {
 			// Pas de traitement, réponse directe OK
 			return Util.toJsonString(true);
 		}
+
+		return "";
+	}
+
+	public static String toto(String s, ITraitementRequetesRest pTraiteRequetesRest) {
 
 		return "";
 	}
@@ -72,24 +78,23 @@ public class GestionnaireRoutesAdministration {
 	 *         réponse
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
-			ITraitementRequetesAdministration pTraiteRequetesRest) {
+			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (INTERDICTION_PILOTAGES.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(
-					Boolean.parseBoolean(pParametres.get("interdiction")[0]), pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0]);
+			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], Boolean.parseBoolean(pParametres.get("interdiction")[0]));
 			return "";
 		}
 
 		if (ACTIVATION_BOUTON.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeActivationBouton(pParametres.get("idBouton")[0],
-					Boolean.parseBoolean(pParametres.get("actif")[0]), pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0]);
+			pTraiteRequetesRest.traiteDemandeActivationBouton(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idBouton")[0],
+					Boolean.parseBoolean(pParametres.get("actif")[0]));
 			return "";
 		}
 
 		if (LANCEMENT_ACTION_BOUTON.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeLancementActionBouton(pParametres.get("idBouton")[0],
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]);
+			pTraiteRequetesRest.traiteDemandeLancementActionBouton(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idBouton")[0]);
 			return "";
 		}
 

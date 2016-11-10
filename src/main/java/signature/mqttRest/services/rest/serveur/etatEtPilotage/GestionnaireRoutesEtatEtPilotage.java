@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
 
 /**
@@ -50,7 +51,7 @@ public class GestionnaireRoutesEtatEtPilotage {
 	 *         réponse
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
-			ITraitementRequetesEtatEquipements pTraiteRequetesRest) {
+			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (ETAT_AFFICHAGE_EQUIPEMENT.equals(pUri)) {
 			// Soit demande d'un équipement en particulier, soit demande pour
 			// tous les équipements
@@ -60,8 +61,8 @@ public class GestionnaireRoutesEtatEtPilotage {
 			}
 
 			// Décodage de l'id de l'équipement
-			return Util.toJsonString(pTraiteRequetesRest.demandeEtatAffichageEquipement(pParametres.get("id")[0],
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
+			return Util.toJsonString(pTraiteRequetesRest.demandeEtatAffichageEquipement(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("id")[0]));
 		}
 
 		if (ETAT_TECHNIQUE_EQUIPEMENT.equals(pUri)) {
@@ -73,8 +74,8 @@ public class GestionnaireRoutesEtatEtPilotage {
 			}
 
 			// Décodage de l'id de l'équipement
-			return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipement(pParametres.get("id")[0],
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
+			return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipement(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("id")[0]));
 		}
 
 		return "";
@@ -93,10 +94,10 @@ public class GestionnaireRoutesEtatEtPilotage {
 	 *         réponse
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
-			ITraitementRequetesEtatEquipements pTraiteRequetesRest) {
+			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (ACTUALISATION_ETAT_EQUIPEMENT.equals(pUri)) {
-			pTraiteRequetesRest.demandeActualisationEtatEquipement(pParametres.get("idEquipement")[0],
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]);
+			pTraiteRequetesRest.demandeActualisationEtatEquipement(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]);
 			return "";
 		}
 		return "";

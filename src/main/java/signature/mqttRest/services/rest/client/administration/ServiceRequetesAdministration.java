@@ -28,9 +28,11 @@ public class ServiceRequetesAdministration {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
 	 */
-	public static void requeteInterdictionPilotages(String pHost, int pPort, boolean pInterdit,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
+	public static void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, boolean pInterdit) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -86,7 +88,8 @@ public class ServiceRequetesAdministration {
 	}
 
 	/**
-	 * Envoi au serveur REST une demande d'activation ou désactivation d'un bouton
+	 * Envoi au serveur REST une demande d'activation ou désactivation d'un
+	 * bouton
 	 * 
 	 * @param pHost
 	 *            l'adresse IP du serveur REST
@@ -120,9 +123,10 @@ public class ServiceRequetesAdministration {
 
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesAdministration.ACTIVATION_BOUTON, params);
 	}
-	
+
 	/**
-	 * Envoi au serveur REST une demande de lancement de l'action rattachée à un bouton
+	 * Envoi au serveur REST une demande de lancement de l'action rattachée à un
+	 * bouton
 	 * 
 	 * @param pHost
 	 *            l'adresse IP du serveur REST

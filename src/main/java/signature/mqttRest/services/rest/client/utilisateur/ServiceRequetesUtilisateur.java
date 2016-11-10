@@ -102,18 +102,18 @@ public class ServiceRequetesUtilisateur {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pLogin
-	 *            le login à valider
-	 * @param pMotPasse
-	 *            le mot de passe associé au login
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pLogin
+	 *            le login à valider
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
 	 * @return true si valide, sinon false
 	 */
-	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pLogin, String pMotPasse) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}

@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.serveur.utilisateur;
+package signature.mqttRest.services.rest.serveur.interrogationArmoire;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,19 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
-import signature.mqttRest.util.Util;
 
 /**
- * Routes utilisées pour gérer un utilisateur. Traitement des requêtes GET et
- * POST reçues par le serveur REST.
+ * Routes utilisées pour gérer les commandes d'administration. Traitement des
+ * requêtes GET et POST reçues par le serveur REST.
  * 
  * @author SDARIZCUREN
  *
  */
-public class GestionnaireRoutesUtilisateur {
-	public final static String LISTE_UTILISATEURS = "/utilisateurs";
-	public final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
-	public final static String IDENTIFIANTS_VALIDE = "/identifiantsValide";
+public class GestionnaireRoutesInterrogationArmoire {
+	public final static String LANCEMENT_TEST_EQUIPEMENTS = "/lancementTestEquipements";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -26,7 +23,7 @@ public class GestionnaireRoutesUtilisateur {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(LISTE_UTILISATEURS, UTILISATEUR_CONNECTE, IDENTIFIANTS_VALIDE);
+		return new ArrayList<String>();
 	}
 
 	/**
@@ -35,7 +32,7 @@ public class GestionnaireRoutesUtilisateur {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return new ArrayList<>();
+		return Arrays.asList(LANCEMENT_TEST_EQUIPEMENTS);
 	}
 
 	/**
@@ -52,20 +49,6 @@ public class GestionnaireRoutesUtilisateur {
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
-		if (LISTE_UTILISATEURS.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.demandeListeUtilisateurs(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0]));
-		}
-
-		if (UTILISATEUR_CONNECTE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.demandeUtilisateurConnecte(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0]));
-		}
-
-		if (IDENTIFIANTS_VALIDE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.estValide(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("login")[0], pParametres.get("password")[0]));
-		}
 
 		return "";
 	}
@@ -84,7 +67,12 @@ public class GestionnaireRoutesUtilisateur {
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
+		if (LANCEMENT_TEST_EQUIPEMENTS.equals(pUri)) {
+			pTraiteRequetesRest.traiteDemandeLancementTestEquipements(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("id")[0]);
+			return "";
+		}
+
 		return "";
 	}
-
 }

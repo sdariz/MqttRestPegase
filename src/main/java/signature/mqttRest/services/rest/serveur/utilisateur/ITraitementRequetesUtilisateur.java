@@ -41,16 +41,16 @@ public interface ITraitementRequetesUtilisateur {
 	/**
 	 * Indique si le login et le mot de passe associé sont valides
 	 * 
-	 * @param pLogin
-	 *            le login de l'utilisateur
-	 * @param pMotPasse
-	 *            le mot de passe associé au login
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pLogin
+	 *            le login de l'utilisateur
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
 	 * @return true ou false
 	 */
-	public boolean estValide(String pLogin, String pMotPasse, String pIdentifiantExpediteur, String pReferenceCommande);
+	public boolean estValide(String pIdentifiantExpediteur, String pReferenceCommande, String pLogin, String pMotPasse);
 
 }

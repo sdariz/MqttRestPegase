@@ -16,16 +16,16 @@ public interface ITraitementRequetesEtatEquipements {
 	/**
 	 * Traite une demande d'état d'affichage d'un équipement
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement
 	 * @return l'état d'affichage de l'équipement
 	 */
-	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande);
+	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId);
 
 	/**
 	 * Traite une demande d'état d'affichage pour tous les équipements
@@ -42,16 +42,16 @@ public interface ITraitementRequetesEtatEquipements {
 	/**
 	 * Traite une demande d'état technique d'un équipement
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement
 	 * @return l'état technique de l'équipement
 	 */
-	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande);
+	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId);
 
 	/**
 	 * Traite une demande d'état technique pour tous les équipements

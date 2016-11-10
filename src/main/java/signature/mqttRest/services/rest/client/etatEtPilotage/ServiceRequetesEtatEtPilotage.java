@@ -19,7 +19,7 @@ import signature.mqttRest.util.Util;
  *
  */
 public class ServiceRequetesEtatEtPilotage {
-	
+
 	/**
 	 * Demande d'état d'affichage d'un équipement
 	 * 
@@ -27,16 +27,16 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pId
-	 *            l'id de l'équipement à interroger
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à interroger
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
-			String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -98,7 +98,7 @@ public class ServiceRequetesEtatEtPilotage {
 
 		return retour;
 	}
-	
+
 	/**
 	 * Demande d'état technique d'un équipement
 	 * 
@@ -106,16 +106,16 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pId
-	 *            l'id de l'équipement à interroger
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à interroger
 	 * @return l'état technique de l'équipement, ou null si problème
 	 */
 	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
-			String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -186,15 +186,15 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pId
-	 *            l'id de l'équipement à interroger
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à interroger
 	 */
-	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
+	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}

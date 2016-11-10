@@ -7,6 +7,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqtt
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
 /**
@@ -25,18 +26,18 @@ public class InterrogationServeurHttpRest {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pId
-	 *            l'id de l'équipement à interroger
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à interroger
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
-			String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pId,
-				pIdentifiantExpediteur, pReferenceCommande);
+			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pId);
 	}
 
 	/**
@@ -65,18 +66,18 @@ public class InterrogationServeurHttpRest {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pId
-	 *            l'id de l'équipement à interroger
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'id de l'équipement à interroger
 	 * @return l'état technique de l'équipement, ou null si problème
 	 */
 	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
-			String pId, String pIdentifiantExpediteur, String pReferenceCommande) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pId,
-				pIdentifiantExpediteur, pReferenceCommande);
+			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pId);
 	}
 
 	/**
@@ -113,10 +114,10 @@ public class InterrogationServeurHttpRest {
 	 * @param pId
 	 *            l'id de l'équipement à interroger
 	 */
-	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pId,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
-		ServiceRequetesEtatEtPilotage.requeteActualisationEtatEquipement(pHost, pPort, pId, pIdentifiantExpediteur,
-				pReferenceCommande);
+	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
+		ServiceRequetesEtatEtPilotage.requeteActualisationEtatEquipement(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pId);
 	}
 
 	/**
@@ -164,20 +165,20 @@ public class InterrogationServeurHttpRest {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pLogin
-	 *            le login à valider
-	 * @param pMotPasse
-	 *            le mot de passe associé au login
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pLogin
+	 *            le login à valider
+	 * @param pMotPasse
+	 *            le mot de passe associé au login
 	 * @return true si valide, sinon false
 	 */
-	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pLogin, String pMotPasse,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
-		return ServiceRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pLogin, pMotPasse,
-				pIdentifiantExpediteur, pReferenceCommande);
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pLogin, String pMotPasse) {
+		return ServiceRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pLogin, pMotPasse);
 	}
 
 	/**
@@ -187,17 +188,17 @@ public class InterrogationServeurHttpRest {
 	 *            l'adresse IP du serveur REST
 	 * @param pPort
 	 *            le port TCP utilisé par le serveur
-	 * @param pInterdit
-	 *            true pour interdire les pilotages sur Pegase
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
 	 */
-	public static void requeteInterdictionPilotages(String pHost, int pPort, boolean pInterdit,
-			String pIdentifiantExpediteur, String pReferenceCommande) {
-		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pInterdit, pIdentifiantExpediteur,
-				pReferenceCommande);
+	public static void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, boolean pInterdit) {
+		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pInterdit);
 	}
 
 	/**
@@ -218,7 +219,7 @@ public class InterrogationServeurHttpRest {
 		return ServiceRequetesAdministration.requeteTestPresence(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
 	}
-	
+
 	/**
 	 * Demande d'activation ou désactivation d'un bouton
 	 * 
@@ -237,10 +238,10 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static void requeteActivationBouton(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdBouton, boolean pActif) {
-		ServiceRequetesAdministration.requeteActivationBouton(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pIdBouton, pActif);
+		ServiceRequetesAdministration.requeteActivationBouton(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdBouton, pActif);
 	}
-	
+
 	/**
 	 * Demande de lancement de l'action rattachée à un bouton
 	 * 
@@ -259,6 +260,26 @@ public class InterrogationServeurHttpRest {
 			String pReferenceCommande, String pIdBouton) {
 		ServiceRequetesAdministration.requeteLancementActionBouton(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdBouton);
+	}
+
+	/**
+	 * Demande de lancement de test sur les équipements d'une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pId
+	 *            l'identifiant de l'armoire
+	 */
+	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pId) {
+		ServiceRequetesInterrogationArmoire.requeteILancementTestEquipementsArmoire(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pId);
 	}
 
 }

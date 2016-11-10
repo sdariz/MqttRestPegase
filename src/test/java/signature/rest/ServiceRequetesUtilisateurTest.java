@@ -97,7 +97,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsValide() {
 		assertEquals("Identifiant invalide", true, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomValide", "MotPasseValide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomValide", "MotPasseValide"));
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsNomInvalide() {
 		assertEquals("Le nom devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomInvalide", "MotPasseValide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomInvalide", "MotPasseValide"));
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class ServiceRequetesUtilisateurTest {
 	@Test
 	public void testRequeteDemandeIdentifiantsMotPasseInvalide() {
 		assertEquals("Le mot de passe devrait être invalide", false, InterrogationServeurHttpRest
-				.requeteDemandeIdentifiantsValide(HOST, PORT, "NomValide", "MotPasseInvalide", "ab", "cd"));
+				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomValide", "MotPasseInvalide"));
 	}
 
 }
@@ -156,8 +156,8 @@ class TraitementRequetesUtilisateur extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public boolean estValide(String pLogin, String pMotPasse, String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public boolean estValide(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pLogin, String pMotPasse) {
 		return pLogin.equals("NomValide") && pMotPasse.equals("MotPasseValide");
 	}
 
