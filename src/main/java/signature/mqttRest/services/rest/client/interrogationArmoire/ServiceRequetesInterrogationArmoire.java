@@ -27,11 +27,11 @@ public class ServiceRequetesInterrogationArmoire {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdArmoire
 	 *            l'identifiant de l'armoire
 	 */
-	public static void requeteILancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -42,11 +42,45 @@ public class ServiceRequetesInterrogationArmoire {
 
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
-		params.put("id", pId);
+		params.put("idArmoire", pIdArmoire);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.LANCEMENT_TEST_EQUIPEMENTS,
+				params);
+	}
+	
+	/**
+	 * Envoi au serveur REST une demande de remise à l'heure d'une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire
+	 */
+	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		// Paramètre de la requette
+		Map<String, String> params = new HashMap<>();
+		params.put("idArmoire", pIdArmoire);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.REMISE_HEURE,
 				params);
 	}
 

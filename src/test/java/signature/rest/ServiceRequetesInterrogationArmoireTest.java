@@ -53,6 +53,19 @@ public class ServiceRequetesInterrogationArmoireTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
+	
+	/**
+	 * Requête de remise à l'heure d'une armoire
+	 */
+	@Test
+	public void testRemiseHeureArmoire() {
+		traitementsRequetesRest.traitement = 0;
+
+		InterrogationServeurHttpRest.requeteRemiseHeureArmoire(HOST, PORT, "ab", "cd", "2222");
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+	}
 }
 
 class TraitementRequetesRest extends TraitementRequetesRestAdapteur {
@@ -60,9 +73,25 @@ class TraitementRequetesRest extends TraitementRequetesRestAdapteur {
 	
 	@Override
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+			String pReferenceCommande, String pIdArmoire) {
 		try {
-			assertEquals("Id armoire incorrect", "1111", pId);
+			assertEquals("Id armoire incorrect", "1111", pIdArmoire);
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return;
+		}
+		
+		traitement = 1;
+	}
+	
+	@Override
+	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
+		try {
+			assertEquals("Id armoire incorrect", "2222", pIdArmoire);
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 		} catch (Throwable t) {

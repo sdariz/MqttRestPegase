@@ -31,12 +31,12 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -46,7 +46,7 @@ public class ServiceRequetesEtatEtPilotage {
 		}
 
 		Map<String, String> params = new HashMap<>();
-		params.put("id", pId);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
@@ -110,12 +110,12 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 * @return l'état technique de l'équipement, ou null si problème
 	 */
 	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -125,7 +125,7 @@ public class ServiceRequetesEtatEtPilotage {
 		}
 
 		Map<String, String> params = new HashMap<>();
-		params.put("id", pId);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
@@ -190,11 +190,11 @@ public class ServiceRequetesEtatEtPilotage {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 */
 	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+			String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -205,7 +205,7 @@ public class ServiceRequetesEtatEtPilotage {
 
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
-		params.put("idEquipement", pId);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 

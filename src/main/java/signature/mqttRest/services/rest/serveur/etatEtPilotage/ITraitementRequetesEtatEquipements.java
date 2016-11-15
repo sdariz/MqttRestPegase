@@ -20,12 +20,12 @@ public interface ITraitementRequetesEtatEquipements {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement
 	 * @return l'état d'affichage de l'équipement
 	 */
 	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId);
+			String pReferenceCommande, String pIdEquipement);
 
 	/**
 	 * Traite une demande d'état d'affichage pour tous les équipements
@@ -46,12 +46,12 @@ public interface ITraitementRequetesEtatEquipements {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement
 	 * @return l'état technique de l'équipement
 	 */
 	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId);
+			String pReferenceCommande, String pIdEquipement);
 
 	/**
 	 * Traite une demande d'état technique pour tous les équipements
@@ -69,13 +69,13 @@ public interface ITraitementRequetesEtatEquipements {
 	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant
 	 * une interrogation de l'équipement sur le terrain
 	 * 
-	 * @param pId
-	 *            l'id de l'équipement à rafraîchir
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement à rafraîchir
 	 */
-	public void demandeActualisationEtatEquipement(String pId, String pIdentifiantExpediteur,
-			String pReferenceCommande);
+	public void demandeActualisationEtatEquipement(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdEquipement);
 }

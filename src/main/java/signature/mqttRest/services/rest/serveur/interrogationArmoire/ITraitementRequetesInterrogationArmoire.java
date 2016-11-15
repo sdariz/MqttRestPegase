@@ -15,9 +15,22 @@ public interface ITraitementRequetesInterrogationArmoire {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
-	 *            l'identifiantde l'armoire à tester
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire à tester
 	 */
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId);
+			String pReferenceCommande, String pIdArmoire);
+	
+	/**
+	 * Traite une demande de remise à l'heure d'une armoire
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire à remettre à l'heure
+	 */
+	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire);
 }

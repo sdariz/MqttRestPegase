@@ -22,13 +22,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement
 	 * @return null
 	 */
 	@Override
 	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+			String pReferenceCommande, String pIdEquipement) {
 		return null;
 	}
 
@@ -55,13 +55,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement
 	 * @return null
 	 */
 	@Override
 	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+			String pReferenceCommande, String pIdEquipement) {
 		return null;
 	}
 
@@ -89,12 +89,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à rafraîchir
 	 */
 	@Override
 	public void demandeActualisationEtatEquipement(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pId) {
+			String pIdEquipement) {
 	}
 
 	/**
@@ -203,11 +203,26 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
-	 *            l'identifiantde l'armoire à tester
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire à tester
 	 */
 	@Override
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pId) {
+			String pIdArmoire) {
+	}
+	
+	/**
+	 * Traite une demande de remise à l'heure d'une armoire
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire à remettre à l'heure
+	 */
+	@Override
+	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
 	}
 }

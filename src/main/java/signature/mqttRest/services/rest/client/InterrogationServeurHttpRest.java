@@ -30,14 +30,14 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pId);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**
@@ -70,14 +70,14 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 * @return l'état technique de l'équipement, ou null si problème
 	 */
 	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pId) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pId);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**
@@ -111,13 +111,13 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 */
 	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
+			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesEtatEtPilotage.requeteActualisationEtatEquipement(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pId);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**
@@ -273,13 +273,33 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pId
+	 * @param pIdArmoire
 	 *            l'identifiant de l'armoire
 	 */
 	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pId) {
-		ServiceRequetesInterrogationArmoire.requeteILancementTestEquipementsArmoire(pHost, pPort,
-				pIdentifiantExpediteur, pReferenceCommande, pId);
+			String pReferenceCommande, String pIdArmoire) {
+		ServiceRequetesInterrogationArmoire.requeteLancementTestEquipementsArmoire(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pIdArmoire);
+	}
+	
+	/**
+	 * Demande de remise à l'heure d'une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire
+	 */
+	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
+		ServiceRequetesInterrogationArmoire.requeteRemiseHeureArmoire(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pIdArmoire);
 	}
 
 }

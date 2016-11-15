@@ -55,27 +55,27 @@ public class GestionnaireRoutesEtatEtPilotage {
 		if (ETAT_AFFICHAGE_EQUIPEMENT.equals(pUri)) {
 			// Soit demande d'un équipement en particulier, soit demande pour
 			// tous les équipements
-			if (pParametres.get("id") == null || pParametres.get("id").length == 0) {
+			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
 				return Util.toJsonString(pTraiteRequetesRest.demandeEtatAffichageEquipements(
 						pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 			}
 
 			// Décodage de l'id de l'équipement
 			return Util.toJsonString(pTraiteRequetesRest.demandeEtatAffichageEquipement(
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("id")[0]));
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
 		}
 
 		if (ETAT_TECHNIQUE_EQUIPEMENT.equals(pUri)) {
 			// Soit demande d'un équipement en particulier, soit demande pour
 			// tous les équipements
-			if (pParametres.get("id") == null || pParametres.get("id").length == 0) {
+			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
 				return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipements(
 						pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 			}
 
 			// Décodage de l'id de l'équipement
 			return Util.toJsonString(pTraiteRequetesRest.demandeEtatTechniqueEquipement(
-					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("id")[0]));
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
 		}
 
 		return "";
