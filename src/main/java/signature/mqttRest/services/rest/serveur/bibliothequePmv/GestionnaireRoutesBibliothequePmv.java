@@ -1,5 +1,6 @@
-package signature.mqttRest.services.rest.serveur.administration;
+package signature.mqttRest.services.rest.serveur.bibliothequePmv;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -8,17 +9,16 @@ import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
 
 /**
- * Routes utilisées pour gérer les commandes d'administration. Traitement des
- * requêtes GET et POST reçues par le serveur REST.
+ * Traitement des requêtes GET et POST reçues par le serveur REST, qui concerne
+ * la bibliothèque PMV
  * 
  * @author SDARIZCUREN
  *
  */
-public class GestionnaireRoutesAdministration {
-	public final static String INTERDICTION_PILOTAGES = "/interdictionPilotages";
-	public final static String TEST_PRESENCE = "/testPresence";
-	public final static String ACTIVATION_BOUTON = "/activationBouton";
-	public final static String LANCEMENT_ACTION_BOUTON = "/lancementActionBouton";
+public class GestionnaireRoutesBibliothequePmv {
+	public final static String LISTE_CATEGORIES = "/categoriesBibliothequePmv";
+	public final static String LISTE_MESSAGES_DANS_CATEGORIE = "/messagesDansCategorieBibliothequePmv";
+	public final static String MESSAGE = "/messageBibliothequePmv";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -26,7 +26,7 @@ public class GestionnaireRoutesAdministration {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(TEST_PRESENCE);
+		return Arrays.asList(LISTE_CATEGORIES, LISTE_MESSAGES_DANS_CATEGORIE, MESSAGE);
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class GestionnaireRoutesAdministration {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return Arrays.asList(INTERDICTION_PILOTAGES, ACTIVATION_BOUTON, LANCEMENT_ACTION_BOUTON);
+		return new ArrayList<String>();
 	}
 
 	/**
@@ -52,9 +52,21 @@ public class GestionnaireRoutesAdministration {
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
-		if (TEST_PRESENCE.equals(pUri)) {
-			// Pas de traitement, réponse directe OK
-			return Util.toJsonString(true);
+		if (LISTE_CATEGORIES.equals(pUri)) {
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeCategoriesBibliothequePmv(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
+		}
+
+		if (LISTE_MESSAGES_DANS_CATEGORIE.equals(pUri)) {
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeMessagesDansCategorieBibliothequePmv(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
+					pParametres.get("categorie")[0]));
+		}
+		
+		if (MESSAGE.equals(pUri)) {
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeMessageBibliothequePmv(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
+					pParametres.get("categorie")[0], pParametres.get("nom")[0]));
 		}
 
 		return "";
@@ -74,25 +86,8 @@ public class GestionnaireRoutesAdministration {
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
-		if (INTERDICTION_PILOTAGES.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], Boolean.parseBoolean(pParametres.get("interdiction")[0]));
-			return "";
-		}
-
-		if (ACTIVATION_BOUTON.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeActivationBouton(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("idBouton")[0],
-					Boolean.parseBoolean(pParametres.get("actif")[0]));
-			return "";
-		}
-
-		if (LANCEMENT_ACTION_BOUTON.equals(pUri)) {
-			pTraiteRequetesRest.traiteDemandeLancementActionBouton(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("idBouton")[0]);
-			return "";
-		}
 
 		return "";
 	}
+
 }

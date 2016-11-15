@@ -5,6 +5,7 @@ import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
@@ -210,7 +211,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdArmoire) {
 	}
-	
+
 	/**
 	 * Traite une demande de remise à l'heure d'une armoire
 	 * 
@@ -222,10 +223,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant de l'armoire à remettre à l'heure
 	 */
 	@Override
-	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdArmoire) {
 	}
-	
+
 	/**
 	 * Traite une demande d'interrogation d'une armoire
 	 * 
@@ -242,5 +243,55 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public String traiteDemandeArmoire(String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire,
 			String pTrame) {
 		return "";
+	}
+
+	/**
+	 * Traite une demande d'obtention de la liste des catégorie de la
+	 * bibliothèque
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return une liste vide
+	 */
+	public List<String> traiteDemandeCategoriesBibliothequePmv(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return new ArrayList<>();
+	}
+
+	/**
+	 * Traite une demande d'obtention de la liste des noms des messages dans une
+	 * catégorie de la bibliothèque
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pCategorie
+	 *            la catégorie concernée
+	 * @return une liste vide
+	 */
+	public List<String> traiteDemandeMessagesDansCategorieBibliothequePmv(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pCategorie) {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Traite une demande d'obtention d'un message de la bibliothèque
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pCategorie
+	 *            la catégorie concernée
+	 * @param pNom
+	 *            le nom du message
+	 * @return null
+	 */
+	public MessagePmvMqttRest traiteDemandeMessageBibliothequePmv(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pCategorie, String pNom) {
+		return null;
 	}
 }

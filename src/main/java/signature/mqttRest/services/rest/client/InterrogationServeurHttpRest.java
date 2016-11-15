@@ -4,8 +4,10 @@ import java.util.List;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
+import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
 import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
@@ -323,6 +325,69 @@ public class InterrogationServeurHttpRest {
 			String pReferenceCommande, String pIdArmoire, String pTrame) {
 		return ServiceRequetesInterrogationArmoire.requeteDemandeArmoire(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdArmoire, pTrame);
+	}
+
+	/**
+	 * Demande la liste des catégories de la bibliothèque PMV
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return la liste des catégories
+	 */
+	public static List<String> requeteDemandeCategoriesBibliothequePmv(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesBibliothequePmv.requeteDemandeCategoriesBibliothequePmv(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande);
+	}
+
+	/**
+	 * Demande la liste des noms des messages pour une catégorie de la
+	 * bibliothèque PMV
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pCategorie
+	 *            le nom de la catégorie
+	 * @return la liste noms des messages pour la catégorie demandée
+	 */
+	public static List<String> requeteDemandeMessagesDansCategorieBibliothequePmv(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pCategorie) {
+		return ServiceRequetesBibliothequePmv.requeteDemandeMessagesDansCategorieBibliothequePmv(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pCategorie);
+	}
+
+	/**
+	 * Envoi au serveur REST une demande de message de la bibliothèque PMV
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pCategorie
+	 *            la catégorie concernée
+	 * @pNom le nom du message dans la catégorie
+	 * @return le message correspondant, ou null si problème
+	 */
+	public static MessagePmvMqttRest requeteDemandeMessageBibliothequePmv(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pCategorie, String pNom) {
+		return ServiceRequetesBibliothequePmv.requeteDemandeMessageBibliothequePmv(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pCategorie, pNom);
 	}
 
 }

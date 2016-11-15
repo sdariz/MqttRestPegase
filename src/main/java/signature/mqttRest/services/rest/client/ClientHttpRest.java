@@ -14,6 +14,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -70,22 +71,28 @@ public class ClientHttpRest {
 		sb.append("/");
 		sb.append(pUri);
 
-		// Ajout des paramètres
-		if (!pParametres.isEmpty()) {
-			sb.append("?");
-			pParametres.forEach((k, v) -> {
-				sb.append(k);
-				sb.append("=");
-				sb.append(v);
-				sb.append("&");
-			});
+		// Construction d'une URI avec les paramètres demandés
+		String uri = "";
+		try {
+			URIBuilder uriBuilder = new URIBuilder("http://" + pHost + ":" + pPort + "/" + pUri);
 
-			// Suppression & en fin de chaîne
-			sb.deleteCharAt(sb.length() - 1);
+			if (!pParametres.isEmpty()) {
+				pParametres.forEach((k, v) -> {
+					uriBuilder.addParameter(k, v);
+				});
+			}
+
+			// uri = uriBuilder.build().toString();
+			uri = uriBuilder.toString();
+		} catch (Exception e) {
+			LOG.error("Erreur de construction de l'URI", e);
+			return "";
 		}
 
+		
+
 		// Requête GET
-		HttpGet httpGet = new HttpGet(sb.toString());
+		HttpGet httpGet = new HttpGet(uri);
 		String retour = "";
 
 		// Emission de la requête
@@ -104,7 +111,7 @@ public class ClientHttpRest {
 
 		return retour;
 	}
-	
+
 	/**
 	 * Envoi d'une requête POST au serveur HTTP REST
 	 * 
