@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import signature.mqttRest.services.rest.serveur.administration.GestionnaireRoutesAdministration;
 import signature.mqttRest.services.rest.serveur.bibliothequePmv.GestionnaireRoutesBibliothequePmv;
 import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
+import signature.mqttRest.services.rest.serveur.informationPegase.GestionnaireRoutesInformationPegase;
 import signature.mqttRest.services.rest.serveur.interrogationArmoire.GestionnaireRoutesInterrogationArmoire;
 import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 
@@ -36,6 +37,9 @@ class GestionnaireRoutes {
 		_routesGet.put(GestionnaireRoutesInterrogationArmoire.class,
 				GestionnaireRoutesInterrogationArmoire.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesBibliothequePmv.class, GestionnaireRoutesBibliothequePmv.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getGETRoutes());
+		
+		
 
 		_routesPost = new HashMap<>();
 		_routesPost.put(GestionnaireRoutesEtatEtPilotage.class, GestionnaireRoutesEtatEtPilotage.getPOSTRoutes());
@@ -44,6 +48,7 @@ class GestionnaireRoutes {
 		_routesPost.put(GestionnaireRoutesInterrogationArmoire.class,
 				GestionnaireRoutesInterrogationArmoire.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesBibliothequePmv.class, GestionnaireRoutesBibliothequePmv.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getPOSTRoutes());
 	}
 
 	/**

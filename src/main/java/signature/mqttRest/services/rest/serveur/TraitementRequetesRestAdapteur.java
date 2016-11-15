@@ -1,8 +1,10 @@
 package signature.mqttRest.services.rest.serveur;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
@@ -276,7 +278,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande, String pCategorie) {
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention d'un message de la bibliothèque
 	 * 
@@ -293,5 +295,28 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public MessagePmvMqttRest traiteDemandeMessageBibliothequePmv(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pCategorie, String pNom) {
 		return null;
+	}
+
+	/**
+	 * Traite une demande d'obtention de la liste des catégories de la
+	 * bibliothèque
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début de l'alarme
+	 * @param pHorodateFin
+	 *            l'horodate de fin de l'alarme
+	 * @param pActiveSeul
+	 *            true pour ne sélectionner que les alarmes actives
+	 * @return une liste vide
+	 */
+	public List<MessageAlarmeMqttRest> traiteDemandeListeAlarmes(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin, boolean pActiveSeul) {
+		return new ArrayList<>();
 	}
 }

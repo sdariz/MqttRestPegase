@@ -16,9 +16,9 @@ import signature.mqttRest.util.Util;
  *
  */
 public class GestionnaireRoutesUtilisateur {
-	public final static String LISTE_UTILISATEURS = "/utilisateurs";
-	public final static String UTILISATEUR_CONNECTE = "/utilisateurConnecte";
-	public final static String IDENTIFIANTS_VALIDE = "/identifiantsValide";
+	public final static String LISTE_UTILISATEURS = "/utilisateur/listeUtilisateurs";
+	public final static String UTILISATEUR_CONNECTE = "/utilisateur/utilisateurConnecte";
+	public final static String IDENTIFIANTS_VALIDE = "/utilisateur/identifiantsValide";
 
 	/**
 	 * Donne la liste des routes de type GET

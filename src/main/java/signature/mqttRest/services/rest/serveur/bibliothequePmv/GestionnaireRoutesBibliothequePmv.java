@@ -16,9 +16,9 @@ import signature.mqttRest.util.Util;
  *
  */
 public class GestionnaireRoutesBibliothequePmv {
-	public final static String LISTE_CATEGORIES = "/categoriesBibliothequePmv";
-	public final static String LISTE_MESSAGES_DANS_CATEGORIE = "/messagesDansCategorieBibliothequePmv";
-	public final static String MESSAGE = "/messageBibliothequePmv";
+	public final static String LISTE_CATEGORIES = "/bibliothequePmv/categories";
+	public final static String LISTE_MESSAGES_DANS_CATEGORIE = "/bibliothequePmv/messagesDansCategorie";
+	public final static String MESSAGE = "/bibliothequePmv/message";
 
 	/**
 	 * Donne la liste des routes de type GET

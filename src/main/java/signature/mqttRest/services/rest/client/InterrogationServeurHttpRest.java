@@ -1,7 +1,9 @@
 package signature.mqttRest.services.rest.client;
 
+import java.util.Date;
 import java.util.List;
 
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
@@ -9,6 +11,7 @@ import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
 import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
@@ -369,7 +372,7 @@ public class InterrogationServeurHttpRest {
 	}
 
 	/**
-	 * Envoi au serveur REST une demande de message de la bibliothèque PMV
+	 * Demande un message de la bibliothèque PMV
 	 * 
 	 * @param pHost
 	 *            l'adresse IP du serveur REST
@@ -388,6 +391,34 @@ public class InterrogationServeurHttpRest {
 			String pIdentifiantExpediteur, String pReferenceCommande, String pCategorie, String pNom) {
 		return ServiceRequetesBibliothequePmv.requeteDemandeMessageBibliothequePmv(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pCategorie, pNom);
+	}
+
+	/**
+	 * Lance une demande de recherche d'alarmes
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début de l'alarme
+	 * @param pHorodateFin
+	 *            l'horodate de fin de l'alarme
+	 * @param pActiveSeul
+	 *            true pour ne sélectionner que les alarmes actives
+	 * @return la liste des catégories
+	 */
+	public static List<MessageAlarmeMqttRest> requeteDemandeListeAlarmes(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
+			Date pHorodateFin, boolean pActiveSeul) {
+		return ServiceRequetesInformationPegase.requeteDemandeListeAlarmes(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdEquipement, pHorodateDebut, pHorodateFin, pActiveSeul);
 	}
 
 }

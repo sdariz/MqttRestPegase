@@ -16,9 +16,9 @@ import signature.mqttRest.util.Util;
  */
 public class GestionnaireRoutesEtatEtPilotage {
 
-	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatAffichage";
-	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatTechnique";
-	public final static String ACTUALISATION_ETAT_EQUIPEMENT = "/actualisationEtatEquipement";
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatEtPilotage/etatAffichage";
+	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatEtPilotage/etatTechnique";
+	public final static String ACTUALISATION_ETAT_EQUIPEMENT = "/etatEtPilotage/actualisationEtatEquipement";
 
 	/**
 	 * Donne la liste des routes de type GET

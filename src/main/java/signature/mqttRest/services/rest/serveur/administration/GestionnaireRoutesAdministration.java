@@ -15,10 +15,10 @@ import signature.mqttRest.util.Util;
  *
  */
 public class GestionnaireRoutesAdministration {
-	public final static String INTERDICTION_PILOTAGES = "/interdictionPilotages";
-	public final static String TEST_PRESENCE = "/testPresence";
-	public final static String ACTIVATION_BOUTON = "/activationBouton";
-	public final static String LANCEMENT_ACTION_BOUTON = "/lancementActionBouton";
+	public final static String INTERDICTION_PILOTAGES = "/administration/interdictionPilotages";
+	public final static String TEST_PRESENCE = "/administration/testPresence";
+	public final static String ACTIVATION_BOUTON = "/administration/activationBouton";
+	public final static String LANCEMENT_ACTION_BOUTON = "/administration/lancementActionBouton";
 
 	/**
 	 * Donne la liste des routes de type GET
