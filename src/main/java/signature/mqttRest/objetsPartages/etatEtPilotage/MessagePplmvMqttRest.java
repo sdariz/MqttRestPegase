@@ -31,8 +31,8 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipement {
 	 * 
 	 * @return le type de l'équipement
 	 */
-	public TYPE_EQUIPEMENT getTypeEquipement() {
-		return TYPE_EQUIPEMENT.PPLMV;
+	public TypeEquipement getTypeEquipement() {
+		return TypeEquipement.PPLMV;
 	}
 
 	/**

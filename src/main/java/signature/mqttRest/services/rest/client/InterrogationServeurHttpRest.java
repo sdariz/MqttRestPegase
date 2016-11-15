@@ -3,6 +3,7 @@ package signature.mqttRest.services.rest.client;
 import java.util.Date;
 import java.util.List;
 
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
@@ -11,7 +12,7 @@ import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
 import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
-import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
+import signature.mqttRest.services.rest.client.evenement.ServiceRequetesEvenement;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
@@ -412,13 +413,37 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de fin de l'alarme
 	 * @param pActiveSeul
 	 *            true pour ne sélectionner que les alarmes actives
-	 * @return la liste des catégories
+	 * @return la liste des alarmes
 	 */
 	public static List<MessageAlarmeMqttRest> requeteDemandeListeAlarmes(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
 			Date pHorodateFin, boolean pActiveSeul) {
-		return ServiceRequetesInformationPegase.requeteDemandeListeAlarmes(pHost, pPort, pIdentifiantExpediteur,
+		return ServiceRequetesEvenement.requeteDemandeListeAlarmes(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement, pHorodateDebut, pHorodateFin, pActiveSeul);
+	}
+
+	/**
+	 * Lance une demande pour connaître l'état d'affichage d'un équipement à une
+	 * date donnée
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodate
+	 *            l'horodate de l'évènement
+	 * @return l'état d'affichage ou null si problème
+	 */
+	public static IMessageAffichageEquipement requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
+		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementPourDate(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodate);
 	}
 
 }

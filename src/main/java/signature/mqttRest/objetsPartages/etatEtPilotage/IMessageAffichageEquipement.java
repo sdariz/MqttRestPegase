@@ -16,7 +16,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Lu
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
 public interface IMessageAffichageEquipement {
 
-	public enum TYPE_EQUIPEMENT {
+	public enum TypeEquipement {
 		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA, RADT, METEO
 	};
 
@@ -64,5 +64,5 @@ public interface IMessageAffichageEquipement {
 	 * 
 	 * @return le type de l'équipement
 	 */
-	public TYPE_EQUIPEMENT getTypeEquipement();
+	public TypeEquipement getTypeEquipement();
 }

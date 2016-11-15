@@ -16,8 +16,8 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 	 * 
 	 * @return le type de l'équipement
 	 */
-	public TYPE_EQUIPEMENT getTypeEquipement() {
-		return TYPE_EQUIPEMENT.PICTOGRAMME;
+	public TypeEquipement getTypeEquipement() {
+		return TypeEquipement.PICTOGRAMME;
 	}
 	
 	/**

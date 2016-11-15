@@ -16,8 +16,8 @@ public class MessagePrismeMqttRest extends MessageEquipementModuleUniqueMqttRest
 	 * 
 	 * @return le type de l'équipement
 	 */
-	public TYPE_EQUIPEMENT getTypeEquipement() {
-		return TYPE_EQUIPEMENT.PRISME;
+	public TypeEquipement getTypeEquipement() {
+		return TypeEquipement.PRISME;
 	}
 	
 	/**

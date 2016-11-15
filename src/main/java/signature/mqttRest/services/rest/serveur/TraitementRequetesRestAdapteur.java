@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
@@ -318,5 +319,23 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public List<MessageAlarmeMqttRest> traiteDemandeListeAlarmes(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin, boolean pActiveSeul) {
 		return new ArrayList<>();
+	}
+	
+	/**
+	 * Traite une demande d'état d'un équipement à une certaine date
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodate
+	 *            l'horodate de l'évènement
+	 * @return null
+	 */
+	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement, Date pHorodate) {
+		return null;
 	}
 }

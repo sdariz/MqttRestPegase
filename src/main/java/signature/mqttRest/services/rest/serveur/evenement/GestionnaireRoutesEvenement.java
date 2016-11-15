@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.serveur.informationPegase;
+package signature.mqttRest.services.rest.serveur.evenement;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,13 +11,14 @@ import signature.mqttRest.util.Util;
 
 /**
  * Traitement des requêtes GET et POST reçues par le serveur REST, qui concerne
- * des informations sur Pegase
+ * des évènements sur Pegase
  * 
  * @author SDARIZCUREN
  *
  */
-public class GestionnaireRoutesInformationPegase {
-	public final static String LISTE_ALARMES = "/informationPegase/listeAlarmes";
+public class GestionnaireRoutesEvenement {
+	public final static String LISTE_ALARMES = "/evenement/listeAlarmes";
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE = "/evenement/etatAffichageEquipementPourDate";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -25,7 +26,7 @@ public class GestionnaireRoutesInformationPegase {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(LISTE_ALARMES);
+		return Arrays.asList(LISTE_ALARMES, ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE);
 	}
 
 	/**
@@ -59,6 +60,14 @@ public class GestionnaireRoutesInformationPegase {
 			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeListeAlarmes(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], horodateDebut, horodateFin,
 					active));
+		}
+
+		if (ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE.equals(pUri)) {
+			Date horodate = new Date(new Long(pParametres.get("horodate")[0]));
+
+			return Util.toJsonString(
+					pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementPourDate(pParametres.get("idExpediteur")[0],
+							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], horodate));
 		}
 
 		return "";

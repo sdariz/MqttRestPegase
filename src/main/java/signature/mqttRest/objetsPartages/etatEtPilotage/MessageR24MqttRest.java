@@ -16,8 +16,8 @@ public class MessageR24MqttRest extends MessageEquipementModuleUniqueMqttRest {
 	 * 
 	 * @return le type de l'équipement
 	 */
-	public TYPE_EQUIPEMENT getTypeEquipement() {
-		return TYPE_EQUIPEMENT.R24;
+	public TypeEquipement getTypeEquipement() {
+		return TypeEquipement.R24;
 	}
 	
 	/**
