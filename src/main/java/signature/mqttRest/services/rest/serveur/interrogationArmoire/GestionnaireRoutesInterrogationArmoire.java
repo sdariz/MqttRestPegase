@@ -17,6 +17,7 @@ import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 public class GestionnaireRoutesInterrogationArmoire {
 	public final static String LANCEMENT_TEST_EQUIPEMENTS = "/lancementTestEquipements";
 	public final static String REMISE_HEURE = "/remiseHeure";
+	public final static String COMMANDE = "/commande";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -33,7 +34,7 @@ public class GestionnaireRoutesInterrogationArmoire {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return Arrays.asList(LANCEMENT_TEST_EQUIPEMENTS, REMISE_HEURE);
+		return Arrays.asList(LANCEMENT_TEST_EQUIPEMENTS, REMISE_HEURE, COMMANDE);
 	}
 
 	/**
@@ -78,6 +79,11 @@ public class GestionnaireRoutesInterrogationArmoire {
 			pTraiteRequetesRest.traiteDemandeRemiseHeureArmoire(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0]);
 			return "";
+		}
+		
+		if (COMMANDE.equals(pUri)) {
+			return pTraiteRequetesRest.traiteDemandeArmoire(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0], pParametres.get("trame")[0]);
 		}
 
 		return "";

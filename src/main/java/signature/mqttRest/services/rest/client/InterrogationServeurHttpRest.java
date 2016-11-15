@@ -278,10 +278,10 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdArmoire) {
-		ServiceRequetesInterrogationArmoire.requeteLancementTestEquipementsArmoire(pHost, pPort,
-				pIdentifiantExpediteur, pReferenceCommande, pIdArmoire);
+		ServiceRequetesInterrogationArmoire.requeteLancementTestEquipementsArmoire(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdArmoire);
 	}
-	
+
 	/**
 	 * Demande de remise à l'heure d'une armoire
 	 * 
@@ -298,8 +298,31 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdArmoire) {
-		ServiceRequetesInterrogationArmoire.requeteRemiseHeureArmoire(pHost, pPort,
-				pIdentifiantExpediteur, pReferenceCommande, pIdArmoire);
+		ServiceRequetesInterrogationArmoire.requeteRemiseHeureArmoire(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdArmoire);
+	}
+
+	/**
+	 * Envoi d'une demande à une armoire d'une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire
+	 * @param pTrame
+	 *            la trame à envoyer à l'armoire
+	 * @return la réponse de l'armoire
+	 */
+	public static String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire, String pTrame) {
+		return ServiceRequetesInterrogationArmoire.requeteDemandeArmoire(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdArmoire, pTrame);
 	}
 
 }

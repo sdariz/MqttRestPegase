@@ -83,5 +83,42 @@ public class ServiceRequetesInterrogationArmoire {
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.REMISE_HEURE,
 				params);
 	}
+	
+	/**
+	 * Envoi au serveur REST une interrogation pour une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'identifiant de l'armoire
+	 * @param pTrame
+	 *            la trame à envoyer à l'armoire
+	 * @return la réponse de l'armoire
+	 */
+	public static String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire, String pTrame) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+		
+		Map<String, String> params = new HashMap<>();
+		params.put("idArmoire", pIdArmoire);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+		params.put("trame", pTrame);
+
+		return ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.COMMANDE,
+				params);
+	}
 
 }

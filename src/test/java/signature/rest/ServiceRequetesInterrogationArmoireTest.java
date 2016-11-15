@@ -66,6 +66,17 @@ public class ServiceRequetesInterrogationArmoireTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
+	
+	/**
+	 * Requête d'envoi de commande
+	 */
+	@Test
+	public void testDemandeArmoire() {
+		String reponse = InterrogationServeurHttpRest.requeteDemandeArmoire(HOST, PORT, "ab", "cd", "3333", "Une commande");
+
+		// Sortie en erreur
+		assertEquals("Réponse incorrrecte", "Une réponse", reponse);
+	}
 }
 
 class TraitementRequetesRest extends TraitementRequetesRestAdapteur {
@@ -101,6 +112,22 @@ class TraitementRequetesRest extends TraitementRequetesRestAdapteur {
 		}
 		
 		traitement = 1;
+	}
+	
+	@Override
+	public String traiteDemandeArmoire(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire, String pTrame) {
+		try {
+			assertEquals("Id armoire incorrect", "3333", pIdArmoire);
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+			assertEquals("Trame incorrect", "Une commande", pTrame);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			return "";
+		}
+		
+		return "Une réponse";
 	}
 
 }
