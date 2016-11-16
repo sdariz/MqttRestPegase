@@ -6,6 +6,7 @@ import signature.mqttRest.services.rest.serveur.etatEtPilotage.ITraitementRequet
 import signature.mqttRest.services.rest.serveur.evenement.ITraitementRequetesEvenement;
 import signature.mqttRest.services.rest.serveur.informationPegase.ITraitementRequetesInformationPegase;
 import signature.mqttRest.services.rest.serveur.interrogationArmoire.ITraitementRequetesInterrogationArmoire;
+import signature.mqttRest.services.rest.serveur.scenario.ITraitementRequetesScenario;
 import signature.mqttRest.services.rest.serveur.utilisateur.ITraitementRequetesUtilisateur;
 
 /**
@@ -16,5 +17,5 @@ import signature.mqttRest.services.rest.serveur.utilisateur.ITraitementRequetesU
  */
 public interface ITraitementRequetesRest extends ITraitementRequetesEtatEquipements, ITraitementRequetesUtilisateur,
 		ITraitementRequetesAdministration, ITraitementRequetesInterrogationArmoire, ITraitementRequetesBibliothequePmv,
-		ITraitementRequetesEvenement, ITraitementRequetesInformationPegase {
+		ITraitementRequetesEvenement, ITraitementRequetesInformationPegase, ITraitementRequetesScenario {
 }

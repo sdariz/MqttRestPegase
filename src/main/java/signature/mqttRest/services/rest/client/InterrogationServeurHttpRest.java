@@ -17,6 +17,7 @@ import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEta
 import signature.mqttRest.services.rest.client.evenement.ServiceRequetesEvenement;
 import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
+import signature.mqttRest.services.rest.client.scenario.ServiceRequetesScenario;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
 /**
@@ -553,6 +554,26 @@ public class InterrogationServeurHttpRest {
 	public static List<MessageProprietesArmoireMqttRest> requeteDemandeProprietesArmoires(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoires(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande);
+	}
+
+	/**
+	 * Envoi au serveur REST une demande d'obtention de la liste des
+	 * identifiants des scénarios
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return la liste des identifiants des scénarios
+	 */
+	public static List<String> requeteDemandeIdentifiantsScenarios(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesScenario.requeteDemandeIdentifiantsScenarios(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
 	}
 

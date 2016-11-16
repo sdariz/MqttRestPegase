@@ -422,4 +422,17 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
+	
+	/**
+	 * Traite une demande d'obtention de la liste des identifiants des scénarios
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return une liste vide
+	 */
+	public List<String> traiteDemandeIdentifiantsScenarios(String pIdentifiantExpediteur, String pReferenceCommande) {
+		return new ArrayList<>();
+	}
 }
