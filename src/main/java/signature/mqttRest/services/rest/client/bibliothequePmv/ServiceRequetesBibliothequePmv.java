@@ -54,10 +54,8 @@ public class ServiceRequetesBibliothequePmv {
 		}
 
 		// Formatage du retour vers le bon format
-		List<String> retour = Util.jsonToListeObjet(json, String.class).stream().map(String.class::cast)
+		return Util.jsonToListeObjet(json, String.class).stream().map(String.class::cast)
 				.collect(Collectors.toList());
-
-		return retour;
 	}
 
 	/**
@@ -98,10 +96,8 @@ public class ServiceRequetesBibliothequePmv {
 		}
 
 		// Formatage du retour vers le bon format
-		List<String> retour = Util.jsonToListeObjet(json, String.class).stream().map(String.class::cast)
+		return Util.jsonToListeObjet(json, String.class).stream().map(String.class::cast)
 				.collect(Collectors.toList());
-
-		return retour;
 	}
 
 	/**

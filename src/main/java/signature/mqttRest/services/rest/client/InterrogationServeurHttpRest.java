@@ -8,11 +8,14 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
 import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
 import signature.mqttRest.services.rest.client.evenement.ServiceRequetesEvenement;
+import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
@@ -444,6 +447,113 @@ public class InterrogationServeurHttpRest {
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementPourDate(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodate);
+	}
+
+	/**
+	 * Lance une demande pour connaître l'état d'affichage d'un équipement entre
+	 * deux dates
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début
+	 * @param pHorodateFin
+	 *            l'horodate de fin
+	 * @return les états d'affichage de l'équipement
+	 */
+	public static List<IMessageAffichageEquipement> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost,
+			int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			Date pHorodateDebut, Date pHorodateFin) {
+		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementEntreDeuxDates(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodateDebut, pHorodateFin);
+	}
+
+	/**
+	 * Demande de récupération des propriétés d'un équipement
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return les propriétés d'un équipement, ou null si problème
+	 */
+	public static MessageProprietesEquipementMqttRest requeteDemandeProprietesEquipement(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipement(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdEquipement);
+	}
+
+	/**
+	 * Demande de récupération des propriétés des équipements
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return les propriétés des équipements
+	 */
+	public static List<MessageProprietesEquipementMqttRest> requeteDemandeProprietesEquipements(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipements(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande);
+	}
+
+	/**
+	 * Demande de récupération des propriétés d'une armoire
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'id de l'armoire concerné
+	 * @return les propriétés d'une armoire, ou null si problème
+	 */
+	public static MessageProprietesArmoireMqttRest requeteDemandeProprietesArmoire(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoire(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdArmoire);
+	}
+
+	/**
+	 * Demande de récupération des propriétés des armoires
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return les propriétés des équipements
+	 */
+	public static List<MessageProprietesArmoireMqttRest> requeteDemandeProprietesArmoires(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoires(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande);
 	}
 
 }

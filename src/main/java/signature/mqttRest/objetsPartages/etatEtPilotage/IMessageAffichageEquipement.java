@@ -2,10 +2,11 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Luminosite;
-
 
 /**
  * Caractérisation d'un message d'état d'affichage d'un équipement
@@ -13,11 +14,19 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Lu
  * @author SDARIZCUREN
  *
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "typeEquipement")
+@JsonSubTypes({ @Type(value = MessagePmvMqttRest.class, name = "PMV"),
+		@Type(value = MessagePplmvMqttRest.class, name = "PPLMV"),
+		@Type(value = MessagePpadMqttRest.class, name = "PPAD"),
+		@Type(value = MessagePictogrammeMqttRest.class, name = "PICTOGRAMME"),
+		@Type(value = MessageR24MqttRest.class, name = "R24"),
+		@Type(value = MessagePrismeMqttRest.class, name = "PRISME"),
+		@Type(value = MessageBarriereMqttRest.class, name = "BARRIERE"),
+		@Type(value = MessageBraMqttRest.class, name = "BRA") })
 public interface IMessageAffichageEquipement {
 
 	public enum TypeEquipement {
-		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA, RADT, METEO
+		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA /*, RADT, METEO */
 	};
 
 	/**

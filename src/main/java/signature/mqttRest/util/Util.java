@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +22,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
  *
  */
 public class Util {
+	private final static Logger LOG = LoggerFactory.getLogger(Util.class);
 	
 	/**
 	 * Sérialise la valeur au format JSON
@@ -33,6 +37,7 @@ public class Util {
 		try {
 			return mapper.writeValueAsString(pVal);
 		} catch (JsonProcessingException e) {
+			LOG.error("Conversion boolean", e);
 			return "";
 		}
 	}
@@ -55,6 +60,7 @@ public class Util {
 			//return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pObj);
 			return mapper.writeValueAsString(pObj);
 		} catch (JsonProcessingException e) {
+			LOG.error("Conversion objet", e);
 			return "";
 		}
 	}
@@ -76,6 +82,7 @@ public class Util {
 		try {
 			return mapper.writeValueAsString(pObjs);
 		} catch (JsonProcessingException e) {
+			LOG.error("Conversion liste d'objets", e);
 			return "";
 		}
 	}
@@ -99,6 +106,7 @@ public class Util {
 		try {
 			return mapper.readValue(pChaineJson, pClassObjet);
 		} catch (IOException e) {
+			LOG.error("Deserialisation objet", e);
 		}
 
 		return null;
@@ -124,6 +132,7 @@ public class Util {
 			final CollectionType javaType = mapper.getTypeFactory().constructCollectionType(List.class, pClassObjet);
 			return mapper.readValue(pChaineJson, javaType);
 		} catch (IOException e) {
+			LOG.error("Deserialisation liste d'objets", e);
 		}
 
 		return new ArrayList<>();
@@ -145,6 +154,7 @@ public class Util {
 		try {
 			return mapper.readValue(pChaineJson, Boolean.class);
 		} catch (IOException e) {
+			LOG.error("Deserialisation boolean", e);
 		}
 
 		return false;

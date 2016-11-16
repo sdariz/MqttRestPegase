@@ -19,6 +19,7 @@ import signature.mqttRest.util.Util;
 public class GestionnaireRoutesEvenement {
 	public final static String LISTE_ALARMES = "/evenement/listeAlarmes";
 	public final static String ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE = "/evenement/etatAffichageEquipementPourDate";
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT_ENTRE_DEUX_DATES = "/evenement/etatAffichageEquipementEntreDeuxDates";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -26,7 +27,8 @@ public class GestionnaireRoutesEvenement {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(LISTE_ALARMES, ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE);
+		return Arrays.asList(LISTE_ALARMES, ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE,
+				ETAT_AFFICHAGE_EQUIPEMENT_ENTRE_DEUX_DATES);
 	}
 
 	/**
@@ -68,6 +70,15 @@ public class GestionnaireRoutesEvenement {
 			return Util.toJsonString(
 					pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementPourDate(pParametres.get("idExpediteur")[0],
 							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], horodate));
+		}
+
+		if (ETAT_AFFICHAGE_EQUIPEMENT_ENTRE_DEUX_DATES.equals(pUri)) {
+			Date horodateDebut = new Date(new Long(pParametres.get("horodateDebut")[0]));
+			Date horodateFin = new Date(new Long(pParametres.get("horodateFin")[0]));
+
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
+					pParametres.get("idEquipement")[0], horodateDebut, horodateFin));
 		}
 
 		return "";

@@ -53,10 +53,8 @@ public class ServiceRequetesUtilisateur {
 		}
 
 		// Formatage du retour vers le bon format
-		List<MessageUtilisateurMqttRest> retour = Util.jsonToListeObjet(json, MessageUtilisateurMqttRest.class).stream()
+		return Util.jsonToListeObjet(json, MessageUtilisateurMqttRest.class).stream()
 				.map(MessageUtilisateurMqttRest.class::cast).collect(Collectors.toList());
-
-		return retour;
 	}
 
 	/**

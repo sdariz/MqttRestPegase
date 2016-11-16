@@ -52,4 +52,23 @@ public interface ITraitementRequetesEvenement {
 	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodate);
 
+	/**
+	 * Traite une demande d'état d'un équipement entre deux dates
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début de l'évènement
+	 * @param pHorodateFin
+	 *            l'horodate de fin de l'évènement
+	 * @return les états d'affichage de l'équipement
+	 */
+	public List<IMessageAffichageEquipement> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
+			Date pHorodateFin);
+
 }

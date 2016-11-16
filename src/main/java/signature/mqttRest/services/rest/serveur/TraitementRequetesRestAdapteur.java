@@ -9,6 +9,8 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
@@ -317,10 +319,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @return une liste vide
 	 */
 	public List<MessageAlarmeMqttRest> traiteDemandeListeAlarmes(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin, boolean pActiveSeul) {
+			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin,
+			boolean pActiveSeul) {
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Traite une demande d'état d'un équipement à une certaine date
 	 * 
@@ -337,5 +340,86 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return null;
+	}
+
+	/**
+	 * Traite une demande d'état d'un équipement entre deux dates
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début de l'évènement
+	 * @param pHorodateFin
+	 *            l'horodate de fin de l'évènement
+	 * @return une liste vide
+	 */
+	public List<IMessageAffichageEquipement> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
+			Date pHorodateFin) {
+		return new ArrayList<>();
+	}
+
+	/**
+	 * Traite une demande d'obtention des propriétés d'un équipement
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return null
+	 */
+	public MessageProprietesEquipementMqttRest traiteDemandeProprietesEquipement(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement) {
+		return null;
+	}
+	
+	/**
+	 * Traite une demande d'obtention des propriétés des équipements
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return une liste vide
+	 */
+	public List<MessageProprietesEquipementMqttRest> traiteDemandeProprietesEquipements(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Traite une demande d'obtention des propriétés d'une armoire
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdArmoire
+	 *            l'id de l'armoire concernée
+	 * @return null
+	 */
+	public MessageProprietesArmoireMqttRest traiteDemandeProprietesArmoire(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdArmoire) {
+		return null;
+	}
+
+	/**
+	 * Traite une demande d'obtention des propriétés des armoires
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return une liste vide
+	 */
+	public List<MessageProprietesArmoireMqttRest> traiteDemandeProprietesArmoires(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return new ArrayList<>();
 	}
 }

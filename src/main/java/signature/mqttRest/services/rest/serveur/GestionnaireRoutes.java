@@ -13,6 +13,7 @@ import signature.mqttRest.services.rest.serveur.administration.GestionnaireRoute
 import signature.mqttRest.services.rest.serveur.bibliothequePmv.GestionnaireRoutesBibliothequePmv;
 import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
 import signature.mqttRest.services.rest.serveur.evenement.GestionnaireRoutesEvenement;
+import signature.mqttRest.services.rest.serveur.informationPegase.GestionnaireRoutesInformationPegase;
 import signature.mqttRest.services.rest.serveur.interrogationArmoire.GestionnaireRoutesInterrogationArmoire;
 import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 
@@ -38,6 +39,7 @@ class GestionnaireRoutes {
 				GestionnaireRoutesInterrogationArmoire.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesBibliothequePmv.class, GestionnaireRoutesBibliothequePmv.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesEvenement.class, GestionnaireRoutesEvenement.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getGETRoutes());
 		
 		
 
@@ -49,6 +51,7 @@ class GestionnaireRoutes {
 				GestionnaireRoutesInterrogationArmoire.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesBibliothequePmv.class, GestionnaireRoutesBibliothequePmv.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesEvenement.class, GestionnaireRoutesEvenement.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getPOSTRoutes());
 	}
 
 	/**

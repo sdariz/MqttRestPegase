@@ -71,10 +71,8 @@ public class ServiceRequetesEvenement {
 		}
 
 		// Formatage du retour vers le bon format
-		List<MessageAlarmeMqttRest> retour = Util.jsonToListeObjet(json, MessageAlarmeMqttRest.class).stream()
+		return Util.jsonToListeObjet(json, MessageAlarmeMqttRest.class).stream()
 				.map(MessageAlarmeMqttRest.class::cast).collect(Collectors.toList());
-
-		return retour;
 	}
 	
 	/**
@@ -123,5 +121,56 @@ public class ServiceRequetesEvenement {
 
 		// Formatage du retour vers le bon format
 		return (IMessageAffichageEquipement) Util.jsonToObjet(json, IMessageAffichageEquipement.class);
+	}
+	
+	/**
+	 * Envoi au serveur REST une demande pour connaître l'état d'affichage d'un équipement entre deux dates
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @param pHorodateDebut
+	 *            l'horodate de début
+	 * @param pHorodateFin
+	 *            l'horodate de fin
+	 * @return les états d'affichage de l'équipement
+	 */
+	public static List<IMessageAffichageEquipement> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		if (pHorodateFin == null) {
+			pHorodateFin = new Date();
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+		params.put("idEquipement", pIdEquipement);
+		params.put("horodateDebut", Long.toString(pHorodateDebut.getTime()));
+		params.put("horodateFin", Long.toString(pHorodateFin.getTime()));
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesEvenement.ETAT_AFFICHAGE_EQUIPEMENT_ENTRE_DEUX_DATES,
+				params);
+		if (json.length() == 0) {
+			return new ArrayList<>();
+		}
+
+		// Formatage du retour vers le bon format
+		return Util.jsonToListeObjet(json, IMessageAffichageEquipement.class).stream()
+				.map(IMessageAffichageEquipement.class::cast).collect(Collectors.toList());
 	}
 }

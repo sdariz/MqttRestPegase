@@ -3,6 +3,7 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Description d'un message pour PMV
  * 
