@@ -1,8 +1,10 @@
-package signature.mqttRest.objetsPartages.etatEtPilotage;
+package signature.mqttRest.objetsPartages.evenement;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import signature.mqttRest.objetsPartages.etatEtPilotage.DefautAfficheurModulePositionnableMqttRest;
 
 /**
  * Classe décrivant une alarme sur un équipement

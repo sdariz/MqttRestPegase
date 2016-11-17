@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
 import signature.mqttRest.services.rest.serveur.evenement.GestionnaireRoutesEvenement;
 import signature.mqttRest.util.Util;
@@ -93,7 +93,7 @@ public class ServiceRequetesEvenement {
 	 *            l'horodate de l'évènement
 	 * @return l'état d'affichage ou null si problème
 	 */
-	public static IMessageAffichageEquipement requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
+	public static IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
@@ -120,7 +120,7 @@ public class ServiceRequetesEvenement {
 		}
 
 		// Formatage du retour vers le bon format
-		return (IMessageAffichageEquipement) Util.jsonToObjet(json, IMessageAffichageEquipement.class);
+		return (IMessageAffichageEquipementMqttRest) Util.jsonToObjet(json, IMessageAffichageEquipementMqttRest.class);
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class ServiceRequetesEvenement {
 	 *            l'horodate de fin
 	 * @return les états d'affichage de l'équipement
 	 */
-	public static List<IMessageAffichageEquipement> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost, int pPort,
+	public static List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
@@ -170,7 +170,7 @@ public class ServiceRequetesEvenement {
 		}
 
 		// Formatage du retour vers le bon format
-		return Util.jsonToListeObjet(json, IMessageAffichageEquipement.class).stream()
-				.map(IMessageAffichageEquipement.class::cast).collect(Collectors.toList());
+		return Util.jsonToListeObjet(json, IMessageAffichageEquipementMqttRest.class).stream()
+				.map(IMessageAffichageEquipementMqttRest.class::cast).collect(Collectors.toList());
 	}
 }

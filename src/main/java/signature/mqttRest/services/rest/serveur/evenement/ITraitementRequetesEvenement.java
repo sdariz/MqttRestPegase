@@ -3,8 +3,8 @@ package signature.mqttRest.services.rest.serveur.evenement;
 import java.util.Date;
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 
 /**
  * Traitement des requêtes concernant des évènements sur Pegase
@@ -49,7 +49,7 @@ public interface ITraitementRequetesEvenement {
 	 *            l'horodate de l'évènement
 	 * @return l'état d'affichage de l'équipement ou null si problème
 	 */
-	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
+	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodate);
 
 	/**
@@ -67,7 +67,7 @@ public interface ITraitementRequetesEvenement {
 	 *            l'horodate de fin de l'évènement
 	 * @return les états d'affichage de l'équipement
 	 */
-	public List<IMessageAffichageEquipement> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+	public List<IMessageAffichageEquipementMqttRest> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
 			Date pHorodateFin);
 

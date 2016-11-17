@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
 import signature.mqttRest.services.rest.serveur.informationPegase.GestionnaireRoutesInformationPegase;
 import signature.mqttRest.util.Util;

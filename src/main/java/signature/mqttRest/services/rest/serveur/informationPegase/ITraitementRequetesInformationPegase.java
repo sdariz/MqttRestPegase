@@ -2,8 +2,8 @@ package signature.mqttRest.services.rest.serveur.informationPegase;
 
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 
 /**
  * Traitement des requêtes de récupération d'information sur Pegase

@@ -10,7 +10,7 @@ import java.util.List;
  * @author SDARIZCUREN
  *
  */
-public class MessagePmvMqttRest implements IMessageAffichageEquipement {
+public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	private List<MessageModuleMqttRest> _messagesLignes;
 	private List<MessageModuleMqttRest> _messagesPanonceaux;
 	private List<MessageModuleMqttRest> _messagesPictogrammes;

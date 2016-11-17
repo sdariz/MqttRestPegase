@@ -8,7 +8,7 @@ import java.util.List;
  * @author SDARIZCUREN
  *
  */
-public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageEquipement {
+public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageEquipementMqttRest {
 	private MessageModuleMqttRest _messagesModuleUnique;
 	
 	/**

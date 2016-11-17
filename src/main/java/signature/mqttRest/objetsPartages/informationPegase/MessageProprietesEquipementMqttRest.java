@@ -1,4 +1,4 @@
-package signature.mqttRest.objetsPartages.etatEtPilotage;
+package signature.mqttRest.objetsPartages.informationPegase;
 
 /**
  * Message décrivant les propriétés d'un équipement

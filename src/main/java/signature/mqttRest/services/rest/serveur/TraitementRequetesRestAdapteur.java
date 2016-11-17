@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
@@ -337,7 +337,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'horodate de l'évènement
 	 * @return null
 	 */
-	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
+	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return null;
 	}
@@ -357,7 +357,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'horodate de fin de l'évènement
 	 * @return une liste vide
 	 */
-	public List<IMessageAffichageEquipement> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+	public List<IMessageAffichageEquipementMqttRest> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
 			Date pHorodateFin) {
 		return new ArrayList<>();

@@ -1,4 +1,4 @@
-package signature.mqttRest.objetsPartages.etatEtPilotage;
+package signature.mqttRest.objetsPartages.informationPegase;
 
 import signature.mqttRest.objetsPartages.IMessageMqttRest;
 

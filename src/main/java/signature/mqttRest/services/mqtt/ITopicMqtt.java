@@ -2,7 +2,7 @@ package signature.mqttRest.services.mqtt;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModificationPegaseMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageModificationPegaseMqttRest;
 
 /**
  * Interface de base des clients mqtt

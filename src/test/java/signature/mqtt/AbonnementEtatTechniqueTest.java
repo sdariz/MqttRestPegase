@@ -12,8 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import signature.mqttRest.services.mqtt.AbonnementMqtt;
 import signature.mqttRest.services.mqtt.BrokerMqtt;
 import signature.mqttRest.services.mqtt.IListenerMessageMqtt;

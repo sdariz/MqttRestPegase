@@ -18,9 +18,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement.TypeEquipement;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest.TypeEquipement;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
@@ -106,7 +106,7 @@ public class ServiceRequetesEvenementTest {
 		LocalDateTime ldt1 = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
 		Instant ist1 = ldt1.toInstant(ZoneOffset.UTC);
 
-		IMessageAffichageEquipement msg = InterrogationServeurHttpRest
+		IMessageAffichageEquipementMqttRest msg = InterrogationServeurHttpRest
 				.requeteDemandeEtatAffichageEquipementPourDate(HOST, PORT, "ab", "cd", "1111", Date.from(ist1));
 
 		assertNotNull("Message null", msg);
@@ -126,7 +126,7 @@ public class ServiceRequetesEvenementTest {
 		LocalDateTime ldt2 = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 55, 20);
 		Instant ist2 = ldt2.toInstant(ZoneOffset.UTC);
 
-		List<IMessageAffichageEquipement> msgs = InterrogationServeurHttpRest
+		List<IMessageAffichageEquipementMqttRest> msgs = InterrogationServeurHttpRest
 				.requeteDemandeEtatAffichageEquipementEntreDeuxDates(HOST, PORT, "ab", "cd", "1111", Date.from(ist1), Date.from(ist2));
 
 		assertEquals("Taille incorrecte", 3, msgs.size());
@@ -170,7 +170,7 @@ class TraitementRequetesEvenement extends TraitementRequetesRestAdapteur {
 	}
 
 	@Override
-	public IMessageAffichageEquipement traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
+	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
@@ -192,7 +192,7 @@ class TraitementRequetesEvenement extends TraitementRequetesRestAdapteur {
 	}
 	
 	@Override
-	public List<IMessageAffichageEquipement> traiteDemandeEtatAffichageEquipementEntreDeuxDates(String pIdentifiantExpediteur,
+	public List<IMessageAffichageEquipementMqttRest> traiteDemandeEtatAffichageEquipementEntreDeuxDates(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin) {
 		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
@@ -206,7 +206,7 @@ class TraitementRequetesEvenement extends TraitementRequetesRestAdapteur {
 		ist = ldt.toInstant(ZoneOffset.UTC);
 		assertEquals("Horodate fin incorrect", Date.from(ist), pHorodateFin);
 		
-		List<IMessageAffichageEquipement> retour = new ArrayList<>();
+		List<IMessageAffichageEquipementMqttRest> retour = new ArrayList<>();
 
 		MessagePmvMqttRest pmv = new MessagePmvMqttRest();
 

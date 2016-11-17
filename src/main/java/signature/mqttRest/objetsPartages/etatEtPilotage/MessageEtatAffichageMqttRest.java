@@ -18,7 +18,7 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	private Date _horodateGeneration;
 	private Date _horodateFin;
 
-	private IMessageAffichageEquipement _messageEquipement;
+	private IMessageAffichageEquipementMqttRest _messageEquipement;
 
 	/**
 	 * Construction du message
@@ -146,7 +146,7 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * @param pMsg
 	 *            le message sur l'équipement
 	 */
-	public void setMessageEquipement(IMessageAffichageEquipement pMsg) {
+	public void setMessageEquipement(IMessageAffichageEquipementMqttRest pMsg) {
 		_messageEquipement = pMsg;
 	}
 
@@ -155,7 +155,7 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * 
 	 * @return le message sur l'équipement, ou null si inconnu
 	 */
-	public IMessageAffichageEquipement getMessageEquipement() {
+	public IMessageAffichageEquipementMqttRest getMessageEquipement() {
 		return _messageEquipement;
 	}
 

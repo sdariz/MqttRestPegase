@@ -3,13 +3,13 @@ package signature.mqttRest.services.rest.client;
 import java.util.Date;
 import java.util.List;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipement;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
@@ -444,7 +444,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de l'évènement
 	 * @return l'état d'affichage ou null si problème
 	 */
-	public static IMessageAffichageEquipement requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
+	public static IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementPourDate(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodate);
@@ -470,7 +470,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de fin
 	 * @return les états d'affichage de l'équipement
 	 */
-	public static List<IMessageAffichageEquipement> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost,
+	public static List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost,
 			int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			Date pHorodateDebut, Date pHorodateFin) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementEntreDeuxDates(pHost, pPort,

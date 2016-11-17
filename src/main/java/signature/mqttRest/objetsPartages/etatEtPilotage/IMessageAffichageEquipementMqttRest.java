@@ -23,7 +23,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Lu
 		@Type(value = MessagePrismeMqttRest.class, name = "PRISME"),
 		@Type(value = MessageBarriereMqttRest.class, name = "BARRIERE"),
 		@Type(value = MessageBraMqttRest.class, name = "BRA") })
-public interface IMessageAffichageEquipement {
+public interface IMessageAffichageEquipementMqttRest {
 
 	public enum TypeEquipement {
 		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA /*, RADT, METEO */

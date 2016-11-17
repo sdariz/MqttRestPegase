@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import signature.mqttRest.objetsPartages.IMessageMqttRest;
+import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 
 /**
  * Classe décrivant l'état technique d'un équipement

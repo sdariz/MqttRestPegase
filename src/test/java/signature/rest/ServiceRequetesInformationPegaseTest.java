@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesArmoireMqttRest;
-import signature.mqttRest.objetsPartages.etatEtPilotage.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
+import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
