@@ -14,7 +14,7 @@ import signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
-import signature.mqttRest.services.rest.client.etatEtPilotage.ServiceRequetesEtatEtPilotage;
+import signature.mqttRest.services.rest.client.etatEquipement.ServiceRequetesEtatEquipement;
 import signature.mqttRest.services.rest.client.evenement.ServiceRequetesEvenement;
 import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
@@ -47,7 +47,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipement(pHost, pPort, pIdentifiantExpediteur,
+		return ServiceRequetesEtatEquipement.requeteDemandeEtatAffichageEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
 	}
 
@@ -66,7 +66,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatAffichageEquipements(pHost, pPort,
+		return ServiceRequetesEtatEquipement.requeteDemandeEtatAffichageEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
 	}
 
@@ -87,7 +87,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pIdentifiantExpediteur,
+		return ServiceRequetesEtatEquipement.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
 	}
 
@@ -106,7 +106,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static List<MessageEtatTechniqueMqttRest> requeteDemandeEtatTechniqueEquipements(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
-		return ServiceRequetesEtatEtPilotage.requeteDemandeEtatTechniqueEquipements(pHost, pPort,
+		return ServiceRequetesEtatEquipement.requeteDemandeEtatTechniqueEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
 	}
 
@@ -127,7 +127,7 @@ public class InterrogationServeurHttpRest {
 	 */
 	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
-		ServiceRequetesEtatEtPilotage.requeteActualisationEtatEquipement(pHost, pPort, pIdentifiantExpediteur,
+		ServiceRequetesEtatEquipement.requeteActualisationEtatEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
 	}
 

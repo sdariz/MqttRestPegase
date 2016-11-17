@@ -19,7 +19,6 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePplmvMqttRest;
 import signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import signature.mqttRest.objetsPartages.scenario.OrdonnanceurMessagesScenarioMqttRest;
 import signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
-import signature.mqttRest.services.rest.client.scenario.ServiceRequetesScenario;
 import signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
 

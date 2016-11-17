@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.client.etatEtPilotage;
+package signature.mqttRest.services.rest.client.etatEquipement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import signature.mqttRest.util.Util;
  * @author SDARIZCUREN
  *
  */
-public class ServiceRequetesEtatEtPilotage {
+public class ServiceRequetesEtatEquipement {
 
 	/**
 	 * Demande d'état d'affichage d'un équipement
