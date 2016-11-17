@@ -11,6 +11,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
 /**
@@ -337,8 +338,8 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'horodate de l'évènement
 	 * @return null
 	 */
-	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement, Date pHorodate) {
+	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return null;
 	}
 
@@ -378,7 +379,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande, String pIdEquipement) {
 		return null;
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention des propriétés des équipements
 	 * 
@@ -392,7 +393,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention des propriétés d'une armoire
 	 * 
@@ -422,7 +423,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention de la liste des identifiants des scénarios
 	 * 
@@ -433,6 +434,36 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @return une liste vide
 	 */
 	public List<String> traiteDemandeIdentifiantsScenarios(String pIdentifiantExpediteur, String pReferenceCommande) {
+		return new ArrayList<>();
+	}
+
+	/**
+	 * Traite une demande d'obtention d'un scénario en particulier
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdScenario
+	 *            l'identifiant du scénario à récupérer
+	 * @return null
+	 */
+	public MessageScenarioMqttRest traiteDemandeScenario(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdScenario) {
+		return null;
+	}
+
+	/**
+	 * Traite une demande d'obtention de tous les scénarios
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return une liste vide
+	 */
+	public List<MessageScenarioMqttRest> traiteDemandeScenarios(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
 }

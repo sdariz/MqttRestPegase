@@ -22,6 +22,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
  *
  */
 public class MessageScenarioMqttRest {
+	private String _idScenario;
 	private String _nom;
 	private String _categorie;
 	private List<OrdonnanceurMessagesScenarioMqttRest> _ordonnanceurs;
@@ -30,7 +31,7 @@ public class MessageScenarioMqttRest {
 	 * Construction du message
 	 */
 	public MessageScenarioMqttRest() {
-		this("", "");
+		this("", "", "");
 	}
 
 	/**
@@ -41,8 +42,8 @@ public class MessageScenarioMqttRest {
 	 * @param pCategorie
 	 *            la catégorie associée
 	 */
-	public MessageScenarioMqttRest(String pNom, String pCategorie) {
-		this(pNom, pCategorie, new ArrayList<>());
+	public MessageScenarioMqttRest(String pIdScenario, String pNom, String pCategorie) {
+		this(pIdScenario, pNom, pCategorie, new ArrayList<>());
 	}
 
 	/**
@@ -55,8 +56,9 @@ public class MessageScenarioMqttRest {
 	 * @param pOrdonnanceurs
 	 *            les ordonnanceurs pour ordonner les pilotages
 	 */
-	public MessageScenarioMqttRest(String pNom, String pCategorie,
+	public MessageScenarioMqttRest(String pIdScenario, String pNom, String pCategorie,
 			List<OrdonnanceurMessagesScenarioMqttRest> pOrdonnanceurs) {
+		_idScenario = pIdScenario;
 		_nom = pNom;
 		_categorie = pCategorie;
 
@@ -65,6 +67,25 @@ public class MessageScenarioMqttRest {
 		}
 
 		_ordonnanceurs = pOrdonnanceurs;
+	}
+	
+	/**
+	 * Initialise l'identifiant unique du scénario
+	 * 
+	 * @param pId
+	 *            l'identifiant unique du scénario
+	 */
+	public void setIdentifiant(String pId) {
+		_idScenario = pId;
+	}
+
+	/**
+	 * Retourne l'identifiant unique du scénario
+	 * 
+	 * @return l'identifiant unique du scénario
+	 */
+	public String getIdentifiant() {
+		return _idScenario;
 	}
 
 	/**
@@ -250,6 +271,7 @@ public class MessageScenarioMqttRest {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((_categorie == null) ? 0 : _categorie.hashCode());
+		result = prime * result + ((_idScenario == null) ? 0 : _idScenario.hashCode());
 		result = prime * result + ((_nom == null) ? 0 : _nom.hashCode());
 		result = prime * result + ((_ordonnanceurs == null) ? 0 : _ordonnanceurs.hashCode());
 		return result;
@@ -271,6 +293,11 @@ public class MessageScenarioMqttRest {
 			if (other._categorie != null)
 				return false;
 		} else if (!_categorie.equals(other._categorie))
+			return false;
+		if (_idScenario == null) {
+			if (other._idScenario != null)
+				return false;
+		} else if (!_idScenario.equals(other._idScenario))
 			return false;
 		if (_nom == null) {
 			if (other._nom != null)

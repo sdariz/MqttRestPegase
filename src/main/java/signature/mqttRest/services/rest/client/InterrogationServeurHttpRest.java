@@ -10,6 +10,7 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
 import signature.mqttRest.services.rest.client.bibliothequePmv.ServiceRequetesBibliothequePmv;
@@ -444,8 +445,8 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de l'évènement
 	 * @return l'état d'affichage ou null si problème
 	 */
-	public static IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
+	public static IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost,
+			int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementPourDate(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodate);
 	}
@@ -470,8 +471,8 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de fin
 	 * @return les états d'affichage de l'équipement
 	 */
-	public static List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(String pHost,
-			int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+	public static List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(
+			String pHost, int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			Date pHorodateDebut, Date pHorodateFin) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementEntreDeuxDates(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodateDebut, pHorodateFin);
@@ -558,8 +559,7 @@ public class InterrogationServeurHttpRest {
 	}
 
 	/**
-	 * Envoi au serveur REST une demande d'obtention de la liste des
-	 * identifiants des scénarios
+	 * Demande d'obtention de la liste des identifiants des scénarios
 	 * 
 	 * @param pHost
 	 *            l'adresse IP du serveur REST
@@ -574,6 +574,46 @@ public class InterrogationServeurHttpRest {
 	public static List<String> requeteDemandeIdentifiantsScenarios(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesScenario.requeteDemandeIdentifiantsScenarios(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande);
+	}
+
+	/**
+	 * Demande un scénario en particulier
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdScenario
+	 *            l'identifiant du scénario à récupérer
+	 * @return le scénario demandé, ou null si problème
+	 */
+	public static MessageScenarioMqttRest requeteDemandeScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdScenario) {
+		return ServiceRequetesScenario.requeteDemandeScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdScenario);
+	}
+
+	/**
+	 * Demande la liste des scénarios
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return la liste des identifiants des scénarios
+	 */
+	public static List<MessageScenarioMqttRest> requeteDemandeScenarios(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesScenario.requeteDemandeScenarios(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
 	}
 

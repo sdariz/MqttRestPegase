@@ -17,6 +17,7 @@ import signature.mqttRest.util.Util;
  */
 public class GestionnaireRoutesScenario {
 	public final static String LISTE_IDENTIFIANTS = "/scenario/identifiants";
+	public final static String SCENARIO = "/scenario/scenario";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -24,7 +25,7 @@ public class GestionnaireRoutesScenario {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(LISTE_IDENTIFIANTS);
+		return Arrays.asList(LISTE_IDENTIFIANTS, SCENARIO);
 	}
 
 	/**
@@ -35,7 +36,7 @@ public class GestionnaireRoutesScenario {
 	public static List<String> getPOSTRoutes() {
 		return new ArrayList<String>();
 	}
-	
+
 	/**
 	 * Traite une demande de type GET, reçue par le serveur REST
 	 * 
@@ -53,6 +54,19 @@ public class GestionnaireRoutesScenario {
 		if (LISTE_IDENTIFIANTS.equals(pUri)) {
 			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeIdentifiantsScenarios(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
+		}
+
+		if (SCENARIO.equals(pUri)) {
+			// Soit demande d'un scénario en particulier, soit demande pour
+			// tous les scénarios
+			if (pParametres.get("idScenario") == null || pParametres.get("idScenario").length == 0) {
+				return Util.toJsonString(pTraiteRequetesRest.traiteDemandeScenarios(pParametres.get("idExpediteur")[0],
+						pParametres.get("idCommande")[0]));
+			}
+
+			// Décodage de l'id du scénario
+			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeScenario(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idScenario")[0]));
 		}
 
 		return "";
