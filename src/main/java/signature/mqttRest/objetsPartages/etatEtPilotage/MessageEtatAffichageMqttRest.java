@@ -30,17 +30,17 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	/**
 	 * Construction du message
 	 * 
-	 * @param pIdEquipement
-	 *            l'identifiant unique de l'équipement
 	 * @param pIdExpediteur
 	 *            l'identifiant de l'expéditeur
 	 * @param pReferenceMessage
 	 *            la référence du message, donnée par l'expéditeur
+	 * @param pIdEquipement
+	 *            l'identifiant unique de l'équipement
 	 */
-	public MessageEtatAffichageMqttRest(String pIdEquipement, String pIdExpediteur, String pReferenceMessage) {
-		_idEquipement = pIdEquipement;
+	public MessageEtatAffichageMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdEquipement) {
 		_idExpediteur = pIdExpediteur;
 		_referenceMessage = pReferenceMessage;
+		_idEquipement = pIdEquipement;
 
 		_horodateGeneration = new Date();
 	}

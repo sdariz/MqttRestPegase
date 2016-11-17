@@ -405,8 +405,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	@Override
 	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pId) {
-		MessageEtatAffichageMqttRest retour = new MessageEtatAffichageMqttRest(pId, pIdentifiantExpediteur,
-				pReferenceCommande);
+		MessageEtatAffichageMqttRest retour = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur,
+				pReferenceCommande, pId);
 
 		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
 		Instant ist = ldt.toInstant(ZoneOffset.UTC);
@@ -458,12 +458,12 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		// Deux états affichage : PMV + PPAD
 		List<MessageEtatAffichageMqttRest> retour = new ArrayList<>();
 
-		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("1111", pIdentifiantExpediteur,
-				pReferenceCommande);
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande,
+				"1111");
 		msg.setMessageEquipement(getEtatAffichagePmv());
 		retour.add(msg);
 
-		msg = new MessageEtatAffichageMqttRest("2222", pIdentifiantExpediteur, pReferenceCommande);
+		msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande, "2222");
 		msg.setMessageEquipement(getEtatAffichagePpad());
 		retour.add(msg);
 
@@ -473,8 +473,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	@Override
 	public MessageEtatTechniqueMqttRest demandeEtatTechniqueEquipement(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pId) {
-		MessageEtatTechniqueMqttRest retour = new MessageEtatTechniqueMqttRest(pId, pIdentifiantExpediteur,
-				pReferenceCommande);
+		MessageEtatTechniqueMqttRest retour = new MessageEtatTechniqueMqttRest(pIdentifiantExpediteur,
+				pReferenceCommande, pId);
 
 		// Ajout 2 alarmes
 		List<MessageAlarmeMqttRest> alarmes = new ArrayList<>();
@@ -532,10 +532,10 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 			String pReferenceCommande) {
 		List<MessageEtatTechniqueMqttRest> retour = new ArrayList<>();
 
-		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1111", pIdentifiantExpediteur,
-				pReferenceCommande);
+		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest(pIdentifiantExpediteur, pReferenceCommande,
+				"1111");
 		retour.add(msg);
-		msg = new MessageEtatTechniqueMqttRest("2222", pIdentifiantExpediteur, pReferenceCommande);
+		msg = new MessageEtatTechniqueMqttRest(pIdentifiantExpediteur, pReferenceCommande, "2222");
 		retour.add(msg);
 
 		return retour;

@@ -88,7 +88,7 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 				Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT, Topic.ETAT_TECHNIQUE_EQUIPEMENT), HOST, PORT);
 
 		// Message état d'affichage
-		MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("1111", "ab", "cd");
+		MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd", "1111");
 		PublicationMqtt.publicationMessage(msg1, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
 
 		// Attente fin de traitement
@@ -106,7 +106,7 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 
 		// Message état technique
 		fin.set(0);
-		MessageEtatTechniqueMqttRest msg2 = new MessageEtatTechniqueMqttRest("2222", "ab", "cd");
+		MessageEtatTechniqueMqttRest msg2 = new MessageEtatTechniqueMqttRest("ab", "cd", "2222");
 		
 		PublicationMqtt.publicationMessage(msg2, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
 

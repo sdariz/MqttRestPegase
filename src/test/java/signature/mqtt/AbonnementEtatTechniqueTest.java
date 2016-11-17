@@ -79,7 +79,7 @@ public class AbonnementEtatTechniqueTest {
 		AbonnementMqtt abo = new AbonnementMqtt(listener, Topic.ETAT_TECHNIQUE_EQUIPEMENT, HOST, PORT);
 
 		// Post d'un nouvel état technique
-		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1122", "ab", "cd");
+		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("ab", "cd", "1122");
 		List<MessageAlarmeMqttRest> alarmes = new ArrayList<>();
 		msg.setAlarmes(alarmes);
 
@@ -140,10 +140,10 @@ public class AbonnementEtatTechniqueTest {
 		List<MessageEtatTechniqueMqttRest> liste = new ArrayList<>();
 
 		// Post de l'état de deux équipements
-		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("1111", "ab", "cd");
+		MessageEtatTechniqueMqttRest msg = new MessageEtatTechniqueMqttRest("ab", "cd", "1111");
 		liste.add(msg);
 
-		msg = new MessageEtatTechniqueMqttRest("2222", "ab", "cd");
+		msg = new MessageEtatTechniqueMqttRest("ab", "cd", "2222");
 		liste.add(msg);
 
 		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);

@@ -1,48 +1,41 @@
 package signature.mqttRest.objetsPartages.etatEtPilotage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import signature.mqttRest.objetsPartages.IMessageMqttRest;
-import signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 
 /**
- * Classe décrivant l'état technique d'un équipement
+ * Message de pilotage d'un scénario
  * 
  * @author SDARIZCUREN
  *
  */
-public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
-	private String _idEquipement;
+public class MessagePilotageScenarioMqttRest implements IMessageMqttRest {
 	private String _idExpediteur;
 	private String _referenceMessage;
-	private List<MessageAlarmeMqttRest> _alarmes;
+	private String _idScenario;
 
 	/**
-	 * Construction du message
+	 * Construction du message de pilotage
 	 */
-	public MessageEtatTechniqueMqttRest() {
+	public MessagePilotageScenarioMqttRest() {
 		this("", "", "");
 	}
 
 	/**
-	 * Construction du message
+	 * Construction du message de pilotage
 	 * 
 	 * @param pIdExpediteur
 	 *            l'identifiant de l'expéditeur
 	 * @param pReferenceMessage
 	 *            la référence du message, donnée par l'expéditeur
-	 * @param pIdEquipement
-	 *            l'identifiant unique de l'équipement
+	 * @param pIdScenario
+	 *            l'identifiant unique du scénario à piloter
 	 */
-	public MessageEtatTechniqueMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdEquipement) {
+	public MessagePilotageScenarioMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdScenario) {
 		_idExpediteur = pIdExpediteur;
 		_referenceMessage = pReferenceMessage;
-		_idEquipement = pIdEquipement;
-
-		_alarmes = new ArrayList<>();
+		_idScenario = pIdScenario;
 	}
-
+	
 	/**
 	 * Donne l'identifiant de l'expediteur du message
 	 * 
@@ -82,45 +75,22 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 	}
 
 	/**
-	 * Donne l'identifiant de l'équipement
+	 * Donne l'identifiant du scénario
 	 * 
-	 * @return l'identifiant de l'équipement
+	 * @return l'identifiant du scénario
 	 */
-	public String getIdentifiantEquipement() {
-		return _idEquipement;
+	public String getIdentifiantScenario() {
+		return _idScenario;
 	}
 
 	/**
-	 * Initialise l'identifiant de l'équipement
+	 * Initialise l'identifiant du scénario
 	 * 
 	 * @param pId
-	 *            l'identifiant de l'équipement
+	 *            l'identifiant du scénario
 	 */
-	public void setIdentifiantEquipement(String pId) {
-		_idEquipement = pId;
-	}
-
-	/**
-	 * Donne la liste des alarmes
-	 * 
-	 * @return la liste des alarmes sur l'équipement
-	 */
-	public List<MessageAlarmeMqttRest> getAlarmes() {
-		return _alarmes;
-	}
-
-	/**
-	 * Initialisation des alarmes sur l'équipement
-	 * 
-	 * @param pAlarmes
-	 *            la liste des alarmes
-	 */
-	public void setAlarmes(List<MessageAlarmeMqttRest> pAlarmes) {
-		if (pAlarmes == null) {
-			pAlarmes = new ArrayList<MessageAlarmeMqttRest>();
-		}
-
-		_alarmes = pAlarmes;
+	public void setIdentifiantScenario(String pId) {
+		_idScenario = pId;
 	}
 
 	/* (non-Javadoc)
@@ -130,9 +100,8 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((_alarmes == null) ? 0 : _alarmes.hashCode());
-		result = prime * result + ((_idEquipement == null) ? 0 : _idEquipement.hashCode());
 		result = prime * result + ((_idExpediteur == null) ? 0 : _idExpediteur.hashCode());
+		result = prime * result + ((_idScenario == null) ? 0 : _idScenario.hashCode());
 		result = prime * result + ((_referenceMessage == null) ? 0 : _referenceMessage.hashCode());
 		return result;
 	}
@@ -148,21 +117,16 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MessageEtatTechniqueMqttRest other = (MessageEtatTechniqueMqttRest) obj;
-		if (_alarmes == null) {
-			if (other._alarmes != null)
-				return false;
-		} else if (!_alarmes.equals(other._alarmes))
-			return false;
-		if (_idEquipement == null) {
-			if (other._idEquipement != null)
-				return false;
-		} else if (!_idEquipement.equals(other._idEquipement))
-			return false;
+		MessagePilotageScenarioMqttRest other = (MessagePilotageScenarioMqttRest) obj;
 		if (_idExpediteur == null) {
 			if (other._idExpediteur != null)
 				return false;
 		} else if (!_idExpediteur.equals(other._idExpediteur))
+			return false;
+		if (_idScenario == null) {
+			if (other._idScenario != null)
+				return false;
+		} else if (!_idScenario.equals(other._idScenario))
 			return false;
 		if (_referenceMessage == null) {
 			if (other._referenceMessage != null)
