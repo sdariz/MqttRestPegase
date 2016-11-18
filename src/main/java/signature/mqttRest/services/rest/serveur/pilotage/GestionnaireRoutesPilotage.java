@@ -7,7 +7,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePplmvMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePrismeMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
 import signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
@@ -25,6 +32,13 @@ public class GestionnaireRoutesPilotage {
 	public final static String PILOTAGE_SCENARIO = "/pilotage/pilotageScenario";
 	public final static String PILOTAGE_MESSAGES_SCENARIO = "/pilotage/pilotageMessagesScenario";
 	public final static String PILOTAGE_PMV = "/pilotage/pilotagPmv";
+	public final static String PILOTAGE_PPLMV = "/pilotage/pilotagPplmv";
+	public final static String PILOTAGE_PPAD = "/pilotage/pilotagPpad";
+	public final static String PILOTAGE_PICTOGRAMME = "/pilotage/pilotagPictogramme";
+	public final static String PILOTAGE_R24 = "/pilotage/pilotagR24";
+	public final static String PILOTAGE_PRISME = "/pilotage/pilotagPrisme";
+	public final static String PILOTAGE_BARRIERE = "/pilotage/pilotagBarriere";
+	public final static String PILOTAGE_BRA = "/pilotage/pilotagBra";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -41,8 +55,9 @@ public class GestionnaireRoutesPilotage {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return Arrays.asList(PILOTAGE_IDENTIFIANT_SCENARIO, PILOTAGE_SCENARIO, PILOTAGE_MESSAGES_SCENARIO,
-				PILOTAGE_PMV);
+		return Arrays.asList(PILOTAGE_IDENTIFIANT_SCENARIO, PILOTAGE_SCENARIO, PILOTAGE_MESSAGES_SCENARIO, PILOTAGE_PMV,
+				PILOTAGE_PPLMV, PILOTAGE_PPAD, PILOTAGE_PICTOGRAMME, PILOTAGE_R24, PILOTAGE_PRISME, PILOTAGE_BARRIERE,
+				PILOTAGE_BRA);
 	}
 
 	/**
@@ -125,7 +140,104 @@ public class GestionnaireRoutesPilotage {
 			return "";
 		}
 
+		if (PILOTAGE_PPLMV.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessagePplmvMqttRest message = (MessagePplmvMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessagePplmvMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotagePplmv(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_PPAD.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessagePpadMqttRest message = (MessagePpadMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessagePpadMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotagePpad(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_PICTOGRAMME.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessagePictogrammeMqttRest message = (MessagePictogrammeMqttRest) Util
+					.jsonToObjet(pParametres.get("message")[0], MessagePictogrammeMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotagePictogramme(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_R24.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessageR24MqttRest message = (MessageR24MqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessageR24MqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotageR24(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_PRISME.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessagePrismeMqttRest message = (MessagePrismeMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessagePrismeMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotagePrisme(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_BARRIERE.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessageBarriereMqttRest message = (MessageBarriereMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessageBarriereMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotageBarriere(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_BRA.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessageBraMqttRest message = (MessageBraMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessageBraMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotageBra(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
 		return "";
 	}
-
 }
