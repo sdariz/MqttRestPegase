@@ -18,6 +18,7 @@ import signature.mqttRest.services.rest.client.etatEquipement.ServiceRequetesEta
 import signature.mqttRest.services.rest.client.evenement.ServiceRequetesEvenement;
 import signature.mqttRest.services.rest.client.informationPegase.ServiceRequetesInformationPegase;
 import signature.mqttRest.services.rest.client.interrogationArmoire.ServiceRequetesInterrogationArmoire;
+import signature.mqttRest.services.rest.client.pilotage.ServiceRequetesPilotage;
 import signature.mqttRest.services.rest.client.scenario.ServiceRequetesScenario;
 import signature.mqttRest.services.rest.client.utilisateur.ServiceRequetesUtilisateur;
 
@@ -615,6 +616,93 @@ public class InterrogationServeurHttpRest {
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesScenario.requeteDemandeScenarios(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
+	}
+
+	/**
+	 * Demande de pilotage d'un scénario, selon son identifiant
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdScenario
+	 *            l'identifiant du scénario à piloter
+	 */
+	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdScenario) {
+		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdScenario);
+	}
+
+	/**
+	 * Demande de pilotage d'un scénario, en fournissant un message scénario
+	 * temporaire : non sauvegardé, avec identifiant vide
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pScenarioTemporaire
+	 *            le scénario temporaire à piloter
+	 */
+	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, MessageScenarioMqttRest pScenarioTemporaire) {
+		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pScenarioTemporaire);
+	}
+
+	/**
+	 * Demande de pilotage d'une liste de messages dans un scénario
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdScenario
+	 *            l'identifiant du scénario concerné
+	 * @param pMessagesAPiloter
+	 *            les messages à piloter dans le scénario
+	 */
+	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdScenario,
+			List<IMessageAffichageEquipementMqttRest> pMessagesAPiloter) {
+		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdScenario, pMessagesAPiloter);
+	}
+	
+	/**
+	 * Demande de pilotage d'un PMV
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter
+	 *            le message à piloter
+	 */
+	public static void requetePilotagePmv(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement,
+			MessagePmvMqttRest pMessageAPiloter) {
+		ServiceRequetesPilotage.requetePilotagePmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdEquipement, pMessageAPiloter);
 	}
 
 }

@@ -26,7 +26,12 @@ import signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Lu
 public interface IMessageAffichageEquipementMqttRest {
 
 	public enum TypeEquipement {
-		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA /*, RADT, METEO */
+		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA
+		// , RADT, METEO
+	};
+
+	public enum TypeMessage {
+		EXPLOITATION, ETEINT, NEUTRE
 	};
 
 	/**
@@ -74,4 +79,18 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * @return le type de l'équipement
 	 */
 	public TypeEquipement getTypeEquipement();
+
+	/**
+	 * Indique le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @return le type de message
+	 */
+	public TypeMessage getTypeMessage();
+	
+	/**
+	 * Initialise le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @param pType le type de message
+	 */
+	public void setTypeMessage(TypeMessage pType);
 }

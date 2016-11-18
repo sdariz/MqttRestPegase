@@ -10,12 +10,14 @@ import java.util.List;
  */
 public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageAffichageEquipementMqttRest {
 	private MessageModuleMqttRest _messagesModuleUnique;
+	private TypeMessage _typeMessage;
 	
 	/**
 	 * Construction du message
 	 */
 	public MessageEquipementModuleUniqueMqttRest() {
 		_messagesModuleUnique = null;
+		_typeMessage = TypeMessage.ETEINT;
 	}
 	
 	/**
@@ -32,6 +34,24 @@ public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageA
 	 */
 	public MessageModuleMqttRest getMessagesModuleUnique() {
 		return _messagesModuleUnique;
+	}
+	
+	/**
+	 * Indique le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @return le type de message
+	 */
+	public TypeMessage getTypeMessage() {
+		return _typeMessage;
+	}
+	
+	/**
+	 * Initialise le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @param pType le type de message
+	 */
+	public void setTypeMessage(TypeMessage pType) {
+		_typeMessage = pType;
 	}
 	
 	/**

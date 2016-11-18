@@ -11,10 +11,11 @@ import org.slf4j.LoggerFactory;
 
 import signature.mqttRest.services.rest.serveur.administration.GestionnaireRoutesAdministration;
 import signature.mqttRest.services.rest.serveur.bibliothequePmv.GestionnaireRoutesBibliothequePmv;
-import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
+import signature.mqttRest.services.rest.serveur.etatEquipement.GestionnaireRoutesEtatEquipement;
 import signature.mqttRest.services.rest.serveur.evenement.GestionnaireRoutesEvenement;
 import signature.mqttRest.services.rest.serveur.informationPegase.GestionnaireRoutesInformationPegase;
 import signature.mqttRest.services.rest.serveur.interrogationArmoire.GestionnaireRoutesInterrogationArmoire;
+import signature.mqttRest.services.rest.serveur.pilotage.GestionnaireRoutesPilotage;
 import signature.mqttRest.services.rest.serveur.scenario.GestionnaireRoutesScenario;
 import signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRoutesUtilisateur;
 
@@ -33,7 +34,7 @@ class GestionnaireRoutes {
 	// Liste des routes GET et POST
 	static {
 		_routesGet = new HashMap<>();
-		_routesGet.put(GestionnaireRoutesEtatEtPilotage.class, GestionnaireRoutesEtatEtPilotage.getGETRoutes());
+		_routesGet.put(GestionnaireRoutesEtatEquipement.class, GestionnaireRoutesEtatEquipement.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesUtilisateur.class, GestionnaireRoutesUtilisateur.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesAdministration.class, GestionnaireRoutesAdministration.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesInterrogationArmoire.class,
@@ -42,13 +43,10 @@ class GestionnaireRoutes {
 		_routesGet.put(GestionnaireRoutesEvenement.class, GestionnaireRoutesEvenement.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getGETRoutes());
 		_routesGet.put(GestionnaireRoutesScenario.class, GestionnaireRoutesScenario.getGETRoutes());
-		
-		
-		
-		
+		_routesGet.put(GestionnaireRoutesPilotage.class, GestionnaireRoutesPilotage.getGETRoutes());		
 
 		_routesPost = new HashMap<>();
-		_routesPost.put(GestionnaireRoutesEtatEtPilotage.class, GestionnaireRoutesEtatEtPilotage.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesEtatEquipement.class, GestionnaireRoutesEtatEquipement.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesUtilisateur.class, GestionnaireRoutesUtilisateur.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesAdministration.class, GestionnaireRoutesAdministration.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesInterrogationArmoire.class,
@@ -57,6 +55,7 @@ class GestionnaireRoutes {
 		_routesPost.put(GestionnaireRoutesEvenement.class, GestionnaireRoutesEvenement.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesInformationPegase.class, GestionnaireRoutesInformationPegase.getPOSTRoutes());
 		_routesPost.put(GestionnaireRoutesScenario.class, GestionnaireRoutesScenario.getPOSTRoutes());
+		_routesPost.put(GestionnaireRoutesPilotage.class, GestionnaireRoutesPilotage.getPOSTRoutes());
 	}
 
 	/**

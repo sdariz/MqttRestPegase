@@ -8,7 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ ServiceRequetesAdministrationTest.class, ServiceRequetesUtilisateurTest.class,
 		ServiceRequetesEtatTest.class, ServiceRequetesInterrogationArmoireTest.class,
 		ServiceRequetesBibliothequePmvTest.class, ServiceRequetesEvenementTest.class,
-		ServiceRequetesInformationPegaseTest.class, ServiceRequetesScenarioTest.class })
+		ServiceRequetesInformationPegaseTest.class, ServiceRequetesScenarioTest.class,
+		ServiceRequetesPilotageTest.class })
 public class AllTestsServicesRest {
 
 }

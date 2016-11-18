@@ -15,6 +15,8 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	private List<MessageModuleMqttRest> _messagesPanonceaux;
 	private List<MessageModuleMqttRest> _messagesPictogrammes;
 	private MessageModuleMqttRest _messagesFlashs;
+	private TypeMessage _typeMessage;
+	
 
 	/**
 	 * Construction du message
@@ -24,6 +26,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 		_messagesPanonceaux = new ArrayList<>();
 		_messagesPictogrammes = new ArrayList<>();
 		_messagesFlashs = null;
+		_typeMessage = TypeMessage.ETEINT;
 	}
 	
 	/**
@@ -33,6 +36,24 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 */
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.PMV;
+	}
+	
+	/**
+	 * Indique le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @return le type de message
+	 */
+	public TypeMessage getTypeMessage() {
+		return _typeMessage;
+	}
+	
+	/**
+	 * Initialise le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @param pType le type de message
+	 */
+	public void setTypeMessage(TypeMessage pType) {
+		_typeMessage = pType;
 	}
 
 	/**

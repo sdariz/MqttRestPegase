@@ -15,6 +15,7 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	private MessageModuleMqttRest _messagesPanonceauBas;
 	private MessageModuleMqttRest _messagesPictogramme;
 	private MessageModuleMqttRest _messagesFlashs;
+	private TypeMessage _typeMessage;
 
 	/**
 	 * Construction du message
@@ -24,8 +25,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		_messagesPanonceauBas = null;
 		_messagesPictogramme = null;
 		_messagesFlashs = null;
+		_typeMessage = TypeMessage.ETEINT;
 	}
-	
+
 	/**
 	 * Indique le type de l'équipement concerné par le message d'affichage
 	 * 
@@ -33,6 +35,25 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	 */
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.PPLMV;
+	}
+
+	/**
+	 * Indique le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @return le type de message
+	 */
+	public TypeMessage getTypeMessage() {
+		return _typeMessage;
+	}
+
+	/**
+	 * Initialise le type du message : message d'exploitation, de mise au neutre
+	 * 
+	 * @param pType
+	 *            le type de message
+	 */
+	public void setTypeMessage(TypeMessage pType) {
+		_typeMessage = pType;
 	}
 
 	/**
@@ -132,20 +153,20 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	public List<MessageModuleMqttRest> getMessagesModules() {
 		// Lignes puis panonceaux puis pictogrammes puis flashs
 		List<MessageModuleMqttRest> retour = new ArrayList<>();
-		
-		if(_messagesPanonceauBas != null) {
+
+		if (_messagesPanonceauBas != null) {
 			retour.add(_messagesPanonceauBas);
 		}
-		
-		if(_messagesPictogramme != null) {
+
+		if (_messagesPictogramme != null) {
 			retour.add(_messagesPictogramme);
 		}
-		
-		if(_messagesPanonceauHaut != null) {
+
+		if (_messagesPanonceauHaut != null) {
 			retour.add(_messagesPanonceauHaut);
 		}
-		
-		if(_messagesFlashs != null) {
+
+		if (_messagesFlashs != null) {
 			retour.add(_messagesFlashs);
 		}
 
@@ -160,27 +181,29 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	@Override
 	public MessagePplmvMqttRest clone() {
 		MessagePplmvMqttRest retour = new MessagePplmvMqttRest();
-		
-		if(_messagesPanonceauBas != null) {
+
+		if (_messagesPanonceauBas != null) {
 			retour._messagesPanonceauBas = _messagesPanonceauBas.clone();
 		}
-		
-		if(_messagesPictogramme != null) {
+
+		if (_messagesPictogramme != null) {
 			retour._messagesPictogramme = _messagesPictogramme.clone();
 		}
-		
-		if(_messagesPanonceauHaut != null) {
+
+		if (_messagesPanonceauHaut != null) {
 			retour._messagesPanonceauHaut = _messagesPanonceauHaut.clone();
 		}
-		
-		if(_messagesFlashs != null) {
+
+		if (_messagesFlashs != null) {
 			retour._messagesFlashs = _messagesFlashs.clone();
 		}
 
 		return retour;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -194,7 +217,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

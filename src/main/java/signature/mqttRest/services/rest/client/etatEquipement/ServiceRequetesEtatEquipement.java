@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
 import signature.mqttRest.services.rest.client.ClientHttpRest;
-import signature.mqttRest.services.rest.serveur.etatEtPilotage.GestionnaireRoutesEtatEtPilotage;
+import signature.mqttRest.services.rest.serveur.etatEquipement.GestionnaireRoutesEtatEquipement;
 import signature.mqttRest.util.Util;
 
 /**
@@ -51,7 +51,7 @@ public class ServiceRequetesEtatEquipement {
 		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
-				GestionnaireRoutesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT, params);
+				GestionnaireRoutesEtatEquipement.ETAT_AFFICHAGE_EQUIPEMENT, params);
 		if (json.length() == 0) {
 			return null;
 		}
@@ -87,7 +87,7 @@ public class ServiceRequetesEtatEquipement {
 		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
-				GestionnaireRoutesEtatEtPilotage.ETAT_AFFICHAGE_EQUIPEMENT, params);
+				GestionnaireRoutesEtatEquipement.ETAT_AFFICHAGE_EQUIPEMENT, params);
 		if (json.length() == 0) {
 			return new ArrayList<>();
 		}
@@ -130,7 +130,7 @@ public class ServiceRequetesEtatEquipement {
 		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
-				GestionnaireRoutesEtatEtPilotage.ETAT_TECHNIQUE_EQUIPEMENT, params);
+				GestionnaireRoutesEtatEquipement.ETAT_TECHNIQUE_EQUIPEMENT, params);
 		if (json.length() == 0) {
 			return null;
 		}
@@ -166,7 +166,7 @@ public class ServiceRequetesEtatEquipement {
 		params.put("idCommande", pReferenceCommande);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
-				GestionnaireRoutesEtatEtPilotage.ETAT_TECHNIQUE_EQUIPEMENT, params);
+				GestionnaireRoutesEtatEquipement.ETAT_TECHNIQUE_EQUIPEMENT, params);
 		if (json.length() == 0) {
 			return new ArrayList<>();
 		}
@@ -209,7 +209,7 @@ public class ServiceRequetesEtatEquipement {
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
-		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesEtatEtPilotage.ACTUALISATION_ETAT_EQUIPEMENT,
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesEtatEquipement.ACTUALISATION_ETAT_EQUIPEMENT,
 				params);
 	}
 

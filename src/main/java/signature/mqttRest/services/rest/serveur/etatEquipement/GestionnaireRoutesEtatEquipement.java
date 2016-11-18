@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.serveur.etatEtPilotage;
+package signature.mqttRest.services.rest.serveur.etatEquipement;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,17 +8,17 @@ import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
 
 /**
- * Routes utilisées pour piloter ou gérer l'état d'équipements. Traitement des
+ * Routes utilisées pour gérer l'état d'équipements. Traitement des
  * requêtes GET et POST reçues par le serveur REST.
  * 
  * @author SDARIZCUREN
  *
  */
-public class GestionnaireRoutesEtatEtPilotage {
+public class GestionnaireRoutesEtatEquipement {
 
-	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatEtPilotage/etatAffichage";
-	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatEtPilotage/etatTechnique";
-	public final static String ACTUALISATION_ETAT_EQUIPEMENT = "/etatEtPilotage/actualisationEtatEquipement";
+	public final static String ETAT_AFFICHAGE_EQUIPEMENT = "/etatEquipement/etatAffichage";
+	public final static String ETAT_TECHNIQUE_EQUIPEMENT = "/etatEquipement/etatTechnique";
+	public final static String ACTUALISATION_ETAT_EQUIPEMENT = "/etatEquipement/actualisationEtatEquipement";
 
 	/**
 	 * Donne la liste des routes de type GET

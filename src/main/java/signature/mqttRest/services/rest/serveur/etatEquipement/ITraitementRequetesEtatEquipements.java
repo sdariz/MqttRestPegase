@@ -1,4 +1,4 @@
-package signature.mqttRest.services.rest.serveur.etatEtPilotage;
+package signature.mqttRest.services.rest.serveur.etatEquipement;
 
 import java.util.List;
 
