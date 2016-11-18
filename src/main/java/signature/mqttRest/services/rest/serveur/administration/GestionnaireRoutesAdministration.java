@@ -3,6 +3,7 @@ package signature.mqttRest.services.rest.serveur.administration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import signature.mqttRest.services.rest.serveur.ITraitementRequetesRest;
 import signature.mqttRest.util.Util;
@@ -75,8 +76,22 @@ public class GestionnaireRoutesAdministration {
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (INTERDICTION_PILOTAGES.equals(pUri)) {
+			// Soit demande pour certains équipements en particulier, soit
+			// demande pour
+			// tous les équipements
+			if (pParametres.get("equipements") == null || pParametres.get("equipements").length == 0) {
+				pTraiteRequetesRest.traiteDemandeInterdictionPilotages(pParametres.get("idExpediteur")[0],
+						pParametres.get("idCommande")[0], Boolean.parseBoolean(pParametres.get("interdiction")[0]));
+
+				return "";
+			}
+
+			// Désérialisation des équipements concernés
+			List<String> eqpts = Util.jsonToListeObjet(pParametres.get("equipements")[0], String.class).stream()
+					.map(String.class::cast).collect(Collectors.toList());
+
 			pTraiteRequetesRest.traiteDemandeInterdictionPilotages(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], Boolean.parseBoolean(pParametres.get("interdiction")[0]));
+					pParametres.get("idCommande")[0], eqpts, Boolean.parseBoolean(pParametres.get("interdiction")[0]));
 			return "";
 		}
 

@@ -3,6 +3,9 @@ package signature.rest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -81,6 +84,24 @@ public class ServiceRequetesAdministrationTest {
 	}
 
 	/**
+	 * Force une interdiction des pilotages sur certains équipements
+	 */
+	@Test
+	public void testRequeteInterdictionPilotagesSurEquipements() {
+		traitementsRequetesRest.traitement = 0;
+
+		// Flag pilotage interdit pour valider le test
+		traitementsRequetesRest.interdit = true;
+
+		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd",
+				Arrays.asList("1111", "2222", "3333"), true);
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+
+	}
+
+	/**
 	 * Test de présence du serveur
 	 */
 	@Test
@@ -143,6 +164,24 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 			assertEquals("Interdiction non valide", interdit, pInterdit);
 			assertEquals("Id expediteur non valide", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande non valide", "cd", pReferenceCommande);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return;
+		}
+
+		traitement = 1;
+	}
+
+	@Override
+	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
+			List<String> pIdsEquipements, boolean pInterdit) {
+		try {
+			assertEquals("Interdiction non valide", interdit, pInterdit);
+			assertEquals("Id expediteur non valide", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande non valide", "cd", pReferenceCommande);
+			assertEquals("Nombre équipements incorrect", 3, pIdsEquipements.size());
+			assertEquals("Ids équipements incorrect", Arrays.asList("1111", "2222", "3333"), pIdsEquipements);
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;

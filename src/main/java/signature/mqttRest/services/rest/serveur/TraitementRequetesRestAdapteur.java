@@ -177,6 +177,24 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
 			boolean pInterdit) {
 	}
+	
+	/**
+	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
+	 * Pegase, sur certains équipements
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdsEquipements
+	 *            les identifiants des équipements concernés
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
+	 */
+	@Override
+	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
+			List<String> pIdsEquipements, boolean pInterdit) {
+	}
 
 	/**
 	 * Traite une demande d'activation ou désactivation d'un bouton
@@ -253,6 +271,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la commande à transmettre à l'armoire
 	 * @return la réponse de l'armoire
 	 */
+	@Override
 	public String traiteDemandeArmoire(String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire,
 			String pTrame) {
 		return "";
@@ -268,6 +287,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return une liste vide
 	 */
+	@Override
 	public List<String> traiteDemandeCategoriesBibliothequePmv(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return new ArrayList<>();
@@ -285,6 +305,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la catégorie concernée
 	 * @return une liste vide
 	 */
+	@Override
 	public List<String> traiteDemandeMessagesDansCategorieBibliothequePmv(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pCategorie) {
 		return new ArrayList<>();
@@ -303,6 +324,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            le nom du message
 	 * @return null
 	 */
+	@Override
 	public MessagePmvMqttRest traiteDemandeMessageBibliothequePmv(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pCategorie, String pNom) {
 		return null;
@@ -326,6 +348,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            true pour ne sélectionner que les alarmes actives
 	 * @return une liste vide
 	 */
+	@Override
 	public List<MessageAlarmeMqttRest> traiteDemandeListeAlarmes(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, Date pHorodateDebut, Date pHorodateFin,
 			boolean pActiveSeul) {
@@ -345,6 +368,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'horodate de l'évènement
 	 * @return null
 	 */
+	@Override
 	public IMessageAffichageEquipementMqttRest traiteDemandeEtatAffichageEquipementPourDate(
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return null;
@@ -365,6 +389,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'horodate de fin de l'évènement
 	 * @return une liste vide
 	 */
+	@Override
 	public List<IMessageAffichageEquipementMqttRest> traiteDemandeEtatAffichageEquipementEntreDeuxDates(
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
 			Date pHorodateFin) {
@@ -382,6 +407,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'id de l'équipement concerné
 	 * @return null
 	 */
+	@Override
 	public MessageProprietesEquipementMqttRest traiteDemandeProprietesEquipement(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
 		return null;
@@ -396,6 +422,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return une liste vide
 	 */
+	@Override
 	public List<MessageProprietesEquipementMqttRest> traiteDemandeProprietesEquipements(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return new ArrayList<>();
@@ -412,6 +439,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'id de l'armoire concernée
 	 * @return null
 	 */
+	@Override
 	public MessageProprietesArmoireMqttRest traiteDemandeProprietesArmoire(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdArmoire) {
 		return null;
@@ -426,6 +454,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return une liste vide
 	 */
+	@Override
 	public List<MessageProprietesArmoireMqttRest> traiteDemandeProprietesArmoires(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return new ArrayList<>();
@@ -440,6 +469,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return une liste vide
 	 */
+	@Override
 	public List<String> traiteDemandeIdentifiantsScenarios(String pIdentifiantExpediteur, String pReferenceCommande) {
 		return new ArrayList<>();
 	}
@@ -455,6 +485,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant du scénario à récupérer
 	 * @return null
 	 */
+	@Override
 	public MessageScenarioMqttRest traiteDemandeScenario(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdScenario) {
 		return null;
@@ -469,6 +500,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return une liste vide
 	 */
+	@Override
 	public List<MessageScenarioMqttRest> traiteDemandeScenarios(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return new ArrayList<>();
@@ -484,6 +516,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pIdScenario
 	 *            l'identifiant du scénario à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdScenario) {
 	}
@@ -499,6 +532,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pScenarioTemporaire
 	 *            le scénario temporaire à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
 			MessageScenarioMqttRest pScenarioTemporaire) {
 	}
@@ -515,6 +549,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessagesAPiloter
 	 *            les messages à piloter dans le scénario
 	 */
+	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdScenario, List<IMessageAffichageEquipementMqttRest> pMessagesAPiloter) {
 	}
@@ -531,6 +566,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessagePmvMqttRest pMessageAPiloter) {
 	}
@@ -547,6 +583,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotagePplmv(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter) {
 	}
@@ -563,6 +600,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotagePpad(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePpadMqttRest pMessageAPiloter) {
 	}
@@ -579,6 +617,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotagePictogramme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter) {
 	}
@@ -595,6 +634,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessageR24MqttRest pMessageAPiloter) {
 	}
@@ -611,6 +651,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotagePrisme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter) {
 	}
@@ -627,6 +668,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageBarriere(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter) {
 	}
@@ -643,6 +685,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessageBraMqttRest pMessageAPiloter) {
 	}
@@ -657,6 +700,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pMessages
 	 *            les messages à piloter
 	 */
+	@Override
 	public void traiteDemandePilotageMessages(String pIdentifiantExpediteur, String pReferenceCommande,
 			List<IMessageAffichageEquipementMqttRest> pMessages) {
 	}
@@ -673,6 +717,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant de l'équipement à tester
 	 * @return false
 	 */
+	@Override
 	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement) {
 		return false;
@@ -688,6 +733,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return false
 	 */
+	@Override
 	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande) {
 		return false;
 	}

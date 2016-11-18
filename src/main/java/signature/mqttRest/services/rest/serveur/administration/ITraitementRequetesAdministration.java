@@ -1,5 +1,7 @@
 package signature.mqttRest.services.rest.serveur.administration;
 
+import java.util.List;
+
 /**
  * Traitement des requêtes d'administration de Pegase
  * 
@@ -21,6 +23,22 @@ public interface ITraitementRequetesAdministration {
 	 */
 	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
 			boolean pInterdit);
+
+	/**
+	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
+	 * Pegase, sur certains équipements
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdsEquipements
+	 *            les identifiants des équipements concernés
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
+	 */
+	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
+			List<String> pIdsEquipements, boolean pInterdit);
 
 	/**
 	 * Traite une demande d'activation ou désactivation d'un bouton

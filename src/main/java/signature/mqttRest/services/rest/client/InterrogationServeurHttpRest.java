@@ -221,6 +221,28 @@ public class InterrogationServeurHttpRest {
 	}
 
 	/**
+	 * Autorise ou interdit les pilotages de certains équipements sur Pegase
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdsEquipements
+	 *            les identifiants des équipements concernés
+	 * @param pInterdit
+	 *            true pour interdire les pilotages sur Pegase
+	 */
+	public static void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, List<String> pIdsEquipements, boolean pInterdit) {
+		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdsEquipements, pInterdit);
+	}
+
+	/**
 	 * Test de présence du serveur REST
 	 * 
 	 * @param pHost
