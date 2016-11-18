@@ -56,7 +56,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdScenario, List<IMessageAffichageEquipementMqttRest> pMessagesAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'un PMV
 	 * 
@@ -69,9 +69,9 @@ public interface ITraitementRequetesPilotage {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessagePmvMqttRest pMessageAPiloter);
-	
+	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessagePmvMqttRest pMessageAPiloter);
+
 	/**
 	 * Traite une demande de pilotage d'un PPLMV
 	 * 
@@ -86,7 +86,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotagePplmv(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'un PPAD
 	 * 
@@ -101,7 +101,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotagePpad(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePpadMqttRest pMessageAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'un Pictogramme
 	 * 
@@ -116,7 +116,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotagePictogramme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'un Feu R24
 	 * 
@@ -129,9 +129,9 @@ public interface ITraitementRequetesPilotage {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessageR24MqttRest pMessageAPiloter);
-	
+	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageR24MqttRest pMessageAPiloter);
+
 	/**
 	 * Traite une demande de pilotage d'un Prisme
 	 * 
@@ -146,7 +146,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotagePrisme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'une Barrière
 	 * 
@@ -161,7 +161,7 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotageBarriere(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter);
-	
+
 	/**
 	 * Traite une demande de pilotage d'un BRA
 	 * 
@@ -174,9 +174,9 @@ public interface ITraitementRequetesPilotage {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessageBraMqttRest pMessageAPiloter);
-	
+	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageBraMqttRest pMessageAPiloter);
+
 	/**
 	 * Traite une demande de pilotage d'une liste de messages
 	 * 
@@ -189,4 +189,31 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotageMessages(String pIdentifiantExpediteur, String pReferenceCommande,
 			List<IMessageAffichageEquipementMqttRest> pMessages);
+
+	/**
+	 * Traite une demande pour savoir si un pilotage est en cours sur un
+	 * équipement
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à tester
+	 * @return true si un pilotage est en cours
+	 */
+	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdEquipement);
+
+	/**
+	 * Traite une demande pour savoir si un pilotage est en cours sur un
+	 * équipement quelconque
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return true si un pilotage est en cours
+	 */
+	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande);
 }

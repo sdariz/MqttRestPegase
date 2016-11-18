@@ -279,7 +279,7 @@ public class ServiceRequetesPilotage {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
 				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BARRIERE);
 	}
-	
+
 	/**
 	 * Pilotage d'un BRA
 	 * 
@@ -301,7 +301,7 @@ public class ServiceRequetesPilotage {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
 				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BRA);
 	}
-	
+
 	/**
 	 * Pilotage d'un ensemble de messages
 	 * 
@@ -332,6 +332,82 @@ public class ServiceRequetesPilotage {
 		params.put("messages", Util.toJsonString(pMessages));
 
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesPilotage.PILOTAGE_MESSAGES, params);
+	}
+
+	/**
+	 * Requête REST pour savoir si un pilotage est en cours
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return true si un pilotage est en cours
+	 */
+	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idEquipement", pIdEquipement);
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesPilotage.PILOTAGE_EN_COURS,
+				params);
+		if (json.length() == 0) {
+			return false;
+		}
+
+		return Util.jsonToBoolean(json);
+	}
+
+	/**
+	 * Requête REST pour savoir si un pilotage est en cours sur un équipement
+	 * quelconque
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return true si un pilotage est en cours
+	 */
+	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort, GestionnaireRoutesPilotage.PILOTAGE_EN_COURS,
+				params);
+		if (json.length() == 0) {
+			return false;
+		}
+
+		return Util.jsonToBoolean(json);
 	}
 
 	// Requête de pilotage d'un équipement

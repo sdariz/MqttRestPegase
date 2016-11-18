@@ -884,4 +884,43 @@ public class InterrogationServeurHttpRest {
 		ServiceRequetesPilotage.requetePilotageMessages(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pMessages);
 	}
+
+	/**
+	 * Demande si un pilotage est en cours sur un équipement
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à tester
+	 * @return true si un pilotage est en cours
+	 */
+	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement) {
+		return ServiceRequetesPilotage.requetePilotageEnCours(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdEquipement);
+	}
+
+	/**
+	 * Demande si un pilotage est en cours sur un équipement quelconque
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return true si un pilotage est en cours
+	 */
+	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return ServiceRequetesPilotage.requetePilotageEnCours(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande);
+	}
 }

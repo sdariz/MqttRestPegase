@@ -1,6 +1,5 @@
 package signature.mqttRest.services.rest.serveur.pilotage;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,7 @@ public class GestionnaireRoutesPilotage {
 	public final static String PILOTAGE_BARRIERE = "/pilotage/pilotageBarriere";
 	public final static String PILOTAGE_BRA = "/pilotage/pilotageBra";
 	public final static String PILOTAGE_MESSAGES = "/pilotage/pilotageMessages";
+	public final static String PILOTAGE_EN_COURS = "/pilotage/pilotageEnCours";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -47,7 +47,7 @@ public class GestionnaireRoutesPilotage {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return new ArrayList<String>();
+		return Arrays.asList(PILOTAGE_EN_COURS);
 	}
 
 	/**
@@ -75,6 +75,20 @@ public class GestionnaireRoutesPilotage {
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
+		if (PILOTAGE_EN_COURS.equals(pUri)) {
+			// Soit demande d'un équipement en particulier, soit demande pour
+			// tous les équipements
+			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
+				return Util
+						.toJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
+								pParametres.get("idCommande")[0]));
+			}
+			
+			return Util
+					.toJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
+							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
+		}
+
 		return "";
 	}
 

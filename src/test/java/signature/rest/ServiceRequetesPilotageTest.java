@@ -275,11 +275,60 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
+	
+	/**
+	 * Test pilotage en cours sur un équipement
+	 */
+	@Test
+	public void testPilotageEnCoursSurEquipement() {
+		traitementsRequetesRest.flagPilotageCours = true;
+		
+		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
+
+		assertEquals("Pilotage en cours attendu", true, enCours);
+	}
+	
+	/**
+	 * Test pas de pilotage en cours sur un équipement
+	 */
+	@Test
+	public void testPasPilotageEnCoursSurEquipement() {
+		traitementsRequetesRest.flagPilotageCours = false;
+		
+		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
+
+		assertEquals("Pas de pilotage en cours attendu", false, enCours);
+	}
+	
+	/**
+	 * Test pilotage en cours sur un équipement quelconque
+	 */
+	@Test
+	public void testPilotageEnCoursSurEquipementQuelconque() {
+		traitementsRequetesRest.flagPilotageCours = true;
+		
+		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd");
+
+		assertEquals("Pilotage en cours attendu", true, enCours);
+	}
+	
+	/**
+	 * Test pas de pilotage en cours sur un équipement quelconque
+	 */
+	@Test
+	public void testPasPilotageEnCoursSurEquipementQuelconque() {
+		traitementsRequetesRest.flagPilotageCours = false;
+		
+		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd");
+
+		assertEquals("Pas de pilotage en cours attendu", false, enCours);
+	}
 
 }
 
 class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur {
 	protected int traitement = 0;
+	protected boolean flagPilotageCours = false;
 
 	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -542,6 +591,24 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 		}
 
 		traitement = 1;
+	}
+	
+	@Override
+	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdEquipement) {
+		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		assertEquals("Id équipement incorrect", "1111", pIdEquipement);
+		
+		return flagPilotageCours;
+	}
+	
+	@Override
+	public boolean traiteDemandePilotageEnCours(String pIdentifiantExpediteur, String pReferenceCommande) {
+		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		
+		return flagPilotageCours;
 	}
 
 }
