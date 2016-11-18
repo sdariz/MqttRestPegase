@@ -10,22 +10,53 @@ import java.util.List;
  *
  */
 public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest {
-
 	private MessageModuleMqttRest _messagesPanonceauHaut;
 	private MessageModuleMqttRest _messagesPanonceauBas;
 	private MessageModuleMqttRest _messagesPictogramme;
 	private MessageModuleMqttRest _messagesFlashs;
 	private TypeMessage _typeMessage;
+	private String _idEquipement;
 
 	/**
 	 * Construction du message
 	 */
 	public MessagePplmvMqttRest() {
+		this("");
+	}
+
+	/**
+	 * Construction du message
+	 * 
+	 * @param pId
+	 *            l'identifiant de l'équipement
+	 */
+	public MessagePplmvMqttRest(String pId) {
+		_idEquipement = pId;
+
 		_messagesPanonceauHaut = null;
 		_messagesPanonceauBas = null;
 		_messagesPictogramme = null;
 		_messagesFlashs = null;
 		_typeMessage = TypeMessage.ETEINT;
+	}
+
+	/**
+	 * Donne l'identifant unique associé à l'équipement
+	 * 
+	 * @return l'identifant unique de l'équipement
+	 */
+	public String getIdentifiantEquipement() {
+		return _idEquipement;
+	}
+
+	/**
+	 * Initialise l'identifant unique associé à l'équipement
+	 * 
+	 * @param pId
+	 *            l'identifant unique de l'équipement
+	 */
+	public void setIdentifiantEquipement(String pId) {
+		_idEquipement = pId;
 	}
 
 	/**
@@ -180,7 +211,7 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	 */
 	@Override
 	public MessagePplmvMqttRest clone() {
-		MessagePplmvMqttRest retour = new MessagePplmvMqttRest();
+		MessagePplmvMqttRest retour = new MessagePplmvMqttRest(_idEquipement);
 
 		if (_messagesPanonceauBas != null) {
 			retour._messagesPanonceauBas = _messagesPanonceauBas.clone();
@@ -201,25 +232,23 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		return retour;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((_idEquipement == null) ? 0 : _idEquipement.hashCode());
 		result = prime * result + ((_messagesFlashs == null) ? 0 : _messagesFlashs.hashCode());
 		result = prime * result + ((_messagesPanonceauBas == null) ? 0 : _messagesPanonceauBas.hashCode());
 		result = prime * result + ((_messagesPanonceauHaut == null) ? 0 : _messagesPanonceauHaut.hashCode());
 		result = prime * result + ((_messagesPictogramme == null) ? 0 : _messagesPictogramme.hashCode());
+		result = prime * result + ((_typeMessage == null) ? 0 : _typeMessage.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -231,6 +260,11 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		if (getClass() != obj.getClass())
 			return false;
 		MessagePplmvMqttRest other = (MessagePplmvMqttRest) obj;
+		if (_idEquipement == null) {
+			if (other._idEquipement != null)
+				return false;
+		} else if (!_idEquipement.equals(other._idEquipement))
+			return false;
 		if (_messagesFlashs == null) {
 			if (other._messagesFlashs != null)
 				return false;
@@ -250,6 +284,8 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 			if (other._messagesPictogramme != null)
 				return false;
 		} else if (!_messagesPictogramme.equals(other._messagesPictogramme))
+			return false;
+		if (_typeMessage != other._typeMessage)
 			return false;
 		return true;
 	}

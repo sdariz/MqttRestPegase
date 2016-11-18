@@ -688,7 +688,7 @@ public class InterrogationServeurHttpRest {
 		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdScenario, pMessagesAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un PMV
 	 * 
@@ -706,12 +706,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotagePmv(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessagePmvMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessagePmvMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un PPLMV
 	 * 
@@ -729,12 +728,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotagePplmv(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessagePplmvMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePplmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un PPAD
 	 * 
@@ -752,12 +750,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotagePpad(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessagePpadMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessagePpadMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePpad(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un Pictogramme
 	 * 
@@ -775,12 +772,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotagePictogramme(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessagePictogrammeMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePictogramme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un Feu R24
 	 * 
@@ -798,12 +794,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotageR24(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessageR24MqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessageR24MqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageR24(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un Prisme
 	 * 
@@ -821,12 +816,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotagePrisme(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessagePrismeMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePrisme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'une Barrière
 	 * 
@@ -844,12 +838,11 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotageBarriere(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessageBarriereMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBarriere(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un BRA
 	 * 
@@ -867,9 +860,27 @@ public class InterrogationServeurHttpRest {
 	 *            le message à piloter
 	 */
 	public static void requetePilotageBra(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdEquipement,
-			MessageBraMqttRest pMessageAPiloter) {
+			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
+	}
+	
+	/**
+	 * Demande de pilotage d'un ensemble de messages sur des équipements
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pMessages
+	 *            les messages à piloter
+	 */
+	public static void requetePilotageEquipements(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, List<IMessageAffichageEquipementMqttRest> pMessages) {
+		
 	}
 }

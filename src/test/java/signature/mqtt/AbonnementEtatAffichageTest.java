@@ -90,11 +90,11 @@ public class AbonnementEtatAffichageTest {
 		AbonnementMqtt abo = new AbonnementMqtt(listener, Topic.ETAT_AFFICHAGE_EQUIPEMENT, HOST, PORT);
 
 		// Post d'un nouvel état d'affichage
-		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd", "1122");
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd");
 		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
 		Instant ist = ldt.toInstant(ZoneOffset.UTC);
 		msg.setHorodateGeneration(Date.from(ist));
-		MessagePmvMqttRest msgPmv = new MessagePmvMqttRest();
+		MessagePmvMqttRest msgPmv = new MessagePmvMqttRest("1122");
 		msg.setMessageEquipement(msgPmv);
 
 		PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
@@ -159,22 +159,22 @@ public class AbonnementEtatAffichageTest {
 		List<MessageEtatAffichageMqttRest> liste = new ArrayList<>();
 
 		// Post de l'état de deux équipements
-		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd", "1111");
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd");
 		liste.add(msg);
 
 		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
 		Instant ist = ldt.toInstant(ZoneOffset.UTC);
 		msg.setHorodateGeneration(Date.from(ist));
-		MessagePmvMqttRest msgPmv = new MessagePmvMqttRest();
+		MessagePmvMqttRest msgPmv = new MessagePmvMqttRest("1111");
 		msg.setMessageEquipement(msgPmv);
 
-		msg = new MessageEtatAffichageMqttRest("ab", "cd", "2222");
+		msg = new MessageEtatAffichageMqttRest("ab", "cd");
 		liste.add(msg);
 
 		ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 55, 20);
 		ist = ldt.toInstant(ZoneOffset.UTC);
 		msg.setHorodateGeneration(Date.from(ist));
-		msgPmv = new MessagePmvMqttRest();
+		msgPmv = new MessagePmvMqttRest("2222");
 		msg.setMessageEquipement(msgPmv);
 
 		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);

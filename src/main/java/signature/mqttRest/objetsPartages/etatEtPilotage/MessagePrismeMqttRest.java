@@ -7,8 +7,19 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
  */
 public class MessagePrismeMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	
+	/**
+	 * Construction du message
+	 */
 	public MessagePrismeMqttRest() {
-		super();
+		this("");
+	}
+	
+	/**
+	 * Construction du message
+	 * @param pId l'identifiant de l'équipement
+	 */
+	public MessagePrismeMqttRest(String pId) {
+		super(pId);
 	}
 	
 	/**
@@ -27,7 +38,7 @@ public class MessagePrismeMqttRest extends MessageEquipementModuleUniqueMqttRest
 	 */
 	@Override
 	public MessagePrismeMqttRest clone() {
-		MessagePrismeMqttRest retour = new MessagePrismeMqttRest();
+		MessagePrismeMqttRest retour = new MessagePrismeMqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());

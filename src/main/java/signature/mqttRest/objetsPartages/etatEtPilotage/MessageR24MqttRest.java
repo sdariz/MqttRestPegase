@@ -7,8 +7,19 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
  */
 public class MessageR24MqttRest extends MessageEquipementModuleUniqueMqttRest {
 	
+	/**
+	 * Construction du message
+	 */
 	public MessageR24MqttRest() {
-		super();
+		this("");
+	}
+	
+	/**
+	 * Construction du message
+	 * @param pId l'identifiant de l'équipement
+	 */
+	public MessageR24MqttRest(String pId) {
+		super(pId);
 	}
 	
 	/**
@@ -27,7 +38,7 @@ public class MessageR24MqttRest extends MessageEquipementModuleUniqueMqttRest {
 	 */
 	@Override
 	public MessageR24MqttRest clone() {
-		MessageR24MqttRest retour = new MessageR24MqttRest();
+		MessageR24MqttRest retour = new MessageR24MqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());

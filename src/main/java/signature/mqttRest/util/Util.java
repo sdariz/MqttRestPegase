@@ -164,6 +164,7 @@ public class Util {
 	 * Création d'un message PMV fixe, avec luminosité automatique, DV = 0,
 	 * flashs éteints si présents
 	 * 
+	 * @param pIdEquipement l'identifiant de l'équipement
 	 * @param pLignes
 	 *            les messages de chaque ligne, liste vide si non utilisé
 	 * @param pPanonceaux
@@ -177,9 +178,13 @@ public class Util {
 	 *            true si le panneau à des feux flashs
 	 * @return le nouveau message
 	 */
-	public static MessagePmvMqttRest creationMessagePmvFixe(List<String> pLignes, List<String> pPanonceaux,
+	public static MessagePmvMqttRest creationMessagePmvFixe(String pIdEquipement, List<String> pLignes, List<String> pPanonceaux,
 			List<String> pPictos, List<String> pLabelsPictos, boolean avecFlashs) {
-		MessagePmvMqttRest retour = new MessagePmvMqttRest();
+		if(pIdEquipement == null) {
+			pIdEquipement = "";
+		}
+		
+		MessagePmvMqttRest retour = new MessagePmvMqttRest(pIdEquipement);
 
 		// Les lignes
 		List<MessageModuleMqttRest> lignes = new ArrayList<>();

@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import signature.mqttRest.services.mqtt.AbonnementMqtt;
 import signature.mqttRest.services.mqtt.BrokerMqtt;
 import signature.mqttRest.services.mqtt.IListenerMessageMqtt;
@@ -88,7 +89,8 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 				Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT, Topic.ETAT_TECHNIQUE_EQUIPEMENT), HOST, PORT);
 
 		// Message état d'affichage
-		MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd", "1111");
+		MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd");
+		msg1.setMessageEquipement(new MessagePmvMqttRest("1111"));
 		PublicationMqtt.publicationMessage(msg1, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
 
 		// Attente fin de traitement

@@ -11,7 +11,6 @@ import signature.mqttRest.objetsPartages.IMessageMqttRest;
  *
  */
 public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
-	private String _idEquipement;
 	private String _idExpediteur;
 	private String _referenceMessage;
 
@@ -24,7 +23,7 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * Construction du message
 	 */
 	public MessageEtatAffichageMqttRest() {
-		this("", "", "");
+		this("", "");
 	}
 
 	/**
@@ -34,13 +33,10 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 *            l'identifiant de l'expéditeur
 	 * @param pReferenceMessage
 	 *            la référence du message, donnée par l'expéditeur
-	 * @param pIdEquipement
-	 *            l'identifiant unique de l'équipement
 	 */
-	public MessageEtatAffichageMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdEquipement) {
+	public MessageEtatAffichageMqttRest(String pIdExpediteur, String pReferenceMessage) {
 		_idExpediteur = pIdExpediteur;
 		_referenceMessage = pReferenceMessage;
-		_idEquipement = pIdEquipement;
 
 		_horodateGeneration = new Date();
 	}
@@ -89,18 +85,12 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * @return l'identifiant de l'équipement
 	 */
 	public String getIdentifiantEquipement() {
-		return _idEquipement;
+		if(_messageEquipement != null) {
+			return _messageEquipement.getIdentifiantEquipement();
+		}
+		return "";
 	}
 
-	/**
-	 * Initialise l'identifiant de l'équipement
-	 * 
-	 * @param pId
-	 *            l'identifiant de l'équipement
-	 */
-	public void setIdentifiantEquipement(String pId) {
-		_idEquipement = pId;
-	}
 
 	/**
 	 * Donne l'horodate de génération du message
@@ -170,7 +160,6 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 		int result = 1;
 		result = prime * result + ((_horodateFin == null) ? 0 : _horodateFin.hashCode());
 		result = prime * result + ((_horodateGeneration == null) ? 0 : _horodateGeneration.hashCode());
-		result = prime * result + ((_idEquipement == null) ? 0 : _idEquipement.hashCode());
 		result = prime * result + ((_idExpediteur == null) ? 0 : _idExpediteur.hashCode());
 		result = prime * result + ((_messageEquipement == null) ? 0 : _messageEquipement.hashCode());
 		result = prime * result + ((_referenceMessage == null) ? 0 : _referenceMessage.hashCode());
@@ -200,11 +189,6 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 			if (other._horodateGeneration != null)
 				return false;
 		} else if (!_horodateGeneration.equals(other._horodateGeneration))
-			return false;
-		if (_idEquipement == null) {
-			if (other._idEquipement != null)
-				return false;
-		} else if (!_idEquipement.equals(other._idEquipement))
 			return false;
 		if (_idExpediteur == null) {
 			if (other._idExpediteur != null)

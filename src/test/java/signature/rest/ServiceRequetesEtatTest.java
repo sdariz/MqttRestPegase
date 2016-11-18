@@ -406,7 +406,7 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 	public MessageEtatAffichageMqttRest demandeEtatAffichageEquipement(String pIdentifiantExpediteur,
 			String pReferenceCommande, String pId) {
 		MessageEtatAffichageMqttRest retour = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur,
-				pReferenceCommande, pId);
+				pReferenceCommande);
 
 		LocalDateTime ldt = LocalDateTime.of(2016, Month.NOVEMBER, 8, 16, 50, 10);
 		Instant ist = ldt.toInstant(ZoneOffset.UTC);
@@ -418,35 +418,35 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 
 		// Cas demande état PMV
 		if (pId.equals("1111")) {
-			retour.setMessageEquipement(getEtatAffichagePmv());
+			retour.setMessageEquipement(getEtatAffichagePmv("1111"));
 		}
 		// Cas demande PPAD
 		else if (pId.equals("2222")) {
-			retour.setMessageEquipement(getEtatAffichagePpad());
+			retour.setMessageEquipement(getEtatAffichagePpad("2222"));
 		}
 		// Cas pictogramme
 		else if (pId.equals("3333")) {
-			retour.setMessageEquipement(getEtatAffichagePictogramme());
+			retour.setMessageEquipement(getEtatAffichagePictogramme("3333"));
 		}
 		// Cas feu R24
 		else if (pId.equals("4444")) {
-			retour.setMessageEquipement(getEtatAffichageFeuR24());
+			retour.setMessageEquipement(getEtatAffichageFeuR24("4444"));
 		}
 		// Cas Barrière
 		else if (pId.equals("5555")) {
-			retour.setMessageEquipement(getEtatAffichageBarriere());
+			retour.setMessageEquipement(getEtatAffichageBarriere("5555"));
 		}
 		// Cas Prisme
 		else if (pId.equals("6666")) {
-			retour.setMessageEquipement(getEtatAffichagePrisme());
+			retour.setMessageEquipement(getEtatAffichagePrisme("6666"));
 		}
 		// Cas BRA
 		else if (pId.equals("7777")) {
-			retour.setMessageEquipement(getEtatAffichageBra());
+			retour.setMessageEquipement(getEtatAffichageBra("7777"));
 		}
 		// Cas PPLMV
 		else if (pId.equals("8888")) {
-			retour.setMessageEquipement(getEtatAffichagePplmv());
+			retour.setMessageEquipement(getEtatAffichagePplmv("8888"));
 		}
 
 		return retour;
@@ -458,13 +458,12 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		// Deux états affichage : PMV + PPAD
 		List<MessageEtatAffichageMqttRest> retour = new ArrayList<>();
 
-		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande,
-				"1111");
-		msg.setMessageEquipement(getEtatAffichagePmv());
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande);
+		msg.setMessageEquipement(getEtatAffichagePmv("1111"));
 		retour.add(msg);
 
-		msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande, "2222");
-		msg.setMessageEquipement(getEtatAffichagePpad());
+		msg = new MessageEtatAffichageMqttRest(pIdentifiantExpediteur, pReferenceCommande);
+		msg.setMessageEquipement(getEtatAffichagePpad("2222"));
 		retour.add(msg);
 
 		return retour;
@@ -547,8 +546,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		idEqpt = pId;
 	}
 
-	private MessagePmvMqttRest getEtatAffichagePmv() {
-		MessagePmvMqttRest retour = new MessagePmvMqttRest();
+	private MessagePmvMqttRest getEtatAffichagePmv(String pId) {
+		MessagePmvMqttRest retour = new MessagePmvMqttRest(pId);
 
 		// 2 lignes + panonceau + picto + flashs
 
@@ -617,8 +616,8 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		return retour;
 	}
 
-	private MessagePpadMqttRest getEtatAffichagePpad() {
-		MessagePpadMqttRest retour = new MessagePpadMqttRest();
+	private MessagePpadMqttRest getEtatAffichagePpad(String pId) {
+		MessagePpadMqttRest retour = new MessagePpadMqttRest(pId);
 
 		MessageModuleMqttRest mod = new MessageModuleMqttRest();
 		mod.setDureeValidite(11);
@@ -634,33 +633,33 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		return retour;
 	}
 
-	private MessagePictogrammeMqttRest getEtatAffichagePictogramme() {
-		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest();
+	private MessagePictogrammeMqttRest getEtatAffichagePictogramme(String pId) {
+		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest(pId);
 		return retour;
 	}
 
-	private MessageR24MqttRest getEtatAffichageFeuR24() {
-		MessageR24MqttRest retour = new MessageR24MqttRest();
+	private MessageR24MqttRest getEtatAffichageFeuR24(String pId) {
+		MessageR24MqttRest retour = new MessageR24MqttRest(pId);
 		return retour;
 	}
 
-	private MessageBarriereMqttRest getEtatAffichageBarriere() {
-		MessageBarriereMqttRest retour = new MessageBarriereMqttRest();
+	private MessageBarriereMqttRest getEtatAffichageBarriere(String pId) {
+		MessageBarriereMqttRest retour = new MessageBarriereMqttRest(pId);
 		return retour;
 	}
 
-	private MessagePrismeMqttRest getEtatAffichagePrisme() {
-		MessagePrismeMqttRest retour = new MessagePrismeMqttRest();
+	private MessagePrismeMqttRest getEtatAffichagePrisme(String pId) {
+		MessagePrismeMqttRest retour = new MessagePrismeMqttRest(pId);
 		return retour;
 	}
 
-	private MessageBraMqttRest getEtatAffichageBra() {
-		MessageBraMqttRest retour = new MessageBraMqttRest();
+	private MessageBraMqttRest getEtatAffichageBra(String pId) {
+		MessageBraMqttRest retour = new MessageBraMqttRest(pId);
 		return retour;
 	}
 
-	private MessagePplmvMqttRest getEtatAffichagePplmv() {
-		MessagePplmvMqttRest retour = new MessagePplmvMqttRest();
+	private MessagePplmvMqttRest getEtatAffichagePplmv(String pId) {
+		MessagePplmvMqttRest retour = new MessagePplmvMqttRest(pId);
 		return retour;
 	}
 }

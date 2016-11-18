@@ -2,15 +2,29 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
 
 /**
  * Message sur un équipement de type Pictogramme
+ * 
  * @author SDARIZCUREN
  *
  */
 public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqttRest {
-	
+
+	/**
+	 * Construction du message
+	 */
 	public MessagePictogrammeMqttRest() {
-		super();
+		this("");
 	}
-	
+
+	/**
+	 * Construction du message
+	 * 
+	 * @param pId
+	 *            l'identifiant de l'équipement
+	 */
+	public MessagePictogrammeMqttRest(String pId) {
+		super(pId);
+	}
+
 	/**
 	 * Indique le type de l'équipement concerné par le message d'affichage
 	 * 
@@ -19,7 +33,7 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.PICTOGRAMME;
 	}
-	
+
 	/**
 	 * Clone de l'objet courant
 	 * 
@@ -27,15 +41,15 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 	 */
 	@Override
 	public MessagePictogrammeMqttRest clone() {
-		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest();
-		
-		if(getMessagesModuleUnique() != null) {
+		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest(getIdentifiantEquipement());
+
+		if (getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
 		}
 
 		return retour;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return 167894 * super.hashCode();
@@ -49,7 +63,7 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		
+
 		return super.equals(obj);
 	}
 }

@@ -72,6 +72,20 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * @return l'affichage des modules
 	 */
 	public List<MessageModuleMqttRest> getMessagesModules();
+	
+	/**
+	 * Donne l'identifant unique associé à l'équipement
+	 * 
+	 * @return l'identifant unique de l'équipement
+	 */
+	public String getIdentifiantEquipement();
+	
+	/**
+	 * Initialise l'identifant unique associé à l'équipement
+	 * 
+	 * @param pId l'identifant unique de l'équipement
+	 */
+	public void setIdentifiantEquipement(String pId);
 
 	/**
 	 * Indique le type de l'équipement concerné par le message d'affichage

@@ -7,8 +7,19 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
  */
 public class MessageBarriereMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	
+	/**
+	 * Construction du message
+	 */
 	public MessageBarriereMqttRest() {
-		super();
+		this("");
+	}
+	
+	/**
+	 * Construction du message
+	 * @param pId l'identifiant de l'équipement
+	 */
+	public MessageBarriereMqttRest(String pId) {
+		super(pId);
 	}
 	
 	/**
@@ -27,7 +38,7 @@ public class MessageBarriereMqttRest extends MessageEquipementModuleUniqueMqttRe
 	 */
 	@Override
 	public MessageBarriereMqttRest clone() {
-		MessageBarriereMqttRest retour = new MessageBarriereMqttRest();
+		MessageBarriereMqttRest retour = new MessageBarriereMqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());

@@ -8,8 +8,21 @@ package signature.mqttRest.objetsPartages.etatEtPilotage;
  */
 public class MessagePpadMqttRest extends MessageEquipementModuleUniqueMqttRest {
 
+	/**
+	 * Construction du message
+	 */
 	public MessagePpadMqttRest() {
-		super();
+		this("");
+	}
+
+	/**
+	 * Construction du message
+	 * 
+	 * @param pId
+	 *            l'identifiant de l'équipement
+	 */
+	public MessagePpadMqttRest(String pId) {
+		super(pId);
 	}
 
 	/**
@@ -28,7 +41,7 @@ public class MessagePpadMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	 */
 	@Override
 	public MessagePpadMqttRest clone() {
-		MessagePpadMqttRest retour = new MessagePpadMqttRest();
+		MessagePpadMqttRest retour = new MessagePpadMqttRest(getIdentifiantEquipement());
 
 		if (getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
