@@ -646,4 +646,18 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 	}
+	
+	/**
+	 * Traite une demande de pilotage d'une liste de messages
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pMessages
+	 *            les messages à piloter
+	 */
+	public void traiteDemandePilotageMessages(String pIdentifiantExpediteur, String pReferenceCommande,
+			List<IMessageAffichageEquipementMqttRest> pMessages) {
+	}
 }

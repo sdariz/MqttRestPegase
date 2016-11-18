@@ -124,7 +124,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un PPLMV
 	 */
@@ -143,7 +143,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un PPAD
 	 */
@@ -162,7 +162,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un Pictogramme
 	 */
@@ -181,7 +181,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un Feu R24
 	 */
@@ -200,7 +200,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un Prisme
 	 */
@@ -219,7 +219,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'une Barrière
 	 */
@@ -238,7 +238,7 @@ public class ServiceRequetesPilotageTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
-	
+
 	/**
 	 * Test de pilotage d'un Bra
 	 */
@@ -253,6 +253,24 @@ public class ServiceRequetesPilotageTest {
 		message.setMessagesModuleUnique(mod);
 
 		InterrogationServeurHttpRest.requetePilotageBra(HOST, PORT, "ab", "cd", "1111", message);
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+	}
+
+	/**
+	 * Test de pilotage d'un ensemble de messages
+	 */
+	@Test
+	public void testPilotageMessages() {
+		traitementsRequetesRest.traitement = 0;
+
+		List<IMessageAffichageEquipementMqttRest> messages = new ArrayList<>();
+		messages.add(new MessagePmvMqttRest("1111"));
+		messages.add(new MessagePpadMqttRest("2222"));
+		messages.add(new MessageBarriereMqttRest("3333"));
+
+		InterrogationServeurHttpRest.requetePilotageMessages(HOST, PORT, "ab", "cd", messages);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -329,16 +347,16 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
-	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessagePmvMqttRest pMessageAPiloter) {
+	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessagePmvMqttRest pMessageAPiloter) {
 		try {
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.NEUTRE, pMessageAPiloter.getTypeMessage());
-			
+
 			assertEquals("Nombre lignes PMV incorrect", 2, pMessageAPiloter.getNombreLignes());
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -348,7 +366,7 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
 	public void traiteDemandePilotagePplmv(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter) {
@@ -357,9 +375,11 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.NEUTRE, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagePanonceauHaut().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagePanonceauHaut().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagePanonceauHaut().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagePanonceauHaut().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -368,7 +388,7 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
 	public void traiteDemandePilotagePpad(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePpadMqttRest pMessageAPiloter) {
@@ -377,9 +397,11 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.ETEINT, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -388,7 +410,7 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
 	public void traiteDemandePilotagePictogramme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter) {
@@ -397,9 +419,11 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.ETEINT, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -408,18 +432,20 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
-	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessageR24MqttRest pMessageAPiloter) {
+	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageR24MqttRest pMessageAPiloter) {
 		try {
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.EXPLOITATION, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -428,7 +454,7 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
 	public void traiteDemandePilotagePrisme(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter) {
@@ -437,9 +463,11 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.EXPLOITATION, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -448,7 +476,7 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
 	public void traiteDemandePilotageBarriere(String pIdentifiantExpediteur, String pReferenceCommande,
 			String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter) {
@@ -457,9 +485,11 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.EXPLOITATION, pMessageAPiloter.getTypeMessage());
-			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;
@@ -468,18 +498,43 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 
 		traitement = 1;
 	}
-	
+
 	@Override
-	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
+	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageBraMqttRest pMessageAPiloter) {
 		try {
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 			assertNotNull("Message null", pMessageAPiloter);
 			assertEquals("Type message incorrect", TypeMessage.EXPLOITATION, pMessageAPiloter.getTypeMessage());
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return;
+		}
+
+		traitement = 1;
+	}
+
+	@Override
+	public void traiteDemandePilotageMessages(String pIdentifiantExpediteur, String pReferenceCommande,
+			List<IMessageAffichageEquipementMqttRest> pMessages) {
+		try {
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+			assertEquals("Nombre Messages incorrect", 3, pMessages.size());
 			
-			assertEquals("Nombre messages incorrect", 1, pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
-			assertEquals("Message incorrect", "msg 1", pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+			assertEquals("Type eqpt message 1 incorrect", TypeEquipement.PMV, pMessages.get(0).getTypeEquipement());
+			assertEquals("Id eqpt message 1 incorrect", "1111", pMessages.get(0).getIdentifiantEquipement());
+			assertEquals("Type eqpt message 2 incorrect", TypeEquipement.PPAD, pMessages.get(1).getTypeEquipement());
+			assertEquals("Id eqpt message 2 incorrect", "2222", pMessages.get(1).getIdentifiantEquipement());
+			assertEquals("Type eqpt message 3 incorrect", TypeEquipement.BARRIERE, pMessages.get(2).getTypeEquipement());
+			assertEquals("Id eqpt message 3 incorrect", "3333", pMessages.get(2).getIdentifiantEquipement());
 		} catch (Throwable t) {
 			t.printStackTrace();
 			traitement = 2;

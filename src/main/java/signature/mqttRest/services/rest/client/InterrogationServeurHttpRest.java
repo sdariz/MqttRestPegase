@@ -864,7 +864,7 @@ public class InterrogationServeurHttpRest {
 		ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
-	
+
 	/**
 	 * Demande de pilotage d'un ensemble de messages sur des équipements
 	 * 
@@ -879,8 +879,9 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessages
 	 *            les messages à piloter
 	 */
-	public static void requetePilotageEquipements(String pHost, int pPort, String pIdentifiantExpediteur,
+	public static void requetePilotageMessages(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, List<IMessageAffichageEquipementMqttRest> pMessages) {
-		
+		ServiceRequetesPilotage.requetePilotageMessages(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pMessages);
 	}
 }

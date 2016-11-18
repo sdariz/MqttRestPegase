@@ -279,7 +279,7 @@ public class ServiceRequetesPilotage {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
 				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BARRIERE);
 	}
-
+	
 	/**
 	 * Pilotage d'un BRA
 	 * 
@@ -300,6 +300,38 @@ public class ServiceRequetesPilotage {
 			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
 				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BRA);
+	}
+	
+	/**
+	 * Pilotage d'un ensemble de messages
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pMessages
+	 *            les messages à piloter
+	 */
+	public static void requetePilotageMessages(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, List<IMessageAffichageEquipementMqttRest> pMessages) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+		params.put("messages", Util.toJsonString(pMessages));
+
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesPilotage.PILOTAGE_MESSAGES, params);
 	}
 
 	// Requête de pilotage d'un équipement

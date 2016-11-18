@@ -31,14 +31,15 @@ public class GestionnaireRoutesPilotage {
 	public final static String PILOTAGE_IDENTIFIANT_SCENARIO = "/pilotage/pilotageIdentifiantScenario";
 	public final static String PILOTAGE_SCENARIO = "/pilotage/pilotageScenario";
 	public final static String PILOTAGE_MESSAGES_SCENARIO = "/pilotage/pilotageMessagesScenario";
-	public final static String PILOTAGE_PMV = "/pilotage/pilotagPmv";
-	public final static String PILOTAGE_PPLMV = "/pilotage/pilotagPplmv";
-	public final static String PILOTAGE_PPAD = "/pilotage/pilotagPpad";
-	public final static String PILOTAGE_PICTOGRAMME = "/pilotage/pilotagPictogramme";
-	public final static String PILOTAGE_R24 = "/pilotage/pilotagR24";
-	public final static String PILOTAGE_PRISME = "/pilotage/pilotagPrisme";
-	public final static String PILOTAGE_BARRIERE = "/pilotage/pilotagBarriere";
-	public final static String PILOTAGE_BRA = "/pilotage/pilotagBra";
+	public final static String PILOTAGE_PMV = "/pilotage/pilotagePmv";
+	public final static String PILOTAGE_PPLMV = "/pilotage/pilotagePplmv";
+	public final static String PILOTAGE_PPAD = "/pilotage/pilotagePpad";
+	public final static String PILOTAGE_PICTOGRAMME = "/pilotage/pilotagePictogramme";
+	public final static String PILOTAGE_R24 = "/pilotage/pilotageR24";
+	public final static String PILOTAGE_PRISME = "/pilotage/pilotagePrisme";
+	public final static String PILOTAGE_BARRIERE = "/pilotage/pilotageBarriere";
+	public final static String PILOTAGE_BRA = "/pilotage/pilotageBra";
+	public final static String PILOTAGE_MESSAGES = "/pilotage/pilotageMessages";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -57,7 +58,7 @@ public class GestionnaireRoutesPilotage {
 	public static List<String> getPOSTRoutes() {
 		return Arrays.asList(PILOTAGE_IDENTIFIANT_SCENARIO, PILOTAGE_SCENARIO, PILOTAGE_MESSAGES_SCENARIO, PILOTAGE_PMV,
 				PILOTAGE_PPLMV, PILOTAGE_PPAD, PILOTAGE_PICTOGRAMME, PILOTAGE_R24, PILOTAGE_PRISME, PILOTAGE_BARRIERE,
-				PILOTAGE_BRA);
+				PILOTAGE_BRA, PILOTAGE_MESSAGES);
 	}
 
 	/**
@@ -235,6 +236,21 @@ public class GestionnaireRoutesPilotage {
 
 			pTraiteRequetesRest.traiteDemandePilotageBra(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+
+		if (PILOTAGE_MESSAGES.equals(pUri)) {
+			// Désérialisation des messages à piloter
+			List<IMessageAffichageEquipementMqttRest> messages = Util
+					.jsonToListeObjet(pParametres.get("messages")[0], IMessageAffichageEquipementMqttRest.class)
+					.stream().map(IMessageAffichageEquipementMqttRest.class::cast).collect(Collectors.toList());
+
+			if (messages.size() == 0) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotageMessages(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], messages);
 			return "";
 		}
 
