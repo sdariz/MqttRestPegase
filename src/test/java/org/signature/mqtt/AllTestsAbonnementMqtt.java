@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ AbonnementEtatAffichageTest.class, AbonnementEtatTechniqueTest.class,
-		AbonnementEtatAffichageEtatTechniqueTest.class })
+		AbonnementEtatAffichageEtatTechniqueTest.class, AbonnementModificationPegaseTest.class })
 public class AllTestsAbonnementMqtt {
 
 }

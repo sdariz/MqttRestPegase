@@ -22,7 +22,7 @@ import org.signature.mqttRest.services.mqtt.PublicationMqtt;
 
 /**
  * Tests sur la publication et la reception de messages d'état d'affichage et
- * d'état techniqueO
+ * d'état technique
  * 
  * @author SDARIZCUREN
  *
