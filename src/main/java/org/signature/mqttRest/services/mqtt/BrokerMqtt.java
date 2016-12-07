@@ -1,11 +1,14 @@
 package org.signature.mqttRest.services.mqtt;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.moquette.BrokerConstants;
 import io.moquette.server.Server;
 
 /**
@@ -16,6 +19,8 @@ import io.moquette.server.Server;
  */
 public class BrokerMqtt {
 	private final static Logger LOG = LoggerFactory.getLogger(BrokerMqtt.class);
+	
+	private final static String DOSSIER_MQTT_BROKER = "mqtt-broker";
 
 	private int _port;
 	private Server _serveur;
@@ -41,7 +46,7 @@ public class BrokerMqtt {
 			@Override
 			public void run() {
 				LOG.warn("Arret du broker mqtt");
-				
+
 				stopBroker();
 			}
 		});
@@ -56,11 +61,17 @@ public class BrokerMqtt {
 		if (_serveur != null) {
 			return;
 		}
+		
+		// Suppression et recreation du dossier db
+		creationDossierBroker();
 
 		_serveur = new Server();
 
 		Properties props = new Properties();
-		props.setProperty("port", Integer.toString(_port));
+		props.setProperty(BrokerConstants.PORT_PROPERTY_NAME, Integer.toString(_port));
+		props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME,
+				System.getProperty("user.dir") + File.separator + DOSSIER_MQTT_BROKER + File.separator
+						+ BrokerConstants.DEFAULT_MOQUETTE_STORE_MAP_DB_FILENAME);
 
 		// Propriété par défaut
 		// props.setProperty("allow_anonymous", "true");
@@ -72,6 +83,19 @@ public class BrokerMqtt {
 		}
 	}
 	
+	// Suppression et recréation du dossier du broker à chaque démarrage, pour éviter d'exploser la taille
+	private void creationDossierBroker() {
+		File dir = new File(DOSSIER_MQTT_BROKER);
+		if(dir.exists()) {
+			File[] files = dir.listFiles();
+			Arrays.asList(files).forEach(f -> f.delete());
+			
+			dir.delete();
+		}
+		
+		dir.mkdir();
+	}
+
 	/**
 	 * Arrêt du serveur
 	 */
