@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.services.mqtt.AbonnementMqtt;
-import org.signature.mqttRest.services.mqtt.BrokerMqtt;
+import org.signature.mqttRest.services.mqtt.GestionnaireBrokerMqtt;
 import org.signature.mqttRest.services.mqtt.IListenerMessageMqtt;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.services.mqtt.PublicationMqtt;
@@ -33,21 +33,19 @@ import org.signature.mqttRest.services.mqtt.PublicationMqtt;
  *
  */
 public class AbonnementEtatAffichageTest {
-	private static BrokerMqtt broker;
 	private final static String HOST = "localhost";
 	private final static int PORT = 8866;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// Démarrage du broker de message
-		broker = new BrokerMqtt(PORT);
-		broker.startBroker();
+		GestionnaireBrokerMqtt.getInstance().startBroker(PORT);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		// Arrêt du broker
-		broker.stopBroker();
+		GestionnaireBrokerMqtt.getInstance().stopBroker();
 	}
 
 	@Before
