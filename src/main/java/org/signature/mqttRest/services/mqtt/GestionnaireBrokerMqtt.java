@@ -22,7 +22,7 @@ public class GestionnaireBrokerMqtt {
 	private static GestionnaireBrokerMqtt _instance = null;
 
 	private final static String DOSSIER_MQTT_BROKER = "mqtt-broker";
-	private final static int PORT_DEFAUT = 1883;
+	public final static int PORT_DEFAUT = 1883;
 
 	private Server _serveur = null;
 
