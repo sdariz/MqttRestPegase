@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
-import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest.TypeEquipement;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePplmvMqttRest;
@@ -68,7 +68,7 @@ public class MessageScenarioMqttRest {
 
 		_ordonnanceurs = pOrdonnanceurs;
 	}
-	
+
 	/**
 	 * Initialise l'identifiant unique du scénario
 	 * 
@@ -172,7 +172,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.PMV).stream().map(MessagePmvMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type PPLMV, pilotés dans ce scénario
 	 * 
@@ -183,7 +183,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.PPLMV).stream().map(MessagePplmvMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type PPAD, pilotés dans ce scénario
 	 * 
@@ -194,7 +194,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.PPAD).stream().map(MessagePpadMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type Pictogramme, pilotés dans ce scénario
 	 * 
@@ -205,7 +205,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.PICTOGRAMME).stream().map(MessagePictogrammeMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type R24, pilotés dans ce scénario
 	 * 
@@ -216,7 +216,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.R24).stream().map(MessageR24MqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type Prisme, pilotés dans ce scénario
 	 * 
@@ -227,7 +227,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.PRISME).stream().map(MessagePrismeMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type Barrière, pilotés dans ce scénario
 	 * 
@@ -238,7 +238,7 @@ public class MessageScenarioMqttRest {
 		return getTousMessagesPourType(TypeEquipement.BARRIERE).stream().map(MessageBarriereMqttRest.class::cast)
 				.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Retourne tous les messages de type BRA, pilotés dans ce scénario
 	 * 
@@ -311,4 +311,5 @@ public class MessageScenarioMqttRest {
 			return false;
 		return true;
 	}
+
 }
