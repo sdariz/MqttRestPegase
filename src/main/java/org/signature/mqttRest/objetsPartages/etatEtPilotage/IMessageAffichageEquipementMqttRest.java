@@ -34,6 +34,14 @@ public interface IMessageAffichageEquipementMqttRest {
 		EXPLOITATION, ETEINT, NEUTRE
 	};
 
+	public final static String ETEINT = "eteint";
+	public final static String ALLUME = "allume";
+	public final static String OUVERT = "ouvert";
+	public final static String FERME = "ferme";
+	public final static String DEPLOYE = "deploye";
+	public final static String REPLIE = "replie";
+	public final static String INCONNU = "inconnu";
+
 	/**
 	 * Initialise une luminosité commune pour l'ensemble des modules de
 	 * l'équipement
@@ -72,18 +80,19 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * @return l'affichage des modules
 	 */
 	public List<MessageModuleMqttRest> getMessagesModules();
-	
+
 	/**
 	 * Donne l'identifant unique associé à l'équipement
 	 * 
 	 * @return l'identifant unique de l'équipement
 	 */
 	public String getIdentifiantEquipement();
-	
+
 	/**
 	 * Initialise l'identifant unique associé à l'équipement
 	 * 
-	 * @param pId l'identifant unique de l'équipement
+	 * @param pId
+	 *            l'identifant unique de l'équipement
 	 */
 	public void setIdentifiantEquipement(String pId);
 
@@ -100,11 +109,12 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * @return le type de message
 	 */
 	public TypeMessage getTypeMessage();
-	
+
 	/**
 	 * Initialise le type du message : message d'exploitation, de mise au neutre
 	 * 
-	 * @param pType le type de message
+	 * @param pType
+	 *            le type de message
 	 */
 	public void setTypeMessage(TypeMessage pType);
 }

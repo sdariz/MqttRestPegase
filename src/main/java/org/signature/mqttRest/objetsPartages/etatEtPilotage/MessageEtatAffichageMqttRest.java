@@ -27,7 +27,8 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	}
 
 	/**
-	 * Construction du message
+	 * Construction du message, avec une horodate de génération à la date
+	 * courante, et une horodate de fin null.
 	 * 
 	 * @param pIdExpediteur
 	 *            l'identifiant de l'expéditeur
@@ -39,6 +40,8 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 		_referenceMessage = pReferenceMessage;
 
 		_horodateGeneration = new Date();
+		_horodateFin = null;
+		_messageEquipement = null;
 	}
 
 	/**
@@ -85,12 +88,11 @@ public class MessageEtatAffichageMqttRest implements IMessageMqttRest {
 	 * @return l'identifiant de l'équipement
 	 */
 	public String getIdentifiantEquipement() {
-		if(_messageEquipement != null) {
+		if (_messageEquipement != null) {
 			return _messageEquipement.getIdentifiantEquipement();
 		}
 		return "";
 	}
-
 
 	/**
 	 * Donne l'horodate de génération du message
