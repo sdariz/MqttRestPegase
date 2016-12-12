@@ -36,11 +36,32 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 	 *            l'identifiant unique de l'équipement
 	 */
 	public MessageEtatTechniqueMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdEquipement) {
+		this(pIdExpediteur, pReferenceMessage, pIdEquipement, new ArrayList<>());
+	}
+
+	/**
+	 * Construction du message
+	 * 
+	 * @param pIdExpediteur
+	 *            l'identifiant de l'expéditeur
+	 * @param pReferenceMessage
+	 *            la référence du message, donnée par l'expéditeur
+	 * @param pIdEquipement
+	 *            l'identifiant unique de l'équipement
+	 * @param pAlarmes
+	 *            la liste des alarmes
+	 */
+	public MessageEtatTechniqueMqttRest(String pIdExpediteur, String pReferenceMessage, String pIdEquipement,
+			List<MessageAlarmeMqttRest> pAlarmes) {
 		_idExpediteur = pIdExpediteur;
 		_referenceMessage = pReferenceMessage;
 		_idEquipement = pIdEquipement;
 
-		_alarmes = new ArrayList<>();
+		if (pAlarmes == null) {
+			pAlarmes = new ArrayList<>();
+		}
+
+		_alarmes = pAlarmes;
 	}
 
 	/**
@@ -123,7 +144,9 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 		_alarmes = pAlarmes;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -137,7 +160,9 @@ public class MessageEtatTechniqueMqttRest implements IMessageMqttRest {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
