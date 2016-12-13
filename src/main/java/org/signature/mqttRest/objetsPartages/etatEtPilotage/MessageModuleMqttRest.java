@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Un message s'appliquant sur un module afficheur
+ * 
  * @author SDARIZCUREN
  *
  */
@@ -16,7 +17,7 @@ public class MessageModuleMqttRest {
 	public enum Mode {
 		FIXE, CLIGNOTANT, ALTERNAT
 	}
-	
+
 	private List<String> _messagesParPage;
 	private List<String> _labelsParPage;
 	private List<Integer> _tempsAllumage;
@@ -25,107 +26,197 @@ public class MessageModuleMqttRest {
 	private Mode _modeAffichage;
 	private int _dureeValidite;
 	private int _dureeValiditeRestante;
-	
+
 	/**
-	 * Construction du message. Initialisé par défaut en mode fixe, luminosité automatique, DV = 0
+	 * Construction du message. Initialisé par défaut en mode fixe, luminosité
+	 * automatique, DV = 0
 	 */
 	public MessageModuleMqttRest() {
-		_messagesParPage = new ArrayList<>();
-		_labelsParPage = new ArrayList<>();
-		_tempsAllumage = new ArrayList<>();
-		_tempsExtinction = new ArrayList<>();
-		_luminosite = Luminosite.AUTOMATIQUE;
-		_modeAffichage = Mode.FIXE;
-		_dureeValidite = 0;
-		_dureeValiditeRestante = -1;
+		this(new ArrayList<>());
 	}
-	
+
+	/**
+	 * Construction du message. Initialisé par défaut en mode fixe, luminosité
+	 * automatique, DV = 0
+	 * 
+	 * @param pMessagesParPage
+	 *            les messages par pages
+	 */
+	public MessageModuleMqttRest(List<String> pMessagesParPage) {
+		this(pMessagesParPage, new ArrayList<>());
+	}
+
+	/**
+	 * Construction du message. Initialisé par défaut en mode fixe, luminosité
+	 * automatique, DV = 0
+	 * 
+	 * @param pMessagesParPage
+	 *            les messages par pages
+	 * @param pLabelsParPage
+	 *            les labels décrivant chaque message du module
+	 */
+	public MessageModuleMqttRest(List<String> pMessagesParPage, List<String> pLabelsParPage) {
+		this(pMessagesParPage, pLabelsParPage, new ArrayList<>(), new ArrayList<>(), Luminosite.AUTOMATIQUE,
+				Mode.FIXE, 0, -1);
+	}
+
+	/**
+	 * Construction du message.
+	 * 
+	 * @param pMessagesParPage
+	 *            les messages par pages
+	 * @param pLabelsParPage
+	 *            les labels décrivant chaque message du module
+	 */
+
+	/**
+	 * Construction du message.
+	 * 
+	 * @param pMessagesParPage
+	 *            les messages par pages
+	 * @param pLabelsParPage
+	 *            les labels décrivant chaque message du module
+	 * @param pTempsAllumage
+	 *            les temps d'allumage du message en mode clignotant et alternat
+	 * @param pTempsExtinction
+	 *            les temps d'extinction du message en mode clignotant et
+	 *            alternat
+	 * @param pLuminosite
+	 *            la luminosité affichée
+	 * @param pModeAffichage
+	 *            le mode d'affichage : fixe, clignotant ou alternat
+	 * @param pDureeValidite
+	 *            la durée de validité du message
+	 * @param pDureeValiditeRestante
+	 *            la durée de validité restante du message, -1 si pas géré
+	 */
+	public MessageModuleMqttRest(List<String> pMessagesParPage, List<String> pLabelsParPage,
+			List<Integer> pTempsAllumage, List<Integer> pTempsExtinction, Luminosite pLuminosite, Mode pModeAffichage,
+			int pDureeValidite, int pDureeValiditeRestante) {
+		if (pMessagesParPage == null) {
+			pMessagesParPage = new ArrayList<>();
+		}
+
+		if (pLabelsParPage == null) {
+			pLabelsParPage = new ArrayList<>();
+		}
+
+		if (pTempsAllumage == null) {
+			pTempsAllumage = new ArrayList<>();
+		}
+
+		if (pTempsExtinction == null) {
+			pTempsExtinction = new ArrayList<>();
+		}
+
+		_messagesParPage = pMessagesParPage;
+		_labelsParPage = pLabelsParPage;
+
+		_tempsAllumage = pTempsAllumage;
+		_tempsExtinction = pTempsExtinction;
+
+		_luminosite = pLuminosite;
+		_modeAffichage = pModeAffichage;
+
+		_dureeValidite = pDureeValidite;
+		_dureeValiditeRestante = pDureeValiditeRestante;
+	}
+
 	/**
 	 * Initialisation des messages du module
-	 * @param pMessages les messages à utiliser
+	 * 
+	 * @param pMessages
+	 *            les messages à utiliser
 	 */
 	public void setMessagesParPage(List<String> pMessages) {
-		if(pMessages == null) {
-			_messagesParPage = new ArrayList<>();
-			return;
+		if (pMessages == null) {
+			pMessages = new ArrayList<>();
 		}
-		
+
 		_messagesParPage = pMessages;
 	}
-	
+
 	/**
 	 * Retourne les pages de message
+	 * 
 	 * @return les messages du module
 	 */
 	public List<String> getMessagesParPage() {
 		return _messagesParPage;
 	}
-	
+
 	/**
 	 * Initialisation des labels des messages
-	 * @param plabels les labels décrivant chaque message du module
+	 * 
+	 * @param plabels
+	 *            les labels décrivant chaque message du module
 	 */
 	public void setLabelsParPage(List<String> pLabels) {
-		if(pLabels == null) {
-			_labelsParPage = new ArrayList<>();
-			return;
+		if (pLabels == null) {
+			pLabels = new ArrayList<>();
 		}
-		
+
 		_labelsParPage = pLabels;
 	}
-	
+
 	/**
 	 * Retourne les labels des messages
+	 * 
 	 * @return les labels décrivant chaque message du module
 	 */
 	public List<String> getLabelsParPage() {
 		return _labelsParPage;
 	}
-	
+
 	/**
 	 * Retourne les temps d'allumage de chaque page
+	 * 
 	 * @return les temps d'allumage
 	 */
 	public List<Integer> getTempsAllumage() {
 		return _tempsAllumage;
 	}
-	
+
 	/**
 	 * Initialise les temps d'allumage de chaque page
-	 * @param pTempsAllumage les temps d'allumage
+	 * 
+	 * @param pTempsAllumage
+	 *            les temps d'allumage
 	 */
 	public void setTempsAllumage(List<Integer> pTemps) {
-		if(pTemps == null) {
-			_tempsAllumage = new ArrayList<>();
-			return;
+		if (pTemps == null) {
+			pTemps = new ArrayList<>();
 		}
-		
+
 		_tempsAllumage = pTemps;
 	}
-	
+
 	/**
 	 * Retourne les temps d'extinction de chaque page
+	 * 
 	 * @return les temps d'extinction
 	 */
 	public List<Integer> getTempsExtinction() {
 		return _tempsExtinction;
 	}
-	
+
 	/**
 	 * Initialise les temps d'extinction de chaque page
-	 * @param pTempsAllumage les temps d'extinction
+	 * 
+	 * @param pTempsAllumage
+	 *            les temps d'extinction
 	 */
 	public void setTempsExtinction(List<Integer> pTemps) {
-		if(pTemps == null) {
-			_tempsExtinction = new ArrayList<>();
-			return;
+		if (pTemps == null) {
+			pTemps = new ArrayList<>();
 		}
-		
+
 		_tempsExtinction = pTemps;
 	}
 
 	/**
 	 * Retourne la luminosité à appliquer sur le module
+	 * 
 	 * @return la luminosité
 	 */
 	public Luminosite getLuminosite() {
@@ -134,7 +225,9 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Initialisation de la luminosité à appliquer sur le module
-	 * @param pLuminosite la luminosité à utiliser
+	 * 
+	 * @param pLuminosite
+	 *            la luminosité à utiliser
 	 */
 	public void setLuminosite(Luminosite pLuminosite) {
 		_luminosite = pLuminosite;
@@ -142,6 +235,7 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Retourne le mode d'affichage
+	 * 
 	 * @return le mode d'affichage
 	 */
 	public Mode getModeAffichage() {
@@ -150,7 +244,9 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Initialisation du mode d'affichage
-	 * @param pModeAffichage le mode d'affichage
+	 * 
+	 * @param pModeAffichage
+	 *            le mode d'affichage
 	 */
 	public void setModeAffichage(Mode pModeAffichage) {
 		_modeAffichage = pModeAffichage;
@@ -158,6 +254,7 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Retourne la durée de validité du message
+	 * 
 	 * @return la durée de validité
 	 */
 	public int getDureeValidite() {
@@ -166,7 +263,9 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Initialisation de la durée de validité du message
-	 * @param pDuree la durée de validité
+	 * 
+	 * @param pDuree
+	 *            la durée de validité
 	 */
 	public void setDureeValidite(int pDuree) {
 		_dureeValidite = pDuree;
@@ -174,6 +273,7 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Retourne la durée de validité restante du message
+	 * 
 	 * @return la durée de validité restante, -1 si pas gérée
 	 */
 	public int getDureeValiditeRestante() {
@@ -182,20 +282,24 @@ public class MessageModuleMqttRest {
 
 	/**
 	 * Initialisation de la durée de validité restante du message
-	 * @param pDuree la durée de validité restante, -1 pour ne pas gérer cette valeur (valeur par défaut)
+	 * 
+	 * @param pDuree
+	 *            la durée de validité restante, -1 pour ne pas gérer cette
+	 *            valeur (valeur par défaut)
 	 */
 	public void setDureeValiditeRestante(int pDuree) {
 		_dureeValiditeRestante = pDuree;
 	}
-	
+
 	/**
 	 * Clone de l'objet courant
+	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
 	public MessageModuleMqttRest clone() {
 		MessageModuleMqttRest retour = new MessageModuleMqttRest();
-		
+
 		retour._messagesParPage.addAll(_messagesParPage);
 		retour._labelsParPage.addAll(_labelsParPage);
 		retour._tempsAllumage.addAll(_tempsAllumage);
@@ -204,7 +308,7 @@ public class MessageModuleMqttRest {
 		retour._modeAffichage = _modeAffichage;
 		retour._dureeValidite = _dureeValidite;
 		retour._dureeValiditeRestante = _dureeValiditeRestante;
-		
+
 		return retour;
 	}
 
