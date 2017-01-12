@@ -235,12 +235,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire à tester
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à tester
 	 */
 	@Override
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdArmoire) {
+			String pIdEquipement) {
 	}
 
 	/**
@@ -250,12 +250,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire à remettre à l'heure
+	 * @param pIdE
+	 *            l'identifiant d'un équipement de l'armoire à remettre à l'heure
 	 */
 	@Override
 	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur, String pReferenceCommande,
-			String pIdArmoire) {
+			String pIdEquipement) {
 	}
 
 	/**
@@ -266,13 +266,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
 	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire à remettre à l'heure
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @param pTrame
 	 *            la commande à transmettre à l'armoire
 	 * @return la réponse de l'armoire
 	 */
 	@Override
-	public String traiteDemandeArmoire(String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire,
+	public String traiteDemandeArmoire(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			String pTrame) {
 		return "";
 	}
