@@ -250,7 +250,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdE
+	 * @param pIdEquipement
 	 *            l'identifiant d'un équipement de l'armoire à remettre à l'heure
 	 */
 	@Override
@@ -265,7 +265,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
+	 * @param pIdEquipement
 	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @param pTrame
 	 *            la commande à transmettre à l'armoire
@@ -331,8 +331,7 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande d'obtention de la liste des catégories de la
-	 * bibliothèque
+	 * Traite une demande d'obtention des alarmes entre deux dates
 	 * 
 	 * @param pIdentifiantExpediteur
 	 *            l'identifiant unique de l'expéditeur : peut être vide

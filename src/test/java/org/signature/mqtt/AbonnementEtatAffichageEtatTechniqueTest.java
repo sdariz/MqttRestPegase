@@ -34,7 +34,7 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// Démarrage du broker de message
-		GestionnaireBrokerMqtt.getInstance().startBroker(PORT);
+		GestionnaireBrokerMqtt.getInstance().startBroker(PORT, true);
 	}
 
 	@AfterClass

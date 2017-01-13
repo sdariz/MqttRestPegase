@@ -55,10 +55,22 @@ public class GestionnaireBrokerMqtt {
 	}
 
 	/**
-	 * Démarrage du serveur sur le port par défaut : 1883
+	 * Démarrage du serveur sur le port par défaut : 1883, avec sauvegarde des
+	 * données sur disque
 	 */
 	public synchronized void startBroker() {
-		this.startBroker(PORT_DEFAUT);
+		this.startBroker(PORT_DEFAUT, false);
+	}
+
+	/**
+	 * Démarrage du serveur sur le port par défaut : 1883
+	 * 
+	 * @param pInMemoryDb
+	 *            true pour ne pas sauvegarder les données de fonctionnement du
+	 *            serveur : reprise, ...
+	 */
+	public synchronized void startBroker(boolean pInMemoryDb) {
+		this.startBroker(PORT_DEFAUT, pInMemoryDb);
 	}
 
 	/**
@@ -66,8 +78,11 @@ public class GestionnaireBrokerMqtt {
 	 * 
 	 * @param pPort
 	 *            le port à utiliser
+	 * @param pInMemoryDb
+	 *            true pour ne pas sauvegarder les données de fonctionnement du
+	 *            serveur : reprise, ...
 	 */
-	public synchronized void startBroker(int pPort) {
+	public synchronized void startBroker(int pPort, boolean pInMemoryDb) {
 		// Rien à faire si le serveur est déjà démarré
 		if (_serveur != null) {
 			return;
@@ -80,9 +95,14 @@ public class GestionnaireBrokerMqtt {
 
 		Properties props = new Properties();
 		props.setProperty(BrokerConstants.PORT_PROPERTY_NAME, Integer.toString(pPort));
-		props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME,
-				System.getProperty("user.dir") + File.separator + DOSSIER_MQTT_BROKER + File.separator
-						+ BrokerConstants.DEFAULT_MOQUETTE_STORE_MAP_DB_FILENAME);
+
+		if (pInMemoryDb) {
+			props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME, "");
+		} else {
+			props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME,
+					System.getProperty("user.dir") + File.separator + DOSSIER_MQTT_BROKER + File.separator
+							+ BrokerConstants.DEFAULT_MOQUETTE_STORE_MAP_DB_FILENAME);
+		}
 
 		// Propriété par défaut
 		// props.setProperty("allow_anonymous", "true");
