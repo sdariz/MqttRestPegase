@@ -109,12 +109,12 @@ public class ServiceRequetesInformationPegase {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'id de l'armoire concernée
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @return les propriétés d'une armoire, ou null si problème
 	 */
 	public static MessageProprietesArmoireMqttRest requeteDemandeProprietesArmoire(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -126,7 +126,7 @@ public class ServiceRequetesInformationPegase {
 		Map<String, String> params = new HashMap<>();
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
-		params.put("idArmoire", pIdArmoire);
+		params.put("idEquipement", pIdEquipement);
 
 		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
 				GestionnaireRoutesInformationPegase.PROPRIETES_ARMOIRE, params);

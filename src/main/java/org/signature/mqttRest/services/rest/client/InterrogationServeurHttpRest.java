@@ -314,13 +314,13 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à tester
 	 */
 	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesInterrogationArmoire.requeteLancementTestEquipementsArmoire(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pIdArmoire);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**
@@ -334,13 +334,13 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *             l'identifiant d'un équipement de l'armoire à remettre à l'heure
 	 */
 	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesInterrogationArmoire.requeteRemiseHeureArmoire(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pIdArmoire);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**
@@ -354,16 +354,16 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @param pTrame
 	 *            la trame à envoyer à l'armoire
 	 * @return la réponse de l'armoire
 	 */
 	public static String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire, String pTrame) {
+			String pReferenceCommande, String pIdEquipement, String pTrame) {
 		return ServiceRequetesInterrogationArmoire.requeteDemandeArmoire(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pIdArmoire, pTrame);
+				pReferenceCommande, pIdEquipement, pTrame);
 	}
 
 	/**
@@ -559,14 +559,14 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'id de l'armoire concerné
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @return les propriétés d'une armoire, ou null si problème
 	 */
 	public static MessageProprietesArmoireMqttRest requeteDemandeProprietesArmoire(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pIdArmoire) {
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoire(pHost, pPort, pIdentifiantExpediteur,
-				pReferenceCommande, pIdArmoire);
+				pReferenceCommande, pIdEquipement);
 	}
 
 	/**

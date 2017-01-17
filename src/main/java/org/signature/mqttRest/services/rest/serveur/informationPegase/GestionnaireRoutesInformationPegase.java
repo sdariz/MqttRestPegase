@@ -66,7 +66,7 @@ public class GestionnaireRoutesInformationPegase {
 		
 		if (PROPRIETES_ARMOIRE.equals(pUri)) {
 			// Cas demande pour une armoire ou pour l'ensemble des armoires
-			if (pParametres.get("idArmoire") == null || pParametres.get("idArmoire").length == 0) {
+			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
 				return Util.toJsonString(
 						pTraiteRequetesRest.traiteDemandeProprietesArmoires(pParametres.get("idExpediteur")[0],
 								pParametres.get("idCommande")[0]));
@@ -74,7 +74,7 @@ public class GestionnaireRoutesInformationPegase {
 			
 			return Util.toJsonString(
 					pTraiteRequetesRest.traiteDemandeProprietesArmoire(pParametres.get("idExpediteur")[0],
-							pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0]));
+							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
 		}
 
 		return "";

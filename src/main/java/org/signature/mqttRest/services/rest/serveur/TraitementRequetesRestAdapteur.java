@@ -434,13 +434,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'id de l'armoire concernée
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @return null
 	 */
 	@Override
 	public MessageProprietesArmoireMqttRest traiteDemandeProprietesArmoire(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+			String pReferenceCommande, String pIdEquipement) {
 		return null;
 	}
 

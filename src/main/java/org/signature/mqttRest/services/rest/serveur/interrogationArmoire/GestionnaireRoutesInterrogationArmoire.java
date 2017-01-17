@@ -71,19 +71,19 @@ public class GestionnaireRoutesInterrogationArmoire {
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (LANCEMENT_TEST_EQUIPEMENTS.equals(pUri)) {
 			pTraiteRequetesRest.traiteDemandeLancementTestEquipements(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0]);
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]);
 			return "";
 		}
 		
 		if (REMISE_HEURE.equals(pUri)) {
 			pTraiteRequetesRest.traiteDemandeRemiseHeureArmoire(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0]);
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]);
 			return "";
 		}
 		
 		if (COMMANDE.equals(pUri)) {
 			return pTraiteRequetesRest.traiteDemandeArmoire(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0], pParametres.get("idArmoire")[0], pParametres.get("trame")[0]);
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], pParametres.get("trame")[0]);
 		}
 
 		return "";

@@ -27,11 +27,11 @@ public class ServiceRequetesInterrogationArmoire {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à tester
 	 */
 	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+			String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -42,14 +42,14 @@ public class ServiceRequetesInterrogationArmoire {
 
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
-		params.put("idArmoire", pIdArmoire);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.LANCEMENT_TEST_EQUIPEMENTS,
 				params);
 	}
-	
+
 	/**
 	 * Envoi au serveur REST une demande de remise à l'heure d'une armoire
 	 * 
@@ -61,11 +61,11 @@ public class ServiceRequetesInterrogationArmoire {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à remettre à l'heure
 	 */
 	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire) {
+			String pReferenceCommande, String pIdEquipement) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -76,14 +76,13 @@ public class ServiceRequetesInterrogationArmoire {
 
 		// Paramètre de la requette
 		Map<String, String> params = new HashMap<>();
-		params.put("idArmoire", pIdArmoire);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
-		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.REMISE_HEURE,
-				params);
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.REMISE_HEURE, params);
 	}
-	
+
 	/**
 	 * Envoi au serveur REST une interrogation pour une armoire
 	 * 
@@ -95,14 +94,14 @@ public class ServiceRequetesInterrogationArmoire {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'identifiant de l'armoire
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @param pTrame
 	 *            la trame à envoyer à l'armoire
 	 * @return la réponse de l'armoire
 	 */
 	public static String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire, String pTrame) {
+			String pReferenceCommande, String pIdEquipement, String pTrame) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}
@@ -110,15 +109,14 @@ public class ServiceRequetesInterrogationArmoire {
 		if (pReferenceCommande == null) {
 			pReferenceCommande = "";
 		}
-		
+
 		Map<String, String> params = new HashMap<>();
-		params.put("idArmoire", pIdArmoire);
+		params.put("idEquipement", pIdEquipement);
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 		params.put("trame", pTrame);
 
-		return ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.COMMANDE,
-				params);
+		return ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesInterrogationArmoire.COMMANDE, params);
 	}
 
 }

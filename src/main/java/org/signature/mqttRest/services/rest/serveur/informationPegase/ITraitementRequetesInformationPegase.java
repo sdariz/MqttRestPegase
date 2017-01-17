@@ -46,12 +46,12 @@ public interface ITraitementRequetesInformationPegase {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
-	 * @param pIdArmoire
-	 *            l'id de l'armoire concernée
+	 * @param pIdEquipement
+	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @return les propriétés d'une armoire, null si problème
 	 */
 	public MessageProprietesArmoireMqttRest traiteDemandeProprietesArmoire(String pIdentifiantExpediteur,
-			String pReferenceCommande, String pIdArmoire);
+			String pReferenceCommande, String pIdEquipement);
 
 	/**
 	 * Traite une demande d'obtention des propriétés des armoires
