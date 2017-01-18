@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -89,10 +90,14 @@ public class ClientHttpRest {
 			return "";
 		}
 
-		
-
 		// Requête GET
 		HttpGet httpGet = new HttpGet(uri);
+		
+		// Timeout de connexion
+		RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
+				.setConnectionRequestTimeout(5000).build();
+		httpGet.setConfig(defaultRequestConfig);
+		
 		String retour = "";
 
 		// Emission de la requête
@@ -152,6 +157,11 @@ public class ClientHttpRest {
 
 		// Requête POST
 		HttpPost httpPost = new HttpPost(sb.toString());
+
+		// Timeout de connexion
+		RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
+				.setConnectionRequestTimeout(5000).build();
+		httpPost.setConfig(defaultRequestConfig);
 
 		// Construction de la liste des paramètres de la requête
 		List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
