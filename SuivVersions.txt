@@ -1,0 +1,5 @@
+Version 1.0: 12/2016
+	Version initiale
+
+Version 1.1: 07/02/2017
+	Mise à jour des librairies spark-core et jackson-databind
