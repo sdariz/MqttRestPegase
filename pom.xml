@@ -4,7 +4,7 @@
 
 	<groupId>org.signature</groupId>
 	<artifactId>mqttRestPegase</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>MqttRestPegase</name>
 
 	<repositories>
@@ -28,14 +28,14 @@
 		<dependency>
 			<groupId>com.sparkjava</groupId>
 			<artifactId>spark-core</artifactId>
-			<version>2.5.2</version>
+			<version>2.5.5</version>
 		</dependency>
 		<!-- dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
 			<version>1.7.21</version> </dependency -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.8.4</version>
+			<version>2.8.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
