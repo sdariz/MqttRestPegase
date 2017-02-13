@@ -3,3 +3,4 @@ Version 1.0: 12/2016
 
 Version 1.1: 07/02/2017
 	Mise à jour des librairies spark-core et jackson-databind
+	Retouche conversion en JSON pour éviter d'appeler une liste sur une méthode de conversion attendant un objet
