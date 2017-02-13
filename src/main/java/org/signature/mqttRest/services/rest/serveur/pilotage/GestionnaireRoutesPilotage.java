@@ -80,12 +80,12 @@ public class GestionnaireRoutesPilotage {
 			// tous les équipements
 			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
 				return Util
-						.toJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
+						.booleanToJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
 								pParametres.get("idCommande")[0]));
 			}
 			
 			return Util
-					.toJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
+					.booleanToJsonString(pTraiteRequetesRest.traiteDemandePilotageEnCours(pParametres.get("idExpediteur")[0],
 							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
 		}
 

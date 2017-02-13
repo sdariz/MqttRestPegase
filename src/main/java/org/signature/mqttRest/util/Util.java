@@ -31,7 +31,7 @@ public class Util {
 	 *            la valeur à sérialiser
 	 * @return la chaîne JSON correspondante à la valeur
 	 */
-	public static String toJsonString(boolean pVal) {
+	public static String booleanToJsonString(boolean pVal) {
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
@@ -49,7 +49,7 @@ public class Util {
 	 *            l'objet à sérialiser
 	 * @return la chaîne JSON correspondante à l'objet
 	 */
-	public static String toJsonString(Object pObj) {
+	public static String ObjectToJsonString(Object pObj) {
 		if (pObj == null) {
 			return "";
 		}
@@ -72,7 +72,7 @@ public class Util {
 	 *            les objets à sérialiser
 	 * @return la chaîne JSON correspondante aux objets
 	 */
-	public static String toJsonString(List<Object> pObjs) {
+	public static String listObjectToJsonString(List<?> pObjs) {
 		if (pObjs == null || pObjs.size() == 0) {
 			return "";
 		}

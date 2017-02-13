@@ -55,7 +55,7 @@ public class GestionnaireRoutesAdministration {
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (TEST_PRESENCE.equals(pUri)) {
 			// Pas de traitement, réponse directe OK
-			return Util.toJsonString(true);
+			return Util.booleanToJsonString(true);
 		}
 
 		return "";

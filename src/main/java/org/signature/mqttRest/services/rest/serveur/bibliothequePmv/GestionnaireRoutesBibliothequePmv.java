@@ -53,18 +53,18 @@ public class GestionnaireRoutesBibliothequePmv {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (LISTE_CATEGORIES.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeCategoriesBibliothequePmv(
+			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeCategoriesBibliothequePmv(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 		}
 
 		if (LISTE_MESSAGES_DANS_CATEGORIE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeMessagesDansCategorieBibliothequePmv(
+			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeMessagesDansCategorieBibliothequePmv(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
 					pParametres.get("categorie")[0]));
 		}
 		
 		if (MESSAGE.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeMessageBibliothequePmv(
+			return Util.ObjectToJsonString(pTraiteRequetesRest.traiteDemandeMessageBibliothequePmv(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
 					pParametres.get("categorie")[0], pParametres.get("nom")[0]));
 		}

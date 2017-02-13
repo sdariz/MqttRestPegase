@@ -82,7 +82,7 @@ public class ServiceRequetesAdministration {
 		Map<String, String> params = new HashMap<>();
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
-		params.put("equipements", Util.toJsonString(pIdsEquipements));
+		params.put("equipements", Util.listObjectToJsonString(pIdsEquipements));
 		
 		params.put("interdiction", Boolean.toString(pInterdit));
 

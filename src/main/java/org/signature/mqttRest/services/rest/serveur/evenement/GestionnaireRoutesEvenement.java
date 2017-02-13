@@ -59,7 +59,7 @@ public class GestionnaireRoutesEvenement {
 			Date horodateFin = new Date(new Long(pParametres.get("horodateFin")[0]));
 			boolean active = Boolean.parseBoolean(pParametres.get("active")[0]);
 
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeListeAlarmes(pParametres.get("idExpediteur")[0],
+			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeListeAlarmes(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], horodateDebut, horodateFin,
 					active));
 		}
@@ -67,7 +67,7 @@ public class GestionnaireRoutesEvenement {
 		if (ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE.equals(pUri)) {
 			Date horodate = new Date(new Long(pParametres.get("horodate")[0]));
 
-			return Util.toJsonString(
+			return Util.ObjectToJsonString(
 					pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementPourDate(pParametres.get("idExpediteur")[0],
 							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], horodate));
 		}
@@ -76,7 +76,7 @@ public class GestionnaireRoutesEvenement {
 			Date horodateDebut = new Date(new Long(pParametres.get("horodateDebut")[0]));
 			Date horodateFin = new Date(new Long(pParametres.get("horodateFin")[0]));
 
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementEntreDeuxDates(
+			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementEntreDeuxDates(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
 					pParametres.get("idEquipement")[0], horodateDebut, horodateFin));
 		}

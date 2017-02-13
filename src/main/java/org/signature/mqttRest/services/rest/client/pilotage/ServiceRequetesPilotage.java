@@ -83,7 +83,7 @@ public class ServiceRequetesPilotage {
 		}
 
 		Map<String, String> params = new HashMap<>();
-		params.put("scenario", Util.toJsonString(pScenarioTemporaire));
+		params.put("scenario", Util.ObjectToJsonString(pScenarioTemporaire));
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
@@ -119,7 +119,7 @@ public class ServiceRequetesPilotage {
 
 		Map<String, String> params = new HashMap<>();
 		params.put("idScenario", pIdScenario);
-		params.put("messages", Util.toJsonString(pMessagesAPiloter));
+		params.put("messages", Util.listObjectToJsonString(pMessagesAPiloter));
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
@@ -145,7 +145,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotagePmv(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePmvMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PMV);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PMV);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotagePplmv(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PPLMV);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PPLMV);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotagePpad(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePpadMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PPAD);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PPAD);
 	}
 
 	/**
@@ -211,7 +211,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotagePictogramme(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PICTOGRAMME);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PICTOGRAMME);
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotageR24(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageR24MqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_R24);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_R24);
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotagePrisme(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PRISME);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_PRISME);
 	}
 
 	/**
@@ -277,7 +277,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotageBarriere(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BARRIERE);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BARRIERE);
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class ServiceRequetesPilotage {
 	public static void requetePilotageBra(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		requetePilotageEquipement(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, pIdEquipement,
-				Util.toJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BRA);
+				Util.ObjectToJsonString(pMessageAPiloter), GestionnaireRoutesPilotage.PILOTAGE_BRA);
 	}
 
 	/**
@@ -329,7 +329,7 @@ public class ServiceRequetesPilotage {
 		Map<String, String> params = new HashMap<>();
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
-		params.put("messages", Util.toJsonString(pMessages));
+		params.put("messages", Util.listObjectToJsonString(pMessages));
 
 		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesPilotage.PILOTAGE_MESSAGES, params);
 	}

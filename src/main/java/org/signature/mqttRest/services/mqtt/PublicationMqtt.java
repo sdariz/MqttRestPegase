@@ -62,7 +62,7 @@ public class PublicationMqtt {
 	 */
 	public static synchronized void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
 			Topic pTopic) {
-		String content = Util.toJsonString(pMsgs);
+		String content = Util.listObjectToJsonString(pMsgs);
 		String uri = "tcp://" + pHost + ":" + pPort;
 
 		// Génération d'un id unique pour le client

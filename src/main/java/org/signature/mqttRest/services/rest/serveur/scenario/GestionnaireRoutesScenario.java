@@ -52,7 +52,7 @@ public class GestionnaireRoutesScenario {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (LISTE_IDENTIFIANTS.equals(pUri)) {
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeIdentifiantsScenarios(
+			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeIdentifiantsScenarios(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0]));
 		}
 
@@ -60,12 +60,12 @@ public class GestionnaireRoutesScenario {
 			// Soit demande d'un scénario en particulier, soit demande pour
 			// tous les scénarios
 			if (pParametres.get("idScenario") == null || pParametres.get("idScenario").length == 0) {
-				return Util.toJsonString(pTraiteRequetesRest.traiteDemandeScenarios(pParametres.get("idExpediteur")[0],
+				return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeScenarios(pParametres.get("idExpediteur")[0],
 						pParametres.get("idCommande")[0]));
 			}
 
 			// Décodage de l'id du scénario
-			return Util.toJsonString(pTraiteRequetesRest.traiteDemandeScenario(pParametres.get("idExpediteur")[0],
+			return Util.ObjectToJsonString(pTraiteRequetesRest.traiteDemandeScenario(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idScenario")[0]));
 		}
 
