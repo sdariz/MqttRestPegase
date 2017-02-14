@@ -220,20 +220,20 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	}
 
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessagePmvMqttRest clone() {
+	public MessagePmvMqttRest duplique() {
 		MessagePmvMqttRest retour = new MessagePmvMqttRest(_idEquipement);
 
-		_messagesLignes.forEach(m -> retour._messagesLignes.add(m.clone()));
-		_messagesPanonceaux.forEach(m -> retour._messagesPanonceaux.add(m.clone()));
-		_messagesPictogrammes.forEach(m -> retour._messagesPictogrammes.add(m.clone()));
+		_messagesLignes.forEach(m -> retour._messagesLignes.add(m.duplique()));
+		_messagesPanonceaux.forEach(m -> retour._messagesPanonceaux.add(m.duplique()));
+		_messagesPictogrammes.forEach(m -> retour._messagesPictogrammes.add(m.duplique()));
 
 		if (_messagesFlashs != null) {
-			retour._messagesFlashs = _messagesFlashs.clone();
+			retour._messagesFlashs = _messagesFlashs.duplique();
 		}
 
 		return retour;

@@ -1,5 +1,6 @@
 package org.signature.mqttRest.services.rest.client;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -335,7 +336,8 @@ public class InterrogationServeurHttpRest {
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide
 	 * @param pIdEquipement
-	 *             l'identifiant d'un équipement de l'armoire à remettre à l'heure
+	 *            l'identifiant d'un équipement de l'armoire à remettre à
+	 *            l'heure
 	 */
 	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
@@ -712,6 +714,64 @@ public class InterrogationServeurHttpRest {
 	}
 
 	/**
+	 * Demande de pilotage d'un équipement
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter
+	 *            le message à piloter
+	 */
+	public static void requetePilotageEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement, IMessageAffichageEquipementMqttRest pMessageAPiloter) {
+		if (pMessageAPiloter == null) {
+			return;
+		}
+
+		switch (pMessageAPiloter.getTypeEquipement()) {
+		case PMV:
+			ServiceRequetesPilotage.requetePilotagePmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessagePmvMqttRest) pMessageAPiloter);
+			break;
+		case PPLMV:
+			ServiceRequetesPilotage.requetePilotagePplmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessagePplmvMqttRest) pMessageAPiloter);
+			break;
+		case PPAD:
+			ServiceRequetesPilotage.requetePilotagePpad(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessagePpadMqttRest) pMessageAPiloter);
+			break;
+		case PICTOGRAMME:
+			ServiceRequetesPilotage.requetePilotagePictogramme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessagePictogrammeMqttRest) pMessageAPiloter);
+			break;
+		case R24:
+			ServiceRequetesPilotage.requetePilotageR24(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessageR24MqttRest) pMessageAPiloter);
+			break;
+		case PRISME:
+			ServiceRequetesPilotage.requetePilotagePrisme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessagePrismeMqttRest) pMessageAPiloter);
+			break;
+		case BARRIERE:
+			ServiceRequetesPilotage.requetePilotageBarriere(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessageBarriereMqttRest) pMessageAPiloter);
+			break;
+		case BRA:
+			ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessageBraMqttRest) pMessageAPiloter);
+			break;
+		}
+	}
+
+	/**
 	 * Demande de pilotage d'un PMV
 	 * 
 	 * @param pHost
@@ -885,6 +945,25 @@ public class InterrogationServeurHttpRest {
 			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
+	}
+
+	/**
+	 * Demande de pilotage d'un message sur un équipement
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pMessage
+	 *            le message à piloter
+	 */
+	public static void requetePilotageMessage(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, IMessageAffichageEquipementMqttRest pMessage) {
+		requetePilotageMessages(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, Arrays.asList(pMessage));
 	}
 
 	/**

@@ -35,16 +35,16 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 	}
 
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessagePictogrammeMqttRest clone() {
+	public MessagePictogrammeMqttRest duplique() {
 		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest(getIdentifiantEquipement());
 
 		if (getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;

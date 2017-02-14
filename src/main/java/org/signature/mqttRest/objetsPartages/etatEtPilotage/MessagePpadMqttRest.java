@@ -35,16 +35,16 @@ public class MessagePpadMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	}
 
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessagePpadMqttRest clone() {
+	public MessagePpadMqttRest duplique() {
 		MessagePpadMqttRest retour = new MessagePpadMqttRest(getIdentifiantEquipement());
 
 		if (getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;

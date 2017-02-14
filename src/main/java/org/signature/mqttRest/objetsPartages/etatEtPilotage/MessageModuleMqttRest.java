@@ -292,12 +292,11 @@ public class MessageModuleMqttRest {
 	}
 
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
-	@Override
-	public MessageModuleMqttRest clone() {
+	public MessageModuleMqttRest duplique() {
 		MessageModuleMqttRest retour = new MessageModuleMqttRest();
 
 		retour._messagesParPage.addAll(_messagesParPage);

@@ -32,16 +32,16 @@ public class MessageR24MqttRest extends MessageEquipementModuleUniqueMqttRest {
 	}
 	
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessageR24MqttRest clone() {
+	public MessageR24MqttRest duplique() {
 		MessageR24MqttRest retour = new MessageR24MqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;

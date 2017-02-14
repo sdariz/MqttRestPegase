@@ -35,16 +35,16 @@ public class MessageBraMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	}
 
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessageBraMqttRest clone() {
+	public MessageBraMqttRest duplique() {
 		MessageBraMqttRest retour = new MessageBraMqttRest(getIdentifiantEquipement());
 
 		if (getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;

@@ -117,4 +117,11 @@ public interface IMessageAffichageEquipementMqttRest {
 	 *            le type de message
 	 */
 	public void setTypeMessage(TypeMessage pType);
+	
+	/**
+	 * Copie de l'objet courant
+	 * 
+	 * @return une copie de l'instance courante
+	 */
+	public IMessageAffichageEquipementMqttRest duplique();
 }

@@ -32,16 +32,16 @@ public class MessageBarriereMqttRest extends MessageEquipementModuleUniqueMqttRe
 	}
 	
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessageBarriereMqttRest clone() {
+	public MessageBarriereMqttRest duplique() {
 		MessageBarriereMqttRest retour = new MessageBarriereMqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;

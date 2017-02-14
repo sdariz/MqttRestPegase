@@ -32,16 +32,16 @@ public class MessagePrismeMqttRest extends MessageEquipementModuleUniqueMqttRest
 	}
 	
 	/**
-	 * Clone de l'objet courant
+	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante
 	 */
 	@Override
-	public MessagePrismeMqttRest clone() {
+	public MessagePrismeMqttRest duplique() {
 		MessagePrismeMqttRest retour = new MessagePrismeMqttRest(getIdentifiantEquipement());
 		
 		if(getMessagesModuleUnique() != null) {
-			retour.setMessagesModuleUnique(getMessagesModuleUnique().clone());
+			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());
 		}
 
 		return retour;
