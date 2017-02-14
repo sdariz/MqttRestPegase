@@ -3,6 +3,8 @@ package org.signature.mqttRest.objetsPartages.etatEtPilotage;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.signature.mqttRest.util.Util;
+
 /**
  * Le message sur un équipement à module unique
  * 
@@ -29,11 +31,25 @@ public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageA
 	 */
 	public MessageEquipementModuleUniqueMqttRest(String pId) {
 		_idEquipement = pId;
-		
+
 		_messagesModuleUnique = null;
 		_typeMessage = TypeMessage.ETEINT;
 	}
-	
+
+	/**
+	 * Création d'un message pour le type d'équipement demandé
+	 * 
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement
+	 * @param pType
+	 *            le type d'équipement voulu
+	 * @return lOe message ou null si problème de création (type pas adapté, ...)
+	 */
+	public static MessageEquipementModuleUniqueMqttRest creationMessageEquipementModuleUnique(String pIdEquipement,
+			TypeEquipement pType) {
+		return Util.creationMessageViergeEquipementModuleUnique(pIdEquipement, pType);
+	}
+
 	/**
 	 * Donne l'identifant unique associé à l'équipement
 	 * 
@@ -103,7 +119,9 @@ public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageA
 		return retour;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -116,7 +134,9 @@ public abstract class MessageEquipementModuleUniqueMqttRest implements IMessageA
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

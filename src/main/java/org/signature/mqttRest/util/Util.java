@@ -12,8 +12,16 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest.TypeEquipement;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEquipementModuleUniqueMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePrismeMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
 
 /**
  * Une classe de méthodes utilitaires
@@ -23,7 +31,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
  */
 public class Util {
 	private final static Logger LOG = LoggerFactory.getLogger(Util.class);
-	
+
 	/**
 	 * Sérialise la valeur au format JSON
 	 * 
@@ -33,7 +41,7 @@ public class Util {
 	 */
 	public static String booleanToJsonString(boolean pVal) {
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		try {
 			return mapper.writeValueAsString(pVal);
 		} catch (JsonProcessingException e) {
@@ -57,14 +65,15 @@ public class Util {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		try {
-			//return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pObj);
+			// return
+			// mapper.writerWithDefaultPrettyPrinter().writeValueAsString(pObj);
 			return mapper.writeValueAsString(pObj);
 		} catch (JsonProcessingException e) {
 			LOG.error("Conversion objet", e);
 			return "";
 		}
 	}
-	
+
 	/**
 	 * Sérialise les objets au format JSON
 	 * 
@@ -137,7 +146,7 @@ public class Util {
 
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Deserialise un boolean au format JSON
 	 * 
@@ -164,7 +173,8 @@ public class Util {
 	 * Création d'un message PMV fixe, avec luminosité automatique, DV = 0,
 	 * flashs éteints si présents
 	 * 
-	 * @param pIdEquipement l'identifiant de l'équipement
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement
 	 * @param pLignes
 	 *            les messages de chaque ligne, liste vide si non utilisé
 	 * @param pPanonceaux
@@ -178,12 +188,12 @@ public class Util {
 	 *            true si le panneau à des feux flashs
 	 * @return le nouveau message
 	 */
-	public static MessagePmvMqttRest creationMessagePmvFixe(String pIdEquipement, List<String> pLignes, List<String> pPanonceaux,
-			List<String> pPictos, List<String> pLabelsPictos, boolean avecFlashs) {
-		if(pIdEquipement == null) {
+	public static MessagePmvMqttRest creationMessagePmvFixe(String pIdEquipement, List<String> pLignes,
+			List<String> pPanonceaux, List<String> pPictos, List<String> pLabelsPictos, boolean avecFlashs) {
+		if (pIdEquipement == null) {
 			pIdEquipement = "";
 		}
-		
+
 		MessagePmvMqttRest retour = new MessagePmvMqttRest(pIdEquipement);
 
 		// Les lignes
@@ -246,6 +256,43 @@ public class Util {
 		}
 
 		return retour;
+	}
+
+	/**
+	 * Création d'un message vierge pour un équipement à module unique, avec
+	 * luminosité automatique, DV = 0, flashs éteints si présents
+	 * 
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement
+	 * @param pType
+	 *            le type de l'équipement
+	 * @return le nouveau message, ou null si le message ne peut être créé
+	 */
+	public static MessageEquipementModuleUniqueMqttRest creationMessageViergeEquipementModuleUnique(
+			String pIdEquipement, TypeEquipement pType) {
+		if (pIdEquipement == null) {
+			pIdEquipement = "";
+		}
+
+		if (pType == null) {
+			return null;
+		}
+
+		switch (pType) {
+		case PPAD:
+			return new MessagePpadMqttRest(pIdEquipement);
+		case PICTOGRAMME:
+			return new MessagePictogrammeMqttRest(pIdEquipement);
+		case R24:
+			return new MessageR24MqttRest(pIdEquipement);
+		case PRISME:
+			return new MessagePrismeMqttRest(pIdEquipement);
+		case BARRIERE:
+			return new MessageBarriereMqttRest(pIdEquipement);
+		case BRA:
+			return new MessageBraMqttRest(pIdEquipement);
+		default: return null;
+		}
 	}
 
 }
