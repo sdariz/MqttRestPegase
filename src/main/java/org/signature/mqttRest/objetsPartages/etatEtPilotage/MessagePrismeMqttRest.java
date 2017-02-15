@@ -39,6 +39,7 @@ public class MessagePrismeMqttRest extends MessageEquipementModuleUniqueMqttRest
 	@Override
 	public MessagePrismeMqttRest duplique() {
 		MessagePrismeMqttRest retour = new MessagePrismeMqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

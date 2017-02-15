@@ -42,6 +42,7 @@ public class MessageBraMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	@Override
 	public MessageBraMqttRest duplique() {
 		MessageBraMqttRest retour = new MessageBraMqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 
 		if (getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

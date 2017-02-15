@@ -39,6 +39,7 @@ public class MessageR24MqttRest extends MessageEquipementModuleUniqueMqttRest {
 	@Override
 	public MessageR24MqttRest duplique() {
 		MessageR24MqttRest retour = new MessageR24MqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

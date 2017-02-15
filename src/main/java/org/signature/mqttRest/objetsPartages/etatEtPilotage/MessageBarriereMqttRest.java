@@ -39,6 +39,7 @@ public class MessageBarriereMqttRest extends MessageEquipementModuleUniqueMqttRe
 	@Override
 	public MessageBarriereMqttRest duplique() {
 		MessageBarriereMqttRest retour = new MessageBarriereMqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 		
 		if(getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

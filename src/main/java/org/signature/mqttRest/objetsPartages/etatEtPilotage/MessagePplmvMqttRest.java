@@ -212,6 +212,7 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	@Override
 	public MessagePplmvMqttRest duplique() {
 		MessagePplmvMqttRest retour = new MessagePplmvMqttRest(_idEquipement);
+		retour.setTypeMessage(_typeMessage);
 
 		if (_messagesPanonceauBas != null) {
 			retour._messagesPanonceauBas = _messagesPanonceauBas.duplique();

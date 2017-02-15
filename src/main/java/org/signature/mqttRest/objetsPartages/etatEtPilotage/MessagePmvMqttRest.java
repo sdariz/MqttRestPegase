@@ -227,6 +227,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	@Override
 	public MessagePmvMqttRest duplique() {
 		MessagePmvMqttRest retour = new MessagePmvMqttRest(_idEquipement);
+		retour.setTypeMessage(_typeMessage);
 
 		_messagesLignes.forEach(m -> retour._messagesLignes.add(m.duplique()));
 		_messagesPanonceaux.forEach(m -> retour._messagesPanonceaux.add(m.duplique()));

@@ -42,6 +42,7 @@ public class MessagePpadMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	@Override
 	public MessagePpadMqttRest duplique() {
 		MessagePpadMqttRest retour = new MessagePpadMqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 
 		if (getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

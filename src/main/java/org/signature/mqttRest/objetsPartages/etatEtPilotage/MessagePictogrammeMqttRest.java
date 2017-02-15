@@ -42,6 +42,7 @@ public class MessagePictogrammeMqttRest extends MessageEquipementModuleUniqueMqt
 	@Override
 	public MessagePictogrammeMqttRest duplique() {
 		MessagePictogrammeMqttRest retour = new MessagePictogrammeMqttRest(getIdentifiantEquipement());
+		retour.setTypeMessage(getTypeMessage());
 
 		if (getMessagesModuleUnique() != null) {
 			retour.setMessagesModuleUnique(getMessagesModuleUnique().duplique());

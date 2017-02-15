@@ -8,6 +8,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEqu
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest.TypeEquipement;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEquipementModuleUniqueMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
@@ -182,6 +183,24 @@ public class MessageScenarioMqttRest {
 		// Cast le tableau vers le bon format
 		return getTousMessagesPourType(TypeEquipement.PPLMV).stream().map(MessagePplmvMqttRest.class::cast)
 				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * Retourne tous les messages de type module unique (ppad, barrière, ...), pilotés dans ce scénario
+	 * 
+	 * @return tous les messages modules uniques du scénario
+	 */
+	public List<MessageEquipementModuleUniqueMqttRest> getTousMessagesEquipementModuleUnique() {
+		List<MessageEquipementModuleUniqueMqttRest> retour = new ArrayList<>();
+		
+		retour.addAll(getTousMessagesPpad());
+		retour.addAll(getTousMessagesPictogramme());
+		retour.addAll(getTousMessagesR24());
+		retour.addAll(getTousMessagesPrisme());
+		retour.addAll(getTousMessagesBarriere());
+		retour.addAll(getTousMessagesBra());
+		
+		return retour;
 	}
 
 	/**
