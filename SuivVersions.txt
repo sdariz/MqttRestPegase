@@ -4,3 +4,7 @@ Version 1.0: 12/2016
 Version 1.1: 07/02/2017
 	Mise à jour des librairies spark-core et jackson-databind
 	Retouche conversion en JSON pour éviter d'appeler une liste sur une méthode de conversion attendant un objet
+
+Version 1.2: 13/02/17
+	Ajout de méthodes utilitaires
+	Copie de la propriété typeMessage lors de la copie d'un message d'équipement
