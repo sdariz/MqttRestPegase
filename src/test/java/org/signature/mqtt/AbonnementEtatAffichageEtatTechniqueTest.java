@@ -89,7 +89,12 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 		// Message état d'affichage
 		MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd");
 		msg1.setMessageEquipement(new MessagePmvMqttRest("1111"));
-		PublicationMqtt.publicationMessage(msg1, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessage(msg1, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {
@@ -107,7 +112,12 @@ public class AbonnementEtatAffichageEtatTechniqueTest {
 		fin.set(0);
 		MessageEtatTechniqueMqttRest msg2 = new MessageEtatTechniqueMqttRest("ab", "cd", "2222");
 		
-		PublicationMqtt.publicationMessage(msg2, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessage(msg2, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {

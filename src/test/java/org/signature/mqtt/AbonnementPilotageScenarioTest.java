@@ -81,7 +81,12 @@ public class AbonnementPilotageScenarioTest {
 		MessageActivationScenarioMqttRest msg = new MessageActivationScenarioMqttRest("ab", "cd", msgScen);
 		liste.add(msg);
 
-		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.PILOTAGE_SCENARIO);
+		try {
+			PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.PILOTAGE_SCENARIO);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {

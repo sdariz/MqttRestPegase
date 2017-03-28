@@ -41,8 +41,11 @@ public class PublicationMqtt {
 	 *            le port utilisé par le broker
 	 * @param pTopic
 	 *            le topic vers lequel publier le message
+	 * @throws Exception
+	 *             si problème non géré
 	 */
-	public static synchronized void publicationMessage(IMessageMqttRest pMsg, String pHost, int pPort, Topic pTopic) {
+	public static synchronized void publicationMessage(IMessageMqttRest pMsg, String pHost, int pPort, Topic pTopic)
+			throws Exception {
 		List<IMessageMqttRest> l = new ArrayList<>();
 		l.add(pMsg);
 		publicationMessages(l, pHost, pPort, pTopic);
@@ -59,9 +62,11 @@ public class PublicationMqtt {
 	 *            le port utilisé par le broker
 	 * @param pTopic
 	 *            le topic vers lequel publier le message
+	 * @throws Exception
+	 *             si problème non géré
 	 */
 	public static synchronized void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
-			Topic pTopic) {
+			Topic pTopic) throws Exception {
 		String content = Util.listObjectToJsonString(pMsgs);
 		String uri = "tcp://" + pHost + ":" + pPort;
 
@@ -91,7 +96,7 @@ public class PublicationMqtt {
 
 		MqttMessage message = new MqttMessage(content.getBytes());
 		message.setQos(QOS);
-		
+
 		try {
 			clientMqtt.publish(pTopic.toString(), message);
 		} catch (MqttException e) {

@@ -95,7 +95,12 @@ public class AbonnementEtatAffichageTest {
 		MessagePmvMqttRest msgPmv = new MessagePmvMqttRest("1122");
 		msg.setMessageEquipement(msgPmv);
 
-		PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {
@@ -174,7 +179,12 @@ public class AbonnementEtatAffichageTest {
 		msgPmv = new MessagePmvMqttRest("2222");
 		msg.setMessageEquipement(msgPmv);
 
-		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {

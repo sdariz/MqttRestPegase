@@ -98,7 +98,12 @@ public class AbonnementModificationPegaseTest {
 		MessageModificationPegaseMqttRest msg = new MessageModificationPegaseMqttRest("ab", "cd", pType);
 		liste.add(msg);
 
-		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.MODIFICATION_PEGASE);
+		try {
+			PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.MODIFICATION_PEGASE);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {

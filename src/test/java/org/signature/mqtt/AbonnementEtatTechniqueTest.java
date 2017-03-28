@@ -89,7 +89,12 @@ public class AbonnementEtatTechniqueTest {
 		al.setLibelle("Alarme 2");
 		alarmes.add(al);
 
-		PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {
@@ -143,7 +148,12 @@ public class AbonnementEtatTechniqueTest {
 		msg = new MessageEtatTechniqueMqttRest("ab", "cd", "2222");
 		liste.add(msg);
 
-		PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		try {
+			PublicationMqtt.publicationMessages(liste, HOST, PORT, Topic.ETAT_TECHNIQUE_EQUIPEMENT);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// Attente fin de traitement
 		while (fin.get() == 0) {
