@@ -1,0 +1,86 @@
+package org.signature.mqtt;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
+import org.signature.mqttRest.services.mqtt.AbonnementMqtt;
+import org.signature.mqttRest.services.mqtt.GestionnaireBrokerMqtt;
+import org.signature.mqttRest.services.mqtt.IListenerMessageMqtt;
+import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
+import org.signature.mqttRest.services.mqtt.PublicationMqtt;
+
+public class PublicationStressTest {
+	
+	private final static String HOST = "localhost";
+	private final static int PORT = 8866;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		// Démarrage du broker de message
+		GestionnaireBrokerMqtt.getInstance().startBroker(PORT, true);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		// Arrêt du broker
+		GestionnaireBrokerMqtt.getInstance().stopBroker();
+	}
+
+	@Test
+	public void testPublicationMessagesParalleles() {
+		int nombre = 100;
+		AtomicInteger atomicInt = new AtomicInteger(0);
+		AtomicInteger atomicInt2 = new AtomicInteger(0);
+		
+		IListenerMessageMqtt listener = (messages, topic) -> {
+			atomicInt2.incrementAndGet();
+		};
+
+		new AbonnementMqtt(listener,
+				Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
+		
+		for(int i=0; i<nombre; i++) {
+			new Thread(() -> {
+				// Pose 100 millisecondes, pour laisser tous les threads se créer avant de publier
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				// Message état d'affichage
+				MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd");
+				msg1.setMessageEquipement(new MessagePmvMqttRest("1111"));
+				try {
+					PublicationMqtt.publicationMessage(msg1, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+				} catch (Exception e2) {
+					fail("Erreur publication");
+				}
+				
+				atomicInt.incrementAndGet();
+			}).start();
+		}
+		
+		// Attente fin des thread
+		while(atomicInt.get() < nombre) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		assertEquals("Perte de messages", nombre, atomicInt2.get());
+	}
+
+}
