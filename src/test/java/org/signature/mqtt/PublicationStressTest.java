@@ -18,10 +18,10 @@ import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.services.mqtt.PublicationMqtt;
 
 public class PublicationStressTest {
-	
+
 	private final static String HOST = "localhost";
 	private final static int PORT = 8866;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		// Démarrage du broker de message
@@ -38,25 +38,24 @@ public class PublicationStressTest {
 	public void testPublicationMessagesParalleles() {
 		int nombre = 100;
 		AtomicInteger atomicInt = new AtomicInteger(0);
-		AtomicInteger atomicInt2 = new AtomicInteger(0);
-		
+
 		IListenerMessageMqtt listener = (messages, topic) -> {
-			atomicInt2.incrementAndGet();
+			atomicInt.incrementAndGet();
 		};
 
-		new AbonnementMqtt(listener,
-				Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
-		
-		for(int i=0; i<nombre; i++) {
+		new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
+
+		for (int i = 0; i < nombre; i++) {
 			new Thread(() -> {
-				// Pose 100 millisecondes, pour laisser tous les threads se créer avant de publier
+				// Pose 100 millisecondes, pour laisser tous les threads se
+				// créer avant de publier
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				// Message état d'affichage
 				MessageEtatAffichageMqttRest msg1 = new MessageEtatAffichageMqttRest("ab", "cd");
 				msg1.setMessageEquipement(new MessagePmvMqttRest("1111"));
@@ -65,13 +64,12 @@ public class PublicationStressTest {
 				} catch (Exception e2) {
 					fail("Erreur publication");
 				}
-				
-				atomicInt.incrementAndGet();
 			}).start();
 		}
-		
+
 		// Attente fin des thread
-		while(atomicInt.get() < nombre) {
+		int cpt = 0;
+		while (atomicInt.get() < nombre && (cpt++) < 100) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -79,8 +77,43 @@ public class PublicationStressTest {
 				e.printStackTrace();
 			}
 		}
+
+		assertEquals("Perte de messages", nombre, atomicInt.get());
+	}
+
+	@Test
+	public void testReceptionMessagesParalleles() {
+		int nombre = 100;
+		AtomicInteger atomicInt = new AtomicInteger(0);
+
+		for (int i = 0; i < nombre; i++) {
+			IListenerMessageMqtt listener = (messages, topic) -> {
+				atomicInt.incrementAndGet();
+			};
+
+			new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
+		}
+
+		// Message état d'affichage
+		MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd");
+		msg.setMessageEquipement(new MessagePmvMqttRest("1111"));
+		try {
+			PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+		} catch (Exception e2) {
+			fail("Erreur publication");
+		}
 		
-		assertEquals("Perte de messages", nombre, atomicInt2.get());
+		int cpt = 0;
+		while (atomicInt.get() < nombre && cpt++ < 100) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		assertEquals("Perte de messages", nombre, atomicInt.get());
 	}
 
 }

@@ -1,15 +1,9 @@
 package org.signature.mqttRest.services.mqtt;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Properties;
-
+import org.signature.mqttRest.services.mqtt.moquette.BrokerMqttMoquette;
+import org.signature.mqttRest.services.mqtt.vertx.BrokerMqttVertx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import io.moquette.BrokerConstants;
-import io.moquette.server.Server;
 
 /**
  * Classe démarrant le broker mqtt
@@ -21,10 +15,20 @@ public class GestionnaireBrokerMqtt {
 	private final static Logger LOG = LoggerFactory.getLogger(GestionnaireBrokerMqtt.class);
 	private static GestionnaireBrokerMqtt _instance = null;
 
-	private final static String DOSSIER_MQTT_BROKER = "mqtt-broker";
-	public final static int PORT_DEFAUT = 1883;
+	private IBrokerMqtt _brokerMqtt = null;
 
-	private Server _serveur = null;
+	public enum BrokersMqtt {
+		MOQUETTE_BROKER, VERTX_BROKER
+	};
+
+	private BrokersMqtt _defautBroker = BrokersMqtt.VERTX_BROKER;
+	private final static int PORT_DEFAUT = 1883;
+
+	// Acquittement de bonne reception du message (qos=2 ne marche pas toujours
+	// (100 thread qui postent vers 10 abonnés => perte de messages !!!))
+	private final static int QOS_MOQUETTE = 1;
+
+	private final static int QOS_VERTX = 2;
 
 	/**
 	 * Construction de l'instance unique
@@ -36,7 +40,9 @@ public class GestionnaireBrokerMqtt {
 			public void run() {
 				LOG.warn("Arret du broker mqtt");
 
-				stopBroker();
+				if (_brokerMqtt != null) {
+					_brokerMqtt.stopBroker();
+				}
 			}
 		});
 	}
@@ -55,8 +61,51 @@ public class GestionnaireBrokerMqtt {
 	}
 
 	/**
-	 * Démarrage du serveur sur le port par défaut : 1883, avec sauvegarde des
-	 * données sur disque
+	 * Initialise le broker à utiliser
+	 * 
+	 * @param pBrokerMqtt
+	 *            le broker MQTT
+	 * @return l'instance pour filer facilement les demandes
+	 */
+	public GestionnaireBrokerMqtt setDefautBroker(BrokersMqtt pBrokerMqtt) {
+		if (pBrokerMqtt != null) {
+			_defautBroker = pBrokerMqtt;
+		}
+
+		return _instance;
+	}
+
+	/**
+	 * Retourne le broker utilisé
+	 * 
+	 * @return le broker MQTT
+	 */
+	public BrokersMqtt getDefautBroker() {
+		return _defautBroker;
+	}
+
+	/**
+	 * Indique la qualité de service à utiliser selon son support correct par le
+	 * broker
+	 * 
+	 * @param pBrokerMqtt
+	 *            le broker concerné
+	 * @return la qualité de service à utiliser
+	 */
+	protected int getQosBroker(BrokersMqtt pBrokerMqtt) {
+		switch (_defautBroker) {
+		case MOQUETTE_BROKER:
+			return QOS_MOQUETTE;
+		case VERTX_BROKER:
+			return QOS_VERTX;
+		}
+
+		return QOS_VERTX;
+	}
+
+	/**
+	 * Démarrage du broker par défaut sur le port par défaut : 1883, avec
+	 * sauvegarde des données sur disque
 	 */
 	public synchronized void startBroker() {
 		this.startBroker(PORT_DEFAUT, false);
@@ -84,57 +133,28 @@ public class GestionnaireBrokerMqtt {
 	 */
 	public synchronized void startBroker(int pPort, boolean pInMemoryDb) {
 		// Rien à faire si le serveur est déjà démarré
-		if (_serveur != null) {
+		if (_brokerMqtt != null) {
 			return;
 		}
 
-		// Suppression et recreation du dossier db
-		creationDossierBroker();
-
-		_serveur = new Server();
-
-		Properties props = new Properties();
-		props.setProperty(BrokerConstants.PORT_PROPERTY_NAME, Integer.toString(pPort));
-
-		if (pInMemoryDb) {
-			props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME, "");
-		} else {
-			props.setProperty(BrokerConstants.PERSISTENT_STORE_PROPERTY_NAME,
-					System.getProperty("user.dir") + File.separator + DOSSIER_MQTT_BROKER + File.separator
-							+ BrokerConstants.DEFAULT_MOQUETTE_STORE_MAP_DB_FILENAME);
+		switch (_defautBroker) {
+		case MOQUETTE_BROKER:
+			_brokerMqtt = new BrokerMqttMoquette();
+			break;
+		case VERTX_BROKER:
+			_brokerMqtt = new BrokerMqttVertx();
+			break;
 		}
 
-		// Propriété par défaut
-		// props.setProperty("allow_anonymous", "true");
-
-		try {
-			_serveur.startServer(props);
-		} catch (IOException e) {
-			LOG.error("Problème pour démarrer le broker mqtt", e);
-		}
-	}
-
-	// Suppression et recréation du dossier du broker à chaque démarrage, pour
-	// éviter d'exploser la taille
-	private void creationDossierBroker() {
-		File dir = new File(DOSSIER_MQTT_BROKER);
-		if (dir.exists()) {
-			File[] files = dir.listFiles();
-			Arrays.asList(files).forEach(f -> f.delete());
-
-			dir.delete();
-		}
-
-		dir.mkdir();
+		_brokerMqtt.startBroker(pPort, pInMemoryDb);
 	}
 
 	/**
 	 * Arrêt du serveur
 	 */
 	public synchronized void stopBroker() {
-		if (_serveur != null) {
-			_serveur.stopServer();
-			_serveur = null;
+		if (_brokerMqtt != null) {
+			_brokerMqtt.stopBroker();
 		}
 	}
 }

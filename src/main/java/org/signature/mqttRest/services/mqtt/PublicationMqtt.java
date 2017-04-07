@@ -7,14 +7,12 @@ import java.util.UUID;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Un client mqtt pour publier en mode asynchrone des messages vers le broker
@@ -26,17 +24,13 @@ import org.signature.mqttRest.util.Util;
 public class PublicationMqtt {
 	private final static Logger LOG = LoggerFactory.getLogger(PublicationMqtt.class);
 
-	// Acquittement de bonne reception du message (qos=2 ne marche pas toujours
-	// (100 thread qui postent vers 10 abonnés => perte de messages !!!))
-	private final static int QOS = 1;
-
 	/**
 	 * Publication d'un message
 	 * 
 	 * @param pMsg
 	 *            le message à publier
 	 * @param pHost
-	 *            l'adresse IP du broker mqtt
+	 *            l'adresse IP du broker mqttà
 	 * @param pPort
 	 *            le port utilisé par le broker
 	 * @param pTopic
@@ -68,7 +62,7 @@ public class PublicationMqtt {
 	public static synchronized void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
 			Topic pTopic) throws Exception {
 		String content = Util.listObjectToJsonString(pMsgs);
-		String uri = "tcp://" + pHost + ":" + pPort;
+		String uri = String.format("tcp://%s:%d", pHost, pPort);
 
 		// Génération d'un id unique pour le client
 		String clientId = UUID.randomUUID().toString();
@@ -94,11 +88,11 @@ public class PublicationMqtt {
 			return;
 		}
 
-		MqttMessage message = new MqttMessage(content.getBytes());
-		message.setQos(QOS);
+		int qosToUse = GestionnaireBrokerMqtt.getInstance()
+				.getQosBroker(GestionnaireBrokerMqtt.getInstance().getDefautBroker());
 
 		try {
-			clientMqtt.publish(pTopic.toString(), message);
+			clientMqtt.publish(pTopic.toString(), content.getBytes(), qosToUse, false);
 		} catch (MqttException e) {
 			LOG.error("Problème de publication du message", e);
 			deconnexion(clientMqtt);

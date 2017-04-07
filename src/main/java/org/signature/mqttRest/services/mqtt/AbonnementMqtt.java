@@ -12,12 +12,11 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Abonnement à un topic mqtt
@@ -32,10 +31,6 @@ public class AbonnementMqtt implements MqttCallback {
 	private MqttClient _clientMqtt;
 	private String _host;
 	private int _port;
-
-	// Acquittement de bonne reception du message (qos=2 ne marche pas toujours
-	// (100 thread qui postent vers 10 abonnés => perte de messages !!!))
-	private final static int QOS = 1;
 
 	/**
 	 * Abonnement à un topic
@@ -95,7 +90,7 @@ public class AbonnementMqtt implements MqttCallback {
 
 	// Connexion au broker
 	private void connexionAuBroker() {
-		String uri = "tcp://" + _host + ":" + _port;
+		String uri = String.format("tcp://%s:%d", _host, _port);
 
 		// Génération d'un id unique pour le client
 		String clientId = UUID.randomUUID().toString();
@@ -110,6 +105,7 @@ public class AbonnementMqtt implements MqttCallback {
 		MqttConnectOptions connOpts = new MqttConnectOptions();
 		connOpts.setCleanSession(true);
 		connOpts.setAutomaticReconnect(true);
+		connOpts.setMaxInflight(100);
 
 		// Initialisation de l'instance en tant que callback des évènements mqtt
 		_clientMqtt.setCallback(this);
@@ -122,12 +118,15 @@ public class AbonnementMqtt implements MqttCallback {
 			return;
 		}
 
+		int qosToUse = GestionnaireBrokerMqtt.getInstance()
+				.getQosBroker(GestionnaireBrokerMqtt.getInstance().getDefautBroker());
+
 		// Liste des topics sur lesquels s'abonner.
 		String[] topics = new String[_topics.size()];
 		int[] qos = new int[_topics.size()];
 		for (int i = 0; i < _topics.size(); i++) {
 			topics[i] = _topics.get(i).toString();
-			qos[i] = QOS;
+			qos[i] = qosToUse;
 		}
 
 		// Abonnement aux topics
@@ -144,6 +143,17 @@ public class AbonnementMqtt implements MqttCallback {
 	private void deconnexion() {
 		if (_clientMqtt == null) {
 			return;
+		}
+		
+		String[] topics = new String[_topics.size()];
+		for (int i = 0; i < _topics.size(); i++) {
+			topics[i] = _topics.get(i).toString();
+		}
+		
+		try {
+			_clientMqtt.unsubscribe(topics);
+		} catch (MqttException e1) {
+			LOG.error("Problème de désabonnement des topics", e1);
 		}
 
 		try {
@@ -162,7 +172,7 @@ public class AbonnementMqtt implements MqttCallback {
 
 		_clientMqtt = null;
 	}
-	
+
 	/**
 	 * Déconnexion du client à l'écoute des messages reçus
 	 */

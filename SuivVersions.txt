@@ -10,4 +10,7 @@ Version 1.2: 13/02/17
 	Copie de la propriété typeMessage lors de la copie d'un message d'équipement
 
 Version 1.3: 28/03/17
-	Lancement d'une exeception lors de la publication, si erreur non gérée
+	Lancement d'une exception lors de la publication, si erreur non gérée
+	
+Version 1.4: 05/04/17
+	Ajout broker MQTT Vertx avec possibilité de choisir le broker à utiliser, via l'appel du gestionnaire de broker
