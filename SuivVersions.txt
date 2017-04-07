@@ -14,3 +14,4 @@ Version 1.3: 28/03/17
 	
 Version 1.4: 05/04/17
 	Ajout broker MQTT Vertx avec possibilité de choisir le broker à utiliser, via l'appel du gestionnaire de broker
+	Broker par défaut est maintenant Vertx
