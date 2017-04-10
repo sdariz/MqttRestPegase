@@ -3,7 +3,9 @@ package org.signature.mqtt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.AfterClass;
@@ -34,7 +36,7 @@ public class PublicationStressTest {
 		GestionnaireBrokerMqtt.getInstance().stopBroker();
 	}
 
-	@Test
+	// @Test
 	public void testPublicationMessagesParalleles() {
 		int nombre = 100;
 		AtomicInteger atomicInt = new AtomicInteger(0);
@@ -43,7 +45,7 @@ public class PublicationStressTest {
 			atomicInt.incrementAndGet();
 		};
 
-		new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
+		AbonnementMqtt abo = new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
 
 		for (int i = 0; i < nombre; i++) {
 			new Thread(() -> {
@@ -78,20 +80,24 @@ public class PublicationStressTest {
 			}
 		}
 
+		abo.deconnexionListener();
+
 		assertEquals("Perte de messages", nombre, atomicInt.get());
 	}
 
-	@Test
+	// @Test
 	public void testReceptionMessagesParalleles() {
 		int nombre = 100;
 		AtomicInteger atomicInt = new AtomicInteger(0);
+
+		List<AbonnementMqtt> abos = new ArrayList<>();
 
 		for (int i = 0; i < nombre; i++) {
 			IListenerMessageMqtt listener = (messages, topic) -> {
 				atomicInt.incrementAndGet();
 			};
 
-			new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT);
+			abos.add(new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT));
 		}
 
 		// Message état d'affichage
@@ -102,7 +108,7 @@ public class PublicationStressTest {
 		} catch (Exception e2) {
 			fail("Erreur publication");
 		}
-		
+
 		int cpt = 0;
 		while (atomicInt.get() < nombre && cpt++ < 100) {
 			try {
@@ -113,7 +119,63 @@ public class PublicationStressTest {
 			}
 		}
 
+		abos.forEach(a -> a.deconnexionListener());
+
 		assertEquals("Perte de messages", nombre, atomicInt.get());
+	}
+
+	@Test
+	public void testEmissionReception() {
+		int nbSuscribers = 50;
+		int nbPublications = 100;
+		AtomicInteger atomicInt = new AtomicInteger(0);
+
+		List<AbonnementMqtt> abos = new ArrayList<>();
+
+		for (int i = 0; i < nbSuscribers; i++) {
+			IListenerMessageMqtt listener = (messages, topic) -> {
+				System.out.println("reception");
+				atomicInt.incrementAndGet();
+			};
+
+			abos.add(new AbonnementMqtt(listener, Arrays.asList(Topic.ETAT_AFFICHAGE_EQUIPEMENT), HOST, PORT));
+		}
+
+		for (int i = 0; i < nbPublications; i++) {
+			for (int j = 0; j < nbSuscribers; j++) {
+				new Thread(() -> {
+					MessageEtatAffichageMqttRest msg = new MessageEtatAffichageMqttRest("ab", "cd");
+					msg.setMessageEquipement(new MessagePmvMqttRest("1111"));
+					try {
+						PublicationMqtt.publicationMessage(msg, HOST, PORT, Topic.ETAT_AFFICHAGE_EQUIPEMENT);
+					} catch (Exception e2) {
+						fail("Erreur publication");
+					}
+				}).start();
+			}
+			
+			System.out.println("SLEEP.....................;");
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println(" FIN SLEEP.....................;");
+		}
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(atomicInt.get());
+
+		assertEquals("Perte de messages", nbSuscribers * nbSuscribers  * nbPublications, atomicInt.get());
 	}
 
 }
