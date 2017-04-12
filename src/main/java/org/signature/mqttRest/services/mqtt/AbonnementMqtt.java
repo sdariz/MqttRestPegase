@@ -58,6 +58,14 @@ public class AbonnementMqtt implements MqttCallback {
 		if (_topics.size() > 0 && _listener != null) {
 			connexionAuBroker();
 		}
+
+		// Hook pour se désabonner sur arrêt application
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				deconnexion();
+			}
+		});
 	}
 
 	/**
@@ -86,6 +94,14 @@ public class AbonnementMqtt implements MqttCallback {
 		if (_topics.size() > 0 && _listener != null) {
 			connexionAuBroker();
 		}
+
+		// Hook pour se désabonner sur arrêt application
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				deconnexion();
+			}
+		});
 	}
 
 	// Connexion au broker
@@ -144,12 +160,12 @@ public class AbonnementMqtt implements MqttCallback {
 		if (_clientMqtt == null) {
 			return;
 		}
-		
+
 		String[] topics = new String[_topics.size()];
 		for (int i = 0; i < _topics.size(); i++) {
 			topics[i] = _topics.get(i).toString();
 		}
-		
+
 		try {
 			_clientMqtt.unsubscribe(topics);
 		} catch (MqttException e1) {

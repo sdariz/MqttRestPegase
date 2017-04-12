@@ -34,17 +34,6 @@ public class GestionnaireBrokerMqtt {
 	 * Construction de l'instance unique
 	 */
 	private GestionnaireBrokerMqtt() {
-		// Hook pour arrêter le serveur sur arrêt application
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				LOG.warn("Arret du broker mqtt");
-
-				if (_brokerMqtt != null) {
-					_brokerMqtt.stopBroker();
-				}
-			}
-		});
 	}
 
 	/**
@@ -147,6 +136,18 @@ public class GestionnaireBrokerMqtt {
 		}
 
 		_brokerMqtt.startBroker(pPort, pInMemoryDb);
+
+		// Hook pour arrêter le serveur sur arrêt application
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				LOG.warn("Arret du broker mqtt");
+
+				if (_brokerMqtt != null) {
+					_brokerMqtt.stopBroker();
+				}
+			}
+		});
 	}
 
 	/**

@@ -35,6 +35,9 @@ public class PublicationStressTest {
 		// Arrêt du broker
 		GestionnaireBrokerMqtt.getInstance().stopBroker();
 	}
+	
+	// DESACTIVE POUR NE PAS RALENTIR LA COMPIl MAVEN
+	// SINON, IL FAUT SUPPRIMER LES TEST DANS LA COMPIL
 
 	// @Test
 	public void testPublicationMessagesParalleles() {
@@ -124,7 +127,7 @@ public class PublicationStressTest {
 		assertEquals("Perte de messages", nombre, atomicInt.get());
 	}
 
-	@Test
+	//@Test
 	public void testEmissionReception() {
 		int nbSuscribers = 50;
 		int nbPublications = 100;

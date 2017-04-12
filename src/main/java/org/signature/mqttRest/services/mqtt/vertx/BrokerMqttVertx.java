@@ -26,7 +26,7 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 
 	private MqttServer _serveur = null;
 	private Vertx _vertx;
-	
+
 	private List<MqttEndpoint> _listSuscribers;
 
 	/**
@@ -43,7 +43,7 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 		if (_serveur != null) {
 			return;
 		}
-		
+
 		_listSuscribers = new ArrayList<>();
 
 		MqttServerOptions options = new MqttServerOptions().setPort(pPort);
@@ -72,9 +72,10 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 	private void endpointHandler(MqttEndpoint pEndpoint) {
 		// Reception des requêtes d'inscription
 		pEndpoint.subscribeHandler(subscribe -> {
-			// Sauvegarde des abonnés, car c'est vers eux qu'ils faudra poster sur réception d'un message
+			// Sauvegarde des abonnés, car c'est vers eux qu'ils faudra poster
+			// sur réception d'un message
 			_listSuscribers.add(pEndpoint);
-			
+
 			// Collecte les QOS de chaque topic
 			List<MqttQoS> grantedQosLevels = subscribe.topicSubscriptions().stream()
 					.map(MqttTopicSubscription::qualityOfService).collect(Collectors.toList());
@@ -84,7 +85,7 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 		}).unsubscribeHandler(unsubscribe -> {
 			// Suppression de l'abonné
 			_listSuscribers.remove(pEndpoint);
-			
+
 			// Acquittement de la requête
 			pEndpoint.unsubscribeAcknowledge(unsubscribe.messageId());
 		});
@@ -110,11 +111,14 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 
 			// Publication aux abonnés
 			_listSuscribers.forEach(e -> {
-				e.publish(message.topicName(), message.payload(), message.qosLevel(), false, false);
-				
-				e.publishReceivedHandler(messageId -> {
-					e.publishRelease(messageId);
-				});
+				// Que pour les clients encore abonnés
+				if (e.isConnected()) {
+					e.publish(message.topicName(), message.payload(), message.qosLevel(), false, false);
+
+					e.publishReceivedHandler(messageId -> {
+						e.publishRelease(messageId);
+					});
+				}
 			});
 		}).publishReleaseHandler(messageId -> {
 			pEndpoint.publishComplete(messageId);
