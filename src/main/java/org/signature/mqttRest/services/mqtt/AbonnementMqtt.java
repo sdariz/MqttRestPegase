@@ -58,14 +58,6 @@ public class AbonnementMqtt implements MqttCallback {
 		if (_topics.size() > 0 && _listener != null) {
 			connexionAuBroker();
 		}
-
-		// Hook pour se désabonner sur arrêt application
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				deconnexion();
-			}
-		});
 	}
 
 	/**
@@ -94,14 +86,6 @@ public class AbonnementMqtt implements MqttCallback {
 		if (_topics.size() > 0 && _listener != null) {
 			connexionAuBroker();
 		}
-
-		// Hook pour se désabonner sur arrêt application
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				deconnexion();
-			}
-		});
 	}
 
 	// Connexion au broker
