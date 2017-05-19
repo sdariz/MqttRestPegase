@@ -4,7 +4,7 @@
 
 	<groupId>org.signature</groupId>
 	<artifactId>mqttRestPegase</artifactId>
-	<version>1.5</version>
+	<version>1.6</version>
 	<name>MqttRestPegase</name>
 
 	<repositories>
@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>org.eclipse.paho</groupId>
 			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-			<version>1.1.0</version>
+			<version>1.1.1</version>
 		</dependency>
 
 		<dependency>

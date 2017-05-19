@@ -28,6 +28,8 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 	private Vertx _vertx;
 
 	private List<MqttEndpoint> _listSuscribers;
+	
+	private final static int MAX_MESSAGE_SIZE = 1000000; // Taille header + payload
 
 	/**
 	 * Démarrage du broker MQTT
@@ -46,7 +48,7 @@ public class BrokerMqttVertx implements IBrokerMqtt {
 
 		_listSuscribers = new ArrayList<>();
 
-		MqttServerOptions options = new MqttServerOptions().setPort(pPort);
+		MqttServerOptions options = new MqttServerOptions().setPort(pPort).setMaxMessageSize(MAX_MESSAGE_SIZE);
 		_vertx = Vertx.vertx();
 		MqttServer server = MqttServer.create(_vertx, options);
 
