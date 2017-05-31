@@ -7,7 +7,7 @@ import java.util.UUID;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
@@ -38,7 +38,7 @@ public class PublicationMqtt {
 	 * @throws Exception
 	 *             si problème non géré
 	 */
-	public static synchronized void publicationMessage(IMessageMqttRest pMsg, String pHost, int pPort, Topic pTopic)
+	public static void publicationMessage(IMessageMqttRest pMsg, String pHost, int pPort, Topic pTopic)
 			throws Exception {
 		List<IMessageMqttRest> l = new ArrayList<>();
 		l.add(pMsg);
@@ -59,18 +59,23 @@ public class PublicationMqtt {
 	 * @throws Exception
 	 *             si problème non géré
 	 */
-	public static synchronized void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
+	public static void publicationMessages(List<? extends IMessageMqttRest> pMsgs, String pHost, int pPort,
 			Topic pTopic) throws Exception {
 		String content = Util.listObjectToJsonString(pMsgs);
 		String uri = String.format("tcp://%s:%d", pHost, pPort);
 
 		// Génération d'un id unique pour le client
-		String clientId = UUID.randomUUID().toString();
+		// Limité entre 1 et 23 dans mqtt
+		String clientId = UUID.randomUUID().toString().substring(0, 16);
 
 		MqttClient clientMqtt;
 
 		try {
-			clientMqtt = new MqttClient(uri, clientId, new MemoryPersistence());
+			// clientMqtt = new MqttClient(uri, clientId, new
+			// MemoryPersistence());
+			clientMqtt = new MqttClient(uri, clientId, new MqttDefaultFilePersistence(
+					GestionnaireRepertoiresTravail.DOSSIER_PERSISTANCES_MESSAGES_CLIENTS));
+
 		} catch (MqttException e) {
 			LOG.error("Problème de création de la connection au broker mqtt", e);
 			return;

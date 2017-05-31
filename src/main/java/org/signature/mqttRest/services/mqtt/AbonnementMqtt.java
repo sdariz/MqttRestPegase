@@ -11,7 +11,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
@@ -93,10 +93,14 @@ public class AbonnementMqtt implements MqttCallback {
 		String uri = String.format("tcp://%s:%d", _host, _port);
 
 		// Génération d'un id unique pour le client
-		String clientId = UUID.randomUUID().toString();
+		// Limité entre 1 et 23 dans mqtt
+		String clientId = UUID.randomUUID().toString().substring(0, 16);
 
 		try {
-			_clientMqtt = new MqttClient(uri, clientId, new MemoryPersistence());
+			// _clientMqtt = new MqttClient(uri, clientId, new
+			// MemoryPersistence());
+			_clientMqtt = new MqttClient(uri, clientId, new MqttDefaultFilePersistence(
+					GestionnaireRepertoiresTravail.DOSSIER_PERSISTANCES_MESSAGES_CLIENTS));
 		} catch (MqttException e) {
 			LOG.error("Problème de création de la connection au broker mqtt", e);
 			return;
@@ -226,7 +230,7 @@ public class AbonnementMqtt implements MqttCallback {
 	 * ne pas utiliser.
 	 */
 	@Override
-	public void messageArrived(String pTopic, MqttMessage pMessage) throws Exception {
+	public synchronized void messageArrived(String pTopic, MqttMessage pMessage) throws Exception {
 		// Vérification que l'on est abonné à ce topic
 		Topic topic = getTopicCorrespondant(pTopic);
 		if (topic == null) {
