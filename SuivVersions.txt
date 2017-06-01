@@ -19,3 +19,10 @@ Version 1.4: 05/04/17
 Version 1.5: 12/04/17
 	Désabonnement sur fermeture d'un client.
 	Poste des messages que pour les clients connectés
+
+Version 1.6: 19/05/17
+	Augmentation de la taille du buffer de messages (broker vertx) car problème avec les posts de scénarios
+	Persistance des messages publies et reçus pour gérer correctement la qos
+	Longueur du champ id d'un message mqtt doit être inférieur à 23 (erreur vertx)
+	
+	
