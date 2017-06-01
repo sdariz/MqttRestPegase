@@ -1,6 +1,5 @@
 package org.signature.mqtt;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -9,12 +8,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 //import org.junit.Test;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
@@ -48,25 +45,25 @@ public class PublicationStressTest {
 	// DESACTIVE POUR NE PAS RALENTIR LA COMPIl MAVEN
 	// SINON, IL FAUT SUPPRIMER LES TEST DANS LA COMPIL
 
-	@Test
+	//@Test
 	public void testPublicationMessagesParalleles() {
 		testEmissioReception(1, 1000);
 	}
 
-	@Test
+	//@Test
 	public void testReceptionMessagesParalleles() {
 		testEmissioReception(10, 1);
 	}
 
-	@Test
+	//@Test
 	public void testEmissionReception() {
 		testEmissioReception(10, 1000);
 	}
 	
 	//@Test
 	public void testEmissionReceptionBoucle() {
-		int cpt = 100;
-		int nbAbonnes = 5;
+		int cpt = 10;
+		int nbAbonnes = 10;
 		int nbPublications = 500;
 		
 		for(int i=0; i<cpt; i++) {
@@ -115,15 +112,25 @@ public class PublicationStressTest {
 		int cpt = 0;
 		int nombre = pPublications;
 		boolean termine = false;
+		
+		int temp0 = 0;
 
-		while (!termine && cpt++ < 1000) {
+		while (!termine && cpt++ < 100) {
 			termine = true;
+			int temp1 = 0;
 			for (int i = 0; i < pSuscribers; i++) {
-				System.out.println(atoms.get(i).get());
+				int val = atoms.get(i).get();
+				System.out.println(val);
+				temp1 += val;
 				if (atoms.get(i).get() < nombre) {
 					termine = false;
 					break;
 				}
+			}
+			
+			if(temp0 != temp1) {
+				temp0 = temp1;
+				cpt = 0;
 			}
 
 			try {

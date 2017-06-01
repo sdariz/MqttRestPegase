@@ -1,6 +1,7 @@
 package org.signature.mqttRest.services.mqtt;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -45,19 +46,7 @@ public class AbonnementMqtt implements MqttCallback {
 	 *            le port utilisé par le broker
 	 */
 	public AbonnementMqtt(IListenerMessageMqtt pListener, Topic pTopic, String pHost, int pPort) {
-		_topics = new ArrayList<>();
-		if (pTopic != null) {
-			_topics.add(pTopic);
-		}
-
-		_listener = pListener;
-		_host = pHost;
-		_port = pPort;
-
-		// Lancement d'une connexion au broker mqtt
-		if (_topics.size() > 0 && _listener != null) {
-			connexionAuBroker();
-		}
+		this(pListener, pTopic == null ? new ArrayList<>() : Arrays.asList(pTopic), pHost, pPort);
 	}
 
 	/**
@@ -76,6 +65,9 @@ public class AbonnementMqtt implements MqttCallback {
 		if (pTopics == null) {
 			pTopics = new ArrayList<>();
 		}
+		
+		// Effacement des fichiers de travail au premier chargement de l'application
+		GestionnaireRepertoiresTravail.getInstance().purgeDossierPersistanceClientsUneFoisAuDemarrage();
 
 		_listener = pListener;
 		_topics = pTopics;
