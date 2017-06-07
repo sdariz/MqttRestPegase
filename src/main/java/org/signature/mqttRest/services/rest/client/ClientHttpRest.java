@@ -104,7 +104,7 @@ public class ClientHttpRest {
 		try (CloseableHttpResponse httpReponse = httpClient.execute(httpGet)) {
 			HttpEntity entity = httpReponse.getEntity();
 			if (entity != null) {
-				retour = EntityUtils.toString(entity);
+				retour = EntityUtils.toString(entity, "utf-8");
 			}
 
 			EntityUtils.consume(entity);
@@ -170,7 +170,7 @@ public class ClientHttpRest {
 		});
 
 		try {
-			httpPost.setEntity(new UrlEncodedFormEntity(urlParameters));
+			httpPost.setEntity(new UrlEncodedFormEntity(urlParameters, "utf-8"));
 		} catch (UnsupportedEncodingException e) {
 			LOG.error("Erreur encodage parametres POST", e);
 		}

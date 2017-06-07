@@ -4,7 +4,7 @@
   <groupId>org.signature</groupId>
   <artifactId>mqttRestPegase</artifactId>
   <name>MqttRestPegase</name>
-  <version>1.6</version>
+  <version>1.7</version>
   <build>
     <plugins>
       <plugin>
@@ -93,5 +93,8 @@
       </exclusions>
     </dependency>
   </dependencies>
+  <properties>
+    <skipTests>true</skipTests>
+  </properties>
 </project>
 

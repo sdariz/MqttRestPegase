@@ -4,8 +4,13 @@
 
 	<groupId>org.signature</groupId>
 	<artifactId>mqttRestPegase</artifactId>
-	<version>1.6</version>
+	<version>1.7</version>
 	<name>MqttRestPegase</name>
+	
+	<properties>
+		<!-- Evite de lancer les tests à chaque création d'un jar -->
+		<skipTests>true</skipTests>
+	</properties>
 
 	<repositories>
 		<repository>
@@ -46,7 +51,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>4.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>io.moquette</groupId>
