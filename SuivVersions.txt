@@ -1,28 +1,30 @@
-Version 1.0: 12/2016
+Version 1.0 : 12/2016
 	Version initiale
 
-Version 1.1: 07/02/2017
+Version 1.1 : 07/02/2017
 	Mise à jour des librairies spark-core et jackson-databind
 	Retouche conversion en JSON pour éviter d'appeler une liste sur une méthode de conversion attendant un objet
 
-Version 1.2: 13/02/17
+Version 1.2 : 13/02/17
 	Ajout de méthodes utilitaires
 	Copie de la propriété typeMessage lors de la copie d'un message d'équipement
 
-Version 1.3: 28/03/17
+Version 1.3 : 28/03/17
 	Lancement d'une exception lors de la publication, si erreur non gérée
 	
-Version 1.4: 05/04/17
+Version 1.4 : 05/04/17
 	Ajout broker MQTT Vertx avec possibilité de choisir le broker à utiliser, via l'appel du gestionnaire de broker
 	Broker par défaut est maintenant Vertx
 	
-Version 1.5: 12/04/17
+Version 1.5 : 12/04/17
 	Désabonnement sur fermeture d'un client.
 	Poste des messages que pour les clients connectés
 
-Version 1.6: 19/05/17
+Version 1.6 : 19/05/17
 	Augmentation de la taille du buffer de messages (broker vertx) car problème avec les posts de scénarios
 	Persistance des messages publies et reçus pour gérer correctement la qos
 	Longueur du champ id d'un message mqtt doit être inférieur à 23 (erreur vertx)
-	
+
+Version 1.7 : 07/06/17
+	Endocage utf-8 sur les appels REST pour permettre de passer les caractères accentués
 	
