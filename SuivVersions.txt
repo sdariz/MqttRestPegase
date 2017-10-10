@@ -27,4 +27,7 @@ Version 1.6 : 19/05/17
 
 Version 1.7 : 07/06/17
 	Endocage utf-8 sur les appels REST pour permettre de passer les caractères accentués
+
+Version 1.8 : 10/10/17
+	Mise à jour des librairies
 	
