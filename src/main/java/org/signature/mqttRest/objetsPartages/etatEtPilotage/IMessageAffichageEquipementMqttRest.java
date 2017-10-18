@@ -57,7 +57,7 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * Initialise une durée de validité commune pour l'ensemble des modules
 	 * 
 	 * @param pDuree
-	 *            la durée commune
+	 *            la durée commune en secondes
 	 */
 	public default void setDureeValiditeCommune(int pDuree) {
 		getMessagesModules().forEach(m -> m.setDureeValidite(pDuree));
@@ -68,7 +68,7 @@ public interface IMessageAffichageEquipementMqttRest {
 	 * modules
 	 * 
 	 * @param pDuree
-	 *            la durée restante commune
+	 *            la durée restante commune en secondes
 	 */
 	public default void setDureeValiditeRestanteCommune(int pDuree) {
 		getMessagesModules().forEach(m -> m.setDureeValiditeRestante(pDuree));
