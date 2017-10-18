@@ -171,7 +171,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Retourne les temps d'allumage de chaque page
 	 * 
-	 * @return les temps d'allumage
+	 * @return les temps d'allumage en centièmes de seconde
 	 */
 	public List<Integer> getTempsAllumage() {
 		return _tempsAllumage;
@@ -181,7 +181,7 @@ public class MessageModuleMqttRest {
 	 * Initialise les temps d'allumage de chaque page
 	 * 
 	 * @param pTempsAllumage
-	 *            les temps d'allumage
+	 *            les temps d'allumage en centièmes de seconde
 	 */
 	public void setTempsAllumage(List<Integer> pTemps) {
 		if (pTemps == null) {
@@ -194,7 +194,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Retourne les temps d'extinction de chaque page
 	 * 
-	 * @return les temps d'extinction
+	 * @return les temps d'extinction en centièmes de seconde
 	 */
 	public List<Integer> getTempsExtinction() {
 		return _tempsExtinction;
@@ -204,7 +204,7 @@ public class MessageModuleMqttRest {
 	 * Initialise les temps d'extinction de chaque page
 	 * 
 	 * @param pTempsAllumage
-	 *            les temps d'extinction
+	 *            les temps d'extinction en centièmes de seconde
 	 */
 	public void setTempsExtinction(List<Integer> pTemps) {
 		if (pTemps == null) {
@@ -255,7 +255,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Retourne la durée de validité du message
 	 * 
-	 * @return la durée de validité
+	 * @return la durée de validité en secondes
 	 */
 	public int getDureeValidite() {
 		return _dureeValidite;
@@ -265,7 +265,7 @@ public class MessageModuleMqttRest {
 	 * Initialisation de la durée de validité du message
 	 * 
 	 * @param pDuree
-	 *            la durée de validité
+	 *            la durée de validité en secondes
 	 */
 	public void setDureeValidite(int pDuree) {
 		_dureeValidite = pDuree;
@@ -274,7 +274,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Retourne la durée de validité restante du message
 	 * 
-	 * @return la durée de validité restante, -1 si pas gérée
+	 * @return la durée de validité restante en secondes, -1 si pas gérée
 	 */
 	public int getDureeValiditeRestante() {
 		return _dureeValiditeRestante;
@@ -284,7 +284,7 @@ public class MessageModuleMqttRest {
 	 * Initialisation de la durée de validité restante du message
 	 * 
 	 * @param pDuree
-	 *            la durée de validité restante, -1 pour ne pas gérer cette
+	 *            la durée de validité restante en secondes, -1 pour ne pas gérer cette
 	 *            valeur (valeur par défaut)
 	 */
 	public void setDureeValiditeRestante(int pDuree) {
