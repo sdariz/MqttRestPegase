@@ -53,7 +53,7 @@ public class ServiceRequetesInformationPegaseTest {
 	 */
 	@Test
 	public void testDemandeProprietesEquipement() {
-		MessageProprietesEquipementMqttRest props = InterrogationServeurHttpRest
+		MessageProprietesEquipementMqttRest props = new InterrogationServeurHttpRest()
 				.requeteDemandeProprietesEquipement(HOST, PORT, "ab", "cd", "1111");
 
 		assertNotNull("Propriétés null", props);
@@ -74,7 +74,7 @@ public class ServiceRequetesInformationPegaseTest {
 	 */
 	@Test
 	public void testDemandeProprietesEquipements() {
-		List<MessageProprietesEquipementMqttRest> props = InterrogationServeurHttpRest
+		List<MessageProprietesEquipementMqttRest> props = new InterrogationServeurHttpRest()
 				.requeteDemandeProprietesEquipements(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 3, props.size());
@@ -89,7 +89,7 @@ public class ServiceRequetesInformationPegaseTest {
 	 */
 	@Test
 	public void testDemandeProprietesArmoire() {
-		MessageProprietesArmoireMqttRest props = InterrogationServeurHttpRest
+		MessageProprietesArmoireMqttRest props = new InterrogationServeurHttpRest()
 				.requeteDemandeProprietesArmoire(HOST, PORT, "ab", "cd", "9999");
 
 		assertNotNull("Propriétés null", props);
@@ -107,7 +107,7 @@ public class ServiceRequetesInformationPegaseTest {
 	 */
 	@Test
 	public void testDemandeProprietesArmoires() {
-		List<MessageProprietesArmoireMqttRest> props = InterrogationServeurHttpRest
+		List<MessageProprietesArmoireMqttRest> props = new InterrogationServeurHttpRest()
 				.requeteDemandeProprietesArmoires(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 3, props.size());

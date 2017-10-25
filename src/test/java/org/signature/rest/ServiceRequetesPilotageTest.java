@@ -67,7 +67,7 @@ public class ServiceRequetesPilotageTest {
 	public void testPilotageScenarioParId() {
 		traitementsRequetesRest.traitement = 0;
 
-		InterrogationServeurHttpRest.requetePilotageScenario(HOST, PORT, "ab", "cd", "1111");
+		new InterrogationServeurHttpRest().requetePilotageScenario(HOST, PORT, "ab", "cd", "1111");
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -84,7 +84,7 @@ public class ServiceRequetesPilotageTest {
 		scenario.setOrdonnanceurs(Arrays.asList(new OrdonnanceurMessagesScenarioMqttRest(1, 10),
 				new OrdonnanceurMessagesScenarioMqttRest(2, 20)));
 
-		InterrogationServeurHttpRest.requetePilotageScenario(HOST, PORT, "ab", "cd", scenario);
+		new InterrogationServeurHttpRest().requetePilotageScenario(HOST, PORT, "ab", "cd", scenario);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -102,7 +102,7 @@ public class ServiceRequetesPilotageTest {
 		messages.add(new MessagePpadMqttRest());
 		messages.add(new MessageBarriereMqttRest());
 
-		InterrogationServeurHttpRest.requetePilotageScenario(HOST, PORT, "ab", "cd", "1111", messages);
+		new InterrogationServeurHttpRest().requetePilotageScenario(HOST, PORT, "ab", "cd", "1111", messages);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -119,7 +119,7 @@ public class ServiceRequetesPilotageTest {
 		message.setTypeMessage(TypeMessage.NEUTRE);
 		message.setMessagesLignes(Arrays.asList(new MessageModuleMqttRest(), new MessageModuleMqttRest()));
 
-		InterrogationServeurHttpRest.requetePilotagePmv(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotagePmv(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -138,7 +138,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagePanonceauHaut(mod);
 
-		InterrogationServeurHttpRest.requetePilotagePplmv(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotagePplmv(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -157,7 +157,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotagePpad(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotagePpad(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -176,7 +176,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotagePictogramme(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotagePictogramme(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -195,7 +195,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotageR24(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotageR24(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -214,7 +214,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotagePrisme(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotagePrisme(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -233,7 +233,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotageBarriere(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotageBarriere(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -252,7 +252,7 @@ public class ServiceRequetesPilotageTest {
 		mod.setMessagesParPage(Arrays.asList("msg 1"));
 		message.setMessagesModuleUnique(mod);
 
-		InterrogationServeurHttpRest.requetePilotageBra(HOST, PORT, "ab", "cd", "1111", message);
+		new InterrogationServeurHttpRest().requetePilotageBra(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -270,7 +270,7 @@ public class ServiceRequetesPilotageTest {
 		messages.add(new MessagePpadMqttRest("2222"));
 		messages.add(new MessageBarriereMqttRest("3333"));
 
-		InterrogationServeurHttpRest.requetePilotageMessages(HOST, PORT, "ab", "cd", messages);
+		new InterrogationServeurHttpRest().requetePilotageMessages(HOST, PORT, "ab", "cd", messages);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -283,7 +283,7 @@ public class ServiceRequetesPilotageTest {
 	public void testPilotageEnCoursSurEquipement() {
 		traitementsRequetesRest.flagPilotageCours = true;
 		
-		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
+		boolean enCours = new InterrogationServeurHttpRest().requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
 
 		assertEquals("Pilotage en cours attendu", true, enCours);
 	}
@@ -295,7 +295,7 @@ public class ServiceRequetesPilotageTest {
 	public void testPasPilotageEnCoursSurEquipement() {
 		traitementsRequetesRest.flagPilotageCours = false;
 		
-		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
+		boolean enCours = new InterrogationServeurHttpRest().requetePilotageEnCours(HOST, PORT, "ab", "cd", "1111");
 
 		assertEquals("Pas de pilotage en cours attendu", false, enCours);
 	}
@@ -307,7 +307,7 @@ public class ServiceRequetesPilotageTest {
 	public void testPilotageEnCoursSurEquipementQuelconque() {
 		traitementsRequetesRest.flagPilotageCours = true;
 		
-		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd");
+		boolean enCours = new InterrogationServeurHttpRest().requetePilotageEnCours(HOST, PORT, "ab", "cd");
 
 		assertEquals("Pilotage en cours attendu", true, enCours);
 	}
@@ -319,7 +319,7 @@ public class ServiceRequetesPilotageTest {
 	public void testPasPilotageEnCoursSurEquipementQuelconque() {
 		traitementsRequetesRest.flagPilotageCours = false;
 		
-		boolean enCours = InterrogationServeurHttpRest.requetePilotageEnCours(HOST, PORT, "ab", "cd");
+		boolean enCours = new InterrogationServeurHttpRest().requetePilotageEnCours(HOST, PORT, "ab", "cd");
 
 		assertEquals("Pas de pilotage en cours attendu", false, enCours);
 	}

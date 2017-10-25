@@ -48,7 +48,7 @@ public class ServiceRequetesInterrogationArmoireTest {
 	public void testLancementTestEquipements() {
 		traitementsRequetesRest.traitement = 0;
 
-		InterrogationServeurHttpRest.requeteLancementTestEquipementsArmoire(HOST, PORT, "ab", "cd", "1111");
+		new InterrogationServeurHttpRest().requeteLancementTestEquipementsArmoire(HOST, PORT, "ab", "cd", "1111");
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -61,7 +61,7 @@ public class ServiceRequetesInterrogationArmoireTest {
 	public void testRemiseHeureArmoire() {
 		traitementsRequetesRest.traitement = 0;
 
-		InterrogationServeurHttpRest.requeteRemiseHeureArmoire(HOST, PORT, "ab", "cd", "2222");
+		new InterrogationServeurHttpRest().requeteRemiseHeureArmoire(HOST, PORT, "ab", "cd", "2222");
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -72,7 +72,7 @@ public class ServiceRequetesInterrogationArmoireTest {
 	 */
 	@Test
 	public void testDemandeArmoire() {
-		String reponse = InterrogationServeurHttpRest.requeteDemandeArmoire(HOST, PORT, "ab", "cd", "3333", "Une commande");
+		String reponse = new InterrogationServeurHttpRest().requeteDemandeArmoire(HOST, PORT, "ab", "cd", "3333", "Une commande");
 
 		// Sortie en erreur
 		assertEquals("Réponse incorrrecte", "Une réponse", reponse);

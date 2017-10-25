@@ -60,7 +60,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.interdit = true;
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd", true);
+		new InterrogationServeurHttpRest().requeteInterdictionPilotages(HOST, PORT, "ab", "cd", true);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -77,7 +77,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.interdit = false;
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd", false);
+		new InterrogationServeurHttpRest().requeteInterdictionPilotages(HOST, PORT, "ab", "cd", false);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -93,7 +93,7 @@ public class ServiceRequetesAdministrationTest {
 		// Flag pilotage interdit pour valider le test
 		traitementsRequetesRest.interdit = true;
 
-		InterrogationServeurHttpRest.requeteInterdictionPilotages(HOST, PORT, "ab", "cd",
+		new InterrogationServeurHttpRest().requeteInterdictionPilotages(HOST, PORT, "ab", "cd",
 				Arrays.asList("1111", "2222", "3333"), true);
 
 		// Sortie en erreur
@@ -106,7 +106,7 @@ public class ServiceRequetesAdministrationTest {
 	 */
 	@Test
 	public void testPresenceServeur() {
-		assertTrue("Serveur absent", InterrogationServeurHttpRest.requeteTestPresence(HOST, PORT, "ab", "cd"));
+		assertTrue("Serveur absent", new InterrogationServeurHttpRest().requeteTestPresence(HOST, PORT, "ab", "cd"));
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class ServiceRequetesAdministrationTest {
 		traitementsRequetesRest.traitement = 0;
 
 		traitementsRequetesRest.activation = true;
-		InterrogationServeurHttpRest.requeteActivationBouton(HOST, PORT, "ab", "cd", "1111", true);
+		new InterrogationServeurHttpRest().requeteActivationBouton(HOST, PORT, "ab", "cd", "1111", true);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -131,7 +131,7 @@ public class ServiceRequetesAdministrationTest {
 		traitementsRequetesRest.traitement = 0;
 
 		traitementsRequetesRest.activation = false;
-		InterrogationServeurHttpRest.requeteActivationBouton(HOST, PORT, "ab", "cd", "1111", false);
+		new InterrogationServeurHttpRest().requeteActivationBouton(HOST, PORT, "ab", "cd", "1111", false);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -144,7 +144,7 @@ public class ServiceRequetesAdministrationTest {
 	public void testLancementActionBouton() {
 		traitementsRequetesRest.traitement = 0;
 
-		InterrogationServeurHttpRest.requeteLancementActionBouton(HOST, PORT, "ab", "cd", "1111");
+		new InterrogationServeurHttpRest().requeteLancementActionBouton(HOST, PORT, "ab", "cd", "1111");
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);

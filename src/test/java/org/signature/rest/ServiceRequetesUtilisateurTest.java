@@ -55,7 +55,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeListeUtilisateurs() {
-		List<MessageUtilisateurMqttRest> msgs = InterrogationServeurHttpRest
+		List<MessageUtilisateurMqttRest> msgs = new InterrogationServeurHttpRest()
 				.requeteDemandeListeUtilisateurs(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrecte", msgs.size(), 2);
@@ -80,7 +80,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeUtilisateurConnecte() {
-		MessageUtilisateurMqttRest msg = InterrogationServeurHttpRest.requeteDemandeUtilisateurConnecte(HOST,
+		MessageUtilisateurMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeUtilisateurConnecte(HOST,
 				PORT, "aa", "bb");
 
 		assertEquals("Id expediteur incorrect", "aa", msg.getIdentifiantExpediteur());
@@ -96,7 +96,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeIdentifiantsValide() {
-		assertEquals("Identifiant invalide", true, InterrogationServeurHttpRest
+		assertEquals("Identifiant invalide", true, new InterrogationServeurHttpRest()
 				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomValide", "MotPasseValide"));
 	}
 
@@ -105,7 +105,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeIdentifiantsNomInvalide() {
-		assertEquals("Le nom devrait être invalide", false, InterrogationServeurHttpRest
+		assertEquals("Le nom devrait être invalide", false, new InterrogationServeurHttpRest()
 				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomInvalide", "MotPasseValide"));
 	}
 
@@ -114,7 +114,7 @@ public class ServiceRequetesUtilisateurTest {
 	 */
 	@Test
 	public void testRequeteDemandeIdentifiantsMotPasseInvalide() {
-		assertEquals("Le mot de passe devrait être invalide", false, InterrogationServeurHttpRest
+		assertEquals("Le mot de passe devrait être invalide", false, new InterrogationServeurHttpRest()
 				.requeteDemandeIdentifiantsValide(HOST, PORT, "ab", "cd", "NomValide", "MotPasseInvalide"));
 	}
 

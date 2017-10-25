@@ -54,7 +54,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'id de l'équipement à interroger
 	 * @return l'état d'affichage de l'équipement, ou null si problème
 	 */
-	public static MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
+	public MessageEtatAffichageMqttRest requeteDemandeEtatAffichageEquipement(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesEtatEquipement.requeteDemandeEtatAffichageEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -73,7 +73,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return l'état d'affichage des équipements, liste vide si problème
 	 */
-	public static List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort,
+	public List<MessageEtatAffichageMqttRest> requeteDemandeEtatAffichageEquipements(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesEtatEquipement.requeteDemandeEtatAffichageEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
@@ -94,7 +94,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'id de l'équipement à interroger
 	 * @return l'état technique de l'équipement, ou null si problème
 	 */
-	public static MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
+	public MessageEtatTechniqueMqttRest requeteDemandeEtatTechniqueEquipement(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesEtatEquipement.requeteDemandeEtatTechniqueEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -113,7 +113,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return l'état technique des équipements, liste vide si problème
 	 */
-	public static List<MessageEtatTechniqueMqttRest> requeteDemandeEtatTechniqueEquipements(String pHost, int pPort,
+	public List<MessageEtatTechniqueMqttRest> requeteDemandeEtatTechniqueEquipements(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesEtatEquipement.requeteDemandeEtatTechniqueEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
@@ -134,7 +134,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pIdEquipement
 	 *            l'id de l'équipement à interroger
 	 */
-	public static void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteActualisationEtatEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesEtatEquipement.requeteActualisationEtatEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -153,7 +153,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return la liste des utilisateurs, liste vide si problème
 	 */
-	public static List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort,
+	public List<MessageUtilisateurMqttRest> requeteDemandeListeUtilisateurs(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesUtilisateur.requeteDemandeListeUtilisateurs(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -172,7 +172,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return l'utilisateur connecté, null si aucun ou si problème
 	 */
-	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort,
+	public MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesUtilisateur.requeteDemandeUtilisateurConnecte(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -195,7 +195,7 @@ public class InterrogationServeurHttpRest {
 	 *            le mot de passe associé au login
 	 * @return true si valide, sinon false
 	 */
-	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pIdentifiantExpediteur,
+	public boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pLogin, String pMotPasse) {
 		return ServiceRequetesUtilisateur.requeteDemandeIdentifiantsValide(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pLogin, pMotPasse);
@@ -215,7 +215,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pInterdit
 	 *            true pour interdire les pilotages sur Pegase
 	 */
-	public static void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, boolean pInterdit) {
 		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pInterdit);
@@ -237,7 +237,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pInterdit
 	 *            true pour interdire les pilotages sur Pegase
 	 */
-	public static void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteInterdictionPilotages(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, List<String> pIdsEquipements, boolean pInterdit) {
 		ServiceRequetesAdministration.requeteInterdictionPilotages(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdsEquipements, pInterdit);
@@ -256,7 +256,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return true si réponse OK du serveur, false si problème
 	 */
-	public static boolean requeteTestPresence(String pHost, int pPort, String pIdentifiantExpediteur,
+	public boolean requeteTestPresence(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return ServiceRequetesAdministration.requeteTestPresence(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -278,7 +278,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pActif
 	 *            true pour activer, false pour désactiver
 	 */
-	public static void requeteActivationBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteActivationBouton(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdBouton, boolean pActif) {
 		ServiceRequetesAdministration.requeteActivationBouton(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdBouton, pActif);
@@ -298,7 +298,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pIdBouton
 	 *            l'identifiant du bouton
 	 */
-	public static void requeteLancementActionBouton(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteLancementActionBouton(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdBouton) {
 		ServiceRequetesAdministration.requeteLancementActionBouton(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdBouton);
@@ -318,7 +318,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pIdEquipement
 	 *            l'identifiant d'un équipement de l'armoire à tester
 	 */
-	public static void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteLancementTestEquipementsArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesInterrogationArmoire.requeteLancementTestEquipementsArmoire(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -339,7 +339,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant d'un équipement de l'armoire à remettre à
 	 *            l'heure
 	 */
-	public static void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requeteRemiseHeureArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
 		ServiceRequetesInterrogationArmoire.requeteRemiseHeureArmoire(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -362,7 +362,7 @@ public class InterrogationServeurHttpRest {
 	 *            la trame à envoyer à l'armoire
 	 * @return la réponse de l'armoire
 	 */
-	public static String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
+	public String requeteDemandeArmoire(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, String pTrame) {
 		return ServiceRequetesInterrogationArmoire.requeteDemandeArmoire(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement, pTrame);
@@ -381,7 +381,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return la liste des catégories
 	 */
-	public static List<String> requeteDemandeCategoriesBibliothequePmv(String pHost, int pPort,
+	public List<String> requeteDemandeCategoriesBibliothequePmv(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesBibliothequePmv.requeteDemandeCategoriesBibliothequePmv(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
@@ -403,7 +403,7 @@ public class InterrogationServeurHttpRest {
 	 *            le nom de la catégorie
 	 * @return la liste noms des messages pour la catégorie demandée
 	 */
-	public static List<String> requeteDemandeMessagesDansCategorieBibliothequePmv(String pHost, int pPort,
+	public List<String> requeteDemandeMessagesDansCategorieBibliothequePmv(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pCategorie) {
 		return ServiceRequetesBibliothequePmv.requeteDemandeMessagesDansCategorieBibliothequePmv(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pCategorie);
@@ -425,7 +425,7 @@ public class InterrogationServeurHttpRest {
 	 * @pNom le nom du message dans la catégorie
 	 * @return le message correspondant, ou null si problème
 	 */
-	public static MessagePmvMqttRest requeteDemandeMessageBibliothequePmv(String pHost, int pPort,
+	public MessagePmvMqttRest requeteDemandeMessageBibliothequePmv(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pCategorie, String pNom) {
 		return ServiceRequetesBibliothequePmv.requeteDemandeMessageBibliothequePmv(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pCategorie, pNom);
@@ -452,7 +452,7 @@ public class InterrogationServeurHttpRest {
 	 *            true pour ne sélectionner que les alarmes actives
 	 * @return la liste des alarmes
 	 */
-	public static List<MessageAlarmeMqttRest> requeteDemandeListeAlarmes(String pHost, int pPort,
+	public List<MessageAlarmeMqttRest> requeteDemandeListeAlarmes(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodateDebut,
 			Date pHorodateFin, boolean pActiveSeul) {
 		return ServiceRequetesEvenement.requeteDemandeListeAlarmes(pHost, pPort, pIdentifiantExpediteur,
@@ -477,7 +477,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de l'évènement
 	 * @return l'état d'affichage ou null si problème
 	 */
-	public static IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost,
+	public IMessageAffichageEquipementMqttRest requeteDemandeEtatAffichageEquipementPourDate(String pHost,
 			int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement, Date pHorodate) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementPourDate(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande, pIdEquipement, pHorodate);
@@ -503,7 +503,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'horodate de fin
 	 * @return les états d'affichage de l'équipement
 	 */
-	public static List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(
+	public List<IMessageAffichageEquipementMqttRest> requeteDemandeEtatAffichageEquipementEntreDeuxDates(
 			String pHost, int pPort, String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			Date pHorodateDebut, Date pHorodateFin) {
 		return ServiceRequetesEvenement.requeteDemandeEtatAffichageEquipementEntreDeuxDates(pHost, pPort,
@@ -525,7 +525,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'id de l'équipement concerné
 	 * @return les propriétés d'un équipement, ou null si problème
 	 */
-	public static MessageProprietesEquipementMqttRest requeteDemandeProprietesEquipement(String pHost, int pPort,
+	public MessageProprietesEquipementMqttRest requeteDemandeProprietesEquipement(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipement(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -544,7 +544,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return les propriétés des équipements
 	 */
-	public static List<MessageProprietesEquipementMqttRest> requeteDemandeProprietesEquipements(String pHost, int pPort,
+	public List<MessageProprietesEquipementMqttRest> requeteDemandeProprietesEquipements(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipements(pHost, pPort,
 				pIdentifiantExpediteur, pReferenceCommande);
@@ -565,7 +565,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant d'un équipement de l'armoire à interroger
 	 * @return les propriétés d'une armoire, ou null si problème
 	 */
-	public static MessageProprietesArmoireMqttRest requeteDemandeProprietesArmoire(String pHost, int pPort,
+	public MessageProprietesArmoireMqttRest requeteDemandeProprietesArmoire(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoire(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande, pIdEquipement);
@@ -584,7 +584,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return les propriétés des équipements
 	 */
-	public static List<MessageProprietesArmoireMqttRest> requeteDemandeProprietesArmoires(String pHost, int pPort,
+	public List<MessageProprietesArmoireMqttRest> requeteDemandeProprietesArmoires(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoires(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -603,7 +603,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return la liste des identifiants des scénarios
 	 */
-	public static List<String> requeteDemandeIdentifiantsScenarios(String pHost, int pPort,
+	public List<String> requeteDemandeIdentifiantsScenarios(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesScenario.requeteDemandeIdentifiantsScenarios(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -624,7 +624,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant du scénario à récupérer
 	 * @return le scénario demandé, ou null si problème
 	 */
-	public static MessageScenarioMqttRest requeteDemandeScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+	public MessageScenarioMqttRest requeteDemandeScenario(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdScenario) {
 		return ServiceRequetesScenario.requeteDemandeScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdScenario);
@@ -643,7 +643,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return la liste des identifiants des scénarios
 	 */
-	public static List<MessageScenarioMqttRest> requeteDemandeScenarios(String pHost, int pPort,
+	public List<MessageScenarioMqttRest> requeteDemandeScenarios(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesScenario.requeteDemandeScenarios(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
@@ -663,7 +663,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pIdScenario
 	 *            l'identifiant du scénario à piloter
 	 */
-	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdScenario) {
 		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdScenario);
@@ -684,7 +684,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pScenarioTemporaire
 	 *            le scénario temporaire à piloter
 	 */
-	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, MessageScenarioMqttRest pScenarioTemporaire) {
 		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pScenarioTemporaire);
@@ -706,7 +706,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessagesAPiloter
 	 *            les messages à piloter dans le scénario
 	 */
-	public static void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageScenario(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdScenario,
 			List<IMessageAffichageEquipementMqttRest> pMessagesAPiloter) {
 		ServiceRequetesPilotage.requetePilotageScenario(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
@@ -729,7 +729,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotageEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageEquipement(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, IMessageAffichageEquipementMqttRest pMessageAPiloter) {
 		if (pMessageAPiloter == null) {
 			return;
@@ -787,7 +787,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotagePmv(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotagePmv(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePmvMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -809,7 +809,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotagePplmv(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotagePplmv(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePplmvMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePplmv(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -831,7 +831,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotagePpad(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotagePpad(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePpadMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePpad(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -853,7 +853,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotagePictogramme(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotagePictogramme(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePictogrammeMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePictogramme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -875,7 +875,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotageR24(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageR24(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageR24MqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageR24(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -897,7 +897,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotagePrisme(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotagePrisme(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessagePrismeMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotagePrisme(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -919,7 +919,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotageBarriere(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageBarriere(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageBarriereMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBarriere(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -941,7 +941,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessageAPiloter
 	 *            le message à piloter
 	 */
-	public static void requetePilotageBra(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageBra(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
@@ -961,7 +961,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessage
 	 *            le message à piloter
 	 */
-	public static void requetePilotageMessage(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageMessage(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, IMessageAffichageEquipementMqttRest pMessage) {
 		requetePilotageMessages(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande, Arrays.asList(pMessage));
 	}
@@ -980,7 +980,7 @@ public class InterrogationServeurHttpRest {
 	 * @param pMessages
 	 *            les messages à piloter
 	 */
-	public static void requetePilotageMessages(String pHost, int pPort, String pIdentifiantExpediteur,
+	public void requetePilotageMessages(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, List<IMessageAffichageEquipementMqttRest> pMessages) {
 		ServiceRequetesPilotage.requetePilotageMessages(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pMessages);
@@ -1001,7 +1001,7 @@ public class InterrogationServeurHttpRest {
 	 *            l'identifiant de l'équipement à tester
 	 * @return true si un pilotage est en cours
 	 */
-	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+	public boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement) {
 		return ServiceRequetesPilotage.requetePilotageEnCours(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement);
@@ -1020,7 +1020,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @return true si un pilotage est en cours
 	 */
-	public static boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
+	public boolean requetePilotageEnCours(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return ServiceRequetesPilotage.requetePilotageEnCours(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande);
 	}

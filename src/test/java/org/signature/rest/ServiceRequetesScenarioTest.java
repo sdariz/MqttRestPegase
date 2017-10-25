@@ -56,10 +56,10 @@ public class ServiceRequetesScenarioTest {
 	 */
 	@Test
 	public void testListeIdentifiantsScenarios() {
-		List<String> ids = InterrogationServeurHttpRest.requeteDemandeIdentifiantsScenarios(HOST, PORT, "ab", "cd");
+		List<String> ids = new InterrogationServeurHttpRest().requeteDemandeIdentifiantsScenarios(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 3, ids.size());
-		assertEquals("Identiifants incorrect", Arrays.asList("1111", "2222", "3333"), ids);
+		assertEquals("Identiifants incorrect", Arrays.asList("1111", "222InterrogationServeurHttpRest2", "3333"), ids);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class ServiceRequetesScenarioTest {
 	 */
 	@Test
 	public void testDemandeScenario() {
-		MessageScenarioMqttRest msg = InterrogationServeurHttpRest.requeteDemandeScenario(HOST, PORT, "ab", "cd",
+		MessageScenarioMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeScenario(HOST, PORT, "ab", "cd",
 				"1111");
 
 		assertNotNull("Scénario null", msg);
@@ -94,7 +94,7 @@ public class ServiceRequetesScenarioTest {
 	 */
 	@Test
 	public void testScenarioNombreMessageParType() {
-		MessageScenarioMqttRest msg = InterrogationServeurHttpRest.requeteDemandeScenario(HOST, PORT, "ab", "cd",
+		MessageScenarioMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeScenario(HOST, PORT, "ab", "cd",
 				"1111");
 
 		assertNotNull("Scénario null", msg);
@@ -109,7 +109,7 @@ public class ServiceRequetesScenarioTest {
 	 */
 	@Test
 	public void testDemandeScenarios() {
-		List<MessageScenarioMqttRest> msgs = InterrogationServeurHttpRest.requeteDemandeScenarios(HOST, PORT, "ab", "cd");
+		List<MessageScenarioMqttRest> msgs = new InterrogationServeurHttpRest().requeteDemandeScenarios(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 3, msgs.size());
 		

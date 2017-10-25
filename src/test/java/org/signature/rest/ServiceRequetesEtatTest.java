@@ -84,7 +84,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePMV() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "1111");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
@@ -187,7 +187,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePanneauModuleUnique() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "2222");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
@@ -226,7 +226,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePpad() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "2222");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PPAD);
@@ -238,7 +238,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePictogramme() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "3333");
 
 		assertEquals("Type Pictogramme incorrect", msg.getMessageEquipement().getTypeEquipement(),
@@ -251,7 +251,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageFeuR24() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "4444");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.R24);
@@ -263,7 +263,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBarriere() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "5555");
 
 		assertEquals("Type Barrière incorrect", msg.getMessageEquipement().getTypeEquipement(),
@@ -276,7 +276,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePrisme() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "6666");
 
 		assertEquals("Type Prisme incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PRISME);
@@ -288,7 +288,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBra() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "7777");
 
 		assertEquals("Type BRA incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.BRA);
@@ -300,7 +300,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePplmv() {
-		MessageEtatAffichageMqttRest msg = InterrogationServeurHttpRest.requeteDemandeEtatAffichageEquipement(HOST,
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
 				PORT, "ab", "cd", "8888");
 
 		assertEquals("Type PPLMV incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PPLMV);
@@ -312,7 +312,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageEquipements() {
-		List<MessageEtatAffichageMqttRest> msgs = InterrogationServeurHttpRest
+		List<MessageEtatAffichageMqttRest> msgs = new InterrogationServeurHttpRest()
 				.requeteDemandeEtatAffichageEquipements(HOST, PORT, "ab", "cd");
 
 		assertEquals("Nombre état affichage incorrect", 2, msgs.size());
@@ -326,7 +326,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatTechniqueEquipement() {
-		MessageEtatTechniqueMqttRest etatTech = InterrogationServeurHttpRest.requeteDemandeEtatTechniqueEquipement(HOST,
+		MessageEtatTechniqueMqttRest etatTech = new InterrogationServeurHttpRest().requeteDemandeEtatTechniqueEquipement(HOST,
 				PORT, "ab", "cd", "1111");
 
 		assertEquals("Id equipement incorrect", "1111", etatTech.getIdentifiantEquipement());
@@ -381,7 +381,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatTechniqueEquipements() {
-		List<MessageEtatTechniqueMqttRest> msgs = InterrogationServeurHttpRest
+		List<MessageEtatTechniqueMqttRest> msgs = new InterrogationServeurHttpRest()
 				.requeteDemandeEtatTechniqueEquipements(HOST, PORT, "ab", "cd");
 
 		assertEquals("Nombre état technique incorrect", 2, msgs.size());
@@ -393,7 +393,7 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteActualisationEtatEquipement() {
-		InterrogationServeurHttpRest.requeteActualisationEtatEquipement(HOST, PORT, "ab", "cd", "1234");
+		new InterrogationServeurHttpRest().requeteActualisationEtatEquipement(HOST, PORT, "ab", "cd", "1234");
 
 		assertEquals("Id equipement incorrect", "1234", traitementsRequetesRest.idEqpt);
 	}

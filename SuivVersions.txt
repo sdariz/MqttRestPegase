@@ -30,4 +30,5 @@ Version 1.7 : 07/06/17
 
 Version 1.8 : 10/10/17
 	Mise à jour des librairies
+	Suppression appel static sur InterrogationServeurHttpRest pour permettre le mock de la classe
 	

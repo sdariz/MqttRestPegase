@@ -53,7 +53,7 @@ public class ServiceRequetesBibliothequePmvTest {
 	 */
 	@Test
 	public void testListeCategoriesBibliothequePmv() {
-		List<String> categories = InterrogationServeurHttpRest.requeteDemandeCategoriesBibliothequePmv(HOST, PORT, "ab",
+		List<String> categories = new InterrogationServeurHttpRest().requeteDemandeCategoriesBibliothequePmv(HOST, PORT, "ab",
 				"cd");
 
 		assertEquals("Taille incorrect", 3, categories.size());
@@ -67,7 +67,7 @@ public class ServiceRequetesBibliothequePmvTest {
 	 */
 	@Test
 	public void testListeMessagesDansCategorieBibliothequePmv() {
-		List<String> messages = InterrogationServeurHttpRest.requeteDemandeMessagesDansCategorieBibliothequePmv(HOST,
+		List<String> messages = new InterrogationServeurHttpRest().requeteDemandeMessagesDansCategorieBibliothequePmv(HOST,
 				PORT, "ab", "cd", "Catégorie 1");
 
 		assertEquals("Taille incorrect", 3, messages.size());
@@ -81,7 +81,7 @@ public class ServiceRequetesBibliothequePmvTest {
 	 */
 	@Test
 	public void testMessageBibliothequePmv() {
-		MessagePmvMqttRest msg = InterrogationServeurHttpRest.requeteDemandeMessageBibliothequePmv(HOST,
+		MessagePmvMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeMessageBibliothequePmv(HOST,
 				PORT, "ab", "cd", "Catégorie 1", "Message 1");
 
 		assertNotNull("Message null", msg);
