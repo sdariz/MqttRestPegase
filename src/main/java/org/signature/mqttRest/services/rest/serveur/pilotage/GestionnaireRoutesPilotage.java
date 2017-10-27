@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
@@ -38,6 +39,7 @@ public class GestionnaireRoutesPilotage {
 	public final static String PILOTAGE_PRISME = "/pilotage/pilotagePrisme";
 	public final static String PILOTAGE_BARRIERE = "/pilotage/pilotageBarriere";
 	public final static String PILOTAGE_BRA = "/pilotage/pilotageBra";
+	public final static String PILOTAGE_FEU_REGULATION = "/pilotage/pilotageFeuRegulation";
 	public final static String PILOTAGE_MESSAGES = "/pilotage/pilotageMessages";
 	public final static String PILOTAGE_EN_COURS = "/pilotage/pilotageEnCours";
 
@@ -58,7 +60,7 @@ public class GestionnaireRoutesPilotage {
 	public static List<String> getPOSTRoutes() {
 		return Arrays.asList(PILOTAGE_IDENTIFIANT_SCENARIO, PILOTAGE_SCENARIO, PILOTAGE_MESSAGES_SCENARIO, PILOTAGE_PMV,
 				PILOTAGE_PPLMV, PILOTAGE_PPAD, PILOTAGE_PICTOGRAMME, PILOTAGE_R24, PILOTAGE_PRISME, PILOTAGE_BARRIERE,
-				PILOTAGE_BRA, PILOTAGE_MESSAGES);
+				PILOTAGE_BRA, PILOTAGE_FEU_REGULATION, PILOTAGE_MESSAGES);
 	}
 
 	/**
@@ -249,6 +251,20 @@ public class GestionnaireRoutesPilotage {
 			}
 
 			pTraiteRequetesRest.traiteDemandePilotageBra(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
+			return "";
+		}
+		
+		if (PILOTAGE_FEU_REGULATION.equals(pUri)) {
+			// Désérialisation du message à piloter
+			MessageFeuRegulationMqttRest message = (MessageFeuRegulationMqttRest) Util.jsonToObjet(pParametres.get("message")[0],
+					MessageFeuRegulationMqttRest.class);
+
+			if (message == null) {
+				return "";
+			}
+
+			pTraiteRequetesRest.traiteDemandePilotageFeuRegulation(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0], message);
 			return "";
 		}

@@ -22,11 +22,12 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRes
 		@Type(value = MessageR24MqttRest.class, name = "R24"),
 		@Type(value = MessagePrismeMqttRest.class, name = "PRISME"),
 		@Type(value = MessageBarriereMqttRest.class, name = "BARRIERE"),
-		@Type(value = MessageBraMqttRest.class, name = "BRA") })
+		@Type(value = MessageBraMqttRest.class, name = "BRA"),
+		@Type(value = MessageFeuRegulationMqttRest.class, name = "FEU_REGULATION") })
 public interface IMessageAffichageEquipementMqttRest {
 
 	public enum TypeEquipement {
-		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA
+		PMV, PPLMV, PPAD, PICTOGRAMME, R24, PRISME, BARRIERE, BRA, FEU_REGULATION
 		// , RADT, METEO
 	};
 
@@ -43,8 +44,7 @@ public interface IMessageAffichageEquipementMqttRest {
 	public final static String INCONNU = "inconnu";
 
 	/**
-	 * Initialise une luminosité commune pour l'ensemble des modules de
-	 * l'équipement
+	 * Initialise une luminosité commune pour l'ensemble des modules de l'équipement
 	 * 
 	 * @param pLuminosite
 	 *            la luminosité commune
@@ -64,8 +64,7 @@ public interface IMessageAffichageEquipementMqttRest {
 	}
 
 	/**
-	 * Initialise une durée de validité restante commune pour l'ensemble des
-	 * modules
+	 * Initialise une durée de validité restante commune pour l'ensemble des modules
 	 * 
 	 * @param pDuree
 	 *            la durée restante commune en secondes
@@ -117,7 +116,7 @@ public interface IMessageAffichageEquipementMqttRest {
 	 *            le type de message
 	 */
 	public void setTypeMessage(TypeMessage pType);
-	
+
 	/**
 	 * Copie de l'objet courant
 	 * 

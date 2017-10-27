@@ -59,7 +59,7 @@ public class ServiceRequetesScenarioTest {
 		List<String> ids = new InterrogationServeurHttpRest().requeteDemandeIdentifiantsScenarios(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 3, ids.size());
-		assertEquals("Identiifants incorrect", Arrays.asList("1111", "222InterrogationServeurHttpRest2", "3333"), ids);
+		assertEquals("Identiifants incorrect", Arrays.asList("1111", "2222", "3333"), ids);
 	}
 
 	/**

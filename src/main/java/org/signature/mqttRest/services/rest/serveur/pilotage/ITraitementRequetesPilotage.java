@@ -5,6 +5,7 @@ import java.util.List;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
@@ -176,6 +177,21 @@ public interface ITraitementRequetesPilotage {
 	 */
 	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessageBraMqttRest pMessageAPiloter);
+	
+	/**
+	 * Traite une demande de pilotage d'un Feu de Regulation
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter
+	 *            le message à piloter
+	 */
+	public void traiteDemandePilotageFeuRegulation(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageFeuRegulationMqttRest pMessageAPiloter);
 
 	/**
 	 * Traite une demande de pilotage d'une liste de messages

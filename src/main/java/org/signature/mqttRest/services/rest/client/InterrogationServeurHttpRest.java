@@ -9,6 +9,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttR
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
@@ -768,6 +769,10 @@ public class InterrogationServeurHttpRest {
 			ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 					pIdEquipement, (MessageBraMqttRest) pMessageAPiloter);
 			break;
+		case FEU_REGULATION:
+			ServiceRequetesPilotage.requetePilotageFeuRegulation(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+					pIdEquipement, (MessageFeuRegulationMqttRest) pMessageAPiloter);
+			break;
 		}
 	}
 
@@ -944,6 +949,28 @@ public class InterrogationServeurHttpRest {
 	public void requetePilotageBra(String pHost, int pPort, String pIdentifiantExpediteur,
 			String pReferenceCommande, String pIdEquipement, MessageBraMqttRest pMessageAPiloter) {
 		ServiceRequetesPilotage.requetePilotageBra(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
+				pIdEquipement, pMessageAPiloter);
+	}
+	
+	/**
+	 * Demande de pilotage d'un Feu de Regulation
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter
+	 *            le message à piloter
+	 */
+	public void requetePilotageFeuRegulation(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement, MessageFeuRegulationMqttRest pMessageAPiloter) {
+		ServiceRequetesPilotage.requetePilotageFeuRegulation(pHost, pPort, pIdentifiantExpediteur, pReferenceCommande,
 				pIdEquipement, pMessageAPiloter);
 	}
 

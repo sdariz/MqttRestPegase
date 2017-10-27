@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
@@ -253,6 +254,25 @@ public class ServiceRequetesPilotageTest {
 		message.setMessagesModuleUnique(mod);
 
 		new InterrogationServeurHttpRest().requetePilotageBra(HOST, PORT, "ab", "cd", "1111", message);
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+	}
+	
+	/**
+	 * Test de pilotage d'un Feu de Régulation
+	 */
+	@Test
+	public void testPilotageFeuRegulation() {
+		traitementsRequetesRest.traitement = 0;
+
+		MessageFeuRegulationMqttRest message = new MessageFeuRegulationMqttRest();
+		message.setTypeMessage(TypeMessage.EXPLOITATION);
+		MessageModuleMqttRest mod = new MessageModuleMqttRest();
+		mod.setMessagesParPage(Arrays.asList("msg 1"));
+		message.setMessagesModuleUnique(mod);
+
+		new InterrogationServeurHttpRest().requetePilotageFeuRegulation(HOST, PORT, "ab", "cd", "1111", message);
 
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
@@ -551,6 +571,28 @@ class TraitementRequetesPilotageScenario extends TraitementRequetesRestAdapteur 
 	@Override
 	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessageBraMqttRest pMessageAPiloter) {
+		try {
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+			assertNotNull("Message null", pMessageAPiloter);
+			assertEquals("Type message incorrect", TypeMessage.EXPLOITATION, pMessageAPiloter.getTypeMessage());
+
+			assertEquals("Nombre messages incorrect", 1,
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().size());
+			assertEquals("Message incorrect", "msg 1",
+					pMessageAPiloter.getMessagesModuleUnique().getMessagesParPage().get(0));
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return;
+		}
+
+		traitement = 1;
+	}
+	
+	@Override
+	public void traiteDemandePilotageFeuRegulation(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
+			MessageFeuRegulationMqttRest pMessageAPiloter) {
 		try {
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);

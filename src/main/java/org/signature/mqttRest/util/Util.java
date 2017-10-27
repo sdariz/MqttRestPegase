@@ -16,6 +16,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEqu
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEquipementModuleUniqueMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePictogrammeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePmvMqttRest;
@@ -291,6 +292,8 @@ public class Util {
 			return new MessageBarriereMqttRest(pIdEquipement);
 		case BRA:
 			return new MessageBraMqttRest(pIdEquipement);
+		case FEU_REGULATION:
+			return new MessageFeuRegulationMqttRest(pIdEquipement);
 		default: return null;
 		}
 	}

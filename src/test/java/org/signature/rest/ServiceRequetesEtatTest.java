@@ -28,6 +28,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEquipementModuleUniqueMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatAffichageMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageEtatTechniqueMqttRest;
+import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageFeuRegulationMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Luminosite;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageModuleMqttRest.Mode;
@@ -84,8 +85,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePMV() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "1111");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "1111");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -187,8 +188,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePanneauModuleUnique() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "2222");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "2222");
 
 		assertEquals("Id expéditeur incorrect", msg.getIdentifiantExpediteur(), "ab");
 		assertEquals("Id commande incorrect", msg.getReferenceMessage(), "cd");
@@ -226,8 +227,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePpad() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "2222");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "2222");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PPAD);
 		assertEquals("Classe incorrecte", MessagePpadMqttRest.class, msg.getMessageEquipement().getClass());
@@ -238,8 +239,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePictogramme() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "3333");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "3333");
 
 		assertEquals("Type Pictogramme incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TypeEquipement.PICTOGRAMME);
@@ -251,8 +252,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageFeuR24() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "4444");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "4444");
 
 		assertEquals("Type PPAD incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.R24);
 		assertEquals("Classe incorrecte", MessageR24MqttRest.class, msg.getMessageEquipement().getClass());
@@ -263,8 +264,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBarriere() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "5555");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "5555");
 
 		assertEquals("Type Barrière incorrect", msg.getMessageEquipement().getTypeEquipement(),
 				TypeEquipement.BARRIERE);
@@ -276,8 +277,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePrisme() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "6666");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "6666");
 
 		assertEquals("Type Prisme incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PRISME);
 		assertEquals("Classe incorrecte", MessagePrismeMqttRest.class, msg.getMessageEquipement().getClass());
@@ -288,8 +289,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichageBra() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "7777");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "7777");
 
 		assertEquals("Type BRA incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.BRA);
 		assertEquals("Classe incorrecte", MessageBraMqttRest.class, msg.getMessageEquipement().getClass());
@@ -300,11 +301,24 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatAffichagePplmv() {
-		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest().requeteDemandeEtatAffichageEquipement(HOST,
-				PORT, "ab", "cd", "8888");
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "8888");
 
 		assertEquals("Type PPLMV incorrect", msg.getMessageEquipement().getTypeEquipement(), TypeEquipement.PPLMV);
 		assertEquals("Classe incorrecte", MessagePplmvMqttRest.class, msg.getMessageEquipement().getClass());
+	}
+
+	/**
+	 * Test demande d'état d'affichage d'un Feu de Regulation
+	 */
+	@Test
+	public void testRequeteDemandeEtatAffichageFeuRegulation() {
+		MessageEtatAffichageMqttRest msg = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatAffichageEquipement(HOST, PORT, "ab", "cd", "9999");
+
+		assertEquals("Type Feu regulation incorrect", msg.getMessageEquipement().getTypeEquipement(),
+				TypeEquipement.FEU_REGULATION);
+		assertEquals("Classe incorrecte", MessageFeuRegulationMqttRest.class, msg.getMessageEquipement().getClass());
 	}
 
 	/**
@@ -326,8 +340,8 @@ public class ServiceRequetesEtatTest {
 	 */
 	@Test
 	public void testRequeteDemandeEtatTechniqueEquipement() {
-		MessageEtatTechniqueMqttRest etatTech = new InterrogationServeurHttpRest().requeteDemandeEtatTechniqueEquipement(HOST,
-				PORT, "ab", "cd", "1111");
+		MessageEtatTechniqueMqttRest etatTech = new InterrogationServeurHttpRest()
+				.requeteDemandeEtatTechniqueEquipement(HOST, PORT, "ab", "cd", "1111");
 
 		assertEquals("Id equipement incorrect", "1111", etatTech.getIdentifiantEquipement());
 		assertEquals("Id expediteur incorrect", "ab", etatTech.getIdentifiantExpediteur());
@@ -447,6 +461,10 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 		// Cas PPLMV
 		else if (pId.equals("8888")) {
 			retour.setMessageEquipement(getEtatAffichagePplmv("8888"));
+		}
+		// Cas Feu régulation
+		else if (pId.equals("9999")) {
+			retour.setMessageEquipement(getEtatAffichageFeuRegulation("9999"));
 		}
 
 		return retour;
@@ -660,6 +678,11 @@ class TraitementRequetesEtatEtPilotage extends TraitementRequetesRestAdapteur {
 
 	private MessagePplmvMqttRest getEtatAffichagePplmv(String pId) {
 		MessagePplmvMqttRest retour = new MessagePplmvMqttRest(pId);
+		return retour;
+	}
+	
+	private MessageFeuRegulationMqttRest getEtatAffichageFeuRegulation(String pId) {
+		MessageFeuRegulationMqttRest retour = new MessageFeuRegulationMqttRest(pId);
 		return retour;
 	}
 }
