@@ -56,8 +56,8 @@ public class MessageModuleMqttRest {
 	 *            les labels décrivant chaque message du module
 	 */
 	public MessageModuleMqttRest(List<String> pMessagesParPage, List<String> pLabelsParPage) {
-		this(pMessagesParPage, pLabelsParPage, new ArrayList<>(), new ArrayList<>(), Luminosite.AUTOMATIQUE,
-				Mode.FIXE, 0, -1);
+		this(pMessagesParPage, pLabelsParPage, new ArrayList<>(), new ArrayList<>(), Luminosite.AUTOMATIQUE, Mode.FIXE,
+				0, -1);
 	}
 
 	/**
@@ -79,8 +79,7 @@ public class MessageModuleMqttRest {
 	 * @param pTempsAllumage
 	 *            les temps d'allumage du message en mode clignotant et alternat
 	 * @param pTempsExtinction
-	 *            les temps d'extinction du message en mode clignotant et
-	 *            alternat
+	 *            les temps d'extinction du message en mode clignotant et alternat
 	 * @param pLuminosite
 	 *            la luminosité affichée
 	 * @param pModeAffichage
@@ -284,8 +283,8 @@ public class MessageModuleMqttRest {
 	 * Initialisation de la durée de validité restante du message
 	 * 
 	 * @param pDuree
-	 *            la durée de validité restante en secondes, -1 pour ne pas gérer cette
-	 *            valeur (valeur par défaut)
+	 *            la durée de validité restante en secondes, -1 pour ne pas gérer
+	 *            cette valeur (valeur par défaut)
 	 */
 	public void setDureeValiditeRestante(int pDuree) {
 		_dureeValiditeRestante = pDuree;
@@ -337,32 +336,90 @@ public class MessageModuleMqttRest {
 		MessageModuleMqttRest other = (MessageModuleMqttRest) obj;
 		if (_dureeValidite != other._dureeValidite)
 			return false;
-		if (_dureeValiditeRestante != other._dureeValiditeRestante)
-			return false;
-		if (_labelsParPage == null) {
-			if (other._labelsParPage != null)
-				return false;
-		} else if (!_labelsParPage.equals(other._labelsParPage))
-			return false;
-		if (_luminosite != other._luminosite)
-			return false;
-		if (_messagesParPage == null) {
-			if (other._messagesParPage != null)
-				return false;
-		} else if (!_messagesParPage.equals(other._messagesParPage))
-			return false;
+		
+		// Pas de comparaison de la durée de validité restante
+		// Car problème si la DV restante n'est pas utilisé (valeur d'initialisation qui peut varier)
+		// if (_dureeValiditeRestante != other._dureeValiditeRestante)
+		// return false;
+		
 		if (_modeAffichage != other._modeAffichage)
 			return false;
-		if (_tempsAllumage == null) {
-			if (other._tempsAllumage != null)
+		// Comparaison en utilisant le mode courant, pour éviter les erreurs
+		// d'initialisation des champs non utilisés
+		if (_modeAffichage != Mode.ALTERNAT) {
+			if (_labelsParPage == null || _labelsParPage.size() == 0) {
+				if (other._labelsParPage != null && other._labelsParPage.size() != 0)
+					return false;
+			} else {
+				if (other._labelsParPage == null || other._labelsParPage.size() == 0)
+					return false;
+
+				if (!_labelsParPage.get(0).equals(other._labelsParPage.get(0)))
+					return false;
+			}
+
+			// Pas de comparaison du message si le label est défini et si les labels sont égaux
+			if (_labelsParPage == null || _labelsParPage.size() == 0 || _labelsParPage.get(0).trim().length() == 0) {
+				if (_messagesParPage == null || _messagesParPage.size() == 0) {
+					if (other._messagesParPage != null && other._messagesParPage.size() != 0)
+						return false;
+				} else {
+					if (other._messagesParPage == null || other._messagesParPage.size() == 0)
+						return false;
+
+					if (!_messagesParPage.get(0).equals(other._messagesParPage.get(0)))
+						return false;
+				}
+			}
+
+			// Test des temps pour le mode clignotant
+			if (_modeAffichage == Mode.CLIGNOTANT) {
+				if (_tempsAllumage != null && _tempsAllumage.size() > 0 && other._tempsAllumage != null
+						&& other._tempsAllumage.size() > 0) {
+					if (!_tempsAllumage.get(0).equals(other._tempsAllumage.get(0)))
+						return false;
+				}
+
+				if (_tempsExtinction != null && _tempsExtinction.size() > 0 && other._tempsExtinction != null
+						&& other._tempsExtinction.size() > 0) {
+					if (!_tempsExtinction.get(0).equals(other._tempsExtinction.get(0)))
+						return false;
+				}
+			}
+		} else {
+			// Ici c'est un mode alternat. Donc je peux normalement comparer les objets car les pages doivent être
+			// initialisées.
+			if (_labelsParPage == null) {
+				if (other._labelsParPage != null)
+					return false;
+			} else if (!_labelsParPage.equals(other._labelsParPage))
 				return false;
-		} else if (!_tempsAllumage.equals(other._tempsAllumage))
-			return false;
-		if (_tempsExtinction == null) {
-			if (other._tempsExtinction != null)
+			
+			// Pas de comparaison du message si le label est défini et si les labels sont égaux
+			if (_labelsParPage == null || _labelsParPage.size() == 0 || _labelsParPage.get(0).trim().length() == 0) {
+				if (_messagesParPage == null) {
+					if (other._messagesParPage != null)
+						return false;
+				} else if (!_messagesParPage.equals(other._messagesParPage))
+					return false;
+			}
+
+			if (_tempsAllumage == null) {
+				if (other._tempsAllumage != null)
+					return false;
+			} else if (!_tempsAllumage.equals(other._tempsAllumage))
 				return false;
-		} else if (!_tempsExtinction.equals(other._tempsExtinction))
+
+			if (_tempsExtinction == null) {
+				if (other._tempsExtinction != null)
+					return false;
+			} else if (!_tempsExtinction.equals(other._tempsExtinction))
+				return false;
+		}
+
+		if (_luminosite != other._luminosite)
 			return false;
+
 		return true;
 	}
 }
