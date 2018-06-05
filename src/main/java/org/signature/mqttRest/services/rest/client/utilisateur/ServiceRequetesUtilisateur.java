@@ -68,7 +68,8 @@ public class ServiceRequetesUtilisateur {
 	 *            l'identifiant unique de l'expéditeur : peut être vide
 	 * @param pReferenceCommande
 	 *            la référence unique de la demande : peut être vide return
-	 *            l'utilisateur connecté, null si aucun (ou problème)
+	 * 
+	 * @return l'utilisateur connecté, null si aucun (ou problème)
 	 */
 	public static MessageUtilisateurMqttRest requeteDemandeUtilisateurConnecte(String pHost, int pPort,
 			String pIdentifiantExpediteur, String pReferenceCommande) {
@@ -110,8 +111,8 @@ public class ServiceRequetesUtilisateur {
 	 *            le mot de passe associé au login
 	 * @return true si valide, sinon false
 	 */
-	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort,
-			String pIdentifiantExpediteur, String pReferenceCommande, String pLogin, String pMotPasse) {
+	public static boolean requeteDemandeIdentifiantsValide(String pHost, int pPort, String pIdentifiantExpediteur,
+			String pReferenceCommande, String pLogin, String pMotPasse) {
 		if (pIdentifiantExpediteur == null) {
 			pIdentifiantExpediteur = "";
 		}

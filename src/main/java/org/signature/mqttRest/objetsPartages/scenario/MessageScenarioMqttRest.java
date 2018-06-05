@@ -39,6 +39,8 @@ public class MessageScenarioMqttRest {
 	/**
 	 * Construction du message
 	 * 
+	 * @param pIdScenario
+	 *            l'identifiant unique du scénario
 	 * @param pNom
 	 *            le nom du scénario
 	 * @param pCategorie
@@ -51,6 +53,8 @@ public class MessageScenarioMqttRest {
 	/**
 	 * Construction du message
 	 * 
+	 * @param pIdScenario
+	 *            l'identifiant unique du scénario
 	 * @param pNom
 	 *            le nom du scénario
 	 * @param pCategorie

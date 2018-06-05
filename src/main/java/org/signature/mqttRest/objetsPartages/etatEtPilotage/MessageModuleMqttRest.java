@@ -147,7 +147,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Initialisation des labels des messages
 	 * 
-	 * @param plabels
+	 * @param pLabels
 	 *            les labels décrivant chaque message du module
 	 */
 	public void setLabelsParPage(List<String> pLabels) {
@@ -179,7 +179,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Initialise les temps d'allumage de chaque page
 	 * 
-	 * @param pTempsAllumage
+	 * @param pTemps
 	 *            les temps d'allumage en centièmes de seconde
 	 */
 	public void setTempsAllumage(List<Integer> pTemps) {
@@ -202,7 +202,7 @@ public class MessageModuleMqttRest {
 	/**
 	 * Initialise les temps d'extinction de chaque page
 	 * 
-	 * @param pTempsAllumage
+	 * @param pTemps
 	 *            les temps d'extinction en centièmes de seconde
 	 */
 	public void setTempsExtinction(List<Integer> pTemps) {

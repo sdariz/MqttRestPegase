@@ -423,7 +423,7 @@ public class InterrogationServeurHttpRest {
 	 *            la référence unique de la demande : peut être vide
 	 * @param pCategorie
 	 *            la catégorie concernée
-	 * @pNom le nom du message dans la catégorie
+	 * @param pNom le nom du message dans la catégorie
 	 * @return le message correspondant, ou null si problème
 	 */
 	public MessagePmvMqttRest requeteDemandeMessageBibliothequePmv(String pHost, int pPort,

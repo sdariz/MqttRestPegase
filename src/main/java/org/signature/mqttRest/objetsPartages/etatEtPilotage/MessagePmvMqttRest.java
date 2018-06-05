@@ -154,7 +154,8 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	/**
 	 * Initialisation des messages pour chaque panonceau
 	 * 
-	 * @return les messages de chaque panonceau
+	 * @param pMessages
+	 *            les messages de chaque panonceau
 	 */
 	public void setMessagesPanonceaux(List<MessageModuleMqttRest> pMessages) {
 		_messagesPanonceaux = pMessages;
@@ -172,7 +173,8 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	/**
 	 * Initialisation des messages pour chaque pictogramme
 	 * 
-	 * @return les messages de chaque pictogramme
+	 * @param pMessages les
+	 *            messages de chaque pictogramme
 	 */
 	public void setMessagesPictogrammes(List<MessageModuleMqttRest> pMessages) {
 		_messagesPictogrammes = pMessages;
@@ -190,16 +192,17 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	/**
 	 * Initialisation des messages des feux flashs
 	 * 
-	 * @return les messages des feux flashs
+	 * @param pMessage les
+	 *            messages des feux flashs
 	 */
 	public void setMessagesFlashs(MessageModuleMqttRest pMessage) {
 		_messagesFlashs = pMessage;
 	}
 
 	/**
-	 * Retourne la liste des messages pour chaque module. Dans l'ordre: les
-	 * lignes, les panonceaux, les pictogrammes, et les flash. Les éléments
-	 * absents ne sont pas positionnés
+	 * Retourne la liste des messages pour chaque module. Dans l'ordre: les lignes,
+	 * les panonceaux, les pictogrammes, et les flash. Les éléments absents ne sont
+	 * pas positionnés
 	 * 
 	 * @return l'affichage des modules
 	 */
@@ -240,7 +243,9 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 		return retour;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -256,7 +261,9 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

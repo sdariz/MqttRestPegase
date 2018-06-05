@@ -116,7 +116,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	}
 
 	/**
-	 * Retourne le message du panonceau haut return le message
+	 * Retourne le message du panonceau haut
+	 * 
+	 * @return le message
 	 */
 	public MessageModuleMqttRest getMessagePanonceauHaut() {
 		return _messagesPanonceauHaut;
@@ -133,7 +135,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	}
 
 	/**
-	 * Retourne le message du panonceau bas return le message
+	 * Retourne le message du panonceau bas
+	 * 
+	 * @return le message
 	 */
 	public MessageModuleMqttRest getMessagePanonceauBas() {
 		return _messagesPanonceauBas;
@@ -150,7 +154,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	}
 
 	/**
-	 * Retourne le message du pictogramme return le message
+	 * Retourne le message du pictogramme
+	 * 
+	 * @return le message
 	 */
 	public MessageModuleMqttRest getMessagePictogramme() {
 		return _messagesPictogramme;
@@ -167,16 +173,18 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 	}
 
 	/**
-	 * Retourne le message des flashs return le message
+	 * Retourne le message des flashs
+	 * 
+	 * @return le message
 	 */
 	public MessageModuleMqttRest getMessageFlashs() {
 		return _messagesFlashs;
 	}
 
 	/**
-	 * Retourne la liste des messages pour chaque module. Dans l'ordre:
-	 * panonceau bas, pictogramme, panonceau haut, flash. Les éléments absents
-	 * ne sont pas positionnés
+	 * Retourne la liste des messages pour chaque module. Dans l'ordre: panonceau
+	 * bas, pictogramme, panonceau haut, flash. Les éléments absents ne sont pas
+	 * positionnés
 	 * 
 	 * @return l'affichage des modules
 	 */
@@ -233,7 +241,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		return retour;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -249,7 +259,9 @@ public class MessagePplmvMqttRest implements IMessageAffichageEquipementMqttRest
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

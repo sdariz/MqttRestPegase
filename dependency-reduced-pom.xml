@@ -4,9 +4,21 @@
   <groupId>org.signature</groupId>
   <artifactId>mqttRestPegase</artifactId>
   <name>MqttRestPegase</name>
-  <version>1.8</version>
+  <version>1.9</version>
   <build>
     <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
