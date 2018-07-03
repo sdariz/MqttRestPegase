@@ -136,9 +136,6 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("Web1 nom incorrect", "nom1", props.getNomWeb("web1"));
 		assertEquals("Web2 nom incorrect", "nom2", props.getNomWeb("web2"));
 		
-		assertEquals("Web1 doit être avec label", true, props.getAvecLabel("web1"));
-		assertEquals("Web2 doit être sans label", false, props.getAvecLabel("web2"));
-		
 		assertEquals("PositionSurSynoptique sur interface Web1 Nom1 incorrect", "syno1", props.getPositionSynoptique("web1", "syno1").getNomSynoptique());
 		assertEquals("PositionSurSynoptique sur interface Web1 Nom2 incorrect", "syno2", props.getPositionSynoptique("web1", "syno2").getNomSynoptique());
 		
@@ -150,6 +147,9 @@ public class ServiceRequetesInformationPegaseTest {
 		
 		assertEquals("PositionSurSynoptique sur interface Web1 syno1 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web1", "syno1").getformat());
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web1", "syno2").getformat());
+		
+		assertEquals("PositionSurSynoptique sur interface Web1 syno1 avec label incorrect", true, props.getPositionSynoptique("web1", "syno1").getAvecLabel());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno2 avec label incorrect", false, props.getPositionSynoptique("web1", "syno2").getAvecLabel());		
 		
 		assertEquals("PositionSurSynoptique sur interface Web2 Nom1 incorrect", "syno1", props.getPositionSynoptique("web2", "syno1").getNomSynoptique());
 		assertEquals("PositionSurSynoptique sur interface Web2 Nom2 incorrect", "syno2", props.getPositionSynoptique("web2", "syno2").getNomSynoptique());
@@ -163,6 +163,8 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("PositionSurSynoptique sur interface Web2 syno1 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web2", "syno1").getformat());
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web2", "syno2").getformat());
 		
+		assertEquals("PositionSurSynoptique sur interface Web2 syno1 avec label incorrect", false, props.getPositionSynoptique("web2", "syno1").getAvecLabel());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno2 avec label incorrect", true, props.getPositionSynoptique("web2", "syno2").getAvecLabel());
 		
 		
 	}
@@ -257,16 +259,12 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		nomsWeb.put("web1", "nom1");
 		nomsWeb.put("web2", "nom2");
 		
-		Map<String, Boolean> avecLabels = new HashMap<>();
-		avecLabels.put("web1", true);
-		avecLabels.put("web2", false);
-		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, FORMAT.REEL)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, FORMAT.ICONE)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
 		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(pIdEquipement, nomsWeb,
-				avecLabels, positionsSynoptique);
+				positionsSynoptique);
 		
 		return retour;
 	}
@@ -283,31 +281,25 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		nomsWeb.put("web1", "nom1");
 		nomsWeb.put("web2", "nom2");
 		
-		Map<String, Boolean> avecLabels = new HashMap<>();
-		avecLabels.put("web1", true);
-		avecLabels.put("web2", false);
 		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, FORMAT.REEL)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, FORMAT.ICONE)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest("1111", nomsWeb,
-				avecLabels, positionsSynoptique));
+				positionsSynoptique));
 		
 		nomsWeb = new HashMap<>();
 		nomsWeb.put("web1", "nom3");
 		nomsWeb.put("web2", "nom4");
 		
-		avecLabels = new HashMap<>();
-		avecLabels.put("web1", false);
-		avecLabels.put("web2", true);
 		
 		positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, FORMAT.ICONE)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, FORMAT.REEL)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2, true, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, false, FORMAT.ICONE)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6, false, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, true, FORMAT.REEL)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest("2222", nomsWeb,
-				avecLabels, positionsSynoptique));
+				positionsSynoptique));
 		
 		return retour;
 	}

@@ -10,17 +10,19 @@ public class PositionSurSynoptique {
 	private String _nomSynoptique;
 	private int _xlocation;
 	private int _ylocation;
+	private boolean _avecLabel;
 	private FORMAT _format;
-	
-	
-	public enum FORMAT {ICONE, REEL};
-	
+
+	public enum FORMAT {
+		ICONE, REEL
+	};
+
 	/**
 	 * Constructeur par défaut
 	 * 
 	 */
 	public PositionSurSynoptique() {
-		this("", -1, -1, FORMAT.REEL);
+		this("", -1, -1, true, FORMAT.REEL);
 	}
 
 	/**
@@ -33,10 +35,12 @@ public class PositionSurSynoptique {
 	 * @param pYlocation
 	 *            la position en y sur le synoptique
 	 */
-	public PositionSurSynoptique(String pNomSynoptique, int pXlocation, int pYlocation, FORMAT pFormat) {
+	public PositionSurSynoptique(String pNomSynoptique, int pXlocation, int pYlocation, boolean pAvecLabel,
+			FORMAT pFormat) {
 		_nomSynoptique = pNomSynoptique;
 		_xlocation = pXlocation;
 		_ylocation = pYlocation;
+		_avecLabel = pAvecLabel;
 		_format = pFormat;
 	}
 
@@ -48,13 +52,15 @@ public class PositionSurSynoptique {
 	public String getNomSynoptique() {
 		return _nomSynoptique;
 	}
-	
+
 	/**
 	 * Initialise le nom du synoptique
-	 * @param pNom le nouveau nom
+	 * 
+	 * @param pNom
+	 *            le nouveau nom
 	 */
 	public void setNomSynoptique(String pNom) {
-		if(pNom != null) {
+		if (pNom != null) {
 			_nomSynoptique = pNom;
 		}
 	}
@@ -67,10 +73,12 @@ public class PositionSurSynoptique {
 	public int getXlocation() {
 		return _xlocation;
 	}
-	
+
 	/**
 	 * Initialise la position en x sur le synoptique
-	 * @param pVal la position en x
+	 * 
+	 * @param pVal
+	 *            la position en x
 	 */
 	public void setXlocation(int pVal) {
 		_xlocation = pVal;
@@ -84,15 +92,36 @@ public class PositionSurSynoptique {
 	public int getYlocation() {
 		return _ylocation;
 	}
-	
+
 	/**
 	 * Initialise la position en y sur le synoptique
-	 * @param pVal la position en y
+	 * 
+	 * @param pVal
+	 *            la position en y
 	 */
 	public void setYlocation(int pVal) {
 		_ylocation = pVal;
 	}
 	
+	/**
+	 * Affichage ou nom du label de l'équipement
+	 * 
+	 * @return true pour afficher, sinon false
+	 */
+	public boolean getAvecLabel() {
+		return _avecLabel;
+	}
+
+	/**
+	 * Initialise si affichage ou nom du label de l'équipement
+	 * 
+	 * @param pVal
+	 *            true pour afficher, sinon false
+	 */
+	public void setAvecLabel(boolean pVal) {
+		_avecLabel = pVal;
+	}
+
 	/**
 	 * Donne le format sur le synoptique
 	 * 
@@ -101,16 +130,20 @@ public class PositionSurSynoptique {
 	public FORMAT getformat() {
 		return _format;
 	}
-	
+
 	/**
 	 * Initialise le format sur le synoptique
-	 * @param pVal le format
+	 * 
+	 * @param pVal
+	 *            le format
 	 */
 	public void setFormat(FORMAT pVal) {
 		_format = pVal;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -124,7 +157,9 @@ public class PositionSurSynoptique {
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override

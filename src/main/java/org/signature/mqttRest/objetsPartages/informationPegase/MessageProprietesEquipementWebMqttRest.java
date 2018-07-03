@@ -15,14 +15,13 @@ import java.util.Map;
 public class MessageProprietesEquipementWebMqttRest {
 	private String _id;
 	private Map<String, String> _nomsWeb;
-	private Map<String, Boolean> _avecLabels;
 	private Map<String, List<PositionSurSynoptique>> _positionsSynoptique;
 
 	/**
 	 * Construction du message
 	 */
 	public MessageProprietesEquipementWebMqttRest() {
-		this("", new HashMap<>(), new HashMap<>(), new HashMap<>());
+		this("", new HashMap<>(), new HashMap<>());
 	}
 
 	/**
@@ -32,7 +31,7 @@ public class MessageProprietesEquipementWebMqttRest {
 	 *            l'identifiant de l'équipement
 	 */
 	public MessageProprietesEquipementWebMqttRest(String pId) {
-		this(pId, new HashMap<>(), new HashMap<>(), new HashMap<>());
+		this(pId, new HashMap<>(), new HashMap<>());
 	}
 
 	/**
@@ -42,17 +41,14 @@ public class MessageProprietesEquipementWebMqttRest {
 	 *            l'identifiant de l'équipement
 	 * @param pNomsWeb
 	 *            les associations identifiantWeb/nomEquipement
-	 * @param pAvecLabels
-	 *            les associations identifiantWeb/avec ou sans labels
 	 * @param pPositionsSynoptique
 	 *            les associations identifiantWeb/positionsSurSynoptique
 	 */
 	public MessageProprietesEquipementWebMqttRest(String pId, Map<String, String> pNomsWeb,
-			Map<String, Boolean> pAvecLabels, Map<String, List<PositionSurSynoptique>> pPositionsSynoptique) {
+			Map<String, List<PositionSurSynoptique>> pPositionsSynoptique) {
 		_id = pId;
 
 		_nomsWeb = pNomsWeb;
-		_avecLabels = pAvecLabels;
 		_positionsSynoptique = pPositionsSynoptique;
 	}
 
@@ -111,44 +107,6 @@ public class MessageProprietesEquipementWebMqttRest {
 	public void setNomsWeb(Map<String, String> pNomsWeb) {
 		if(pNomsWeb != null) {
 			_nomsWeb = pNomsWeb;
-		}
-	}
-
-	/**
-	 * Indique si le label doit être affiché sur le synoptique, selon l'identifiant
-	 * du client web demandeur
-	 * 
-	 * @param pIdentifiantWeb
-	 *            l'identifiant du client web
-	 * 
-	 * @return true si le label doit être affiché, false sinon
-	 */
-	public boolean getAvecLabel(String pIdentifiantWeb) {
-		if (pIdentifiantWeb == null || !_avecLabels.containsKey(pIdentifiantWeb)) {
-			return false;
-		}
-
-		return _avecLabels.get(pIdentifiantWeb);
-	}
-	
-	/**
-	 * Retourne les états avec ou sans labels des l'équipements, associés aux identifiants des clients
-	 * web
-	 * 
-	 * @return les associations identifiantWeb/avec ou sans labels
-	 */
-	public Map<String, Boolean> getAvecLabels() {
-		return _avecLabels;
-	}
-
-	/**
-	 * Initialise les états avec ou sans labels des l'équipements, associés aux identifiants des clients web
-	 * 
-	 * @param pAvecLabel les associations identifiantWeb/avec ou sans labels
-	 */
-	public void setAvecLabels(Map<String, Boolean> pAvecLabel) {
-		if(pAvecLabel != null) {
-			_avecLabels = pAvecLabel;
 		}
 	}
 
