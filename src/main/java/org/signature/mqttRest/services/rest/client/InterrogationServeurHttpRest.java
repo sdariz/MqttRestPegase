@@ -19,6 +19,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
 import org.signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
 import org.signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import org.signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 import org.signature.mqttRest.services.rest.client.administration.ServiceRequetesAdministration;
@@ -589,6 +590,46 @@ public class InterrogationServeurHttpRest {
 			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return ServiceRequetesInformationPegase.requeteDemandeProprietesArmoires(pHost, pPort, pIdentifiantExpediteur,
 				pReferenceCommande);
+	}
+	
+	/**
+	 * Demande de récupération des propriétés d'un équipement web : synoptiques, positions, ...
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return les propriétés d'un équipement web, ou null si problème
+	 */
+	public MessageProprietesEquipementWebMqttRest requeteDemandeProprietesEquipementWeb(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipementWeb(pHost, pPort, pIdentifiantExpediteur,
+				pReferenceCommande, pIdEquipement);
+	}
+
+	/**
+	 * Demande de récupération des propriétés des équipements web : synoptiques, positions, ...
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return les propriétés des équipements web
+	 */
+	public List<MessageProprietesEquipementWebMqttRest> requeteDemandeProprietesEquipementsWeb(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		return ServiceRequetesInformationPegase.requeteDemandeProprietesEquipementsWeb(pHost, pPort,
+				pIdentifiantExpediteur, pReferenceCommande);
 	}
 
 	/**

@@ -18,6 +18,7 @@ import org.signature.mqttRest.util.Util;
 public class GestionnaireRoutesInformationPegase {
 	public final static String PROPRIETES_EQUIPEMENT = "/informationPegase/proprietesEquipement";
 	public final static String PROPRIETES_ARMOIRE = "/informationPegase/proprietesArmoire";
+	public final static String PROPRIETES_EQUIPEMENT_WEB = "/informationPegase/proprietesEquipementWeb";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -25,7 +26,7 @@ public class GestionnaireRoutesInformationPegase {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(PROPRIETES_EQUIPEMENT, PROPRIETES_ARMOIRE);
+		return Arrays.asList(PROPRIETES_EQUIPEMENT, PROPRIETES_ARMOIRE, PROPRIETES_EQUIPEMENT_WEB);
 	}
 
 	/**
@@ -74,6 +75,19 @@ public class GestionnaireRoutesInformationPegase {
 			
 			return Util.ObjectToJsonString(
 					pTraiteRequetesRest.traiteDemandeProprietesArmoire(pParametres.get("idExpediteur")[0],
+							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
+		}
+		
+		if (PROPRIETES_EQUIPEMENT_WEB.equals(pUri)) {
+			// Cas demande pour un équipement ou pour l'ensemble des équipements
+			if (pParametres.get("idEquipement") == null || pParametres.get("idEquipement").length == 0) {
+				return Util.listObjectToJsonString(
+						pTraiteRequetesRest.traiteDemandeProprietesEquipementsWeb(pParametres.get("idExpediteur")[0],
+								pParametres.get("idCommande")[0]));
+			}
+			
+			return Util.ObjectToJsonString(
+					pTraiteRequetesRest.traiteDemandeProprietesEquipementWeb(pParametres.get("idExpediteur")[0],
 							pParametres.get("idCommande")[0], pParametres.get("idEquipement")[0]));
 		}
 

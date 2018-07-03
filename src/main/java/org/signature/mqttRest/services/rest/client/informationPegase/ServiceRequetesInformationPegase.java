@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
 import org.signature.mqttRest.services.rest.client.ClientHttpRest;
 import org.signature.mqttRest.services.rest.serveur.informationPegase.GestionnaireRoutesInformationPegase;
 import org.signature.mqttRest.util.Util;
@@ -174,6 +175,84 @@ public class ServiceRequetesInformationPegase {
 		// Formatage du retour vers le bon format
 		return Util.jsonToListeObjet(json, MessageProprietesArmoireMqttRest.class).stream()
 				.map(MessageProprietesArmoireMqttRest.class::cast).collect(Collectors.toList());
+	}
+	
+	/**
+	 * Envoi au serveur REST une demande de propriétés d'un équipement sur les synoptiques web
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return les propriétés web d'un équipement, ou null si problème
+	 */
+	public static MessageProprietesEquipementWebMqttRest requeteDemandeProprietesEquipementWeb(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+		params.put("idEquipement", pIdEquipement);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
+				GestionnaireRoutesInformationPegase.PROPRIETES_EQUIPEMENT_WEB, params);
+		if (json.length() == 0) {
+			return null;
+		}
+
+		// Formatage du retour vers le bon format
+		return (MessageProprietesEquipementWebMqttRest) Util.jsonToObjet(json, MessageProprietesEquipementWebMqttRest.class);
+	}
+	
+	/**
+	 * Envoi au serveur REST une demande des propriétés des équipements sur les synoptiques web
+	 * 
+	 * @param pHost
+	 *            l'adresse IP du serveur REST
+	 * @param pPort
+	 *            le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return les propriétés des équipements web
+	 */
+	public static List<MessageProprietesEquipementWebMqttRest> requeteDemandeProprietesEquipementsWeb(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		String json = ClientHttpRest.envoiRequeteGET(pHost, pPort,
+				GestionnaireRoutesInformationPegase.PROPRIETES_EQUIPEMENT_WEB, params);
+		if (json.length() == 0) {
+			return new ArrayList<>();
+		}
+
+		// Formatage du retour vers le bon format
+		return Util.jsonToListeObjet(json, MessageProprietesEquipementWebMqttRest.class).stream()
+				.map(MessageProprietesEquipementWebMqttRest.class::cast).collect(Collectors.toList());
 	}
 
 }

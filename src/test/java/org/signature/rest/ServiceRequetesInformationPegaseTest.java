@@ -5,16 +5,19 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.PositionSurSynoptique;
 import org.signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import org.signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import org.signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
@@ -116,6 +119,58 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("Id armoire 2 incorrect", "8888", props.get(1).getIdArmoire());
 		assertEquals("Id armoire 3 incorrect", "7777", props.get(2).getIdArmoire());
 	}
+	
+	/**
+	 * Test de demandes des propriétés d'un équipement web
+	 */
+	@Test
+	public void testDemandeProprietesEquipementWeb() {
+		MessageProprietesEquipementWebMqttRest props = new InterrogationServeurHttpRest()
+				.requeteDemandeProprietesEquipementWeb(HOST, PORT, "ab", "cd", "1111");
+
+		assertNotNull("Propriétés null", props);
+		
+		assertEquals("Id équipement incorrect", "1111", props.getIdEquipement());
+		
+		assertEquals("Web1 nom incorrect", "nom1", props.getNomWeb("web1"));
+		assertEquals("Web2 nom incorrect", "nom2", props.getNomWeb("web2"));
+		
+		assertEquals("Web1 doit être avec label", true, props.getAvecLabel("web1"));
+		assertEquals("Web2 doit être sans label", false, props.getAvecLabel("web2"));
+		
+		assertEquals("PositionSurSynoptique sur interface Web1 Nom1 incorrect", "syno1", props.getPositionSynoptique("web1", "syno1").getNomSynoptique());
+		assertEquals("PositionSurSynoptique sur interface Web1 Nom2 incorrect", "syno2", props.getPositionSynoptique("web1", "syno2").getNomSynoptique());
+		
+		assertEquals("PositionSurSynoptique sur interface Web1 syno1 X incorrect", 10, props.getPositionSynoptique("web1", "syno1").getXlocation());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno1 Y incorrect", 20, props.getPositionSynoptique("web1", "syno1").getYlocation());
+		
+		assertEquals("PositionSurSynoptique sur interface Web1 syno2 X incorrect", 30, props.getPositionSynoptique("web1", "syno2").getXlocation());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno2 Y incorrect", 40, props.getPositionSynoptique("web1", "syno2").getYlocation());
+		
+		assertEquals("PositionSurSynoptique sur interface Web2 Nom1 incorrect", "syno1", props.getPositionSynoptique("web2", "syno1").getNomSynoptique());
+		assertEquals("PositionSurSynoptique sur interface Web2 Nom2 incorrect", "syno2", props.getPositionSynoptique("web2", "syno2").getNomSynoptique());
+		
+		assertEquals("PositionSurSynoptique sur interface Web2 syno1 X incorrect", 100, props.getPositionSynoptique("web2", "syno1").getXlocation());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno1 Y incorrect", 200, props.getPositionSynoptique("web2", "syno1").getYlocation());
+		
+		assertEquals("PositionSurSynoptique sur interface Web2 syno2 X incorrect", 300, props.getPositionSynoptique("web2", "syno2").getXlocation());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno2 Y incorrect", 400, props.getPositionSynoptique("web2", "syno2").getYlocation());
+		
+	}
+	
+	/**
+	 * Test de demandes des propriétés des équipements web
+	 */
+	@Test
+	public void testDemandeProprietesEquipementsWeb() {
+		List<MessageProprietesEquipementWebMqttRest> props = new InterrogationServeurHttpRest()
+				.requeteDemandeProprietesEquipementsWeb(HOST, PORT, "ab", "cd");
+
+		assertEquals("Taille incorrect", 2, props.size());
+		
+		assertEquals("Id équipement 1 incorrect", "1111", props.get(0).getIdEquipement());
+		assertEquals("Id équipement 2 incorrect", "2222", props.get(1).getIdEquipement());
+	}
 
 }
 
@@ -178,6 +233,72 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 				"arm1", "info1", "adr1", false, Arrays.asList("1111", "2222", "3333")));
 		retour.add(new MessageProprietesArmoireMqttRest("7777",
 				"arm1", "info1", "adr1", false, Arrays.asList("1111", "2222", "3333")));
+		
+		return retour;
+	}
+	
+	@Override
+	public MessageProprietesEquipementWebMqttRest traiteDemandeProprietesEquipementWeb(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement) {
+		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		assertEquals("Id équipement incorrect", "1111", pIdEquipement);
+		
+		Map<String, String> nomsWeb = new HashMap<>();
+		nomsWeb.put("web1", "nom1");
+		nomsWeb.put("web2", "nom2");
+		
+		Map<String, Boolean> avecLabels = new HashMap<>();
+		avecLabels.put("web1", true);
+		avecLabels.put("web2", false);
+		
+		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20), new PositionSurSynoptique("syno2", 30,  40)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200), new PositionSurSynoptique("syno2", 300,  400)));
+		
+		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(pIdEquipement, nomsWeb,
+				avecLabels, positionsSynoptique);
+		
+		return retour;
+	}
+	
+	@Override
+	public List<MessageProprietesEquipementWebMqttRest> traiteDemandeProprietesEquipementsWeb(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+		assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		
+		List<MessageProprietesEquipementWebMqttRest> retour = new ArrayList<>();
+		
+		Map<String, String> nomsWeb = new HashMap<>();
+		nomsWeb.put("web1", "nom1");
+		nomsWeb.put("web2", "nom2");
+		
+		Map<String, Boolean> avecLabels = new HashMap<>();
+		avecLabels.put("web1", true);
+		avecLabels.put("web2", false);
+		
+		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20), new PositionSurSynoptique("syno2", 30,  40)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200), new PositionSurSynoptique("syno2", 300,  400)));
+		
+		retour.add(new MessageProprietesEquipementWebMqttRest("1111", nomsWeb,
+				avecLabels, positionsSynoptique));
+		
+		nomsWeb = new HashMap<>();
+		nomsWeb.put("web1", "nom3");
+		nomsWeb.put("web2", "nom4");
+		
+		avecLabels = new HashMap<>();
+		avecLabels.put("web1", false);
+		avecLabels.put("web2", true);
+		
+		positionsSynoptique = new HashMap<>();
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2), new PositionSurSynoptique("syno2", 3,  4)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6), new PositionSurSynoptique("syno2", 7,  8)));
+		
+		retour.add(new MessageProprietesEquipementWebMqttRest("2222", nomsWeb,
+				avecLabels, positionsSynoptique));
 		
 		return retour;
 	}

@@ -36,4 +36,9 @@ Version 1.9 : 01/06/18
 	Mise à jour javadoc
 	Pas d'inclusion de javax.servlet-api dans le jar final (voir le pom.xml) car apache tomcat importe
 	déjà la librairie et refuse de déployer le war s'il inclut ce jar. Et normalement pas utilisé dans les versions de Pegase et clients.
+	Pour apache tomcat, il faut générer avec le pom : pomSansServletPourUtilisationApacheTomcat.xml
+
+Version 1.10 : 02/07/18
+	Ajout transport des données web de configuration des équipements : position en x et y, ...
+	Mise à jour des librairies
 	

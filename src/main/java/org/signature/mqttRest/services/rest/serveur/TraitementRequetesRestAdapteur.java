@@ -19,6 +19,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
 import org.signature.mqttRest.objetsPartages.evenement.MessageAlarmeMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
 import org.signature.mqttRest.objetsPartages.scenario.MessageScenarioMqttRest;
 import org.signature.mqttRest.objetsPartages.utilisateur.MessageUtilisateurMqttRest;
 
@@ -456,6 +457,38 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 */
 	@Override
 	public List<MessageProprietesArmoireMqttRest> traiteDemandeProprietesArmoires(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		return new ArrayList<>();
+	}
+	
+	/**
+	 * Traite une demande d'obtention des propriétés d'un équipement web :
+	 * positionnement sur un synoptique, ...
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @param pIdEquipement
+	 *            l'id de l'équipement concerné
+	 * @return les propriétés d'un équipement web, null si problème
+	 */
+	public MessageProprietesEquipementWebMqttRest traiteDemandeProprietesEquipementWeb(String pIdentifiantExpediteur,
+			String pReferenceCommande, String pIdEquipement) {
+		return null;
+	}
+
+	/**
+	 * Traite une demande d'obtention des propriétés des équipements web :
+	 * positionnement sur un synoptique, ...
+	 * 
+	 * @param pIdentifiantExpediteur
+	 *            l'identifiant unique de l'expéditeur : peut être vide
+	 * @param pReferenceCommande
+	 *            la référence unique de la demande : peut être vide
+	 * @return les propriétés des équipements
+	 */
+	public List<MessageProprietesEquipementWebMqttRest> traiteDemandeProprietesEquipementsWeb(String pIdentifiantExpediteur,
 			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
