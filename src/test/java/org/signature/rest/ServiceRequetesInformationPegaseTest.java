@@ -18,6 +18,7 @@ import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietes
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.PositionSurSynoptique;
+import org.signature.mqttRest.objetsPartages.informationPegase.PositionSurSynoptique.FORMAT;
 import org.signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
 import org.signature.mqttRest.services.rest.serveur.ServeurHttpRest;
 import org.signature.mqttRest.services.rest.serveur.TraitementRequetesRestAdapteur;
@@ -147,6 +148,9 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 X incorrect", 30, props.getPositionSynoptique("web1", "syno2").getXlocation());
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 Y incorrect", 40, props.getPositionSynoptique("web1", "syno2").getYlocation());
 		
+		assertEquals("PositionSurSynoptique sur interface Web1 syno1 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web1", "syno1").getformat());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno2 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web1", "syno2").getformat());
+		
 		assertEquals("PositionSurSynoptique sur interface Web2 Nom1 incorrect", "syno1", props.getPositionSynoptique("web2", "syno1").getNomSynoptique());
 		assertEquals("PositionSurSynoptique sur interface Web2 Nom2 incorrect", "syno2", props.getPositionSynoptique("web2", "syno2").getNomSynoptique());
 		
@@ -155,6 +159,11 @@ public class ServiceRequetesInformationPegaseTest {
 		
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 X incorrect", 300, props.getPositionSynoptique("web2", "syno2").getXlocation());
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 Y incorrect", 400, props.getPositionSynoptique("web2", "syno2").getYlocation());
+		
+		assertEquals("PositionSurSynoptique sur interface Web2 syno1 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web2", "syno1").getformat());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno2 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web2", "syno2").getformat());
+		
+		
 		
 	}
 	
@@ -253,8 +262,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		avecLabels.put("web2", false);
 		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20), new PositionSurSynoptique("syno2", 30,  40)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200), new PositionSurSynoptique("syno2", 300,  400)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, FORMAT.REEL)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, FORMAT.ICONE)));
 		
 		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(pIdEquipement, nomsWeb,
 				avecLabels, positionsSynoptique);
@@ -279,8 +288,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		avecLabels.put("web2", false);
 		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20), new PositionSurSynoptique("syno2", 30,  40)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200), new PositionSurSynoptique("syno2", 300,  400)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, FORMAT.REEL)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, FORMAT.ICONE)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest("1111", nomsWeb,
 				avecLabels, positionsSynoptique));
@@ -294,8 +303,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		avecLabels.put("web2", true);
 		
 		positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2), new PositionSurSynoptique("syno2", 3,  4)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6), new PositionSurSynoptique("syno2", 7,  8)));
+		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, FORMAT.ICONE)));
+		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, FORMAT.REEL)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest("2222", nomsWeb,
 				avecLabels, positionsSynoptique));

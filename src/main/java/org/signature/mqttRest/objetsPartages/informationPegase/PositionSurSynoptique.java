@@ -10,13 +10,17 @@ public class PositionSurSynoptique {
 	private String _nomSynoptique;
 	private int _xlocation;
 	private int _ylocation;
+	private FORMAT _format;
+	
+	
+	public enum FORMAT {ICONE, REEL};
 	
 	/**
 	 * Constructeur par défaut
 	 * 
 	 */
 	public PositionSurSynoptique() {
-		this("", -1, -1);
+		this("", -1, -1, FORMAT.REEL);
 	}
 
 	/**
@@ -29,10 +33,11 @@ public class PositionSurSynoptique {
 	 * @param pYlocation
 	 *            la position en y sur le synoptique
 	 */
-	public PositionSurSynoptique(String pNomSynoptique, int pXlocation, int pYlocation) {
+	public PositionSurSynoptique(String pNomSynoptique, int pXlocation, int pYlocation, FORMAT pFormat) {
 		_nomSynoptique = pNomSynoptique;
 		_xlocation = pXlocation;
 		_ylocation = pYlocation;
+		_format = pFormat;
 	}
 
 	/**
@@ -87,25 +92,39 @@ public class PositionSurSynoptique {
 	public void setYlocation(int pVal) {
 		_ylocation = pVal;
 	}
-
-	/*
-	 * (non-Javadoc)
+	
+	/**
+	 * Donne le format sur le synoptique
 	 * 
+	 * @return le format
+	 */
+	public FORMAT getformat() {
+		return _format;
+	}
+	
+	/**
+	 * Initialise le format sur le synoptique
+	 * @param pVal le format
+	 */
+	public void setFormat(FORMAT pVal) {
+		_format = pVal;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((_format == null) ? 0 : _format.hashCode());
 		result = prime * result + ((_nomSynoptique == null) ? 0 : _nomSynoptique.hashCode());
 		result = prime * result + _xlocation;
 		result = prime * result + _ylocation;
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -117,6 +136,8 @@ public class PositionSurSynoptique {
 		if (getClass() != obj.getClass())
 			return false;
 		PositionSurSynoptique other = (PositionSurSynoptique) obj;
+		if (_format != other._format)
+			return false;
 		if (_nomSynoptique == null) {
 			if (other._nomSynoptique != null)
 				return false;
@@ -128,5 +149,4 @@ public class PositionSurSynoptique {
 			return false;
 		return true;
 	}
-
 }
