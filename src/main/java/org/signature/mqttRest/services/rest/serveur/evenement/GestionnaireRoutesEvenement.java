@@ -55,8 +55,8 @@ public class GestionnaireRoutesEvenement {
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
 		if (LISTE_ALARMES.equals(pUri)) {
-			Date horodateDebut = new Date(new Long(pParametres.get("horodateDebut")[0]));
-			Date horodateFin = new Date(new Long(pParametres.get("horodateFin")[0]));
+			Date horodateDebut = new Date(Long.parseLong(pParametres.get("horodateDebut")[0]));
+			Date horodateFin = new Date(Long.parseLong(pParametres.get("horodateFin")[0]));
 			boolean active = Boolean.parseBoolean(pParametres.get("active")[0]);
 
 			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeListeAlarmes(pParametres.get("idExpediteur")[0],
@@ -65,7 +65,7 @@ public class GestionnaireRoutesEvenement {
 		}
 
 		if (ETAT_AFFICHAGE_EQUIPEMENT_POUR_DATE.equals(pUri)) {
-			Date horodate = new Date(new Long(pParametres.get("horodate")[0]));
+			Date horodate = new Date(Long.parseLong(pParametres.get("horodate")[0]));
 
 			return Util.ObjectToJsonString(
 					pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementPourDate(pParametres.get("idExpediteur")[0],
@@ -73,8 +73,8 @@ public class GestionnaireRoutesEvenement {
 		}
 
 		if (ETAT_AFFICHAGE_EQUIPEMENT_ENTRE_DEUX_DATES.equals(pUri)) {
-			Date horodateDebut = new Date(new Long(pParametres.get("horodateDebut")[0]));
-			Date horodateFin = new Date(new Long(pParametres.get("horodateFin")[0]));
+			Date horodateDebut = new Date(Long.parseLong(pParametres.get("horodateDebut")[0]));
+			Date horodateFin = new Date(Long.parseLong(pParametres.get("horodateFin")[0]));
 
 			return Util.listObjectToJsonString(pTraiteRequetesRest.traiteDemandeEtatAffichageEquipementEntreDeuxDates(
 					pParametres.get("idExpediteur")[0], pParametres.get("idCommande")[0],
