@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-
 /**
  * Propriétés d'un équipement utilisés par l'interface web. Les paramètres sont
  * liés à un client web, et peuvent varier d'un client à un autre
@@ -19,7 +17,7 @@ public class MessageProprietesEquipementWebMqttRest {
 	private Map<String, String> _nomsWeb;
 	private Map<String, Boolean> _avecLabels;
 	private Map<String, List<PositionSurSynoptique>> _positionsSynoptique;
-	
+
 	/**
 	 * Construction du message
 	 */
@@ -27,44 +25,35 @@ public class MessageProprietesEquipementWebMqttRest {
 		this("", new HashMap<>(), new HashMap<>(), new HashMap<>());
 	}
 
-	
+	/**
+	 * Construction du message
+	 * 
+	 * @param pId
+	 *            l'identifiant de l'équipement
+	 */
+	public MessageProprietesEquipementWebMqttRest(String pId) {
+		this(pId, new HashMap<>(), new HashMap<>(), new HashMap<>());
+	}
+
+	/**
+	 * Construction du message
+	 * 
+	 * @param pId
+	 *            l'identifiant de l'équipement
+	 * @param pNomsWeb
+	 *            les associations identifiantWeb/nomEquipement
+	 * @param pAvecLabels
+	 *            les associations identifiantWeb/avec ou sans labels
+	 * @param pPositionsSynoptique
+	 *            les associations identifiantWeb/positionsSurSynoptique
+	 */
 	public MessageProprietesEquipementWebMqttRest(String pId, Map<String, String> pNomsWeb,
 			Map<String, Boolean> pAvecLabels, Map<String, List<PositionSurSynoptique>> pPositionsSynoptique) {
 		_id = pId;
 
-		_nomsWeb = new HashMap<>();
-		pNomsWeb.forEach((k, v) -> _nomsWeb.put(k, v));
-
-		_avecLabels = new HashMap<>();
-		pAvecLabels.forEach((k, v) -> _avecLabels.put(k, v));
-
-		_positionsSynoptique = new HashMap<>();
-		pPositionsSynoptique.forEach((k, v) -> _positionsSynoptique.put(k, v));
-	}
-	
-	// Méthodes ci dessous pour la sérialisation json
-	// Car je ne donne pas accès directement aux valeurs des objets
-	@JsonGetter("_id")
-	private String get_id() {
-		return _id;
-	}
-
-	// Pour la sérialisation json
-	@JsonGetter("_nomsWeb")
-	private Map<String, String> get_nomsWeb() {
-		return _nomsWeb;
-	}
-
-	// Pour la sérialisation json
-	@JsonGetter("_avecLabels")
-	private Map<String, Boolean> get_avecLabels() {
-		return _avecLabels;
-	}
-	
-	// Pour la sérialisation json
-	@JsonGetter("_positionsSynoptique")
-	private Map<String, List<PositionSurSynoptique>> get_positionsSynoptique() {
-		return _positionsSynoptique;
+		_nomsWeb = pNomsWeb;
+		_avecLabels = pAvecLabels;
+		_positionsSynoptique = pPositionsSynoptique;
 	}
 
 	/**
@@ -74,6 +63,18 @@ public class MessageProprietesEquipementWebMqttRest {
 	 */
 	public String getIdEquipement() {
 		return _id;
+	}
+
+	/**
+	 * Initialise l'identifiant de l'équipement
+	 * 
+	 * @param pId
+	 *            l'id de l'équipement
+	 */
+	public void setIdEquipement(String pId) {
+		if (pId != null) {
+			_id = pId;
+		}
 	}
 
 	/**
@@ -91,7 +92,27 @@ public class MessageProprietesEquipementWebMqttRest {
 
 		return _nomsWeb.get(pIdentifiantWeb);
 	}
-	
+
+	/**
+	 * Retourne les nom web des l'équipements, associés aux identifiants des clients
+	 * web
+	 * 
+	 * @return les associations identifiantWeb/nomEquipement
+	 */
+	public Map<String, String> getNomsWeb() {
+		return _nomsWeb;
+	}
+
+	/**
+	 * Initialise les nom web des l'équipements, associés aux identifiants des clients web
+	 * 
+	 * @param pNomsWeb les associations identifiantWeb/nomEquipement
+	 */
+	public void setNomsWeb(Map<String, String> pNomsWeb) {
+		if(pNomsWeb != null) {
+			_nomsWeb = pNomsWeb;
+		}
+	}
 
 	/**
 	 * Indique si le label doit être affiché sur le synoptique, selon l'identifiant
@@ -108,6 +129,27 @@ public class MessageProprietesEquipementWebMqttRest {
 		}
 
 		return _avecLabels.get(pIdentifiantWeb);
+	}
+	
+	/**
+	 * Retourne les états avec ou sans labels des l'équipements, associés aux identifiants des clients
+	 * web
+	 * 
+	 * @return les associations identifiantWeb/avec ou sans labels
+	 */
+	public Map<String, Boolean> getAvecLabels() {
+		return _avecLabels;
+	}
+
+	/**
+	 * Initialise les états avec ou sans labels des l'équipements, associés aux identifiants des clients web
+	 * 
+	 * @param pAvecLabel les associations identifiantWeb/avec ou sans labels
+	 */
+	public void setAvecLabels(Map<String, Boolean> pAvecLabel) {
+		if(pAvecLabel != null) {
+			_avecLabels = pAvecLabel;
+		}
 	}
 
 	/**
@@ -145,5 +187,26 @@ public class MessageProprietesEquipementWebMqttRest {
 
 		return _positionsSynoptique.get(pIdentifiantWeb).stream()
 				.filter(p -> p.getNomSynoptique().equals(pNomSynoptique)).findFirst().orElse(null);
+	}
+	
+	/**
+	 * Retourne les positions sur synoptiques des l'équipements, associés aux identifiants des clients
+	 * web
+	 * 
+	 * @return les associations identifiantWeb/positionsSurSynoptique
+	 */
+	public Map<String, List<PositionSurSynoptique>> getPositionsSynoptiques() {
+		return _positionsSynoptique;
+	}
+
+	/**
+	 * Initialise les positions sur synoptiques des l'équipements, associés aux identifiants des clients web
+	 * 
+	 * @param pPositionsSynoptique les associations identifiantWeb/positionsSurSynoptique
+	 */
+	public void setPositionsSynoptiques(Map<String, List<PositionSurSynoptique>> pPositionsSynoptique) {
+		if(pPositionsSynoptique != null) {
+			_positionsSynoptique = pPositionsSynoptique;
+		}
 	}
 }
