@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesArmoireMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementMqttRest;
 import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest;
+import org.signature.mqttRest.objetsPartages.informationPegase.MessageProprietesEquipementWebMqttRest.TYPE_EQUIPEMENT;
 import org.signature.mqttRest.objetsPartages.informationPegase.PositionSurSynoptique;
 import org.signature.mqttRest.objetsPartages.informationPegase.PositionSurSynoptique.FORMAT;
 import org.signature.mqttRest.services.rest.client.InterrogationServeurHttpRest;
@@ -131,6 +132,8 @@ public class ServiceRequetesInformationPegaseTest {
 
 		assertNotNull("Propriétés null", props);
 		
+		assertEquals("Type équipement incorrect", TYPE_EQUIPEMENT.PMV, props.getType());
+		
 		assertEquals("Id équipement incorrect", "1111", props.getIdEquipement());
 		
 		assertEquals("Web1 nom incorrect", "nom1", props.getNomWeb("web1"));
@@ -178,6 +181,9 @@ public class ServiceRequetesInformationPegaseTest {
 				.requeteDemandeProprietesEquipementsWeb(HOST, PORT, "ab", "cd");
 
 		assertEquals("Taille incorrect", 2, props.size());
+		
+		assertEquals("Type équipement 1 incorrect", TYPE_EQUIPEMENT.PIA, props.get(0).getType());
+		assertEquals("Type équipement 2 incorrect", TYPE_EQUIPEMENT.PMP, props.get(1).getType());
 		
 		assertEquals("Id équipement 1 incorrect", "1111", props.get(0).getIdEquipement());
 		assertEquals("Id équipement 2 incorrect", "2222", props.get(1).getIdEquipement());
@@ -263,7 +269,7 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
 		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
-		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(pIdEquipement, nomsWeb,
+		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PMV, pIdEquipement, nomsWeb,
 				positionsSynoptique);
 		
 		return retour;
@@ -286,7 +292,7 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
 		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
-		retour.add(new MessageProprietesEquipementWebMqttRest("1111", nomsWeb,
+		retour.add(new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PIA, "1111", nomsWeb,
 				positionsSynoptique));
 		
 		nomsWeb = new HashMap<>();
@@ -298,7 +304,7 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2, true, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, false, FORMAT.ICONE)));
 		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6, false, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, true, FORMAT.REEL)));
 		
-		retour.add(new MessageProprietesEquipementWebMqttRest("2222", nomsWeb,
+		retour.add(new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PMP, "2222", nomsWeb,
 				positionsSynoptique));
 		
 		return retour;

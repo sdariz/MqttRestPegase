@@ -13,15 +13,18 @@ import java.util.Map;
  *
  */
 public class MessageProprietesEquipementWebMqttRest {
+	private TYPE_EQUIPEMENT _type;
 	private String _id;
 	private Map<String, String> _nomsWeb;
 	private Map<String, List<PositionSurSynoptique>> _positionsSynoptique;
+	
+	public enum TYPE_EQUIPEMENT {PMV, PIA, PMP}
 
 	/**
 	 * Construction du message
 	 */
 	public MessageProprietesEquipementWebMqttRest() {
-		this("", new HashMap<>(), new HashMap<>());
+		this(TYPE_EQUIPEMENT.PMV, "", new HashMap<>(), new HashMap<>());
 	}
 
 	/**
@@ -30,8 +33,8 @@ public class MessageProprietesEquipementWebMqttRest {
 	 * @param pId
 	 *            l'identifiant de l'équipement
 	 */
-	public MessageProprietesEquipementWebMqttRest(String pId) {
-		this(pId, new HashMap<>(), new HashMap<>());
+	public MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT pType, String pId) {
+		this(TYPE_EQUIPEMENT.PMV, pId, new HashMap<>(), new HashMap<>());
 	}
 
 	/**
@@ -44,12 +47,32 @@ public class MessageProprietesEquipementWebMqttRest {
 	 * @param pPositionsSynoptique
 	 *            les associations identifiantWeb/positionsSurSynoptique
 	 */
-	public MessageProprietesEquipementWebMqttRest(String pId, Map<String, String> pNomsWeb,
+	public MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT pType, String pId, Map<String, String> pNomsWeb,
 			Map<String, List<PositionSurSynoptique>> pPositionsSynoptique) {
+		_type = pType;
 		_id = pId;
 
 		_nomsWeb = pNomsWeb;
 		_positionsSynoptique = pPositionsSynoptique;
+	}
+	
+	/**
+	 * Retourne le type de l'équipement de l'équipement
+	 * 
+	 * @return le type de l'équipement
+	 */
+	public TYPE_EQUIPEMENT getType() {
+		return _type;
+	}
+
+	/**
+	 * Initialise le type dedl'équipement
+	 * 
+	 * @param pType
+	 *            le type de l'équipement
+	 */
+	public void setType(TYPE_EQUIPEMENT pType) {
+		_type = pType;
 	}
 
 	/**
