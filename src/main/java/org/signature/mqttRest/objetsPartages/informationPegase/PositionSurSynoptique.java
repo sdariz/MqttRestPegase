@@ -34,6 +34,10 @@ public class PositionSurSynoptique {
 	 *            la position en x sur le synoptique
 	 * @param pYlocation
 	 *            la position en y sur le synoptique
+	 * @param pAvecLabel
+	 *            true s'il faut afficher le label
+	 * @param pFormat
+	 *            le format de l'équipement sur le synoptique
 	 */
 	public PositionSurSynoptique(String pNomSynoptique, int pXlocation, int pYlocation, boolean pAvecLabel,
 			FORMAT pFormat) {
@@ -102,7 +106,7 @@ public class PositionSurSynoptique {
 	public void setYlocation(int pVal) {
 		_ylocation = pVal;
 	}
-	
+
 	/**
 	 * Affichage ou nom du label de l'équipement
 	 * 

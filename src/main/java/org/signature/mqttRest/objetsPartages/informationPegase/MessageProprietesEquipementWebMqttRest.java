@@ -30,6 +30,7 @@ public class MessageProprietesEquipementWebMqttRest {
 	/**
 	 * Construction du message
 	 * 
+	 * @param pType le type de l'équipement
 	 * @param pId
 	 *            l'identifiant de l'équipement
 	 */
@@ -40,6 +41,7 @@ public class MessageProprietesEquipementWebMqttRest {
 	/**
 	 * Construction du message
 	 * 
+	 * @param pType le type de l'équipement
 	 * @param pId
 	 *            l'identifiant de l'équipement
 	 * @param pNomsWeb
