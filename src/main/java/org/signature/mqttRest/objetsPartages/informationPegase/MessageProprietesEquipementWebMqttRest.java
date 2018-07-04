@@ -34,7 +34,7 @@ public class MessageProprietesEquipementWebMqttRest {
 	 *            l'identifiant de l'équipement
 	 */
 	public MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT pType, String pId) {
-		this(TYPE_EQUIPEMENT.PMV, pId, new HashMap<>(), new HashMap<>());
+		this(pType, pId, new HashMap<>(), new HashMap<>());
 	}
 
 	/**
