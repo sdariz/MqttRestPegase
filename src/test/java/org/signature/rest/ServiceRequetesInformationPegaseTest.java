@@ -148,8 +148,8 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 X incorrect", 30, props.getPositionSynoptique("web1", "syno2").getXlocation());
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 Y incorrect", 40, props.getPositionSynoptique("web1", "syno2").getYlocation());
 		
-		assertEquals("PositionSurSynoptique sur interface Web1 syno1 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web1", "syno1").getformat());
-		assertEquals("PositionSurSynoptique sur interface Web1 syno2 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web1", "syno2").getformat());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno1 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web1", "syno1").getFormat());
+		assertEquals("PositionSurSynoptique sur interface Web1 syno2 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web1", "syno2").getFormat());
 		
 		assertEquals("PositionSurSynoptique sur interface Web1 syno1 avec label incorrect", true, props.getPositionSynoptique("web1", "syno1").getAvecLabel());
 		assertEquals("PositionSurSynoptique sur interface Web1 syno2 avec label incorrect", false, props.getPositionSynoptique("web1", "syno2").getAvecLabel());		
@@ -163,8 +163,8 @@ public class ServiceRequetesInformationPegaseTest {
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 X incorrect", 300, props.getPositionSynoptique("web2", "syno2").getXlocation());
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 Y incorrect", 400, props.getPositionSynoptique("web2", "syno2").getYlocation());
 		
-		assertEquals("PositionSurSynoptique sur interface Web2 syno1 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web2", "syno1").getformat());
-		assertEquals("PositionSurSynoptique sur interface Web2 syno2 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web2", "syno2").getformat());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno1 format incorrect", FORMAT.REEL, props.getPositionSynoptique("web2", "syno1").getFormat());
+		assertEquals("PositionSurSynoptique sur interface Web2 syno2 format incorrect", FORMAT.ICONE, props.getPositionSynoptique("web2", "syno2").getFormat());
 		
 		assertEquals("PositionSurSynoptique sur interface Web2 syno1 avec label incorrect", false, props.getPositionSynoptique("web2", "syno1").getAvecLabel());
 		assertEquals("PositionSurSynoptique sur interface Web2 syno2 avec label incorrect", true, props.getPositionSynoptique("web2", "syno2").getAvecLabel());

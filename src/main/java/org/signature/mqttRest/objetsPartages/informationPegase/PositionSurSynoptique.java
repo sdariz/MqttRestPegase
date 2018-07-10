@@ -131,7 +131,7 @@ public class PositionSurSynoptique {
 	 * 
 	 * @return le format
 	 */
-	public FORMAT getformat() {
+	public FORMAT getFormat() {
 		return _format;
 	}
 
