@@ -118,6 +118,23 @@ public interface IMessageAffichageEquipementMqttRest {
 	public void setTypeMessage(TypeMessage pType);
 
 	/**
+	 * Retourne la priorité du message. C'est une valeur positive, avec 0 la priorité la
+	 * plus basse
+	 * 
+	 * @return la priorité du message (positive ou nulle)
+	 */
+	public int getPrioriteMessage();
+
+	/**
+	 * Initialise la priorité du message. C'est une valeur positive, avec 0 la priorité
+	 * la plus basse
+	 * 
+	 * @param pPriorite
+	 *            la priorité du message (positive ou nulle)
+	 */
+	public void setPrioriteMessage(int pPriorite);
+
+	/**
 	 * Copie de l'objet courant
 	 * 
 	 * @return une copie de l'instance courante

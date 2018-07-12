@@ -30,6 +30,7 @@ public class MessagePpadMqttRest extends MessageEquipementModuleUniqueMqttRest {
 	 * 
 	 * @return le type de l'équipement
 	 */
+	@Override
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.PPAD;
 	}

@@ -27,6 +27,7 @@ public class MessageFeuRegulationMqttRest extends MessageEquipementModuleUniqueM
 	 * 
 	 * @return le type de l'équipement
 	 */
+	@Override
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.FEU_REGULATION;
 	}

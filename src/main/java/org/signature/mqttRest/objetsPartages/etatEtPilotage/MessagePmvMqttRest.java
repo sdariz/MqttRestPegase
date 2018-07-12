@@ -16,6 +16,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	private MessageModuleMqttRest _messagesFlashs;
 	private TypeMessage _typeMessage;
 	private String _idEquipement;
+	private int _priorite;
 
 	/**
 	 * Construction du message
@@ -45,6 +46,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 * 
 	 * @return l'identifant unique de l'équipement
 	 */
+	@Override
 	public String getIdentifiantEquipement() {
 		return _idEquipement;
 	}
@@ -55,6 +57,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 * @param pId
 	 *            l'identifant unique de l'équipement
 	 */
+	@Override
 	public void setIdentifiantEquipement(String pId) {
 		_idEquipement = pId;
 	}
@@ -64,6 +67,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 * 
 	 * @return le type de l'équipement
 	 */
+	@Override
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.PMV;
 	}
@@ -73,6 +77,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 * 
 	 * @return le type de message
 	 */
+	@Override
 	public TypeMessage getTypeMessage() {
 		return _typeMessage;
 	}
@@ -83,8 +88,36 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 	 * @param pType
 	 *            le type de message
 	 */
+	@Override
 	public void setTypeMessage(TypeMessage pType) {
 		_typeMessage = pType;
+	}
+	
+	/**
+	 * Retourne la priorité du message. C'est une valeur positive, avec 0 la priorité la
+	 * plus basse
+	 * 
+	 * @return la priorité du message (positive ou nulle)
+	 */
+	@Override
+	public int getPrioriteMessage() {
+		return _priorite;
+	}
+
+	/**
+	 * Initialise la priorité du message. C'est une valeur positive, avec 0 la priorité
+	 * la plus basse
+	 * 
+	 * @param pPriorite
+	 *            la priorité du message (positive ou nulle)
+	 */
+	@Override
+	public void setPrioriteMessage(int pPriorite) {
+		if(pPriorite < 0) {
+			pPriorite = 0;
+		}
+		
+		_priorite = pPriorite;
 	}
 
 	/**
@@ -258,6 +291,7 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 		result = prime * result + ((_messagesPanonceaux == null) ? 0 : _messagesPanonceaux.hashCode());
 		result = prime * result + ((_messagesPictogrammes == null) ? 0 : _messagesPictogrammes.hashCode());
 		result = prime * result + ((_typeMessage == null) ? 0 : _typeMessage.hashCode());
+		result = prime * result + _priorite;
 		return result;
 	}
 
@@ -301,6 +335,8 @@ public class MessagePmvMqttRest implements IMessageAffichageEquipementMqttRest {
 		} else if (!_messagesPictogrammes.equals(other._messagesPictogrammes))
 			return false;
 		if (_typeMessage != other._typeMessage)
+			return false;
+		if (_priorite != other._priorite)
 			return false;
 		return true;
 	}

@@ -27,6 +27,7 @@ public class MessageBarriereMqttRest extends MessageEquipementModuleUniqueMqttRe
 	 * 
 	 * @return le type de l'équipement
 	 */
+	@Override
 	public TypeEquipement getTypeEquipement() {
 		return TypeEquipement.BARRIERE;
 	}
