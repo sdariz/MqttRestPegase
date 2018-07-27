@@ -266,8 +266,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		nomsWeb.put("web2", "nom2");
 		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
+		positionsSynoptique.put("web1", Arrays.asList(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
+		positionsSynoptique.put("web2", Arrays.asList(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
 		MessageProprietesEquipementWebMqttRest retour = new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PMV, pIdEquipement, nomsWeb,
 				positionsSynoptique);
@@ -289,8 +289,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		
 		
 		Map<String, List<PositionSurSynoptique>> positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
+		positionsSynoptique.put("web1", Arrays.asList(new PositionSurSynoptique("syno1", 10,  20, true, FORMAT.ICONE), new PositionSurSynoptique("syno2", 30,  40, false, FORMAT.REEL)));
+		positionsSynoptique.put("web2", Arrays.asList(new PositionSurSynoptique("syno1", 100,  200, false, FORMAT.REEL), new PositionSurSynoptique("syno2", 300,  400, true, FORMAT.ICONE)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PIA, "1111", nomsWeb,
 				positionsSynoptique));
@@ -301,8 +301,8 @@ class TraitementRequetesInformationPegase extends TraitementRequetesRestAdapteur
 		
 		
 		positionsSynoptique = new HashMap<>();
-		positionsSynoptique.put("web1", List.of(new PositionSurSynoptique("syno1", 1,  2, true, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, false, FORMAT.ICONE)));
-		positionsSynoptique.put("web2", List.of(new PositionSurSynoptique("syno1", 5,  6, false, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, true, FORMAT.REEL)));
+		positionsSynoptique.put("web1", Arrays.asList(new PositionSurSynoptique("syno1", 1,  2, true, FORMAT.REEL), new PositionSurSynoptique("syno2", 3,  4, false, FORMAT.ICONE)));
+		positionsSynoptique.put("web2", Arrays.asList(new PositionSurSynoptique("syno1", 5,  6, false, FORMAT.ICONE), new PositionSurSynoptique("syno2", 7,  8, true, FORMAT.REEL)));
 		
 		retour.add(new MessageProprietesEquipementWebMqttRest(TYPE_EQUIPEMENT.PMP, "2222", nomsWeb,
 				positionsSynoptique));
