@@ -42,4 +42,5 @@ Version 1.10 : 02/07/18
 	Ajout transport des données web de configuration des équipements : position en x et y, ...
 	Evenement modification des fichiers de proprietes Pegase
 	Mise à jour des librairies
+	Compilation java 11
 	
