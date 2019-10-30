@@ -1,0 +1,9 @@
+stages:
+  - test
+
+test:
+  script:
+    - mvn verify
+  artifacts:
+
+
