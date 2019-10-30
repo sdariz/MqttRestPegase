@@ -1,9 +1,16 @@
 stages:
   - test
+  - deploy
 
 test:
   script:
     - mvn verify
   artifacts:
+
+deploy:
+  script:
+    - mvn install
+  artifacts:
+
 
 
