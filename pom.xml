@@ -79,7 +79,8 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.8.0-beta2</version>
 		</dependency>
-		
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -93,49 +94,49 @@
 	<build>
 		<!-- sourceDirectory>src/main/java</sourceDirectory -->
 		<plugins>
-			<!--  Plugin pour verifier les dernieres versions des plugin : mvn versions:display-plugin-updates -->
+			<!-- Plugin pour verifier les dernieres versions des plugin : mvn versions:display-plugin-updates -->
 			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>versions-maven-plugin</artifactId>
-			    <version>2.7</version>
-			    <configuration>
-			        <generateBackupPoms>false</generateBackupPoms>
-			    </configuration>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<generateBackupPoms>false</generateBackupPoms>
+				</configuration>
 			</plugin>
-			
+
 			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-enforcer-plugin</artifactId>
-		        <version>3.0.0-M2</version>
-		        <executions>
-		          <execution>
-		            <id>enforce-plugin-versions</id>
-		            <goals>
-		              <goal>enforce</goal>
-		            </goals>
-		            <configuration>
-		              <rules>
-		              	<requireMavenVersion>
-							<version>3.0.5</version>
-						</requireMavenVersion>
-		                <requirePluginVersions>
-		                   <message>Best Practice is to always define plugin versions!</message>
-		                   <banLatest>true</banLatest>
-		                   <banRelease>true</banRelease>
-		                   <banSnapshots>true</banSnapshots>
-		                   <phases>clean,deploy,site</phases>
-		                   <additionalPlugins>
-		                     <additionalPlugin>org.apache.maven.plugins:maven-eclipse-plugin</additionalPlugin>
-		                     <additionalPlugin>org.apache.maven.plugins:maven-reactor-plugin</additionalPlugin>
-		                   </additionalPlugins>
-		                   <unCheckedPluginList>org.apache.maven.plugins:maven-enforcer-plugin,org.apache.maven.plugins:maven-idea-plugin</unCheckedPluginList>
-		                </requirePluginVersions>
-		              </rules>
-		            </configuration>
-		          </execution>
-		        </executions>
-		    </plugin>
-		      
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M2</version>
+				<executions>
+					<execution>
+						<id>enforce-plugin-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.0.5</version>
+								</requireMavenVersion>
+								<requirePluginVersions>
+									<message>Best Practice is to always define plugin versions!</message>
+									<banLatest>true</banLatest>
+									<banRelease>true</banRelease>
+									<banSnapshots>true</banSnapshots>
+									<phases>clean,deploy,site</phases>
+									<additionalPlugins>
+										<additionalPlugin>org.apache.maven.plugins:maven-eclipse-plugin</additionalPlugin>
+										<additionalPlugin>org.apache.maven.plugins:maven-reactor-plugin</additionalPlugin>
+									</additionalPlugins>
+									<unCheckedPluginList>org.apache.maven.plugins:maven-enforcer-plugin,org.apache.maven.plugins:maven-idea-plugin</unCheckedPluginList>
+								</requirePluginVersions>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -206,51 +207,52 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		
+
 		<pluginManagement>
 			<plugins>
-				<!-- Versions des dépendances forcées ici pour éviter les versions obsoletes ou par défaut, générées par les dépendances  -->
-            	<plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
+				<!-- Versions des dépendances forcées ici pour éviter les versions obsoletes 
+					ou par défaut, générées par les dépendances -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.7.1</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-clean-plugin</artifactId>
-				    <version>3.1.0</version>	
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-install-plugin</artifactId>
-				    <version>3.0.0-M1</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-deploy-plugin</artifactId>
-				    <version>3.0.0-M1</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-resources-plugin</artifactId>
-				    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-				    <artifactId>maven-surefire-plugin</artifactId>
-				    <version>2.22.1</version>
-                </plugin>
-                <plugin>
-                	 <groupId>org.apache.maven.plugins</groupId>
-					 <artifactId>maven-eclipse-plugin</artifactId>
-					 <version>2.10</version>
-                </plugin>
-                <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-			        <artifactId>maven-reactor-plugin</artifactId>
-			        <version>1.1</version>
-                </plugin>
-           </plugins>
-       </pluginManagement>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.10</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-reactor-plugin</artifactId>
+					<version>1.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
