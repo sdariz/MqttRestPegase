@@ -43,4 +43,7 @@ Version 1.10 : 02/07/18
 	Evenement modification des fichiers de proprietes Pegase
 	Mise à jour des librairies
 	Compilation java 11
+
+Version 1.11 : 24/01/20
+	Mise à jour des librairies
 	

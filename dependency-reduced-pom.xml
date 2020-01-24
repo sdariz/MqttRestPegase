@@ -4,7 +4,7 @@
   <groupId>org.signature</groupId>
   <artifactId>mqttRestPegase</artifactId>
   <name>MqttRestPegase</name>
-  <version>1.10</version>
+  <version>1.11</version>
   <build>
     <pluginManagement>
       <plugins>
@@ -79,18 +79,6 @@
                 </requirePluginVersions>
               </rules>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
           </execution>
         </executions>
       </plugin>
