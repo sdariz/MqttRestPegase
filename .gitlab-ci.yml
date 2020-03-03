@@ -12,5 +12,6 @@ deploy:
     - mvn install
   artifacts:
 
-
+maven-package:
+  script: "mvn install -B"
 
