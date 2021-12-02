@@ -20,6 +20,7 @@ public class GestionnaireRoutesAdministration {
 	public final static String TEST_PRESENCE = "/administration/testPresence";
 	public final static String ACTIVATION_BOUTON = "/administration/activationBouton";
 	public final static String LANCEMENT_ACTION_BOUTON = "/administration/lancementActionBouton";
+	public final static String FORCAGE_ARRET_APPLICATION = "/administration/forcageArretApplication";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -36,20 +37,17 @@ public class GestionnaireRoutesAdministration {
 	 * @return la liste des routes
 	 */
 	public static List<String> getPOSTRoutes() {
-		return Arrays.asList(INTERDICTION_PILOTAGES, ACTIVATION_BOUTON, LANCEMENT_ACTION_BOUTON);
+		return Arrays.asList(INTERDICTION_PILOTAGES, ACTIVATION_BOUTON, LANCEMENT_ACTION_BOUTON,
+				FORCAGE_ARRET_APPLICATION);
 	}
 
 	/**
 	 * Traite une demande de type GET, reçue par le serveur REST
 	 * 
-	 * @param pUri
-	 *            la route à traiter
-	 * @param pParametres
-	 *            les paramètres de la requête
-	 * @param pTraiteRequetesRest
-	 *            l'objet qui va traiter les requêtes reçues
-	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de
-	 *         réponse
+	 * @param pUri                la route à traiter
+	 * @param pParametres         les paramètres de la requête
+	 * @param pTraiteRequetesRest l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de réponse
 	 */
 	public static String traiteDemandeGET(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
@@ -64,14 +62,10 @@ public class GestionnaireRoutesAdministration {
 	/**
 	 * Traite une demande de type POST, reçue par le serveur REST
 	 * 
-	 * @param pUri
-	 *            la route à traiter
-	 * @param pParametres
-	 *            les paramètres de la requête
-	 * @param pTraiteRequetesRest
-	 *            l'objet qui va traiter les requêtes reçues
-	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de
-	 *         réponse
+	 * @param pUri                la route à traiter
+	 * @param pParametres         les paramètres de la requête
+	 * @param pTraiteRequetesRest l'objet qui va traiter les requêtes reçues
+	 * @return la réponse à retourner, au format JSON. Chaîne vide si pas de réponse
 	 */
 	public static String traiteDemandePOST(String pUri, Map<String, String[]> pParametres,
 			ITraitementRequetesRest pTraiteRequetesRest) {
@@ -105,6 +99,12 @@ public class GestionnaireRoutesAdministration {
 		if (LANCEMENT_ACTION_BOUTON.equals(pUri)) {
 			pTraiteRequetesRest.traiteDemandeLancementActionBouton(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0], pParametres.get("idBouton")[0]);
+			return "";
+		}
+
+		if (FORCAGE_ARRET_APPLICATION.equals(pUri)) {
+			pTraiteRequetesRest.traiteForcageArretApplication(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]);
 			return "";
 		}
 

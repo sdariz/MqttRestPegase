@@ -149,6 +149,19 @@ public class ServiceRequetesAdministrationTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
+	
+	/**
+	 * Force un arrêt de Pegase
+	 */
+	@Test
+	public void testForcageArretPegase() {
+		traitementsRequetesRest.traitement = 0;
+
+		new InterrogationServeurHttpRest().requeteForcageArretApplication(HOST, PORT, "ab", "cd");
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+	}
 
 }
 
@@ -213,6 +226,28 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 			String pIdBouton) {
 		try {
 			assertEquals("Id bouton incorrect", "1111", pIdBouton);
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return;
+		}
+
+		traitement = 1;
+	}
+	
+	/**
+	 * Forçage de l'arret de l'application hébergeant le serveur REST
+	 * 
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 */
+	@Override
+	public void traiteForcageArretApplication(String pIdentifiantExpediteur, String pReferenceCommande) {
+		try {
 			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
 			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
 		} catch (Throwable t) {

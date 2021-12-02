@@ -34,12 +34,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état d'affichage d'un équipement
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement
 	 * @return null
 	 */
 	@Override
@@ -51,10 +50,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état d'affichage pour tous les équipements
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * 
 	 * @return une liste vide
 	 */
@@ -67,12 +66,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état technique d'un équipement
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement
 	 * @return null
 	 */
 	@Override
@@ -84,10 +82,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état technique pour tous les équipements
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * 
 	 * @return une liste vide
 	 */
@@ -98,15 +96,14 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant
-	 * une interrogation de l'équipement sur le terrain
+	 * Traite une demande d'actualisation de l'état d'un équipement, en forçant une
+	 * interrogation de l'équipement sur le terrain
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement à rafraîchir
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement à rafraîchir
 	 */
 	@Override
 	public void demandeActualisationEtatEquipement(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -116,10 +113,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention de la liste des utilisateurs
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * 
 	 * @return une liste vide
 	 */
@@ -132,10 +129,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention de l'utilisateur connecté
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * 
 	 * @return null
 	 */
@@ -148,14 +145,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Indique si le login et le mot de passe associé sont valides
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pLogin
-	 *            le login de l'utilisateur
-	 * @param pMotPasse
-	 *            le mot de passe associé au login
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pLogin                 le login de l'utilisateur
+	 * @param pMotPasse              le mot de passe associé au login
 	 * @return false
 	 */
 	@Override
@@ -165,33 +160,29 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
-	 * Pegase
+	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur Pegase
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pInterdit
-	 *            true pour interdire les pilotages sur Pegase
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pInterdit              true pour interdire les pilotages sur Pegase
 	 */
 	@Override
 	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
 			boolean pInterdit) {
 	}
-	
+
 	/**
-	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur
-	 * Pegase, sur certains équipements
+	 * Traite une demande d'autorisation ou d'interdiction des pilotages sur Pegase,
+	 * sur certains équipements
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdsEquipements
-	 *            les identifiants des équipements concernés
-	 * @param pInterdit
-	 *            true pour interdire les pilotages sur Pegase
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdsEquipements        les identifiants des équipements concernés
+	 * @param pInterdit              true pour interdire les pilotages sur Pegase
 	 */
 	@Override
 	public void traiteDemandeInterdictionPilotages(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -201,14 +192,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'activation ou désactivation d'un bouton
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdBouton
-	 *            l'identifiant du bouton
-	 * @param pActif
-	 *            true pour activer, false pour désactiver
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdBouton              l'identifiant du bouton
+	 * @param pActif                 true pour activer, false pour désactiver
 	 */
 	@Override
 	public void traiteDemandeActivationBouton(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -218,12 +207,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de lancement de l'action rattachée à un bouton
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdBouton
-	 *            l'identifiant du bouton
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdBouton              l'identifiant du bouton
 	 */
 	@Override
 	public void traiteDemandeLancementActionBouton(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -231,14 +219,26 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
+	 * Forçage de l'arret de l'application hébergeant le serveur REST
+	 * 
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 */
+	@Override
+	public void traiteForcageArretApplication(String pIdentifiantExpediteur, String pReferenceCommande) {
+	}
+
+	/**
 	 * Traite une demande de lancement de test sur les équipements d'une armoire
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant d'un équipement de l'armoire à tester
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant d'un équipement de l'armoire à
+	 *                               tester
 	 */
 	@Override
 	public void traiteDemandeLancementTestEquipements(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -248,12 +248,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de remise à l'heure d'une armoire
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant d'un équipement de l'armoire à remettre à l'heure
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant d'un équipement de l'armoire à
+	 *                               remettre à l'heure
 	 */
 	@Override
 	public void traiteDemandeRemiseHeureArmoire(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -263,14 +263,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'interrogation d'une armoire
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant d'un équipement de l'armoire à interroger
-	 * @param pTrame
-	 *            la commande à transmettre à l'armoire
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant d'un équipement de l'armoire à
+	 *                               interroger
+	 * @param pTrame                 la commande à transmettre à l'armoire
 	 * @return la réponse de l'armoire
 	 */
 	@Override
@@ -280,13 +279,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande d'obtention de la liste des catégorie de la
-	 * bibliothèque
+	 * Traite une demande d'obtention de la liste des catégorie de la bibliothèque
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return une liste vide
 	 */
 	@Override
@@ -299,12 +297,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * Traite une demande d'obtention de la liste des noms des messages dans une
 	 * catégorie de la bibliothèque
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pCategorie
-	 *            la catégorie concernée
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pCategorie             la catégorie concernée
 	 * @return une liste vide
 	 */
 	@Override
@@ -316,14 +313,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention d'un message de la bibliothèque
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pCategorie
-	 *            la catégorie concernée
-	 * @param pNom
-	 *            le nom du message
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pCategorie             la catégorie concernée
+	 * @param pNom                   le nom du message
 	 * @return null
 	 */
 	@Override
@@ -335,18 +330,15 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention des alarmes entre deux dates
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement concerné
-	 * @param pHorodateDebut
-	 *            l'horodate de début de l'alarme
-	 * @param pHorodateFin
-	 *            l'horodate de fin de l'alarme
-	 * @param pActiveSeul
-	 *            true pour ne sélectionner que les alarmes actives
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement concerné
+	 * @param pHorodateDebut         l'horodate de début de l'alarme
+	 * @param pHorodateFin           l'horodate de fin de l'alarme
+	 * @param pActiveSeul            true pour ne sélectionner que les alarmes
+	 *                               actives
 	 * @return une liste vide
 	 */
 	@Override
@@ -359,14 +351,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état d'un équipement à une certaine date
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement concerné
-	 * @param pHorodate
-	 *            l'horodate de l'évènement
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement concerné
+	 * @param pHorodate              l'horodate de l'évènement
 	 * @return null
 	 */
 	@Override
@@ -378,16 +368,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'état d'un équipement entre deux dates
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement concerné
-	 * @param pHorodateDebut
-	 *            l'horodate de début de l'évènement
-	 * @param pHorodateFin
-	 *            l'horodate de fin de l'évènement
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement concerné
+	 * @param pHorodateDebut         l'horodate de début de l'évènement
+	 * @param pHorodateFin           l'horodate de fin de l'évènement
 	 * @return une liste vide
 	 */
 	@Override
@@ -400,12 +387,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention des propriétés d'un équipement
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement concerné
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement concerné
 	 * @return null
 	 */
 	@Override
@@ -417,10 +403,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention des propriétés des équipements
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return une liste vide
 	 */
 	@Override
@@ -432,12 +418,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention des propriétés d'une armoire
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant d'un équipement de l'armoire à interroger
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant d'un équipement de l'armoire à
+	 *                               interroger
 	 * @return null
 	 */
 	@Override
@@ -449,10 +435,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention des propriétés des armoires
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return une liste vide
 	 */
 	@Override
@@ -460,17 +446,16 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 			String pReferenceCommande) {
 		return new ArrayList<>();
 	}
-	
+
 	/**
 	 * Traite une demande d'obtention des propriétés d'un équipement web :
 	 * positionnement sur un synoptique, ...
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'id de l'équipement concerné
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'id de l'équipement concerné
 	 * @return les propriétés d'un équipement web, null si problème
 	 */
 	public MessageProprietesEquipementWebMqttRest traiteDemandeProprietesEquipementWeb(String pIdentifiantExpediteur,
@@ -482,24 +467,24 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * Traite une demande d'obtention des propriétés des équipements web :
 	 * positionnement sur un synoptique, ...
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return les propriétés des équipements
 	 */
-	public List<MessageProprietesEquipementWebMqttRest> traiteDemandeProprietesEquipementsWeb(String pIdentifiantExpediteur,
-			String pReferenceCommande) {
+	public List<MessageProprietesEquipementWebMqttRest> traiteDemandeProprietesEquipementsWeb(
+			String pIdentifiantExpediteur, String pReferenceCommande) {
 		return new ArrayList<>();
 	}
 
 	/**
 	 * Traite une demande d'obtention de la liste des identifiants des scénarios
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return une liste vide
 	 */
 	@Override
@@ -510,12 +495,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention d'un scénario en particulier
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdScenario
-	 *            l'identifiant du scénario à récupérer
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdScenario            l'identifiant du scénario à récupérer
 	 * @return null
 	 */
 	@Override
@@ -527,10 +511,10 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande d'obtention de tous les scénarios
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return une liste vide
 	 */
 	@Override
@@ -542,12 +526,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un scénario, via l'identifiant fourni
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdScenario
-	 *            l'identifiant du scénario à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdScenario            l'identifiant du scénario à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -558,12 +541,11 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	 * Traite une demande de pilotage d'un scénario, via le scénario temporaire
 	 * fourni
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pScenarioTemporaire
-	 *            le scénario temporaire à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pScenarioTemporaire    le scénario temporaire à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -573,14 +555,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'une liste de messages dans un scénario
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdScenario
-	 *            l'identifiant du scénario concerné
-	 * @param pMessagesAPiloter
-	 *            les messages à piloter dans le scénario
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdScenario            l'identifiant du scénario concerné
+	 * @param pMessagesAPiloter      les messages à piloter dans le scénario
 	 */
 	@Override
 	public void traiteDemandePilotageScenario(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -590,14 +570,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un PMV
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotagePmv(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
@@ -607,14 +585,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un PPLMV
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotagePplmv(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -624,14 +600,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un PPAD
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotagePpad(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -641,14 +615,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un Pictogramme
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotagePictogramme(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -658,14 +630,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un Feu R24
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageR24(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
@@ -675,14 +645,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un Prisme
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotagePrisme(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -692,14 +660,12 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'une Barrière
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageBarriere(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -709,46 +675,41 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	/**
 	 * Traite une demande de pilotage d'un BRA
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageBra(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
 			MessageBraMqttRest pMessageAPiloter) {
 	}
-	
+
 	/**
 	 * Traite une demande de pilotage d'un Feu de Regulation
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à piloter
-	 * @param pMessageAPiloter
-	 *            le message à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à piloter
+	 * @param pMessageAPiloter       le message à piloter
 	 */
 	@Override
-	public void traiteDemandePilotageFeuRegulation(String pIdentifiantExpediteur, String pReferenceCommande, String pIdEquipement,
-			MessageFeuRegulationMqttRest pMessageAPiloter) {
+	public void traiteDemandePilotageFeuRegulation(String pIdentifiantExpediteur, String pReferenceCommande,
+			String pIdEquipement, MessageFeuRegulationMqttRest pMessageAPiloter) {
 	}
 
 	/**
 	 * Traite une demande de pilotage d'une liste de messages
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pMessages
-	 *            les messages à piloter
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pMessages              les messages à piloter
 	 */
 	@Override
 	public void traiteDemandePilotageMessages(String pIdentifiantExpediteur, String pReferenceCommande,
@@ -756,15 +717,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande pour savoir si un pilotage est en cours sur un
-	 * équipement
+	 * Traite une demande pour savoir si un pilotage est en cours sur un équipement
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
-	 * @param pIdEquipement
-	 *            l'identifiant de l'équipement à tester
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @param pIdEquipement          l'identifiant de l'équipement à tester
 	 * @return false
 	 */
 	@Override
@@ -774,13 +733,13 @@ public class TraitementRequetesRestAdapteur implements ITraitementRequetesRest {
 	}
 
 	/**
-	 * Traite une demande pour savoir si un pilotage est en cours sur un
-	 * équipement quelconque
+	 * Traite une demande pour savoir si un pilotage est en cours sur un équipement
+	 * quelconque
 	 * 
-	 * @param pIdentifiantExpediteur
-	 *            l'identifiant unique de l'expéditeur : peut être vide
-	 * @param pReferenceCommande
-	 *            la référence unique de la demande : peut être vide
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
 	 * @return false
 	 */
 	@Override

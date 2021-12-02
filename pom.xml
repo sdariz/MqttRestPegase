@@ -5,7 +5,7 @@
 
 	<groupId>org.signature</groupId>
 	<artifactId>mqttRestPegase</artifactId>
-	<version>1.11</version>
+	<version>1.12</version>
 	<name>MqttRestPegase</name>
 
 	<properties>
