@@ -205,7 +205,40 @@ public class ServiceRequetesAdministration {
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
-		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesAdministration.FORCAGE_ARRET_APPLICATION, params);
+		ClientHttpRest.envoiRequetePOST(pHost, pPort, GestionnaireRoutesAdministration.FORCAGE_ARRET_APPLICATION,
+				params);
+	}
+
+	/**
+	 * Demande la description au format JSON des données de travail sauvegardés. Ce
+	 * sont toutes les données exceptés les alarmes et évènements. mAis avec les
+	 * images utilisés (synoptiques, pictogrammes, PPAD, ...) au format base64
+	 * 
+	 * @param pHost                  l'adresse IP du serveur REST
+	 * @param pPort                  le port TCP utilisé par le serveur
+	 * @param pIdentifiantExpediteur l'identifiant unique de l'expéditeur : peut
+	 *                               être vide
+	 * @param pReferenceCommande     la référence unique de la demande : peut être
+	 *                               vide
+	 * @return la description au format JSON
+	 */
+	public static String requeteDemandeDecriptionDonnesTravailSauvegardes(String pHost, int pPort,
+			String pIdentifiantExpediteur, String pReferenceCommande) {
+		if (pIdentifiantExpediteur == null) {
+			pIdentifiantExpediteur = "";
+		}
+
+		if (pReferenceCommande == null) {
+			pReferenceCommande = "";
+		}
+
+		// Paramètre de la requette
+		Map<String, String> params = new HashMap<>();
+		params.put("idExpediteur", pIdentifiantExpediteur);
+		params.put("idCommande", pReferenceCommande);
+
+		return ClientHttpRest.envoiRequetePOST(pHost, pPort,
+				GestionnaireRoutesAdministration.DESCRIPTION_JSON_DONNES_TRAVAIL, params);
 	}
 
 }

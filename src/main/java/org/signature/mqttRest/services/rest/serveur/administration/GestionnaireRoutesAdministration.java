@@ -21,6 +21,7 @@ public class GestionnaireRoutesAdministration {
 	public final static String ACTIVATION_BOUTON = "/administration/activationBouton";
 	public final static String LANCEMENT_ACTION_BOUTON = "/administration/lancementActionBouton";
 	public final static String FORCAGE_ARRET_APPLICATION = "/administration/forcageArretApplication";
+	public final static String DESCRIPTION_JSON_DONNES_TRAVAIL = "/administration/descriptionJsonDonneesTravail";
 
 	/**
 	 * Donne la liste des routes de type GET
@@ -38,7 +39,7 @@ public class GestionnaireRoutesAdministration {
 	 */
 	public static List<String> getPOSTRoutes() {
 		return Arrays.asList(INTERDICTION_PILOTAGES, ACTIVATION_BOUTON, LANCEMENT_ACTION_BOUTON,
-				FORCAGE_ARRET_APPLICATION);
+				FORCAGE_ARRET_APPLICATION, DESCRIPTION_JSON_DONNES_TRAVAIL);
 	}
 
 	/**
@@ -106,6 +107,11 @@ public class GestionnaireRoutesAdministration {
 			pTraiteRequetesRest.traiteForcageArretApplication(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0]);
 			return "";
+		}
+		
+		if (DESCRIPTION_JSON_DONNES_TRAVAIL.equals(pUri)) {
+			return pTraiteRequetesRest.traiteDemandeDecriptionDonnesTravailSauvegardes(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]);
 		}
 
 		return "";

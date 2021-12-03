@@ -162,6 +162,20 @@ public class ServiceRequetesAdministrationTest {
 		// Sortie en erreur
 		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
 	}
+	
+	/**
+	 * DEmande les données sauvegardes au format JSON
+	 */
+	@Test
+	public void testDemandeDecriptionDonnesTravailSauvegardes() {
+		traitementsRequetesRest.traitement = 0;
+
+		String Descjson = new InterrogationServeurHttpRest().requeteDemandeDecriptionDonnesTravailSauvegardes(HOST, PORT, "ab", "cd");
+
+		// Sortie en erreur
+		assertEquals("ERREUR TEST", 1, traitementsRequetesRest.traitement);
+		assertEquals("ERREUR JSON", "{\"JSON\":\"OK\"}", Descjson);
+	}
 
 }
 
@@ -257,5 +271,22 @@ class TraitementRequetesAdministration extends TraitementRequetesRestAdapteur {
 		}
 
 		traitement = 1;
+	}
+	
+	@Override
+	public String traiteDemandeDecriptionDonnesTravailSauvegardes(String pIdentifiantExpediteur,
+			String pReferenceCommande) {
+		try {
+			assertEquals("Id expediteur incorrect", "ab", pIdentifiantExpediteur);
+			assertEquals("Id commande incorrect", "cd", pReferenceCommande);
+		} catch (Throwable t) {
+			t.printStackTrace();
+			traitement = 2;
+			return "";
+		}
+
+		traitement = 1;
+		
+		return "{\"JSON\":\"OK\"}";
 	}
 }
