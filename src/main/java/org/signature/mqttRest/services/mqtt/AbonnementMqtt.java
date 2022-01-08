@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -16,8 +18,6 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Abonnement à un topic mqtt
@@ -26,7 +26,8 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class AbonnementMqtt implements MqttCallback {
-	private final static Logger LOG = LoggerFactory.getLogger(AbonnementMqtt.class);
+	private Logger _logger = LogManager.getLogger(AbonnementMqtt.class);
+	
 	private List<Topic> _topics;
 	private IListenerMessageMqtt _listener;
 	private MqttClient _clientMqtt;
@@ -94,7 +95,7 @@ public class AbonnementMqtt implements MqttCallback {
 			_clientMqtt = new MqttClient(uri, clientId, new MqttDefaultFilePersistence(
 					GestionnaireRepertoiresTravail.DOSSIER_PERSISTANCES_MESSAGES_CLIENTS));
 		} catch (MqttException e) {
-			LOG.error("Problème de création de la connection au broker mqtt", e);
+			_logger.error("Problème de création de la connection au broker mqtt", e);
 			return;
 		}
 
@@ -109,7 +110,7 @@ public class AbonnementMqtt implements MqttCallback {
 		try {
 			_clientMqtt.connect(connOpts);
 		} catch (MqttException e) {
-			LOG.error("Problème de connexion au broker", e);
+			_logger.error("Problème de connexion au broker", e);
 			deconnexion();
 			return;
 		}
@@ -129,7 +130,7 @@ public class AbonnementMqtt implements MqttCallback {
 		try {
 			_clientMqtt.subscribe(topics, qos);
 		} catch (MqttException e) {
-			LOG.error("Problème d'abonnement aux topics", e);
+			_logger.error("Problème d'abonnement aux topics", e);
 			deconnexion();
 			return;
 		}
@@ -149,13 +150,13 @@ public class AbonnementMqtt implements MqttCallback {
 		try {
 			_clientMqtt.unsubscribe(topics);
 		} catch (MqttException e1) {
-			LOG.error("Problème de désabonnement des topics", e1);
+			_logger.error("Problème de désabonnement des topics", e1);
 		}
 
 		try {
 			_clientMqtt.disconnect();
 		} catch (MqttException e) {
-			LOG.error("Problème de déconnection du client mqtt", e);
+			_logger.error("Problème de déconnection du client mqtt", e);
 			_clientMqtt = null;
 			return;
 		}
@@ -163,7 +164,7 @@ public class AbonnementMqtt implements MqttCallback {
 		try {
 			_clientMqtt.close();
 		} catch (MqttException e) {
-			LOG.error("Erreur close du client mqtt", e);
+			_logger.error("Erreur close du client mqtt", e);
 		}
 
 		_clientMqtt = null;
@@ -182,7 +183,7 @@ public class AbonnementMqtt implements MqttCallback {
 	 */
 	@Override
 	public void connectionLost(Throwable pCause) {
-		LOG.error("Perte de connexion avec le serveur", pCause);
+		_logger.error("Perte de connexion avec le serveur", pCause);
 
 		// Un thread pour attendre le retour du serveur et se réabonner
 		// autoReconnect est à true, mais il faut se réabonner (?)
@@ -191,7 +192,7 @@ public class AbonnementMqtt implements MqttCallback {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					LOG.error("Erreur thread", e);
+					_logger.error("Erreur thread", e);
 					return;
 				}
 

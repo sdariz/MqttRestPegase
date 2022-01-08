@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.signature.mqttRest.services.mqtt.IBrokerMqtt;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import io.moquette.BrokerConstants;
 import io.moquette.server.Server;
@@ -19,7 +19,7 @@ import io.moquette.server.Server;
  *
  */
 public class BrokerMqttMoquette implements IBrokerMqtt {
-	private final static Logger LOG = LoggerFactory.getLogger(BrokerMqttMoquette.class);
+	private Logger _logger = LogManager.getLogger(BrokerMqttMoquette.class);
 
 	private final static String DOSSIER_MQTT_BROKER = "mqtt-broker";
 
@@ -62,7 +62,7 @@ public class BrokerMqttMoquette implements IBrokerMqtt {
 		try {
 			_serveur.startServer(props);
 		} catch (IOException e) {
-			LOG.error("Problème pour démarrer le broker mqtt", e);
+			_logger.error("Problème pour démarrer le broker mqtt", e);
 		}
 	}
 

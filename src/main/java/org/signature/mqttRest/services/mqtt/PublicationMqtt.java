@@ -11,8 +11,6 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.signature.mqttRest.objetsPartages.IMessageMqttRest;
 import org.signature.mqttRest.services.mqtt.ITopicMqtt.Topic;
 import org.signature.mqttRest.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Un client mqtt pour publier en mode asynchrone des messages vers le broker

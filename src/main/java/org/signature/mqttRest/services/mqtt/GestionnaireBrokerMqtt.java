@@ -2,8 +2,6 @@ package org.signature.mqttRest.services.mqtt;
 
 import org.signature.mqttRest.services.mqtt.moquette.BrokerMqttMoquette;
 import org.signature.mqttRest.services.mqtt.vertx.BrokerMqttVertx;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Classe démarrant le broker mqtt
