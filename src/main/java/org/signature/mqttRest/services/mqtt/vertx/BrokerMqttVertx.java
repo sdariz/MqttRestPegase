@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.signature.mqttRest.services.mqtt.IBrokerMqtt;
 
 import io.netty.handler.codec.mqtt.MqttQoS;
@@ -20,7 +22,7 @@ import io.vertx.mqtt.MqttTopicSubscription;
  *
  */
 public class BrokerMqttVertx implements IBrokerMqtt {
-	private final static Logger LOG = LoggerFactory.getLogger(BrokerMqttVertx.class);
+	private static Logger LOG = LogManager.getLogger(BrokerMqttVertx.class);
 
 	private MqttServer _serveur = null;
 	private Vertx _vertx;

@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.IMessageAffichageEquipementMqttRest.TypeEquipement;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBarriereMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageBraMqttRest;
@@ -22,6 +18,11 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePpadMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessagePrismeMqttRest;
 import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
+
 /**
  * Une classe de méthodes utilitaires
  * 
@@ -29,7 +30,7 @@ import org.signature.mqttRest.objetsPartages.etatEtPilotage.MessageR24MqttRest;
  *
  */
 public class Util {
-	private final static Logger LOG = LoggerFactory.getLogger(Util.class);
+	private static Logger LOG = LogManager.getLogger(Util.class);
 
 	/**
 	 * Sérialise la valeur au format JSON

@@ -1,5 +1,7 @@
 package org.signature.mqttRest.services.mqtt;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.signature.mqttRest.services.mqtt.moquette.BrokerMqttMoquette;
 import org.signature.mqttRest.services.mqtt.vertx.BrokerMqttVertx;
 
@@ -10,8 +12,9 @@ import org.signature.mqttRest.services.mqtt.vertx.BrokerMqttVertx;
  *
  */
 public class GestionnaireBrokerMqtt {
-	private final static Logger LOG = LoggerFactory.getLogger(GestionnaireBrokerMqtt.class);
 	private static GestionnaireBrokerMqtt _instance = null;
+	
+	private static Logger LOG = LogManager.getLogger(GestionnaireBrokerMqtt.class);
 
 	private IBrokerMqtt _brokerMqtt = null;
 

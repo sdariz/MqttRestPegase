@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.signature.mqttRest.services.rest.serveur.administration.GestionnaireRoutesAdministration;
 import org.signature.mqttRest.services.rest.serveur.bibliothequePmv.GestionnaireRoutesBibliothequePmv;
 import org.signature.mqttRest.services.rest.serveur.etatEquipement.GestionnaireRoutesEtatEquipement;
@@ -27,7 +28,8 @@ import org.signature.mqttRest.services.rest.serveur.utilisateur.GestionnaireRout
 class GestionnaireRoutes {
 	private static Map<Class<?>, List<String>> _routesGet;
 	private static Map<Class<?>, List<String>> _routesPost;
-	private final static Logger LOG = LoggerFactory.getLogger(GestionnaireRoutes.class);
+	
+	private static Logger LOG = LogManager.getLogger(GestionnaireRoutes.class);
 
 	// Liste des routes GET et POST
 	static {

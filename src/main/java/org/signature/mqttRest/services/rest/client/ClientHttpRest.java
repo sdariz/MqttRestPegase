@@ -20,6 +20,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Un client pour envoyer des requêtes REST au serveur. Ne pas utiliser
@@ -30,7 +32,7 @@ import org.apache.http.util.EntityUtils;
  *
  */
 public class ClientHttpRest {
-	private final static Logger LOG = LoggerFactory.getLogger(ClientHttpRest.class);
+	private static Logger LOG = LogManager.getLogger(ClientHttpRest.class);
 
 	/**
 	 * Envoi d'une requête GET au serveur HTTP REST

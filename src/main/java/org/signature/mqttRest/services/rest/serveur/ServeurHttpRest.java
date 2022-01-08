@@ -6,6 +6,8 @@ import static spark.Spark.port;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import spark.QueryParamsMap;
 
@@ -18,7 +20,7 @@ import spark.QueryParamsMap;
  */
 public class ServeurHttpRest {
 	private ITraitementRequetesRest _traitementRequetesRest;
-	private final static Logger LOG = LoggerFactory.getLogger(ServeurHttpRest.class);
+	private static Logger LOG = LogManager.getLogger(ServeurHttpRest.class);
 	
 	private final static int PORT = 4567;
 	

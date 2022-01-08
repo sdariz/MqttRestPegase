@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -20,7 +22,7 @@ import org.signature.mqttRest.util.Util;
  *
  */
 public class PublicationMqtt {
-	private final static Logger LOG = LoggerFactory.getLogger(PublicationMqtt.class);
+	private static Logger LOG = LogManager.getLogger(PublicationMqtt.class);
 
 	/**
 	 * Publication d'un message

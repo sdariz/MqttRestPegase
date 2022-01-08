@@ -19,7 +19,7 @@ import io.moquette.server.Server;
  *
  */
 public class BrokerMqttMoquette implements IBrokerMqtt {
-	private Logger _logger = LogManager.getLogger(BrokerMqttMoquette.class);
+	private static Logger LOG = LogManager.getLogger(BrokerMqttMoquette.class);
 
 	private final static String DOSSIER_MQTT_BROKER = "mqtt-broker";
 
@@ -62,7 +62,7 @@ public class BrokerMqttMoquette implements IBrokerMqtt {
 		try {
 			_serveur.startServer(props);
 		} catch (IOException e) {
-			_logger.error("Problème pour démarrer le broker mqtt", e);
+			LOG.error("Problème pour démarrer le broker mqtt", e);
 		}
 	}
 
