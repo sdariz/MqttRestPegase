@@ -29,7 +29,7 @@ public class GestionnaireRoutesAdministration {
 	 * @return la liste des routes
 	 */
 	public static List<String> getGETRoutes() {
-		return Arrays.asList(TEST_PRESENCE);
+		return Arrays.asList(TEST_PRESENCE, DESCRIPTION_JSON_DONNES_TRAVAIL);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class GestionnaireRoutesAdministration {
 	 */
 	public static List<String> getPOSTRoutes() {
 		return Arrays.asList(INTERDICTION_PILOTAGES, ACTIVATION_BOUTON, LANCEMENT_ACTION_BOUTON,
-				FORCAGE_ARRET_APPLICATION, DESCRIPTION_JSON_DONNES_TRAVAIL);
+				FORCAGE_ARRET_APPLICATION);
 	}
 
 	/**
@@ -55,6 +55,12 @@ public class GestionnaireRoutesAdministration {
 		if (TEST_PRESENCE.equals(pUri)) {
 			// Pas de traitement, réponse directe OK
 			return Util.booleanToJsonString(true);
+		}
+		
+
+		if (DESCRIPTION_JSON_DONNES_TRAVAIL.equals(pUri)) {
+			return pTraiteRequetesRest.traiteDemandeDecriptionDonnesTravailSauvegardes(pParametres.get("idExpediteur")[0],
+					pParametres.get("idCommande")[0]);
 		}
 
 		return "";
@@ -107,11 +113,6 @@ public class GestionnaireRoutesAdministration {
 			pTraiteRequetesRest.traiteForcageArretApplication(pParametres.get("idExpediteur")[0],
 					pParametres.get("idCommande")[0]);
 			return "";
-		}
-		
-		if (DESCRIPTION_JSON_DONNES_TRAVAIL.equals(pUri)) {
-			return pTraiteRequetesRest.traiteDemandeDecriptionDonnesTravailSauvegardes(pParametres.get("idExpediteur")[0],
-					pParametres.get("idCommande")[0]);
 		}
 
 		return "";

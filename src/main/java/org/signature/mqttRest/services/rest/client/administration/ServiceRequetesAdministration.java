@@ -237,7 +237,7 @@ public class ServiceRequetesAdministration {
 		params.put("idExpediteur", pIdentifiantExpediteur);
 		params.put("idCommande", pReferenceCommande);
 
-		return ClientHttpRest.envoiRequetePOST(pHost, pPort,
+		return ClientHttpRest.envoiRequeteGET(pHost, pPort,
 				GestionnaireRoutesAdministration.DESCRIPTION_JSON_DONNES_TRAVAIL, params);
 	}
 

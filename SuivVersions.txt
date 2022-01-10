@@ -46,4 +46,7 @@ Version 1.10 : 02/07/18
 
 Version 1.11 : 24/01/20
 	Mise à jour des librairies
+
+Version 1.13.0 : 07/01/2022
+	Suppression slf4j
 	
